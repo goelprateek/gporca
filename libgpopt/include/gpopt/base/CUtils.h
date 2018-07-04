@@ -101,7 +101,7 @@ namespace gpopt
 			void PrintMemo(CMemo *pmemo);
 
 			static
-			IOstream &OsPrintDrgPcoldesc(IOstream &os, CColumnDescrArray *pdrgpcoldescIncludedCols, ULONG length);
+			IOstream &OsPrintDrgPcoldesc(IOstream &os, CColumnDescriptorArray *pdrgpcoldescIncludedCols, ULONG length);
 #endif // GPOS_DEBUG
 
 			//-------------------------------------------------------------------
@@ -456,7 +456,7 @@ namespace gpopt
 
 			// extract the nth partition key from the given array of partition keys
 			static
-			CColRef *PcrExtractPartKey(ColRefArrays *pdrgpdrgpcr, ULONG ulLevel);
+			CColRef *PcrExtractPartKey(CColRefArrays *pdrgpdrgpcr, ULONG ulLevel);
 
 			//-------------------------------------------------------------------
 			// Helpers for comparisons
@@ -900,7 +900,7 @@ namespace gpopt
 			// create an array of column arrays corresponding to the given array
 			// and based on the given mapping
 			static
-			ColRefArrays *PdrgpdrgpcrRemap(IMemoryPool *mp, ColRefArrays *pdrgpdrgpcr, UlongToColRefMap *colref_mapping, BOOL must_exist);
+			CColRefArrays *PdrgpdrgpcrRemap(IMemoryPool *mp, CColRefArrays *pdrgpdrgpcr, UlongToColRefMap *colref_mapping, BOOL must_exist);
 
 			// remap given array of expressions with provided column mappings
 			static
@@ -941,7 +941,7 @@ namespace gpopt
 			// construct the join condition (AND-tree of INDF operators)
 			// from the array of input columns reference arrays (aligned)
 			static
-			CExpression *PexprConjINDFCond(IMemoryPool *mp, ColRefArrays *pdrgpdrgpcrInput);
+			CExpression *PexprConjINDFCond(IMemoryPool *mp, CColRefArrays *pdrgpdrgpcrInput);
 
 			// check whether a colref array contains repeated items
 			static
@@ -977,7 +977,7 @@ namespace gpopt
 			UlongToConstraintMap *PhmulcnstrBoolConstOnPartKeys
 				(
 				IMemoryPool *mp,
-				ColRefArrays *pdrgpdrgpcrPartKey,
+				CColRefArrays *pdrgpdrgpcrPartKey,
 				BOOL value
 				);
 
@@ -989,7 +989,7 @@ namespace gpopt
 				(
 				IMemoryPool *mp,
 				CMDAccessor *md_accessor,
-				ColRefArrays *pdrgpdrgpcrPartKey,
+				CColRefArrays *pdrgpdrgpcrPartKey,
 				const IMDPartConstraint *mdpart_constraint,
 				CColRefArray *pdrgpcrOutput,
 				BOOL fDummyConstraint = false

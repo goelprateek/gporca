@@ -308,7 +308,7 @@ CJobGroupExpressionOptimization::InitChildGroupsOptimization
 	m_pdrgpdp = GPOS_NEW(psc->GetGlobalMemoryPool()) CDrvdPropArrays(psc->GetGlobalMemoryPool());
 
 	// initialize stats context with input stats context
-	m_pdrgpstatCurrentCtxt = GPOS_NEW(psc->GetGlobalMemoryPool()) IStatsArray(psc->GetGlobalMemoryPool());
+	m_pdrgpstatCurrentCtxt = GPOS_NEW(psc->GetGlobalMemoryPool()) IStatisticsArray(psc->GetGlobalMemoryPool());
 	CUtils::AddRefAppend<IStatistics, CleanupStats>(m_pdrgpstatCurrentCtxt, m_poc->Pdrgpstat());
 }
 
@@ -492,7 +492,7 @@ CJobGroupExpressionOptimization::ScheduleChildGroupsJobs
 	m_pexprhdlPlan->Prpp(m_ulChildIndex)->AddRef();
 
 	// use current stats for optimizing current child
-	IStatsArray *stats_ctxt = GPOS_NEW(psc->GetGlobalMemoryPool()) IStatsArray(psc->GetGlobalMemoryPool());
+	IStatisticsArray *stats_ctxt = GPOS_NEW(psc->GetGlobalMemoryPool()) IStatisticsArray(psc->GetGlobalMemoryPool());
 	CUtils::AddRefAppend<IStatistics, CleanupStats>(stats_ctxt, m_pdrgpstatCurrentCtxt);
 
 	// compute required relational properties

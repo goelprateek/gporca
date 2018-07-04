@@ -38,7 +38,7 @@ namespace gpopt
 			IMDId *m_mdid;
 
 			// partition keys
-			ColRefArrays *m_pdrgpdrgpcr;
+			CColRefArrays *m_pdrgpdrgpcr;
 
 			// part constraint map
 			UlongToPartConstraintMap *m_ppartcnstrmap;
@@ -94,7 +94,7 @@ namespace gpopt
 				IMemoryPool *mp,
 				ULONG scan_id,
 				IMDId *mdid,
-				ColRefArrays *pdrgpdrgpcr,
+				CColRefArrays *pdrgpdrgpcr,
 				UlongToPartConstraintMap *ppartcnstrmap,
 				CPartConstraint *ppartcnstr,
 				UlongToExprMap *phmulexprEqPredicates,
@@ -133,7 +133,7 @@ namespace gpopt
 			}
 
 			// partition keys
-			ColRefArrays *Pdrgpdrgpcr() const
+			CColRefArrays *Pdrgpdrgpcr() const
 			{
 				return m_pdrgpdrgpcr;
 			}

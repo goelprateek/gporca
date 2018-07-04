@@ -87,7 +87,7 @@ namespace gpopt
 			// find the partitioning level of the given part key, given the whole
 			// array of part keys
 			static
-			ULONG UlPartKeyLevel(const CColRef *colref, ColRefArrays *pdrgpdrgpcr);
+			ULONG UlPartKeyLevel(const CColRef *colref, CColRefArrays *pdrgpdrgpcr);
 
 			// construct a test for a partial scan given a part constraint
 			static 
@@ -97,7 +97,7 @@ namespace gpopt
 				CMDAccessor *md_accessor, 
 				CColumnFactory *col_factory,
 				CConstraint *pcnstr,
-				ColRefArrays *pdrgpdrgpcrPartKeys,
+				CColRefArrays *pdrgpdrgpcrPartKeys,
 				BOOL fRangePart
 				);
 			
@@ -110,7 +110,7 @@ namespace gpopt
 				CColumnFactory *col_factory,
 				CConstraintArray *pdrgpcnstr,
 				BOOL fConjunction,
-				ColRefArrays *pdrgpdrgpcrPartKeys,
+				CColRefArrays *pdrgpdrgpcrPartKeys,
 				BOOL fRangePart
 				);
 			
@@ -122,7 +122,7 @@ namespace gpopt
 				CMDAccessor *md_accessor, 
 				CColumnFactory *col_factory,
 				CConstraint *pcnstr,
-				ColRefArrays *pdrgpdrgpcrPartKeys,
+				CColRefArrays *pdrgpdrgpcrPartKeys,
 				BOOL fRangePart
 				);
 			
@@ -134,7 +134,7 @@ namespace gpopt
 				CMDAccessor *md_accessor, 
 				CColumnFactory *col_factory,
 				CConstraint *pcnstr,
-				ColRefArrays *pdrgpdrgpcrPartKeys,
+				CColRefArrays *pdrgpdrgpcrPartKeys,
 				BOOL fRangePart
 				);
 			
@@ -146,7 +146,7 @@ namespace gpopt
 				CMDAccessor *md_accessor, 
 				CColumnFactory *col_factory,
 				CConstraint *pcnstr,
-				ColRefArrays *pdrgpdrgpcrPartKeys,
+				CColRefArrays *pdrgpdrgpcrPartKeys,
 				BOOL fRangePart
 				);
 			
@@ -157,7 +157,7 @@ namespace gpopt
 				IMemoryPool *mp, 
 				CMDAccessor *md_accessor, 
 				CConstraint *pcnstr,
-				ColRefArrays *pdrgpdrgpcrPartKeys,
+				CColRefArrays *pdrgpdrgpcrPartKeys,
 				BOOL fRangePart
 				);
 
@@ -378,7 +378,7 @@ namespace gpopt
 				CMDAccessor *md_accessor, 
 				CColumnFactory *col_factory,
 				const CPartConstraint *ppartcnstr,
-				ColRefArrays *pdrgpdrgpcrPartKeys,
+				CColRefArrays *pdrgpdrgpcrPartKeys,
 				CharPtrArray *pdrgszPartTypes
 				);
 			
@@ -391,7 +391,7 @@ namespace gpopt
 				CMDAccessor *md_accessor, 
 				CColumnFactory *col_factory,
 				UlongToPartConstraintMap *ppartcnstrmap,
-				ColRefArrays *pdrgpdrgpcrPartKeys,
+				CColRefArrays *pdrgpdrgpcrPartKeys,
 				CharPtrArray *pdrgszPartTypes
 				);
 			
@@ -443,7 +443,7 @@ namespace gpopt
 				CColumnFactory *col_factory,
 				BOOL fConditional,
 				UlongToPartConstraintMap *ppartcnstrmap,
-				ColRefArrays *pdrgpdrgpcrKeys,
+				CColRefArrays *pdrgpdrgpcrKeys,
 				ULONG scan_id,
 				CharPtrArray *pdrgszPartTypes
 				);

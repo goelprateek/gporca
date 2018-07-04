@@ -41,7 +41,7 @@ namespace
 				return CTestUtils::m_pmdpf;
 			}
 
-			IStatsArray *m_pdrgpstat;
+			IStatisticsArray *m_pdrgpstat;
 
 		public:
 
@@ -52,7 +52,7 @@ namespace
 					m_amp(),
 					m_mda(m_amp.Pmp(), CMDCache::Pcache(), CTestUtils::m_sysidDefault, Pmdp()),
 					m_aoc(m_amp.Pmp(), &m_mda, NULL /* pceeval */, CTestUtils::GetCostModel(m_amp.Pmp())),
-					m_pdrgpstat(GPOS_NEW(m_amp.Pmp()) IStatsArray(m_amp.Pmp()))
+					m_pdrgpstat(GPOS_NEW(m_amp.Pmp()) IStatisticsArray(m_amp.Pmp()))
 			{
 				CHAR *szDXLInput = CDXLUtils::Read(Pmp(), file_name);
 				GPOS_CHECK_ABORT;
@@ -63,8 +63,8 @@ namespace
 				GPOS_ASSERT(pdrgpstats != NULL);
 				GPOS_ASSERT(2 == pdrgpstats->Size());
 				// ParseDXLToOptimizerStatisticObjArray returns an array of CStatistics (CStatisticsArray)
-				// and PStatsJoinArray takes an array of IStatistics (IStatsArray) as input
-				// So, iterate through CStatisticsArray and append members to a IStatsArray
+				// and PStatsJoinArray takes an array of IStatistics (IStatisticsArray) as input
+				// So, iterate through CStatisticsArray and append members to a IStatisticsArray
 				ULONG arity = pdrgpstats->Size();
 				for (ULONG ul = 0; ul < arity; ul++)
 				{
@@ -87,7 +87,7 @@ namespace
 				return m_amp.Pmp();
 			}
 
-			IStatsArray *PdrgPstat()
+			IStatisticsArray *PdrgPstat()
 			{
 				return m_pdrgpstat;
 			}
@@ -108,7 +108,7 @@ namespace gpnaucrates
 
 		Fixture f(file_name);
 		IMemoryPool *mp = f.Pmp();
-		IStatsArray *statistics_array = f.PdrgPstat();
+		IStatisticsArray *statistics_array = f.PdrgPstat();
 
 		CExpression *pexprLgGet = CTestUtils::PexprLogicalGet(mp);
 		CLogicalGet *popGet = CLogicalGet::PopConvert(pexprLgGet->Pop());
@@ -168,7 +168,7 @@ namespace gpnaucrates
 
 		Fixture f(file_name);
 		IMemoryPool *mp = f.Pmp();
-		IStatsArray *statistics_array = f.PdrgPstat();
+		IStatisticsArray *statistics_array = f.PdrgPstat();
 
 		CExpression *pexprLgGet = CTestUtils::PexprLogicalGet(mp);
 		CLogicalGet *popGet = CLogicalGet::PopConvert(pexprLgGet->Pop());
@@ -230,7 +230,7 @@ namespace gpnaucrates
 
 		Fixture f(file_name);
 		IMemoryPool *mp = f.Pmp();
-		IStatsArray *statistics_array = f.PdrgPstat();
+		IStatisticsArray *statistics_array = f.PdrgPstat();
 
 		CExpression *pexprLgGet = CTestUtils::PexprLogicalGet(mp);
 		CLogicalGet *popGet = CLogicalGet::PopConvert(pexprLgGet->Pop());

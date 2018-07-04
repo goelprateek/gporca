@@ -148,7 +148,7 @@ namespace gpopt
 						(
 						IMemoryPool *mp,
 						CExpressionHandle &exprhdl,
-						IStatsArray *stats_ctxt
+						IStatisticsArray *stats_ctxt
 						)
 						const;
 

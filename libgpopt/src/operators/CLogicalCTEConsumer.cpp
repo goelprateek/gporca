@@ -418,7 +418,7 @@ CLogicalCTEConsumer::PstatsDerive
 	(
 	IMemoryPool *mp,
 	CExpressionHandle &, //exprhdl,
-	IStatsArray * // statistics_array
+	IStatisticsArray * // statistics_array
 	)
 	const
 {

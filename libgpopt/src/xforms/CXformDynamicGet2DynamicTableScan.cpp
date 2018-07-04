@@ -78,7 +78,7 @@ CXformDynamicGet2DynamicTableScan::Transform
 
 	pdrgpcrOutput->AddRef();
 	
-	ColRefArrays *pdrgpdrgpcrPart = popGet->PdrgpdrgpcrPart();
+	CColRefArrays *pdrgpdrgpcrPart = popGet->PdrgpdrgpcrPart();
 	pdrgpdrgpcrPart->AddRef();
 	
 	popGet->Ppartcnstr()->AddRef();

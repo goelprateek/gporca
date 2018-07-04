@@ -240,7 +240,7 @@ void
 CEngine::InsertExpressionChildren
 	(
 	CExpression *pexpr,
-	GroupArray *pdrgpgroupChildren,
+	CGroupArray *pdrgpgroupChildren,
 	CXform::EXformId exfidOrigin,
 	CGroupExpression *pgexprOrigin
 	)
@@ -315,7 +315,7 @@ CEngine::PgroupInsert
 	GPOS_ASSERT_IMP(NULL != pgroupOrigin, NULL == pgroupTarget);
 
 	// insert expression's children to memo by recursive call
-	GroupArray *pdrgpgroupChildren = GPOS_NEW(m_mp) GroupArray(m_mp, pexpr->Arity());
+	CGroupArray *pdrgpgroupChildren = GPOS_NEW(m_mp) CGroupArray(m_mp, pexpr->Arity());
 	InsertExpressionChildren(pexpr, pdrgpgroupChildren, exfidOrigin, pgexprOrigin);
 
 	COperator *pop = pexpr->Pop();
@@ -701,7 +701,7 @@ CEngine::Pmemotmap()
 						PgroupRoot(),
 						m_pqc->Prpp(),
 						GPOS_NEW(m_mp) CReqdPropRelational(GPOS_NEW(m_mp) CColRefSet(m_mp)), // pass empty required relational properties initially
-						GPOS_NEW(m_mp) IStatsArray(m_mp), // pass empty stats context initially
+						GPOS_NEW(m_mp) IStatisticsArray(m_mp), // pass empty stats context initially
 						0 // ulSearchStageIndex
 						);
 
@@ -930,7 +930,7 @@ CEngine::PocChild
 	CExpressionHandle &exprhdlPlan, // handle to compute required plan properties
 	CExpressionHandle &exprhdlRel, // handle to compute required relational properties
 	CDrvdPropArrays *pdrgpdpChildren, // derived plan properties of optimized children
-	IStatsArray *pdrgpstatCurrentCtxt,
+	IStatisticsArray *pdrgpstatCurrentCtxt,
 	ULONG child_index,
 	ULONG ulOptReq
 	)
@@ -947,7 +947,7 @@ CEngine::PocChild
 	exprhdlPlan.Prpp(child_index)->AddRef();
 
 	// use current stats for optimizing current child
-	IStatsArray *stats_ctxt = GPOS_NEW(m_mp) IStatsArray(m_mp);
+	IStatisticsArray *stats_ctxt = GPOS_NEW(m_mp) IStatisticsArray(m_mp);
 	CUtils::AddRefAppend<IStatistics, CleanupStats>(stats_ctxt, pdrgpstatCurrentCtxt);
 
 	// compute required relational properties
@@ -995,7 +995,7 @@ CEngine::PccOptimizeChild
 	CExpressionHandle &exprhdlRel,
 	COptimizationContext *pocOrigin, // optimization context of parent operator
 	CDrvdPropArrays *pdrgpdp,
-	IStatsArray *pdrgpstatCurrentCtxt,
+	IStatisticsArray *pdrgpstatCurrentCtxt,
 	ULONG child_index,
 	ULONG ulOptReq
 	)
@@ -1074,7 +1074,7 @@ CEngine::PdrgpocOptimizeChildren
 	CDrvdPropArrays *pdrgpdp = GPOS_NEW(m_mp) CDrvdPropArrays(m_mp);
 
 	// initialize current stats context with input stats context
-	IStatsArray *pdrgpstatCurrentCtxt = GPOS_NEW(m_mp) IStatsArray(m_mp);
+	IStatisticsArray *pdrgpstatCurrentCtxt = GPOS_NEW(m_mp) IStatisticsArray(m_mp);
 	CUtils::AddRefAppend<IStatistics, CleanupStats>(pdrgpstatCurrentCtxt, pocOrigin->Pdrgpstat());
 
 	// initialize required relational properties computation
@@ -1356,7 +1356,7 @@ CEngine::RecursiveOptimize()
 				PgroupRoot(),
 				m_pqc->Prpp(),
 				GPOS_NEW(m_mp) CReqdPropRelational(GPOS_NEW(m_mp) CColRefSet(m_mp)), // pass empty required relational properties initially
-				GPOS_NEW(m_mp) IStatsArray(m_mp), // pass an empty stats context initially
+				GPOS_NEW(m_mp) IStatisticsArray(m_mp), // pass an empty stats context initially
 				m_ulCurrSearchStage
 				);
 		(void) PgexprOptimize(PgroupRoot(), poc, NULL /*pgexprOrigin*/);
@@ -1741,7 +1741,7 @@ CEngine::MainThreadOptimize()
 							PgroupRoot(),
 							m_pqc->Prpp(),
 							GPOS_NEW(m_mp) CReqdPropRelational(GPOS_NEW(m_mp) CColRefSet(m_mp)), // pass empty required relational properties initially
-							GPOS_NEW(m_mp) IStatsArray(m_mp), // pass empty stats context initially
+							GPOS_NEW(m_mp) IStatisticsArray(m_mp), // pass empty stats context initially
 							m_ulCurrSearchStage
 							);
 
@@ -1806,7 +1806,7 @@ CEngine::MultiThreadedOptimize
 								PgroupRoot(),
 								m_pqc->Prpp(),
 								GPOS_NEW(m_mp) CReqdPropRelational(GPOS_NEW(m_mp) CColRefSet(m_mp)), // pass empty required relational properties initially
-								GPOS_NEW(m_mp) IStatsArray(m_mp), // pass empty stats context initially
+								GPOS_NEW(m_mp) IStatisticsArray(m_mp), // pass empty stats context initially
 								m_ulCurrSearchStage
 								);
 

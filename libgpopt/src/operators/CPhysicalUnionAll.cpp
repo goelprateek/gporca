@@ -91,7 +91,7 @@ CPhysicalUnionAll::CPhysicalUnionAll
 	(
 		IMemoryPool *mp,
 		CColRefArray *pdrgpcrOutput,
-		ColRefArrays *pdrgpdrgpcrInput,
+		CColRefArrays *pdrgpdrgpcrInput,
 		ULONG ulScanIdPartialIndex
 	)
 	:
@@ -131,7 +131,7 @@ CPhysicalUnionAll::PdrgpcrOutput() const
 }
 
 // accessor of input column array
-ColRefArrays *
+CColRefArrays *
 CPhysicalUnionAll::PdrgpdrgpcrInput() const
 {
 	return m_pdrgpdrgpcrInput;

@@ -109,7 +109,7 @@ CTranslatorExprToDXLUtils::PdxlnPartialScanTest
 	CMDAccessor *md_accessor, 
 	CColumnFactory *col_factory,
 	const CPartConstraint *ppartcnstr,
-	ColRefArrays *pdrgpdrgpcrPartKeys,
+	CColRefArrays *pdrgpdrgpcrPartKeys,
 	CharPtrArray *pdrgszPartTypes
 	)
 {	
@@ -119,7 +119,7 @@ CTranslatorExprToDXLUtils::PdxlnPartialScanTest
 	for (ULONG ul = 0; ul < ulLevels; ul++)
 	{
 		CConstraint *pcnstr = ppartcnstr->Pcnstr(ul);
-		ColRefArrays *pdrgpdrgpcr = ppartcnstr->Pdrgpdrgpcr();
+		CColRefArrays *pdrgpdrgpcr = ppartcnstr->Pdrgpdrgpcr();
 		BOOL fRangePart = (IMDRelation::ErelpartitionRange == *(*pdrgszPartTypes)[ul]);
 		CDXLNode *pdxlnPartialScanTest = PdxlnPartialScanTest(mp, md_accessor, col_factory, pcnstr, pdrgpdrgpcr, fRangePart);
 
@@ -218,7 +218,7 @@ CTranslatorExprToDXLUtils::PdxlnPartialScanTest
 	CMDAccessor *md_accessor, 
 	CColumnFactory *col_factory,
 	CConstraint *pcnstr,
-	ColRefArrays *pdrgpdrgpcrPartKeys,
+	CColRefArrays *pdrgpdrgpcrPartKeys,
 	BOOL fRangePart
 	)
 {
@@ -271,7 +271,7 @@ CTranslatorExprToDXLUtils::PdxlnPartialScanTestConjDisj
 	CColumnFactory *col_factory,
 	CConstraintArray *pdrgpcnstr,
 	BOOL fConjunction,
-	ColRefArrays *pdrgpdrgpcrPartKeys,
+	CColRefArrays *pdrgpdrgpcrPartKeys,
 	BOOL fRangePart
 	)
 {	
@@ -329,7 +329,7 @@ CTranslatorExprToDXLUtils::PdxlnPropagationExpressionForPartConstraints
 	CMDAccessor *md_accessor, 
 	CColumnFactory *col_factory,
 	UlongToPartConstraintMap *ppartcnstrmap,
-	ColRefArrays *pdrgpdrgpcrPartKeys,
+	CColRefArrays *pdrgpdrgpcrPartKeys,
 	CharPtrArray *pdrgszPartTypes
 	)
 {	
@@ -413,7 +413,7 @@ CTranslatorExprToDXLUtils::PdxlnPartialScanTestConjunction
 	CMDAccessor *md_accessor, 
 	CColumnFactory *col_factory,
 	CConstraint *pcnstr,
-	ColRefArrays *pdrgpdrgpcrPartKeys,
+	CColRefArrays *pdrgpdrgpcrPartKeys,
 	BOOL fRangePart
 	)
 {	
@@ -441,7 +441,7 @@ CTranslatorExprToDXLUtils::PdxlnPartialScanTestDisjunction
 	CMDAccessor *md_accessor, 
 	CColumnFactory *col_factory,
 	CConstraint *pcnstr,
-	ColRefArrays *pdrgpdrgpcrPartKeys,
+	CColRefArrays *pdrgpdrgpcrPartKeys,
 	BOOL fRangePart
 	)
 {	
@@ -469,7 +469,7 @@ CTranslatorExprToDXLUtils::PdxlnPartialScanTestNegation
 	CMDAccessor *md_accessor, 
 	CColumnFactory *col_factory,
 	CConstraint *pcnstr,
-	ColRefArrays *pdrgpdrgpcrPartKeys,
+	CColRefArrays *pdrgpdrgpcrPartKeys,
 	BOOL fRangePart
 	)
 {	
@@ -499,7 +499,7 @@ CTranslatorExprToDXLUtils::PdxlnPartialScanTestInterval
 	IMemoryPool *mp, 
 	CMDAccessor *md_accessor, 
 	CConstraint *pcnstr,
-	ColRefArrays *pdrgpdrgpcrPartKeys,
+	CColRefArrays *pdrgpdrgpcrPartKeys,
 	BOOL fRangePart
 	)
 {	
@@ -546,7 +546,7 @@ ULONG
 CTranslatorExprToDXLUtils::UlPartKeyLevel
 	(
 	const CColRef *colref,
-	ColRefArrays *pdrgpdrgpcr
+	CColRefArrays *pdrgpdrgpcr
 	)
 {
 	GPOS_ASSERT(0 < pdrgpdrgpcr->Size() && "No partitioning keys found");
@@ -1465,7 +1465,7 @@ CTranslatorExprToDXLUtils::PdxlnPropExprPartitionSelector
 	CColumnFactory *col_factory,
 	BOOL fConditional,
 	UlongToPartConstraintMap *ppartcnstrmap,
-	ColRefArrays *pdrgpdrgpcrKeys,
+	CColRefArrays *pdrgpdrgpcrKeys,
 	ULONG scan_id,
 	CharPtrArray *pdrgszPartTypes
 	)

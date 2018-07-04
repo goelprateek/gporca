@@ -38,7 +38,7 @@ namespace gpopt
 		private:
 
 			// partitioning keys
-			ColRefArrays *m_pdrgpdrgpcr;
+			CColRefArrays *m_pdrgpdrgpcr;
 
 			// number of levels
 			ULONG m_num_of_part_levels;
@@ -50,7 +50,7 @@ namespace gpopt
 
 			// ctor
 			explicit
-			CPartKeys(ColRefArrays *pdrgpdrgpcr);
+			CPartKeys(CColRefArrays *pdrgpdrgpcr);
 
 			// dtor
 			~CPartKeys();
@@ -59,7 +59,7 @@ namespace gpopt
 			CColRef *PcrKey(ULONG ulLevel) const;
 
 			// return array of keys
-			ColRefArrays *Pdrgpdrgpcr() const
+			CColRefArrays *Pdrgpdrgpcr() const
 			{
 				return m_pdrgpdrgpcr;
 			}

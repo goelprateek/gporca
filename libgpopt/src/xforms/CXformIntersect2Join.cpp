@@ -82,7 +82,7 @@ CXformIntersect2Join::Transform
 	CExpression *pexprRightChild = (*pexpr)[1];
 
 	CLogicalIntersect *popIntersect = CLogicalIntersect::PopConvert(pexpr->Pop());
-	ColRefArrays *pdrgpdrgpcrInput = popIntersect->PdrgpdrgpcrInput();
+	CColRefArrays *pdrgpdrgpcrInput = popIntersect->PdrgpdrgpcrInput();
 
 	// construct group by over the left and right expressions
 

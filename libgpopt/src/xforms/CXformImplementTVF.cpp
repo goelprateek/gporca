@@ -121,7 +121,7 @@ CXformImplementTVF::Transform
 
 	CWStringConst *str = GPOS_NEW(mp) CWStringConst(popTVF->Pstr()->GetBuffer());
 
-	CColumnDescrArray *pdrgpcoldesc = popTVF->Pdrgpcoldesc();
+	CColumnDescriptorArray *pdrgpcoldesc = popTVF->Pdrgpcoldesc();
 	pdrgpcoldesc->AddRef();
 
 	CColRefArray *pdrgpcrOutput = popTVF->PdrgpcrOutput();

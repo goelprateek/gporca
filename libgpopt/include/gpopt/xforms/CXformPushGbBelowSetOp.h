@@ -107,9 +107,9 @@ namespace gpopt
                 CColRefArray *pdrgpcrGb = popGbAgg->Pdrgpcr();
                 CColRefArray *pdrgpcrOutput = popSetOp->PdrgpcrOutput();
                 CColRefSet *pcrsOutput = GPOS_NEW(mp) CColRefSet(mp, pdrgpcrOutput);
-                ColRefArrays *pdrgpdrgpcrInput = popSetOp->PdrgpdrgpcrInput();
+                CColRefArrays *pdrgpdrgpcrInput = popSetOp->PdrgpdrgpcrInput();
                 CExpressionArray *pdrgpexprNewChildren = GPOS_NEW(mp) CExpressionArray(mp);
-                ColRefArrays *pdrgpdrgpcrNewInput = GPOS_NEW(mp) ColRefArrays(mp);
+                CColRefArrays *pdrgpdrgpcrNewInput = GPOS_NEW(mp) CColRefArrays(mp);
                 const ULONG arity = pexprSetOp->Arity();
 
                 BOOL fNewChild = false;

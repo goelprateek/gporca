@@ -346,7 +346,7 @@ CLogicalLimit::PstatsDerive
 	(
 	IMemoryPool *mp,
 	CExpressionHandle &exprhdl,
-	IStatsArray * // not used
+	IStatisticsArray * // not used
 	)
 	const
 {

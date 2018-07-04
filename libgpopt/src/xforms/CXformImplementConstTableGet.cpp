@@ -67,7 +67,7 @@ CXformImplementConstTableGet::Transform
 	IMemoryPool *mp = pxfctxt->Pmp();
 
 	// create/extract components for alternative
-	CColumnDescrArray *pdrgpcoldesc = popConstTableGet->Pdrgpcoldesc();
+	CColumnDescriptorArray *pdrgpcoldesc = popConstTableGet->Pdrgpcoldesc();
 	pdrgpcoldesc->AddRef();
 	
 	IDatumArrays *pdrgpdrgpdatum = popConstTableGet->Pdrgpdrgpdatum();

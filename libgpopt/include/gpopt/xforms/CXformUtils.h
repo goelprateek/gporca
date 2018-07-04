@@ -77,7 +77,7 @@ namespace gpopt
 
 	// arrays over partial dynamic index get candidates
 	typedef CDynamicPtrArray<SPartDynamicIndexGetInfo, CleanupDelete> SPartDynamicIndexGetInfoArray;
-	typedef CDynamicPtrArray<SPartDynamicIndexGetInfoArray, CleanupRelease> PartDynamicIndexGetInfoArrays;
+	typedef CDynamicPtrArray<SPartDynamicIndexGetInfoArray, CleanupRelease> SPartDynamicIndexGetInfoArrays;
 
 	// map of expression to array of expressions
 	typedef CHashMap<CExpression, CExpressionArray, CExpression::HashValue, CUtils::Equals,
@@ -88,7 +88,7 @@ namespace gpopt
 		CleanupRelease<CExpression>, CleanupRelease<CExpressionArray> > ExprToExprArrayMapIter;
 
 	// array of array of expressions
-	typedef CDynamicPtrArray<CExpressionArray, CleanupRelease> ExpressionArrays;
+	typedef CDynamicPtrArray<CExpressionArray, CleanupRelease> CExpressionArrays;
 
 	//---------------------------------------------------------------------------
 	//	@class:
@@ -119,7 +119,7 @@ namespace gpopt
 						CName *pname,
 						ULONG ulPartIndex,
 						CColRefArray *pdrgpcrOutput,
-						ColRefArrays *pdrgpdrgpcrPart,
+						CColRefArrays *pdrgpdrgpcrPart,
 						ULONG ulSecondaryPartIndexId,
 						CPartConstraint *ppartcnstr,
 						CPartConstraint *ppartcnstrRel
@@ -337,7 +337,7 @@ namespace gpopt
 				CName *pname,
 				ULONG ulPartIndex,
 				CColRefArray *pdrgpcrOutput,
-				ColRefArrays *pdrgpdrgpcrPart,
+				CColRefArrays *pdrgpdrgpcrPart,
 				ULONG ulSecondaryPartIndexId,
 				CPartConstraint *ppartcnstr,
 				CPartConstraint *ppartcnstrRel
@@ -531,7 +531,7 @@ namespace gpopt
 
 			// iterate over given hash map and return array of arrays of project elements sorted by the column id of the first entries
 			static
-			ExpressionArrays *PdrgpdrgpexprSortedPrjElemsArray(IMemoryPool *mp, ExprToExprArrayMap *phmexprdrgpexpr);
+			CExpressionArrays *PdrgpdrgpexprSortedPrjElemsArray(IMemoryPool *mp, ExprToExprArrayMap *phmexprdrgpexpr);
 
 			// comparator used in sorting arrays of project elements based on the column id of the first entry
 			static
@@ -616,7 +616,7 @@ namespace gpopt
 
 			// check if the the array of aligned input columns are of the same type
 			static
-			BOOL FSameDatatype(ColRefArrays *pdrgpdrgpcrInput);
+			BOOL FSameDatatype(CColRefArrays *pdrgpdrgpcrInput);
 
 			// helper function to separate subquery predicates in a top Select node
 			static
@@ -1005,12 +1005,12 @@ namespace gpopt
 
 			// find a set of partial index combinations
 			static
-			PartDynamicIndexGetInfoArrays *PdrgpdrgppartdigCandidates
+			SPartDynamicIndexGetInfoArrays *PdrgpdrgppartdigCandidates
 				(
 				IMemoryPool *mp,
 				CMDAccessor *md_accessor,
 				CExpressionArray *pdrgpexprScalar,
-				ColRefArrays *pdrgpdrgpcrPartKey,
+				CColRefArrays *pdrgpdrgpcrPartKey,
 				const IMDRelation *pmdrel,
 				CPartConstraint *ppartcnstrRel,
 				CColRefArray *pdrgpcrOutput,

@@ -859,7 +859,7 @@ GPOS_RESULT CTranslatorDXLToExprTest::EresUnittest_MetadataColumnMapping()
 	CAutoRef<CExpression> apExpr(CTranslatorDXLToExprTest::Pexpr(mp, szQueryDroppedColumn));
 
 	CLogicalGet *pActualGet = (CLogicalGet *) apExpr->Pop();
-	CColumnDescrArray *pDrgColDesc = pActualGet->Ptabdesc()->Pdrgpcoldesc();
+	CColumnDescriptorArray *pDrgColDesc = pActualGet->Ptabdesc()->Pdrgpcoldesc();
 	CColumnDescriptor *pColDesc = (*pDrgColDesc)[0];
 	bool actualNullable = pColDesc->IsNullable();
 	GPOS_RTL_ASSERT(actualNullable == false);

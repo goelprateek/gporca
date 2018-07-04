@@ -76,7 +76,7 @@ CXformDifference2LeftAntiSemiJoin::Transform
 
 	CLogicalDifference *popDifference = CLogicalDifference::PopConvert(pexpr->Pop());
 	CColRefArray *pdrgpcrOutput = popDifference->PdrgpcrOutput();
-	ColRefArrays *pdrgpdrgpcrInput = popDifference->PdrgpdrgpcrInput();
+	CColRefArrays *pdrgpdrgpcrInput = popDifference->PdrgpdrgpcrInput();
 
 	// generate the scalar condition for the left anti-semi join
 	CExpression *pexprScCond = CUtils::PexprConjINDFCond(mp, pdrgpdrgpcrInput);

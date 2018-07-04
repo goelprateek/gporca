@@ -569,7 +569,7 @@ IStatistics *
 CExpression::PstatsDerive
 	(
 	CReqdPropRelational *prprel,
-	IStatsArray *stats_ctxt
+	IStatisticsArray *stats_ctxt
 	)
 {
 	GPOS_CHECK_STACK_SIZE;
@@ -610,11 +610,11 @@ CExpression::PstatsDerive
 		}
 	}
 
-	IStatsArray *pdrgpstatCtxtNew = stats_ctxt;
+	IStatisticsArray *pdrgpstatCtxtNew = stats_ctxt;
 	if (NULL == stats_ctxt)
 	{
 		// create an empty context
-		pdrgpstatCtxtNew = GPOS_NEW(m_mp) IStatsArray(m_mp);
+		pdrgpstatCtxtNew = GPOS_NEW(m_mp) IStatisticsArray(m_mp);
 	}
 	else
 	{

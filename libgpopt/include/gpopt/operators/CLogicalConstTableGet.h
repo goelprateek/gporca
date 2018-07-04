@@ -32,7 +32,7 @@ namespace gpopt
 
 		private:
 			// array of column descriptors: the schema of the const table
-			CColumnDescrArray *m_pdrgpcoldesc;
+			CColumnDescriptorArray *m_pdrgpcoldesc;
 		
 			// array of datum arrays
 			IDatumArrays *m_pdrgpdrgpdatum;
@@ -44,7 +44,7 @@ namespace gpopt
 			CLogicalConstTableGet(const CLogicalConstTableGet &);
 			
 			// construct column descriptors from column references
-			CColumnDescrArray *PdrgpcoldescMapping(IMemoryPool *mp, CColRefArray *colref_array)	const;
+			CColumnDescriptorArray *PdrgpcoldescMapping(IMemoryPool *mp, CColRefArray *colref_array)	const;
 
 		public:
 		
@@ -55,7 +55,7 @@ namespace gpopt
 			CLogicalConstTableGet
 				(
 				IMemoryPool *mp,
-				CColumnDescrArray *pdrgpcoldesc,
+				CColumnDescriptorArray *pdrgpcoldesc,
 				IDatumArrays *pdrgpdrgpdatum
 				);
 
@@ -85,7 +85,7 @@ namespace gpopt
 			}
 			
 			// col descr accessor
-			CColumnDescrArray *Pdrgpcoldesc() const
+			CColumnDescriptorArray *Pdrgpcoldesc() const
 			{
 				return m_pdrgpcoldesc;
 			}
@@ -180,7 +180,7 @@ namespace gpopt
 						(
 						IMemoryPool *mp,
 						CExpressionHandle &exprhdl,
-						IStatsArray *stats_ctxt
+						IStatisticsArray *stats_ctxt
 						)
 						const;
 

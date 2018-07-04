@@ -186,7 +186,7 @@ CExpressionHandle::CopyStats()
 
 	// attach child stats
 	GPOS_ASSERT(NULL == m_pdrgpstat);
-	m_pdrgpstat = GPOS_NEW(m_mp) IStatsArray(m_mp);
+	m_pdrgpstat = GPOS_NEW(m_mp) IStatisticsArray(m_mp);
 	const ULONG arity = Arity();
 	for (ULONG ul = 0; ul < arity; ul++)
 	{
@@ -463,10 +463,10 @@ CExpressionHandle::DeriveProps
 //		child
 //
 //---------------------------------------------------------------------------
-IStatsArray *
+IStatisticsArray *
 CExpressionHandle::PdrgpstatOuterRefs
 	(
-	IStatsArray *statistics_array,
+	IStatisticsArray *statistics_array,
 	ULONG child_index
 	)
 	const
@@ -477,10 +477,10 @@ CExpressionHandle::PdrgpstatOuterRefs
 	if (FScalarChild(child_index) || !HasOuterRefs(child_index))
 	{
 		// if child is scalar or has no outer references, return empty array
-		return  GPOS_NEW(m_mp) IStatsArray(m_mp);
+		return  GPOS_NEW(m_mp) IStatisticsArray(m_mp);
 	}
 
-	IStatsArray *pdrgpstatResult = GPOS_NEW(m_mp) IStatsArray(m_mp);
+	IStatisticsArray *pdrgpstatResult = GPOS_NEW(m_mp) IStatisticsArray(m_mp);
 	CColRefSet *outer_refs = GetRelationalProperties(child_index)->PcrsOuter();
 	GPOS_ASSERT(0 < outer_refs->Size());
 
@@ -537,7 +537,7 @@ CExpressionHandle::FAttachedToLeafPattern() const
 void
 CExpressionHandle::DeriveRootStats
 	(
-	IStatsArray *stats_ctxt
+	IStatisticsArray *stats_ctxt
 	)
 {
 	GPOS_ASSERT(NULL == m_pstats);
@@ -575,7 +575,7 @@ CExpressionHandle::DeriveRootStats
 void
 CExpressionHandle::DeriveStats
 	(
-	IStatsArray *stats_ctxt,
+	IStatisticsArray *stats_ctxt,
 	BOOL fComputeRootStats
 	)
 {
@@ -585,17 +585,17 @@ CExpressionHandle::DeriveStats
 	GPOS_ASSERT(NULL != m_pdrgprp);
 
 	// copy input context
-	IStatsArray *pdrgpstatCurrentCtxt = GPOS_NEW(m_mp) IStatsArray(m_mp);
+	IStatisticsArray *pdrgpstatCurrentCtxt = GPOS_NEW(m_mp) IStatisticsArray(m_mp);
 	CUtils::AddRefAppend<IStatistics, CleanupStats>(pdrgpstatCurrentCtxt, stats_ctxt);
 
 	// create array of children stats
-	m_pdrgpstat = GPOS_NEW(m_mp) IStatsArray(m_mp);
+	m_pdrgpstat = GPOS_NEW(m_mp) IStatisticsArray(m_mp);
 	ULONG ulMaxChildRisk = 1;
 	const ULONG arity = Arity();
 	for (ULONG ul = 0; ul < arity; ul++)
 	{
 		// create a new context for outer references used by current child
-		IStatsArray *pdrgpstatChildCtxt = PdrgpstatOuterRefs(pdrgpstatCurrentCtxt, ul);
+		IStatisticsArray *pdrgpstatChildCtxt = PdrgpstatOuterRefs(pdrgpstatCurrentCtxt, ul);
 
 		IStatistics *stats = NULL;
 		if (NULL != Pexpr())
@@ -696,7 +696,7 @@ CExpressionHandle::DeriveCostContextStats()
 	CRefCount::SafeRelease(m_pdrgpstat);
 	m_pdrgpstat = NULL;
 
-	m_pdrgpstat = GPOS_NEW(m_mp) IStatsArray(m_mp);
+	m_pdrgpstat = GPOS_NEW(m_mp) IStatisticsArray(m_mp);
 	const ULONG arity = m_pcc->Pdrgpoc()->Size();
 	for (ULONG ul = 0; ul < arity; ul++)
 	{
@@ -759,7 +759,7 @@ CExpressionHandle::DeriveStats
 	IMemoryPool *pmpLocal,
 	IMemoryPool *pmpGlobal,
 	CReqdPropRelational *prprel,
-	IStatsArray *stats_ctxt
+	IStatisticsArray *stats_ctxt
 	)
 {
 	CReqdPropRelational *prprelNew = prprel;
@@ -774,11 +774,11 @@ CExpressionHandle::DeriveStats
 		prprelNew->AddRef();
 	}
 
-	IStatsArray *pdrgpstatCtxtNew = stats_ctxt;
+	IStatisticsArray *pdrgpstatCtxtNew = stats_ctxt;
 	if (NULL == stats_ctxt)
 	{
 		// create empty context
-		pdrgpstatCtxtNew = GPOS_NEW(pmpGlobal) IStatsArray(pmpGlobal);
+		pdrgpstatCtxtNew = GPOS_NEW(pmpGlobal) IStatisticsArray(pmpGlobal);
 	}
 	else
 	{

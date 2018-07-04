@@ -21,7 +21,7 @@ namespace gpopt
 			CColRefArray *const m_pdrgpcrOutput;
 
 			// input column array
-			ColRefArrays *const m_pdrgpdrgpcrInput;
+			CColRefArrays *const m_pdrgpdrgpcrInput;
 
 			// if this union is needed for partial indexes then store the scan
 			// id, otherwise this will be gpos::ulong_max
@@ -59,7 +59,7 @@ namespace gpopt
 				(
 					IMemoryPool *mp,
 					CColRefArray *pdrgpcrOutput,
-					ColRefArrays *pdrgpdrgpcrInput,
+					CColRefArrays *pdrgpdrgpcrInput,
 					ULONG ulScanIdPartialIndex
 				);
 
@@ -85,7 +85,7 @@ namespace gpopt
 			CColRefArray *PdrgpcrOutput() const;
 
 			// accessor of input column array
-			ColRefArrays *PdrgpdrgpcrInput() const;
+			CColRefArrays *PdrgpdrgpcrInput() const;
 
 			// if this unionall is needed for partial indexes then return the scan
 			// id, otherwise return gpos::ulong_max

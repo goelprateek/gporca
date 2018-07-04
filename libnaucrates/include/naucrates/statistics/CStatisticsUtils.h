@@ -234,12 +234,12 @@ namespace gpnaucrates
 		// derive statistics of (dynamic) index-get
 		static IStatistics *DeriveStatsForIndexGet(IMemoryPool *mp,
 												   CExpressionHandle &exprhdl,
-												   IStatsArray *stats_contexts);
+												   IStatisticsArray *stats_contexts);
 
 		// derive statistics of bitmap table-get
 		static IStatistics *DeriveStatsForBitmapTableGet(IMemoryPool *mp,
 														 CExpressionHandle &exprhdl,
-														 IStatsArray *stats_contexts);
+														 IStatisticsArray *stats_contexts);
 
 		// compute the cumulative number of distinct values (NDV) of the group by operator
 		// from the array of NDV of the individual grouping columns

@@ -37,7 +37,7 @@ CPhysicalTVF::CPhysicalTVF
 	IMDId *mdid_func,
 	IMDId *mdid_return_type,
 	CWStringConst *str,
-	CColumnDescrArray *pdrgpcoldesc,
+	CColumnDescriptorArray *pdrgpcoldesc,
 	CColRefSet *pcrsOutput
 	)
 	:

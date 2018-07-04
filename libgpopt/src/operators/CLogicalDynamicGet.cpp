@@ -59,7 +59,7 @@ CLogicalDynamicGet::CLogicalDynamicGet
 	CTableDescriptor *ptabdesc,
 	ULONG ulPartIndex,
 	CColRefArray *pdrgpcrOutput,
-	ColRefArrays *pdrgpdrgpcrPart,
+	CColRefArrays *pdrgpdrgpcrPart,
 	ULONG ulSecondaryPartIndexId,
 	BOOL is_partial,
 	CPartConstraint *ppartcnstr, 
@@ -165,7 +165,7 @@ CLogicalDynamicGet::PopCopyWithRemappedColumns
 	{
 		pdrgpcrOutput = CUtils::PdrgpcrRemap(mp, m_pdrgpcrOutput, colref_mapping, must_exist);
 	}
-	ColRefArrays *pdrgpdrgpcrPart = PdrgpdrgpcrCreatePartCols(mp, pdrgpcrOutput, m_ptabdesc->PdrgpulPart());
+	CColRefArrays *pdrgpdrgpcrPart = PdrgpdrgpcrCreatePartCols(mp, pdrgpcrOutput, m_ptabdesc->PdrgpulPart());
 	CName *pnameAlias = GPOS_NEW(mp) CName(mp, *m_pnameAlias);
 	m_ptabdesc->AddRef();
 
@@ -269,7 +269,7 @@ CLogicalDynamicGet::PstatsDerive
 	(
 	IMemoryPool *mp,
 	CExpressionHandle &exprhdl,
-	IStatsArray * // not used
+	IStatisticsArray * // not used
 	)
 	const
 {

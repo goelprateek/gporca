@@ -171,8 +171,8 @@ CColRef::Equals
 BOOL
 CColRef::Equals
 	(
-	const ColRefArrays *pdrgdrgpcr1,
-	const ColRefArrays *pdrgdrgpcr2
+	const CColRefArrays *pdrgdrgpcr1,
+	const CColRefArrays *pdrgdrgpcr2
 	)
 {
 	ULONG ulLen1 = (pdrgdrgpcr1 == NULL) ? 0 : pdrgdrgpcr1->Size();

@@ -91,7 +91,7 @@ CLogicalIndexApply::PstatsDerive
 	(
 	IMemoryPool *mp,
 	CExpressionHandle &exprhdl,
-	IStatsArray* // stats_ctxt
+	IStatisticsArray* // stats_ctxt
 	)
 	const
 {
@@ -102,7 +102,7 @@ CLogicalIndexApply::PstatsDerive
 	CExpression *pexprScalar = exprhdl.PexprScalarChild(2 /*child_index*/);
 
 	// join stats of the children
-	IStatsArray *statistics_array = GPOS_NEW(mp) IStatsArray(mp);
+	IStatisticsArray *statistics_array = GPOS_NEW(mp) IStatisticsArray(mp);
 	outer_stats->AddRef();
 	statistics_array->Append(outer_stats);
 	inner_side_stats->AddRef();

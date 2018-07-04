@@ -50,7 +50,7 @@ CLogicalDifferenceAll::CLogicalDifferenceAll
 	(
 	IMemoryPool *mp,
 	CColRefArray *pdrgpcrOutput,
-	ColRefArrays *pdrgpdrgpcrInput
+	CColRefArrays *pdrgpdrgpcrInput
 	)
 	:
 	CLogicalSetOp(mp, pdrgpcrOutput, pdrgpdrgpcrInput)
@@ -111,7 +111,7 @@ CLogicalDifferenceAll::PopCopyWithRemappedColumns
 	)
 {
 	CColRefArray *pdrgpcrOutput = CUtils::PdrgpcrRemap(mp, m_pdrgpcrOutput, colref_mapping, must_exist);
-	ColRefArrays *pdrgpdrgpcrInput = CUtils::PdrgpdrgpcrRemap(mp, m_pdrgpdrgpcrInput, colref_mapping, must_exist);
+	CColRefArrays *pdrgpdrgpcrInput = CUtils::PdrgpdrgpcrRemap(mp, m_pdrgpdrgpcrInput, colref_mapping, must_exist);
 
 	return GPOS_NEW(mp) CLogicalDifferenceAll(mp, pdrgpcrOutput, pdrgpdrgpcrInput);
 }
@@ -149,7 +149,7 @@ CLogicalDifferenceAll::PstatsDerive
 	(
 	IMemoryPool *mp,
 	CExpressionHandle &exprhdl,
-	IStatsArray * // not used
+	IStatisticsArray * // not used
 	)
 	const
 {

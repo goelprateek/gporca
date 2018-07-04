@@ -96,7 +96,7 @@ COptimizationJobsTest::EresUnittest_StateMachine()
 							pgroup,
 							pqc->Prpp(),
 							GPOS_NEW(mp) CReqdPropRelational(GPOS_NEW(mp) CColRefSet(mp)),
-							GPOS_NEW(mp) IStatsArray(mp),
+							GPOS_NEW(mp) IStatisticsArray(mp),
 							0 // ulSearchStageIndex
 							);
 

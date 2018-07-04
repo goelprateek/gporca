@@ -84,7 +84,7 @@ namespace gpopt
 			CReqdPropRelational *m_prprel;
 
 			// stats of previously optimized expressions
-			IStatsArray *m_pdrgpstatCtxt;
+			IStatisticsArray *m_pdrgpstatCtxt;
 
 			// index of search stage where context is generated
 			ULONG m_ulSearchStageIndex;
@@ -144,7 +144,7 @@ namespace gpopt
 				CGroup *pgroup,
 				CReqdPropPlan *prpp,
 				CReqdPropRelational *prprel, // required relational props -- used during stats derivation
-				IStatsArray *stats_ctxt, // stats of previously optimized expressions
+				IStatisticsArray *stats_ctxt, // stats of previously optimized expressions
 				ULONG ulSearchStageIndex
 				)
 				:
@@ -200,7 +200,7 @@ namespace gpopt
 			}
 
 			// stats of previously optimized expressions
-			IStatsArray *Pdrgpstat() const
+			IStatisticsArray *Pdrgpstat() const
 			{
 				return m_pdrgpstatCtxt;
 			}

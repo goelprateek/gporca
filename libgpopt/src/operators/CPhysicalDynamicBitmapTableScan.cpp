@@ -47,7 +47,7 @@ CPhysicalDynamicBitmapTableScan::CPhysicalDynamicBitmapTableScan
 		const CName *pnameAlias,
 		ULONG scan_id,
 		CColRefArray *pdrgpcrOutput,
-		ColRefArrays *pdrgpdrgpcrParts,
+		CColRefArrays *pdrgpdrgpcrParts,
 		ULONG ulSecondaryScanId,
 		CPartConstraint *ppartcnstr,
 		CPartConstraint *ppartcnstrRel
@@ -88,7 +88,7 @@ CPhysicalDynamicBitmapTableScan::PstatsDerive
 	IMemoryPool *mp,
 	CExpressionHandle &exprhdl,
 	CReqdPropPlan *prpplan,
-	IStatsArray *stats_ctxt
+	IStatisticsArray *stats_ctxt
 	)
 	const
 {

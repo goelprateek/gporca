@@ -46,7 +46,7 @@ CPhysicalSerialUnionAll::CPhysicalSerialUnionAll
 	(
 	IMemoryPool *mp,
 	CColRefArray *pdrgpcrOutput,
-	ColRefArrays *pdrgpdrgpcrInput,
+	CColRefArrays *pdrgpdrgpcrInput,
 	ULONG ulScanIdPartialIndex
 	)
 	:

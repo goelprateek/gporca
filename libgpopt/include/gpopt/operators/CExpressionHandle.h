@@ -81,7 +81,7 @@ namespace gpopt
 			CDrvdPropArrays *m_pdrgpdp;
 
 			// array of children's derived stats
-			IStatsArray *m_pdrgpstat;
+			IStatisticsArray *m_pdrgpstat;
 
 			// array of children's required properties
 			CReqdPropArray *m_pdrgprp;
@@ -103,7 +103,7 @@ namespace gpopt
 			void DerivePlanProps(CDrvdPropCtxtPlan *pdpctxtplan);
 
 			// return an array of stats objects starting from the first stats object referenced by child
-			IStatsArray *PdrgpstatOuterRefs(IStatsArray *statistics_array, ULONG child_index) const;
+			IStatisticsArray *PdrgpstatOuterRefs(IStatisticsArray *statistics_array, ULONG child_index) const;
 
 			// check if stats are derived for attached expression and its children
 			BOOL FStatsDerived() const;
@@ -115,7 +115,7 @@ namespace gpopt
 			BOOL FAttachedToLeafPattern() const;
 
 			// stat derivation at root operator where handle is attached
-			void DeriveRootStats(IStatsArray *stats_ctxt);
+			void DeriveRootStats(IStatisticsArray *stats_ctxt);
 
 		public:
 		
@@ -139,13 +139,13 @@ namespace gpopt
 			void DeriveProps(CDrvdPropCtxt *pdpctxt);
 
 			// recursive stats derivation
-			void DeriveStats(IStatsArray *stats_ctxt, BOOL fComputeRootStats = true);
+			void DeriveStats(IStatisticsArray *stats_ctxt, BOOL fComputeRootStats = true);
 
 			// stats derivation for attached cost context
 			void DeriveCostContextStats();
 
 			// stats derivation using given properties and context
-			void DeriveStats(IMemoryPool *pmpLocal, IMemoryPool *pmpGlobal, CReqdPropRelational *prprel, IStatsArray *stats_ctxt);
+			void DeriveStats(IMemoryPool *pmpLocal, IMemoryPool *pmpGlobal, CReqdPropRelational *prprel, IStatisticsArray *stats_ctxt);
 
 			// derive the properties of the plan carried by attached cost context
 			void DerivePlanProps();

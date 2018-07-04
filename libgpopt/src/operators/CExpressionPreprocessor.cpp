@@ -922,8 +922,8 @@ CExpressionPreprocessor::PexprCollapseUnionUnionAll
 
 	// array of input children and its column references
 	CExpressionArray *pdrgpexprNew = GPOS_NEW(mp) CExpressionArray(mp);
-	ColRefArrays *pdrgdrgpcrOrig = CLogicalSetOp::PopConvert(pop)->PdrgpdrgpcrInput();
-	ColRefArrays *pdrgdrgpcrNew = GPOS_NEW(mp) ColRefArrays(mp);
+	CColRefArrays *pdrgdrgpcrOrig = CLogicalSetOp::PopConvert(pop)->PdrgpdrgpcrInput();
+	CColRefArrays *pdrgdrgpcrNew = GPOS_NEW(mp) CColRefArrays(mp);
 
 	BOOL fCollapsed = false;
 	for (ULONG ul = 0; ul < arity; ul++)

@@ -111,11 +111,11 @@ namespace gpopt
 			COperator *m_pop;
 			
 			// array of child groups
-			GroupArray *m_pdrgpgroup;
+			CGroupArray *m_pdrgpgroup;
 			
 			// sorted array of children groups for faster comparison 
 			// of order-insensitive operators
-			GroupArray *m_pdrgpgroupSorted;
+			CGroupArray *m_pdrgpgroupSorted;
 			
 			// back pointer to group
 			CGroup *m_pgroup;
@@ -220,7 +220,7 @@ namespace gpopt
 				(
 				IMemoryPool *mp,
 				COperator *pop,
-				GroupArray *pdrgpgroup,
+				CGroupArray *pdrgpgroup,
 				CXform::EXformId exfid,
 				CGroupExpression *pgexprOrigin,
 				BOOL fIntermediate
@@ -377,7 +377,7 @@ namespace gpopt
 			
 			// static hash function for operator and group references
 			static
-			ULONG HashValue(COperator *pop, GroupArray *drgpgroup);
+			ULONG HashValue(COperator *pop, CGroupArray *drgpgroup);
 			
 			// static hash function for group expression
 			static
@@ -414,7 +414,7 @@ namespace gpopt
 			// check if transition to the given state is completed
 			BOOL FTransitioned(EState estate) const;
 
-			GroupArray *Pdrgpgroup() const
+			CGroupArray *Pdrgpgroup() const
 			{
 				return m_pdrgpgroup;
 			}
@@ -434,7 +434,7 @@ namespace gpopt
 				IMemoryPool *pmpLocal,
 				IMemoryPool *pmpGlobal,
 				CReqdPropRelational *prprel,
-				IStatsArray *stats_ctxt,
+				IStatisticsArray *stats_ctxt,
 				BOOL fComputeRootStats = true
 				);
 

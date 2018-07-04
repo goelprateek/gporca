@@ -239,7 +239,7 @@ namespace gpnaucrates
 	}
 
 	// dynamic array for derived stats
-	typedef CDynamicPtrArray<IStatistics, CleanupStats> IStatsArray;
+	typedef CDynamicPtrArray<IStatistics, CleanupStats> IStatisticsArray;
 }  // namespace gpnaucrates
 
 #endif  // !GPNAUCRATES_IStatistics_H

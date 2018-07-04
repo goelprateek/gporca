@@ -44,7 +44,7 @@ CPhysicalDynamicScan::CPhysicalDynamicScan
 	const CName *pnameAlias,
 	ULONG scan_id,
 	CColRefArray *pdrgpcrOutput,
-	ColRefArrays *pdrgpdrgpcrParts,
+	CColRefArrays *pdrgpdrgpcrParts,
 	ULONG ulSecondaryScanId,
 	CPartConstraint *ppartcnstr,
 	CPartConstraint *ppartcnstrRel

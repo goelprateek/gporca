@@ -176,7 +176,7 @@ namespace gpopt
 				);
 
 			// preprocess inputs to the set operator (adding casts to columns  when needed)
-			CExpressionArray *PdrgpexprPreprocessSetOpInputs(const CDXLNode *dxlnode, ColRefArrays *pdrgdrgpcrInput, ULongPtrArray *pdrgpulOutput);
+			CExpressionArray *PdrgpexprPreprocessSetOpInputs(const CDXLNode *dxlnode, CColRefArrays *pdrgdrgpcrInput, ULongPtrArray *pdrgpulOutput);
 
 			// create new column reference and add to the hashmap maintaining
 			// the mapping between DXL ColIds and column reference.

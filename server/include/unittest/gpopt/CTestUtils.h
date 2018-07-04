@@ -880,7 +880,7 @@ namespace gpopt
 
 		// extract first partition key
 		CLogicalGet *popGetPartitioned = CLogicalGet::PopConvert(pexprGetPartitioned->Pop());
-		const ColRefArrays *pdrgpdrgpcr = popGetPartitioned->PdrgpdrgpcrPartColumns();
+		const CColRefArrays *pdrgpdrgpcr = popGetPartitioned->PdrgpdrgpcrPartColumns();
 
 		GPOS_ASSERT(pdrgpdrgpcr != NULL);
 		GPOS_ASSERT(0 < pdrgpdrgpcr->Size());

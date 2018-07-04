@@ -18,7 +18,7 @@ namespace gpopt
 			CDistributionSpecArray *const m_pdrgpds;
 
 		public:
-			CPhysicalParallelUnionAll(IMemoryPool *mp, CColRefArray *pdrgpcrOutput, ColRefArrays *pdrgpdrgpcrInput,
+			CPhysicalParallelUnionAll(IMemoryPool *mp, CColRefArray *pdrgpcrOutput, CColRefArrays *pdrgpdrgpcrInput,
 									  ULONG ulScanIdPartialIndex);
 
 			virtual EOperatorId Eopid() const;

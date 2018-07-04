@@ -73,13 +73,13 @@ namespace gpopt
 			CColRefArray *PdrgpcrCreateMapping
 					(
 					IMemoryPool *mp,
-					const CColumnDescrArray *pdrgpcoldesc,
+					const CColumnDescriptorArray *pdrgpcoldesc,
 					ULONG ulOpSourceId
 					)
 					const;
 
 			// initialize the array of partition columns
-			ColRefArrays *
+			CColRefArrays *
 			PdrgpdrgpcrCreatePartCols(IMemoryPool *mp, CColRefArray *colref_array, const ULongPtrArray *pdrgpulPart);
 
 			// derive dummy statistics
@@ -286,7 +286,7 @@ namespace gpopt
 
 			// derive statistics
 			virtual
-			IStatistics *PstatsDerive(IMemoryPool *mp, CExpressionHandle &exprhdl, IStatsArray *stats_ctxt) const = 0;
+			IStatistics *PstatsDerive(IMemoryPool *mp, CExpressionHandle &exprhdl, IStatisticsArray *stats_ctxt) const = 0;
 
 			// promise level for stat derivation
 			virtual

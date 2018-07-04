@@ -242,7 +242,7 @@ CPhysicalFilter::PppsRequired
 		for (ULONG ulKey = 0; NULL == pexprCmp && ulKey < ulKeysets; ulKey++)
 		{
 			// get partition key
-			ColRefArrays *pdrgpdrgpcrPartKeys = (*pdrgppartkeys)[ulKey]->Pdrgpdrgpcr();
+			CColRefArrays *pdrgpdrgpcrPartKeys = (*pdrgppartkeys)[ulKey]->Pdrgpdrgpcr();
 
 			// try to generate a request with dynamic partition selection		
 			pexprCmp = CPredicateUtils::PexprExtractPredicatesOnPartKeys

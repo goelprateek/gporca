@@ -460,7 +460,7 @@ CExpressionFactorizer::FOpSourceIdOrComputedColumn
 //		or construct a new array and add it to the map.
 //
 //---------------------------------------------------------------------------
-ExpressionArrays *
+CExpressionArrays *
 CExpressionFactorizer::PdrgPdrgpexprDisjunctArrayForSourceId
 	(
 	IMemoryPool *mp,
@@ -470,7 +470,7 @@ CExpressionFactorizer::PdrgPdrgpexprDisjunctArrayForSourceId
 	)
 {
 	GPOS_ASSERT(NULL != psrc2array);
-	ExpressionArrays *pdrgpdrgpexpr = psrc2array->Find(&ulOpSourceId);
+	CExpressionArrays *pdrgpdrgpexpr = psrc2array->Find(&ulOpSourceId);
 
 	// if there is no entry, we start recording expressions that will become disjuncts
 	// corresponding to the source operator we are considering
@@ -483,7 +483,7 @@ CExpressionFactorizer::PdrgPdrgpexprDisjunctArrayForSourceId
 		{
 			return NULL;
 		}
-		pdrgpdrgpexpr = GPOS_NEW(mp) ExpressionArrays(mp);
+		pdrgpdrgpexpr = GPOS_NEW(mp) CExpressionArrays(mp);
 	#ifdef GPOS_DEBUG
 		BOOL fInserted =
 	#endif // GPOS_DEBUG
@@ -504,7 +504,7 @@ CExpressionFactorizer::PdrgPdrgpexprDisjunctArrayForSourceId
 // 		or construct a new array and add it to the map.
 //
 //---------------------------------------------------------------------------
-ExpressionArrays *
+CExpressionArrays *
 CExpressionFactorizer::PdrgPdrgpexprDisjunctArrayForColumn
 	(
 	IMemoryPool *mp,
@@ -514,7 +514,7 @@ CExpressionFactorizer::PdrgPdrgpexprDisjunctArrayForColumn
 	)
 {
 	GPOS_ASSERT(NULL != pcol2array);
-	ExpressionArrays *pdrgpdrgpexpr = pcol2array->Find(colref);
+	CExpressionArrays *pdrgpdrgpexpr = pcol2array->Find(colref);
 
 	// if there is no entry, we start recording expressions that will become disjuncts
 	// corresponding to the computed column we are considering
@@ -527,7 +527,7 @@ CExpressionFactorizer::PdrgPdrgpexprDisjunctArrayForColumn
 		{
 			return NULL;
 		}
-		pdrgpdrgpexpr = GPOS_NEW(mp) ExpressionArrays(mp);
+		pdrgpdrgpexpr = GPOS_NEW(mp) CExpressionArrays(mp);
 	#ifdef GPOS_DEBUG
 		BOOL fInserted =
 	#endif // GPOS_DEBUG
@@ -569,7 +569,7 @@ CExpressionFactorizer::StoreBaseOpToColumnExpr
 		return;
 	}
 
-	ExpressionArrays *pdrgpdrgpexpr = NULL;
+	CExpressionArrays *pdrgpdrgpexpr = NULL;
 
 	if (gpos::ulong_max != ulOpSourceId)
 	{
@@ -686,7 +686,7 @@ void
 CExpressionFactorizer::AddInferredFiltersFromArray
 	(
 	IMemoryPool *mp,
-	const ExpressionArrays *pdrgpdrgpexpr,
+	const CExpressionArrays *pdrgpdrgpexpr,
 	ULONG ulDisjChildrenLength,
 	CExpressionArray *pdrgpexprInferredFilters
 	)

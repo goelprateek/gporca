@@ -90,7 +90,7 @@ CColRefArray *
 CLogical::PdrgpcrCreateMapping
 	(
 	IMemoryPool *mp,
-	const CColumnDescrArray *pdrgpcoldesc,
+	const CColumnDescriptorArray *pdrgpcoldesc,
 	ULONG ulOpSourceId
 	)
 	const
@@ -121,7 +121,7 @@ CLogical::PdrgpcrCreateMapping
 //		Initialize array of partition columns from the array with their indexes
 //
 //---------------------------------------------------------------------------
-ColRefArrays *
+CColRefArrays *
 CLogical::PdrgpdrgpcrCreatePartCols
 	(
 	IMemoryPool *mp,
@@ -132,7 +132,7 @@ CLogical::PdrgpdrgpcrCreatePartCols
 	GPOS_ASSERT(NULL != colref_array && "Output columns cannot be NULL");
 	GPOS_ASSERT(NULL != pdrgpulPart);
 	
-	ColRefArrays *pdrgpdrgpcrPart = GPOS_NEW(mp) ColRefArrays(mp);
+	CColRefArrays *pdrgpdrgpcrPart = GPOS_NEW(mp) CColRefArrays(mp);
 	
 	const ULONG ulPartCols = pdrgpulPart->Size();
 	GPOS_ASSERT(0 < ulPartCols);
@@ -733,7 +733,7 @@ CLogical::PpcDeriveConstraintFromTable
 
 	CConstraintArray *pdrgpcnstr = GPOS_NEW(mp) CConstraintArray(mp);
 
-	const CColumnDescrArray *pdrgpcoldesc = ptabdesc->Pdrgpcoldesc();
+	const CColumnDescriptorArray *pdrgpcoldesc = ptabdesc->Pdrgpcoldesc();
 	const ULONG num_cols = pdrgpcoldesc->Size();
 
 	CColRefArray *pdrgpcrNonSystem = GPOS_NEW(mp) CColRefArray(mp);
@@ -1447,8 +1447,8 @@ CLogical::PcrsDist
 	GPOS_ASSERT(NULL != ptabdesc);
 	GPOS_ASSERT(NULL != pdrgpcrOutput);
 
-	const CColumnDescrArray *pdrgpcoldesc = ptabdesc->Pdrgpcoldesc();
-	const CColumnDescrArray *pdrgpcoldescDist = ptabdesc->PdrgpcoldescDist();
+	const CColumnDescriptorArray *pdrgpcoldesc = ptabdesc->Pdrgpcoldesc();
+	const CColumnDescriptorArray *pdrgpcoldescDist = ptabdesc->PdrgpcoldescDist();
 	GPOS_ASSERT(NULL != pdrgpcoldesc);
 	GPOS_ASSERT(NULL != pdrgpcoldescDist);
 	GPOS_ASSERT(pdrgpcrOutput->Size() == pdrgpcoldesc->Size());

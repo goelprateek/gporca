@@ -48,7 +48,7 @@ CGroupExpression::CGroupExpression
 	(
 	IMemoryPool *mp,
 	COperator *pop,
-	GroupArray *pdrgpgroup,
+	CGroupArray *pdrgpgroup,
 	CXform::EXformId exfid,
 	CGroupExpression *pgexprOrigin,
 	BOOL fIntermediate
@@ -75,7 +75,7 @@ CGroupExpression::CGroupExpression
 	// store sorted array of children for faster comparison
 	if (1 < pdrgpgroup->Size() && !pop->FInputOrderSensitive())
 	{
-		m_pdrgpgroupSorted = GPOS_NEW(mp) GroupArray(mp, pdrgpgroup->Size());
+		m_pdrgpgroupSorted = GPOS_NEW(mp) CGroupArray(mp, pdrgpgroup->Size());
 		m_pdrgpgroupSorted->AppendArray(pdrgpgroup);
 		m_pdrgpgroupSorted->Sort();
 		
@@ -1016,7 +1016,7 @@ ULONG
 CGroupExpression::HashValue
 	(
 	COperator *pop,
-	GroupArray *pdrgpgroup
+	CGroupArray *pdrgpgroup
 	)
 {
 	GPOS_ASSERT(NULL != pop);
@@ -1066,7 +1066,7 @@ CGroupExpression::PstatsRecursiveDerive
 	IMemoryPool *, // pmpLocal
 	IMemoryPool *pmpGlobal,
 	CReqdPropRelational *prprel,
-	IStatsArray *stats_ctxt,
+	IStatisticsArray *stats_ctxt,
 	BOOL fComputeRootStats
 	)
 {

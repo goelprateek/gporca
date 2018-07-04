@@ -1869,7 +1869,7 @@ CTranslatorExprToDXL::PdxlnAppend
 	pdxlnAppend->AddChild(filter_dxlnode);
 
 	// translate children
-	ColRefArrays *pdrgpdrgpcrInput = popUnionAll->PdrgpdrgpcrInput();
+	CColRefArrays *pdrgpdrgpcrInput = popUnionAll->PdrgpdrgpcrInput();
 	GPOS_ASSERT(NULL != pdrgpdrgpcrInput);
 	const ULONG length = pexprUnionAll->Arity();
 	GPOS_ASSERT(length == pdrgpdrgpcrInput->Size());
@@ -4748,7 +4748,7 @@ CTranslatorExprToDXL::ConstructLevelFilters4PartitionSelector
 	const ULONG ulPartLevels = popSelector->UlPartLevels();
 	GPOS_ASSERT(1 <= ulPartLevels);
 
-	ColRefArrays *pdrgpdrgpcrPartKeys = popSelector->Pdrgpdrgpcr();
+	CColRefArrays *pdrgpdrgpcrPartKeys = popSelector->Pdrgpdrgpcr();
 	CBitSet *pbsDefaultParts = NULL;
 	IMDPartConstraint *mdpart_constraint = m_pmda->RetrieveRel(popSelector->MDId())->MDPartConstraint();
 	if (NULL != mdpart_constraint)
@@ -5490,7 +5490,7 @@ CTranslatorExprToDXL::GetDXLDirectDispatchInfo
 
 	CPhysicalDML *popDML = CPhysicalDML::PopConvert(pexprDML->Pop());
 	CTableDescriptor *ptabdesc = popDML->Ptabdesc();
-	const CColumnDescrArray *pdrgpcoldescDist = ptabdesc->PdrgpcoldescDist();
+	const CColumnDescriptorArray *pdrgpcoldescDist = ptabdesc->PdrgpcoldescDist();
 
 	if (CLogicalDML::EdmlInsert != popDML->Edmlop() ||
 		IMDRelation::EreldistrHash != ptabdesc->GetRelDistribution() ||

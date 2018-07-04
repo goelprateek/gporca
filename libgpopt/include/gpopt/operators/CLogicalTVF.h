@@ -41,7 +41,7 @@ namespace gpopt
 			CWStringConst *m_pstr;
 			
 			// array of column descriptors: the schema of the function result
-			CColumnDescrArray *m_pdrgpcoldesc;
+			CColumnDescriptorArray *m_pdrgpcoldesc;
 				
 			// output columns
 			CColRefArray *m_pdrgpcrOutput;
@@ -70,7 +70,7 @@ namespace gpopt
 				IMDId *mdid_func,
 				IMDId *mdid_return_type,
 				CWStringConst *str,
-				CColumnDescrArray *pdrgpcoldesc
+				CColumnDescriptorArray *pdrgpcoldesc
 				);
 
 			CLogicalTVF
@@ -79,7 +79,7 @@ namespace gpopt
 				IMDId *mdid_func,
 				IMDId *mdid_return_type,
 				CWStringConst *str,
-				CColumnDescrArray *pdrgpcoldesc,
+				CColumnDescriptorArray *pdrgpcoldesc,
 				CColRefArray *pdrgpcrOutput
 				);
 
@@ -120,7 +120,7 @@ namespace gpopt
 			}
 
 			// col descr accessor
-			CColumnDescrArray *Pdrgpcoldesc() const
+			CColumnDescriptorArray *Pdrgpcoldesc() const
 			{
 				return m_pdrgpcoldesc;
 			}
@@ -221,7 +221,7 @@ namespace gpopt
 
 			// derive statistics
 			virtual
-			IStatistics *PstatsDerive(IMemoryPool *mp, CExpressionHandle &exprhdl, IStatsArray *stats_ctxt) const;
+			IStatistics *PstatsDerive(IMemoryPool *mp, CExpressionHandle &exprhdl, IStatisticsArray *stats_ctxt) const;
 
 			//-------------------------------------------------------------------------------------
 			//-------------------------------------------------------------------------------------

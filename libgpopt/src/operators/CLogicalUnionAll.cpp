@@ -49,7 +49,7 @@ CLogicalUnionAll::CLogicalUnionAll
 	(
 	IMemoryPool *mp,
 	CColRefArray *pdrgpcrOutput,
-	ColRefArrays *pdrgpdrgpcrInput,
+	CColRefArrays *pdrgpdrgpcrInput,
 	ULONG ulScanIdPartialIndex
 	)
 	:
@@ -114,7 +114,7 @@ CLogicalUnionAll::PopCopyWithRemappedColumns
 	)
 {
 	CColRefArray *pdrgpcrOutput = CUtils::PdrgpcrRemap(mp, m_pdrgpcrOutput, colref_mapping, must_exist);
-	ColRefArrays *pdrgpdrgpcrInput = CUtils::PdrgpdrgpcrRemap(mp, m_pdrgpdrgpcrInput, colref_mapping, must_exist);
+	CColRefArrays *pdrgpdrgpcrInput = CUtils::PdrgpdrgpcrRemap(mp, m_pdrgpdrgpcrInput, colref_mapping, must_exist);
 
 	return GPOS_NEW(mp) CLogicalUnionAll(mp, pdrgpcrOutput, pdrgpdrgpcrInput, m_ulScanIdPartialIndex);
 }
@@ -178,7 +178,7 @@ CLogicalUnionAll::PstatsDeriveUnionAll
 	GPOS_ASSERT(COperator::EopLogicalUnionAll == exprhdl.Pop()->Eopid() || COperator::EopLogicalUnion == exprhdl.Pop()->Eopid());
 
 	CColRefArray *pdrgpcrOutput = CLogicalSetOp::PopConvert(exprhdl.Pop())->PdrgpcrOutput();
-	ColRefArrays *pdrgpdrgpcrInput = CLogicalSetOp::PopConvert(exprhdl.Pop())->PdrgpdrgpcrInput();
+	CColRefArrays *pdrgpdrgpcrInput = CLogicalSetOp::PopConvert(exprhdl.Pop())->PdrgpdrgpcrInput();
 	GPOS_ASSERT(NULL != pdrgpcrOutput);
 	GPOS_ASSERT(NULL != pdrgpdrgpcrInput);
 
@@ -217,7 +217,7 @@ CLogicalUnionAll::PstatsDerive
 	(
 	IMemoryPool *mp,
 	CExpressionHandle &exprhdl,
-	IStatsArray * // not used
+	IStatisticsArray * // not used
 	)
 	const
 {

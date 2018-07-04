@@ -607,7 +607,7 @@ CTestUtils::PexprLogicalSelectPartitioned
 
 	// extract first partition key
 	CLogicalGet *popGet = CLogicalGet::PopConvert(pexprGet->Pop());
-	const ColRefArrays *pdrgpdrgpcr = popGet->PdrgpdrgpcrPartColumns();
+	const CColRefArrays *pdrgpdrgpcr = popGet->PdrgpdrgpcrPartColumns();
 
 	GPOS_ASSERT(pdrgpdrgpcr != NULL);
 	GPOS_ASSERT(0 < pdrgpdrgpcr->Size());
@@ -1893,7 +1893,7 @@ CTestUtils::PexprConstTableGet
 													false /*IsNullable*/
 													);
 
-	CColumnDescrArray *pdrgpcoldesc = GPOS_NEW(mp) CColumnDescrArray(mp);
+	CColumnDescriptorArray *pdrgpcoldesc = GPOS_NEW(mp) CColumnDescriptorArray(mp);
 	pdrgpcoldesc->Append(pcoldescInt);
 
 	// generate values
@@ -2110,7 +2110,7 @@ CTestUtils::PexprLogicalSelectWithEqPredicateOverDynamicGet
 	
 	// construct scalar comparison
 	CLogicalDynamicGet *popDynamicGet = CLogicalDynamicGet::PopConvert(pexprDynamicGet->Pop());
-	ColRefArrays *pdrgpdrgpcr = popDynamicGet->PdrgpdrgpcrPart();
+	CColRefArrays *pdrgpdrgpcr = popDynamicGet->PdrgpdrgpcrPart();
 	CColRef *colref = CUtils::PcrExtractPartKey(pdrgpdrgpcr, 0 /*ulLevel*/);
 	CExpression *pexprScalarIdent = CUtils::PexprScalarIdent(mp, colref);
 	
@@ -2144,7 +2144,7 @@ CTestUtils::PexprLogicalSelectWithLTPredicateOverDynamicGet
 	
 	// construct scalar comparison
 	CLogicalDynamicGet *popDynamicGet = CLogicalDynamicGet::PopConvert(pexprDynamicGet->Pop());
-	ColRefArrays *pdrgpdrgpcr = popDynamicGet->PdrgpdrgpcrPart();
+	CColRefArrays *pdrgpdrgpcr = popDynamicGet->PdrgpdrgpcrPart();
 	CColRef *colref = CUtils::PcrExtractPartKey(pdrgpdrgpcr, 0 /*ulLevel*/);
 	CExpression *pexprScalarIdent = CUtils::PexprScalarIdent(mp, colref);
 	
@@ -2235,7 +2235,7 @@ CTestUtils::PexprLogicalTVF
 
 	CColumnDescriptor *pcoldescInt = GPOS_NEW(mp) CColumnDescriptor(mp, pmdtypeint8, default_type_modifier, name, 1 /* attno */, false /*IsNullable*/);
 
-	CColumnDescrArray *pdrgpcoldesc = GPOS_NEW(mp) CColumnDescrArray(mp);
+	CColumnDescriptorArray *pdrgpcoldesc = GPOS_NEW(mp) CColumnDescriptorArray(mp);
 	pdrgpcoldesc->Append(pcoldescInt);
 
 	IMDId *mdid_return_type = pmdtypeint8->MDId();
@@ -2437,7 +2437,7 @@ CTestUtils::PexprLogicalUnion
 	{
 		// recursive case, generate union w/ 3 children
 		CExpressionArray *pdrgpexprInput = GPOS_NEW(mp) CExpressionArray(mp, 3);
-		ColRefArrays *pdrgpdrgpcrInput = GPOS_NEW(mp) ColRefArrays(mp);
+		CColRefArrays *pdrgpdrgpcrInput = GPOS_NEW(mp) CColRefArrays(mp);
 
 		for (ULONG i = 0; i < 3; i++)
 		{

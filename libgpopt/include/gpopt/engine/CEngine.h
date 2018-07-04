@@ -117,7 +117,7 @@ namespace gpopt
 				CExpressionHandle &exprhdlPlan, // handle to compute required plan properties
 				CExpressionHandle &exprhdlRel, // handle to compute required relational properties
 				CDrvdPropArrays *pdrgpdpChildren, // derived plan properties of optimized children
-				IStatsArray *pdrgpstatCurrentCtxt,
+				IStatisticsArray *pdrgpstatCurrentCtxt,
 				ULONG child_index,
 				ULONG ulOptReq
 				);
@@ -129,7 +129,7 @@ namespace gpopt
 				CExpressionHandle &exprhdlRel,
 				COptimizationContext *pocOrigin,
 				CDrvdPropArrays *pdrgpdp,
-				IStatsArray *pdrgpstatCurrentCtxt,
+				IStatisticsArray *pdrgpstatCurrentCtxt,
 				ULONG child_index,
 				ULONG ulOptReq
 				);
@@ -152,7 +152,7 @@ namespace gpopt
 			void InsertExpressionChildren
 					(
 					CExpression *pexpr,
-					GroupArray *pdrgpgroupChildren,
+					CGroupArray *pdrgpgroupChildren,
 					CXform::EXformId exfidOrigin,
 					CGroupExpression *pgexprOrigin
 					);

@@ -102,7 +102,7 @@ namespace gpnaucrates
 			IStatistics *child_stats,
 			CExpression *local_scalar_expr,		  // filter expression on local columns only
 			CExpression *outer_refs_scalar_expr,  // filter expression involving outer references
-			IStatsArray *all_outer_stats);
+			IStatisticsArray *all_outer_stats);
 	};
 }  // namespace gpnaucrates
 

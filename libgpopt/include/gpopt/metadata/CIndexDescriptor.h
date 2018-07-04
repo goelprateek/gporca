@@ -45,10 +45,10 @@ namespace gpopt
 			CName m_name;
 
 			// array of index key columns
-			CColumnDescrArray *m_pdrgpcoldescKeyCols;
+			CColumnDescriptorArray *m_pdrgpcoldescKeyCols;
 
 			// array of index included columns
-			CColumnDescrArray *m_pdrgpcoldescIncludedCols;
+			CColumnDescriptorArray *m_pdrgpcoldescIncludedCols;
 
 			// clustered index
 			BOOL m_clustered;
@@ -64,8 +64,8 @@ namespace gpopt
 				IMemoryPool *mp,
 				IMDId *pmdidIndex,
 				const CName &name,
-				CColumnDescrArray *pdrgcoldescKeyCols,
-				CColumnDescrArray *pdrgcoldescIncludedCols,
+				CColumnDescriptorArray *pdrgcoldescKeyCols,
+				CColumnDescriptorArray *pdrgcoldescIncludedCols,
 				BOOL is_clustered
 				);
 
@@ -92,13 +92,13 @@ namespace gpopt
 			}
 
 			// key column descriptors
-			CColumnDescrArray *PdrgpcoldescKey() const
+			CColumnDescriptorArray *PdrgpcoldescKey() const
 			{
 				return m_pdrgpcoldescKeyCols;
 			}
 
 			// included column descriptors
-			CColumnDescrArray *PdrgpcoldescIncluded() const
+			CColumnDescriptorArray *PdrgpcoldescIncluded() const
 			{
 				return m_pdrgpcoldescIncludedCols;
 			}

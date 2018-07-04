@@ -49,25 +49,25 @@ namespace gpopt
 
 			// map operators to an array of expression arrays, corresponding to
 			// a disjunction of expressions on columns created by that operator
-			typedef CHashMap<ULONG, ExpressionArrays, gpos::HashValue<ULONG>,
+			typedef CHashMap<ULONG, CExpressionArrays, gpos::HashValue<ULONG>,
 					gpos::Equals<ULONG>, CleanupDelete<ULONG>,
-					CleanupRelease<ExpressionArrays> > SourceToArrayPosMap;
+					CleanupRelease<CExpressionArrays> > SourceToArrayPosMap;
 
 			// iterator for map of operator to disjunctive form representation
-			typedef CHashMapIter<ULONG, ExpressionArrays, gpos::HashValue<ULONG>,
+			typedef CHashMapIter<ULONG, CExpressionArrays, gpos::HashValue<ULONG>,
 					gpos::Equals<ULONG>, CleanupDelete<ULONG>,
-					CleanupRelease<ExpressionArrays> > SourceToArrayPosMapIter;
+					CleanupRelease<CExpressionArrays> > SourceToArrayPosMapIter;
 
 			// map columns to an array of expression arrays, corresponding to
 			// a disjunction of expressions using that column
-			typedef CHashMap<CColRef, ExpressionArrays, gpos::HashPtr<CColRef>,
+			typedef CHashMap<CColRef, CExpressionArrays, gpos::HashPtr<CColRef>,
 					gpos::EqualPtr<CColRef>, CleanupNULL<CColRef>,
-					CleanupRelease<ExpressionArrays> > ColumnToArrayPosMap;
+					CleanupRelease<CExpressionArrays> > ColumnToArrayPosMap;
 
 			// iterator for map of column to disjunctive form representation
-			typedef CHashMapIter<CColRef, ExpressionArrays, gpos::HashPtr<CColRef>,
+			typedef CHashMapIter<CColRef, CExpressionArrays, gpos::HashPtr<CColRef>,
 					gpos::EqualPtr<CColRef>, CleanupNULL<CColRef>,
-					CleanupRelease<ExpressionArrays> > ColumnToArrayPosMapIter;
+					CleanupRelease<CExpressionArrays> > ColumnToArrayPosMapIter;
 
 			typedef CExpression *(*PexprProcessDisj)
 					(
@@ -140,7 +140,7 @@ namespace gpopt
 			// operator source id in the given source to array position map
 			// or construct a new array and add it to the map
 			static
-			ExpressionArrays *PdrgPdrgpexprDisjunctArrayForSourceId
+			CExpressionArrays *PdrgPdrgpexprDisjunctArrayForSourceId
 				(
 				IMemoryPool *mp,
 				SourceToArrayPosMap *psrc2array,
@@ -152,7 +152,7 @@ namespace gpopt
 			// column in the given column to array position map
 			// or construct a new array and add it to the map
 			static
-			ExpressionArrays *PdrgPdrgpexprDisjunctArrayForColumn
+			CExpressionArrays *PdrgPdrgpexprDisjunctArrayForColumn
 				(
 				IMemoryPool *mp,
 				ColumnToArrayPosMap *pcol2array,
@@ -180,7 +180,7 @@ namespace gpopt
 			void AddInferredFiltersFromArray
 				(
 				IMemoryPool *mp,
-				const ExpressionArrays *pdrgpdrgpexpr,
+				const CExpressionArrays *pdrgpdrgpexpr,
 				ULONG ulDisjChildrenLength,
 				CExpressionArray *pdrgpexprPrefilters
 				);

@@ -49,7 +49,7 @@ namespace gpopt
 
 	// type definitions
 	// array of groups
-	typedef CDynamicPtrArray<CGroup, CleanupNULL> GroupArray;
+	typedef CDynamicPtrArray<CGroup, CleanupNULL> CGroupArray;
 	
 	// map required plan props to cost lower bound of corresponding plan
 	typedef CHashMap<CReqdPropPlan, CCost, CReqdPropPlan::UlHashForCostBounding, CReqdPropPlan::FEqualForCostBounding,
@@ -325,7 +325,7 @@ namespace gpopt
 				IMemoryPool *pmpGlobal,
 				CGroupExpression *pgexpr,
 				CReqdPropRelational *prprel,
-				IStatsArray *stats_ctxt,
+				IStatisticsArray *stats_ctxt,
 				BOOL fDeriveChildStats
 				);
 
@@ -361,7 +361,7 @@ namespace gpopt
 				IMemoryPool *pmpLocal,
 				IMemoryPool *pmpGlobal,
 				CReqdPropRelational *prprelInput,
-				IStatsArray *stats_ctxt
+				IStatisticsArray *stats_ctxt
 				);
 
 		public:
@@ -567,7 +567,7 @@ namespace gpopt
 				IMemoryPool *pmpLocal,
 				IMemoryPool *pmpGlobal,
 				CReqdPropRelational *prprel,
-				IStatsArray *stats_ctxt
+				IStatisticsArray *stats_ctxt
 				);
 
 			// find group expression with best stats promise and the same given children
@@ -599,16 +599,16 @@ namespace gpopt
 			static
 			BOOL FMatchGroups
 				(
-				GroupArray *pdrgpgroupFst,
-				GroupArray *pdrgpgroupSnd
+				CGroupArray *pdrgpgroupFst,
+				CGroupArray *pdrgpgroupSnd
 				);
 
 			// matching of pairs of arrays of groups while skipping scalar groups
 			static
 			BOOL FMatchNonScalarGroups
 				(
-				GroupArray *pdrgpgroupFst,
-				GroupArray *pdrgpgroupSnd
+				CGroupArray *pdrgpgroupFst,
+				CGroupArray *pdrgpgroupSnd
 				);
 
 			// determine if a pair of groups are duplicates

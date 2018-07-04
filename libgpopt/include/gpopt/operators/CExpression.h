@@ -34,7 +34,7 @@ namespace gpopt
 	typedef CDynamicPtrArray<CExpression, CleanupRelease> CExpressionArray;
 
 	// array of arrays of expression pointers
-	typedef CDynamicPtrArray<CExpressionArray, CleanupRelease> ExpressionArrays;
+	typedef CDynamicPtrArray<CExpressionArray, CleanupRelease> CExpressionArrays;
 
 	class CGroupExpression;
 	class CDrvdPropPlan;
@@ -252,7 +252,7 @@ namespace gpopt
 			DrvdPropArray *PdpDerive(CDrvdPropCtxt *pdpctxt = NULL);
 
 			// derive statistics
-			IStatistics *PstatsDerive(CReqdPropRelational *prprel, IStatsArray *stats_ctxt);
+			IStatistics *PstatsDerive(CReqdPropRelational *prprel, IStatisticsArray *stats_ctxt);
 
 			// reset a derived property
 			void ResetDerivedProperty(DrvdPropArray::EPropType ept);

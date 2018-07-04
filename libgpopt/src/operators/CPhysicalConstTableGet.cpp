@@ -33,7 +33,7 @@ using namespace gpopt;
 CPhysicalConstTableGet::CPhysicalConstTableGet
 	(
 	IMemoryPool *mp,
-	CColumnDescrArray *pdrgpcoldesc,
+	CColumnDescriptorArray *pdrgpcoldesc,
 	IDatumArrays *pdrgpdrgpdatum,
 	CColRefArray *pdrgpcrOutput
 	)

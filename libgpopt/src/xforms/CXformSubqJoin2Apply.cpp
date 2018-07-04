@@ -89,7 +89,7 @@ CXformSubqJoin2Apply::CollectSubqueries
 	IMemoryPool *mp,
 	CExpression *pexpr,
 	CColRefSetArray *pdrgpcrs,
-	ExpressionArrays *pdrgpdrgpexprSubqs // array-of-arrays indexed on join child index.
+	CExpressionArrays *pdrgpdrgpexprSubqs // array-of-arrays indexed on join child index.
 									//  i^{th} entry is an array corresponding to subqueries collected for join child #i
 	)
 {
@@ -209,7 +209,7 @@ CXformSubqJoin2Apply::PexprSubqueryPushDown
 
 	// collect output columns of all logical children
 	CColRefSetArray *pdrgpcrs = GPOS_NEW(mp) CColRefSetArray(mp);
-	ExpressionArrays *pdrgpdrgpexprSubqs = GPOS_NEW(mp) ExpressionArrays(mp);
+	CExpressionArrays *pdrgpdrgpexprSubqs = GPOS_NEW(mp) CExpressionArrays(mp);
 	for (ULONG ul = 0; ul < arity - 1; ul++)
 	{
 		CExpression *pexprChild = (*pexprJoin)[ul];

@@ -35,7 +35,7 @@ CPhysicalPartitionSelector::CPhysicalPartitionSelector
 	IMemoryPool *mp,
 	ULONG scan_id,
 	IMDId *mdid,
-	ColRefArrays *pdrgpdrgpcr,
+	CColRefArrays *pdrgpdrgpcr,
 	UlongToPartConstraintMap *ppartcnstrmap,
 	CPartConstraint *ppartcnstr,
 	UlongToExprMap *phmulexprEqPredicates,

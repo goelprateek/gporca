@@ -825,7 +825,7 @@ CPhysicalJoin::PexprJoinPredOnPartKeys
 	for (ULONG ulKey = 0; NULL == pexprPred && ulKey < ulKeysets; ulKey++)
 	{
 		// get partition key
-		ColRefArrays *pdrgpdrgpcrPartKeys = (*pdrgppartkeys)[ulKey]->Pdrgpdrgpcr();
+		CColRefArrays *pdrgpdrgpcrPartKeys = (*pdrgppartkeys)[ulKey]->Pdrgpdrgpcr();
 
 		// try to generate a request with dynamic partition selection
 		pexprPred = CPredicateUtils::PexprExtractPredicatesOnPartKeys

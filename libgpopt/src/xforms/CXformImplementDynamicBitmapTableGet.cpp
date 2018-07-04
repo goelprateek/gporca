@@ -83,7 +83,7 @@ CXformImplementDynamicBitmapTableGet::Transform
 	GPOS_ASSERT(NULL != pdrgpcrOutput);
 	pdrgpcrOutput->AddRef();
 
-	ColRefArrays *pdrgpdrgpcrPart = popLogical->PdrgpdrgpcrPart();
+	CColRefArrays *pdrgpdrgpcrPart = popLogical->PdrgpdrgpcrPart();
 	pdrgpdrgpcrPart->AddRef();
 
 	CPartConstraint *ppartcnstr = popLogical->Ppartcnstr();

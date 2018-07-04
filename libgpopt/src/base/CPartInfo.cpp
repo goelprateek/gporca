@@ -220,7 +220,7 @@ CPartInfo::AddPartConsumer
 	IMemoryPool *mp,
 	ULONG scan_id,
 	IMDId *mdid,
-	ColRefArrays *pdrgpdrgpcrPart,
+	CColRefArrays *pdrgpdrgpcrPart,
 	CPartConstraint *ppartcnstrRel
 	)
 {

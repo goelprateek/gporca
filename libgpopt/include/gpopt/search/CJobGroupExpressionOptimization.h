@@ -87,7 +87,7 @@ namespace gpopt
 			COptimizationContextArray *m_pdrgpoc;
 
 			// stats context to be used during costing
-			IStatsArray *m_pdrgpstatCurrentCtxt;
+			IStatisticsArray *m_pdrgpstatCurrentCtxt;
 
 			// array of derived properties of optimal implementations of child groups
 			CDrvdPropArrays *m_pdrgpdp;

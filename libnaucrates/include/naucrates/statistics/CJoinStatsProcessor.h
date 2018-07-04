@@ -66,14 +66,14 @@ namespace gpnaucrates
 												  BOOL DoIgnoreLASJHistComputation);
 
 		static IStatistics *CalcAllJoinStats(IMemoryPool *mp,
-											 IStatsArray *statistics_array,
+											 IStatisticsArray *statistics_array,
 											 CExpression *expr,
 											 IStatistics::EStatsJoinType join_type);
 
 		// derive statistics for join operation given array of statistics object
 		static IStatistics *DeriveJoinStats(IMemoryPool *mp,
 											CExpressionHandle &exprhdl,
-											IStatsArray *stats_ctxt);
+											IStatisticsArray *stats_ctxt);
 
 		// derive statistics when scalar expression has outer references
 		static IStatistics *DeriveStatsWithOuterRefs(
@@ -82,7 +82,7 @@ namespace gpnaucrates
 				&exprhdl,  // handle attached to the logical expression we want to derive stats for
 			CExpression *expr,   // scalar condition used for stats derivation
 			IStatistics *stats,  // statistics object of attached expression
-			IStatsArray
+			IStatisticsArray
 				*all_outer_stats,  // array of stats objects where outer references are defined
 			IStatistics::EStatsJoinType join_type);
 	};

@@ -8,7 +8,7 @@ CHashedDistributions::CHashedDistributions
 		(
 		IMemoryPool *mp,
 		CColRefArray *pdrgpcrOutput,
-		ColRefArrays *pdrgpdrgpcrInput
+		CColRefArrays *pdrgpdrgpcrInput
 		)
 		:
 		CDistributionSpecArray(mp)

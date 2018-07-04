@@ -357,7 +357,7 @@ CGroup::PocLookup
 								this,
 								prpp,
 								GPOS_NEW(mp) CReqdPropRelational(GPOS_NEW(mp) CColRefSet(mp)), // required relational props is not used when looking up contexts
-								GPOS_NEW(mp) IStatsArray(mp), // stats context is not used when looking up contexts
+								GPOS_NEW(mp) IStatisticsArray(mp), // stats context is not used when looking up contexts
 								ulSearchStageIndex
 								);
 
@@ -770,8 +770,8 @@ CGroup::PgexprNext
 BOOL
 CGroup::FMatchGroups
 	(
-	GroupArray *pdrgpgroupFst, 
-	GroupArray *pdrgpgroupSnd
+	CGroupArray *pdrgpgroupFst, 
+	CGroupArray *pdrgpgroupSnd
 	)
 {
 	ULONG arity = pdrgpgroupFst->Size();
@@ -801,8 +801,8 @@ CGroup::FMatchGroups
 BOOL
 CGroup::FMatchNonScalarGroups
 	(
-	GroupArray *pdrgpgroupFst,
-	GroupArray *pdrgpgroupSnd
+	CGroupArray *pdrgpgroupFst,
+	CGroupArray *pdrgpgroupSnd
 	)
 {
 	GPOS_ASSERT(NULL != pdrgpgroupFst);
@@ -1116,7 +1116,7 @@ CGroup::CreateDummyCostContext()
 						this,
 						CReqdPropPlan::PrppEmpty(m_mp),
 						GPOS_NEW(m_mp) CReqdPropRelational(GPOS_NEW(m_mp) CColRefSet(m_mp)),
-						GPOS_NEW(m_mp) IStatsArray(m_mp),
+						GPOS_NEW(m_mp) IStatisticsArray(m_mp),
 						0 // ulSearchStageIndex
 						);
 
@@ -1434,7 +1434,7 @@ CGroup::EspDerive
 	IMemoryPool *pmpGlobal,
 	CGroupExpression *pgexpr,
 	CReqdPropRelational *prprel,
-	IStatsArray *stats_ctxt,
+	IStatisticsArray *stats_ctxt,
 	BOOL fDeriveChildStats
 	)
 {
@@ -1487,7 +1487,7 @@ CGroup::PstatsRecursiveDerive
 	IMemoryPool *pmpLocal,
 	IMemoryPool *pmpGlobal,
 	CReqdPropRelational *prprel,
-	IStatsArray *stats_ctxt
+	IStatisticsArray *stats_ctxt
 	)
 {
 	GPOS_CHECK_STACK_SIZE;
@@ -1591,7 +1591,7 @@ CGroup::PgexprBestPromise
 	GPOS_ASSERT(NULL != pgexprToMatch);
 
 	CReqdPropRelational *prprel = GPOS_NEW(mp) CReqdPropRelational(GPOS_NEW(mp) CColRefSet(mp));
-	IStatsArray *stats_ctxt = GPOS_NEW(mp) IStatsArray(mp);
+	IStatisticsArray *stats_ctxt = GPOS_NEW(mp) IStatisticsArray(mp);
 
 	CLogical::EStatPromise espBest = CLogical::EspNone;
 	CGroupExpression *pgexprCurrent = NULL;
@@ -1644,7 +1644,7 @@ CGroup::PgexprBestPromise
 	IMemoryPool *pmpLocal,
 	IMemoryPool *pmpGlobal,
 	CReqdPropRelational *prprelInput,
-	IStatsArray *stats_ctxt
+	IStatisticsArray *stats_ctxt
 	)
 {
 	CGroupExpression *pgexprBest = NULL;

@@ -54,7 +54,7 @@ CLogicalConstTableGet::CLogicalConstTableGet
 CLogicalConstTableGet::CLogicalConstTableGet
 	(
 	IMemoryPool *mp,
-	CColumnDescrArray *pdrgpcoldesc,
+	CColumnDescriptorArray *pdrgpcoldesc,
 	IDatumArrays *pdrgpdrgpdatum
 	)
 	:
@@ -141,7 +141,7 @@ CLogicalConstTableGet::HashValue() const
 {
 	ULONG ulHash = gpos::CombineHashes(COperator::HashValue(),
 								gpos::CombineHashes(
-										gpos::HashPtr<CColumnDescrArray>(m_pdrgpcoldesc),
+										gpos::HashPtr<CColumnDescriptorArray>(m_pdrgpcoldesc),
 										gpos::HashPtr<IDatumArrays>(m_pdrgpdrgpdatum)));
 	ulHash = gpos::CombineHashes(ulHash, CUtils::UlHashColArray(m_pdrgpcrOutput));
 
@@ -292,7 +292,7 @@ CLogicalConstTableGet::PxfsCandidates
 //		Construct column descriptors from column references
 //
 //---------------------------------------------------------------------------
-CColumnDescrArray *
+CColumnDescriptorArray *
 CLogicalConstTableGet::PdrgpcoldescMapping
 	(
 	IMemoryPool *mp,
@@ -301,7 +301,7 @@ CLogicalConstTableGet::PdrgpcoldescMapping
 	const
 {
 	GPOS_ASSERT(NULL != colref_array);
-	CColumnDescrArray *pdrgpcoldesc = GPOS_NEW(mp) CColumnDescrArray(mp);
+	CColumnDescriptorArray *pdrgpcoldesc = GPOS_NEW(mp) CColumnDescriptorArray(mp);
 
 	const ULONG length = colref_array->Size();
 	for (ULONG ul = 0; ul < length; ul++)
@@ -344,7 +344,7 @@ CLogicalConstTableGet::PstatsDerive
 	(
 	IMemoryPool *mp,
 	CExpressionHandle &exprhdl,
-	IStatsArray * // not used
+	IStatisticsArray * // not used
 	)
 	const
 {

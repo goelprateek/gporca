@@ -128,7 +128,7 @@ CJoinStatsProcessor::JoinHistograms(
 //	derive statistics for the given join's predicate(s)
 IStatistics *
 CJoinStatsProcessor::CalcAllJoinStats(IMemoryPool *mp,
-									  IStatsArray *statistics_array,
+									  IStatisticsArray *statistics_array,
 									  CExpression *expr,
 									  IStatistics::EStatsJoinType join_type)
 {
@@ -434,11 +434,11 @@ CJoinStatsProcessor::JoinStatsAreEmpty(BOOL outer_is_empty,
 IStatistics *
 CJoinStatsProcessor::DeriveJoinStats(IMemoryPool *mp,
 									 CExpressionHandle &exprhdl,
-									 IStatsArray *stats_ctxt)
+									 IStatisticsArray *stats_ctxt)
 {
 	GPOS_ASSERT(CLogical::EspNone < CLogical::PopConvert(exprhdl.Pop())->Esp(exprhdl));
 
-	IStatsArray *statistics_array = GPOS_NEW(mp) IStatsArray(mp);
+	IStatisticsArray *statistics_array = GPOS_NEW(mp) IStatisticsArray(mp);
 	const ULONG arity = exprhdl.Arity();
 	for (ULONG i = 0; i < arity - 1; i++)
 	{
@@ -566,7 +566,7 @@ CJoinStatsProcessor::DeriveStatsWithOuterRefs(
 	,
 	CExpression *expr,			  // scalar condition to be used for stats derivation
 	IStatistics *stats,			  // statistics object of the attached expression
-	IStatsArray *all_outer_stats,  // array of stats objects where outer references are defined
+	IStatisticsArray *all_outer_stats,  // array of stats objects where outer references are defined
 	IStatistics::EStatsJoinType join_type)
 {
 	GPOS_ASSERT(exprhdl.HasOuterRefs() && "attached expression does not have outer references");
@@ -583,7 +583,7 @@ CJoinStatsProcessor::DeriveStatsWithOuterRefs(
 	CDouble num_rows_outer = outer_stats->Rows();
 
 	// join passed stats object and outer stats based on the passed join type
-	IStatsArray *statistics_array = GPOS_NEW(mp) IStatsArray(mp);
+	IStatisticsArray *statistics_array = GPOS_NEW(mp) IStatisticsArray(mp);
 	statistics_array->Append(outer_stats);
 	stats->AddRef();
 	statistics_array->Append(stats);

@@ -34,7 +34,7 @@ CPartConstraint::CPartConstraint
 	UlongToConstraintMap *phmulcnstr,
 	CBitSet *pbsDefaultParts,
 	BOOL is_unbounded,
-	ColRefArrays *pdrgpdrgpcr
+	CColRefArrays *pdrgpdrgpcr
 	)
 	:
 	m_phmulcnstr(phmulcnstr),
@@ -90,7 +90,7 @@ CPartConstraint::CPartConstraint
 	CColRefArray *colref_array = GPOS_NEW(mp) CColRefArray(mp);
 	colref_array->Append(pcrPartKey);
 
-	m_pdrgpdrgpcr = GPOS_NEW(mp) ColRefArrays(mp);
+	m_pdrgpdrgpcr = GPOS_NEW(mp) CColRefArrays(mp);
 	m_pdrgpdrgpcr->Append(colref_array);
 
 	m_num_of_part_levels = 1;
@@ -576,7 +576,7 @@ CPartConstraint::PpartcnstrCopyWithRemappedColumns
 	}
 
 	UlongToConstraintMap *phmulcnstr = GPOS_NEW(mp) UlongToConstraintMap(mp);
-	ColRefArrays *pdrgpdrgpcr = GPOS_NEW(mp) ColRefArrays(mp);
+	CColRefArrays *pdrgpdrgpcr = GPOS_NEW(mp) CColRefArrays(mp);
 
 	for (ULONG ul = 0; ul < m_num_of_part_levels; ul++)
 	{
@@ -769,7 +769,7 @@ CPartConstraint::PpartcnstrDisjunction
 		pbsCombined->ExchangeSet(ulLevels - 1);
 	}
 
-	ColRefArrays *pdrgpdrgpcr = ppartcnstrFst->Pdrgpdrgpcr();
+	CColRefArrays *pdrgpdrgpcr = ppartcnstrFst->Pdrgpdrgpcr();
 	pdrgpdrgpcr->AddRef();
 	return GPOS_NEW(mp) CPartConstraint(mp, phmulcnstr, pbsCombined, false /*is_unbounded*/, pdrgpdrgpcr);
 }

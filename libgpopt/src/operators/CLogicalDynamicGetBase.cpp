@@ -74,7 +74,7 @@ CLogicalDynamicGetBase::CLogicalDynamicGetBase
 	CTableDescriptor *ptabdesc,
 	ULONG scan_id,
 	CColRefArray *pdrgpcrOutput, 
-	ColRefArrays *pdrgpdrgpcrPart,
+	CColRefArrays *pdrgpdrgpcrPart,
 	ULONG ulSecondaryScanId,
 	BOOL is_partial,
 	CPartConstraint *ppartcnstr,

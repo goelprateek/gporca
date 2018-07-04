@@ -15,7 +15,7 @@ namespace gpopt
 		(
 			IMemoryPool *mp,
 			CColRefArray *pdrgpcrOutput,
-			ColRefArrays *pdrgpdrgpcrInput,
+			CColRefArrays *pdrgpdrgpcrInput,
 			ULONG ulScanIdPartialIndex
 		) : CPhysicalUnionAll
 		(

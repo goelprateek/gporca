@@ -62,7 +62,7 @@ CLogicalTVF::CLogicalTVF
 	IMDId *mdid_func,
 	IMDId *mdid_return_type,
 	CWStringConst *str,
-	CColumnDescrArray *pdrgpcoldesc
+	CColumnDescriptorArray *pdrgpcoldesc
 	)
 	:
 	CLogical(mp),
@@ -102,7 +102,7 @@ CLogicalTVF::CLogicalTVF
 	IMDId *mdid_func,
 	IMDId *mdid_return_type,
 	CWStringConst *str,
-	CColumnDescrArray *pdrgpcoldesc,
+	CColumnDescriptorArray *pdrgpcoldesc,
 	CColRefArray *pdrgpcrOutput
 	)
 	:
@@ -161,7 +161,7 @@ CLogicalTVF::HashValue() const
 										m_func_mdid->HashValue(),
 										gpos::CombineHashes(
 												m_return_type_mdid->HashValue(),
-												gpos::HashPtr<CColumnDescrArray>(m_pdrgpcoldesc))));
+												gpos::HashPtr<CColumnDescriptorArray>(m_pdrgpcoldesc))));
 	ulHash = gpos::CombineHashes(ulHash, CUtils::UlHashColArray(m_pdrgpcrOutput));
 	return ulHash;
 }
@@ -345,7 +345,7 @@ CLogicalTVF::PstatsDerive
 	(
 	IMemoryPool *mp,
 	CExpressionHandle &exprhdl,
-	IStatsArray * // stats_ctxt
+	IStatisticsArray * // stats_ctxt
 	)
 	const
 {

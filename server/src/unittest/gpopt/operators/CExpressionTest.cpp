@@ -217,7 +217,7 @@ CExpressionTest::EresUnittest_SimpleOps()
 
 		// derive stats on expression
 		CReqdPropRelational *prprel = GPOS_NEW(mp) CReqdPropRelational(GPOS_NEW(mp) CColRefSet(mp));
-		IStatsArray *stats_ctxt = GPOS_NEW(mp) IStatsArray(mp);
+		IStatisticsArray *stats_ctxt = GPOS_NEW(mp) IStatisticsArray(mp);
 		IStatistics *stats = pexpr->PstatsDerive(prprel, stats_ctxt);
 		GPOS_ASSERT(NULL != stats);
 
@@ -280,7 +280,7 @@ CExpressionTest::EresUnittest_Union()
 
 #ifdef GPOS_DEBUG
 	CReqdPropRelational *prprel = GPOS_NEW(mp) CReqdPropRelational(GPOS_NEW(mp) CColRefSet(mp));
-	IStatsArray *stats_ctxt = GPOS_NEW(mp) IStatsArray(mp);
+	IStatisticsArray *stats_ctxt = GPOS_NEW(mp) IStatisticsArray(mp);
 	IStatistics *stats = pexpr->PstatsDerive(prprel, stats_ctxt);
 	GPOS_ASSERT(NULL != stats);
 
@@ -1298,7 +1298,7 @@ CExpressionTest::EresUnittest_InvalidSetOp()
 		pdrgpcrOutput->Append(pcrsOutput1->PcrFirst());
 
 		// create input columns of SetOp while including an outer reference in inner child
-		ColRefArrays *pdrgpdrgpcrInput = GPOS_NEW(mp) ColRefArrays(mp);
+		CColRefArrays *pdrgpdrgpcrInput = GPOS_NEW(mp) CColRefArrays(mp);
 
 		CColRefArray *pdrgpcr1 = GPOS_NEW(mp) CColRefArray(mp);
 		pdrgpcr1->Append(pcrsOutput1->PcrFirst());

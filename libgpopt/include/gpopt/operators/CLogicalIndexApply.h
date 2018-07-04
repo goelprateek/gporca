@@ -130,7 +130,7 @@ namespace gpopt
 
 			// derive statistics
 			virtual
-			IStatistics *PstatsDerive(IMemoryPool *mp, CExpressionHandle &exprhdl, IStatsArray *stats_ctxt) const;
+			IStatistics *PstatsDerive(IMemoryPool *mp, CExpressionHandle &exprhdl, IStatisticsArray *stats_ctxt) const;
 
 			// stat promise
 			virtual

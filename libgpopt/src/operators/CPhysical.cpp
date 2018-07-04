@@ -296,7 +296,7 @@ CPhysical::PdsCompute
 			
 		case IMDRelation::EreldistrHash:
 		{
-			const CColumnDescrArray *pdrgpcoldesc = ptabdesc->PdrgpcoldescDist();
+			const CColumnDescriptorArray *pdrgpcoldesc = ptabdesc->PdrgpcoldescDist();
 			CColRefArray *colref_array = GPOS_NEW(mp) CColRefArray(mp);
 			
 			const ULONG size = pdrgpcoldesc->Size();

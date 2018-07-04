@@ -84,12 +84,12 @@ CXformIntersectAll2LeftSemiJoin::Transform
 	CExpression *pexprRightChild = (*pexpr)[1];
 
 	CLogicalIntersectAll *popIntersectAll = CLogicalIntersectAll::PopConvert(pexpr->Pop());
-	ColRefArrays *pdrgpdrgpcrInput = popIntersectAll->PdrgpdrgpcrInput();
+	CColRefArrays *pdrgpdrgpcrInput = popIntersectAll->PdrgpdrgpcrInput();
 
 	CExpression *pexprLeftWindow = CXformUtils::PexprWindowWithRowNumber(mp, pexprLeftChild, (*pdrgpdrgpcrInput)[0]);
 	CExpression *pexprRightWindow = CXformUtils::PexprWindowWithRowNumber(mp, pexprRightChild, (*pdrgpdrgpcrInput)[1]);
 
-	ColRefArrays *pdrgpdrgpcrInputNew = GPOS_NEW(mp) ColRefArrays(mp);
+	CColRefArrays *pdrgpdrgpcrInputNew = GPOS_NEW(mp) CColRefArrays(mp);
 	CColRefArray *pdrgpcrLeftNew = CUtils::PdrgpcrExactCopy(mp, (*pdrgpdrgpcrInput)[0]);
 	pdrgpcrLeftNew->Append(CXformUtils::PcrProjectElement(pexprLeftWindow, 0 /* row_number window function*/));
 

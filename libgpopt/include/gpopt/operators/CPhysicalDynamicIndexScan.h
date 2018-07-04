@@ -59,7 +59,7 @@ namespace gpopt
 				const CName *pnameAlias,
 				CColRefArray *pdrgpcrOutput,
 				ULONG scan_id,
-				ColRefArrays *pdrgpdrgpcrPart,
+				CColRefArrays *pdrgpdrgpcrPart,
 				ULONG ulSecondaryScanId,
 				CPartConstraint *ppartcnstr,
 				CPartConstraint *ppartcnstrRel,
@@ -148,7 +148,7 @@ namespace gpopt
 				IMemoryPool *mp,
 				CExpressionHandle &exprhdl,
 				CReqdPropPlan *prpplan,
-				IStatsArray *stats_ctxt
+				IStatisticsArray *stats_ctxt
 				)
 				const;
 

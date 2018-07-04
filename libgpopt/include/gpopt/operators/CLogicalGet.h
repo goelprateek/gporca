@@ -45,7 +45,7 @@ namespace gpopt
 			CColRefArray *m_pdrgpcrOutput;
 			
 			// partition keys
-			ColRefArrays *m_pdrgpdrgpcrPart;
+			CColRefArrays *m_pdrgpdrgpcrPart;
 
 			// distribution columns (empty for master only tables)
 			CColRefSet *m_pcrsDist;
@@ -121,7 +121,7 @@ namespace gpopt
 			}
 			
 			// partition columns
-			ColRefArrays *
+			CColRefArrays *
 			PdrgpdrgpcrPartColumns() const
 			{
 				return m_pdrgpdrgpcrPart;
@@ -226,7 +226,7 @@ namespace gpopt
 						(
 						IMemoryPool *mp,
 						CExpressionHandle &exprhdl,
-						IStatsArray *stats_ctxt
+						IStatisticsArray *stats_ctxt
 						)
 						const;
 

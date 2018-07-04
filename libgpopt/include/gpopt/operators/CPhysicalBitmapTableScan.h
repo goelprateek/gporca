@@ -116,7 +116,7 @@ namespace gpopt
 				IMemoryPool *, // mp
 				CExpressionHandle &, // exprhdl
 				CReqdPropPlan *, // prpplan
-				IStatsArray * //stats_ctxt
+				IStatisticsArray * //stats_ctxt
 				)
 				const
 			{

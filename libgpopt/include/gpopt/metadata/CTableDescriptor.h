@@ -28,7 +28,7 @@ namespace gpopt
 	using namespace gpmd;
 	
 	// dynamic array of columns -- array owns columns
-	typedef CDynamicPtrArray<CColumnDescriptor, CleanupRelease> CColumnDescrArray;
+	typedef CDynamicPtrArray<CColumnDescriptor, CleanupRelease> CColumnDescriptorArray;
 	
 	// dynamic array of bitsets
 	typedef CDynamicPtrArray<CBitSet, CleanupRelease> CBitSetArray;
@@ -55,7 +55,7 @@ namespace gpopt
 			CName m_name;
 			
 			// array of columns
-			CColumnDescrArray *m_pdrgpcoldesc;
+			CColumnDescriptorArray *m_pdrgpcoldesc;
 			
 			// distribution policy
 			IMDRelation::Ereldistrpolicy m_rel_distr_policy;
@@ -64,7 +64,7 @@ namespace gpopt
 			IMDRelation::Erelstoragetype m_erelstoragetype;
 
 			// distribution columns for hash distribution
-			CColumnDescrArray *m_pdrgpcoldescDist;
+			CColumnDescriptorArray *m_pdrgpcoldescDist;
 						
 			// if true, we need to consider a hash distributed table as random
 			// there are two possible scenarios:
@@ -150,13 +150,13 @@ namespace gpopt
 			ULONG GetAttributePosition(INT attno) const;
 
 			// column descriptor accessor
-			CColumnDescrArray *Pdrgpcoldesc() const
+			CColumnDescriptorArray *Pdrgpcoldesc() const
 			{
 				return m_pdrgpcoldesc;
 			}
 			
 			// distribution column descriptors accessor
-			const CColumnDescrArray *PdrgpcoldescDist() const
+			const CColumnDescriptorArray *PdrgpcoldescDist() const
 			{
 				return m_pdrgpcoldescDist;
 			}
@@ -201,7 +201,7 @@ namespace gpopt
 			
 			// helper function for finding the index of a column descriptor in
 			// an array of column descriptors
-			ULONG UlPos(const CColumnDescriptor *, const CColumnDescrArray *) const;
+			ULONG UlPos(const CColumnDescriptor *, const CColumnDescriptorArray *) const;
 			
 #ifdef GPOS_DEBUG
 			IOstream &OsPrint(IOstream &) const;

@@ -50,7 +50,7 @@ CLogicalIntersect::CLogicalIntersect
 	(
 	IMemoryPool *mp,
 	CColRefArray *pdrgpcrOutput,
-	ColRefArrays *pdrgpdrgpcrInput
+	CColRefArrays *pdrgpdrgpcrInput
 	)
 	:
 	CLogicalSetOp(mp, pdrgpcrOutput, pdrgpdrgpcrInput)
@@ -119,7 +119,7 @@ CLogicalIntersect::PopCopyWithRemappedColumns
 	)
 {
 	CColRefArray *pdrgpcrOutput = CUtils::PdrgpcrRemap(mp, m_pdrgpcrOutput, colref_mapping, must_exist);
-	ColRefArrays *pdrgpdrgpcrInput = CUtils::PdrgpdrgpcrRemap(mp, m_pdrgpdrgpcrInput, colref_mapping, must_exist);
+	CColRefArrays *pdrgpdrgpcrInput = CUtils::PdrgpdrgpcrRemap(mp, m_pdrgpdrgpcrInput, colref_mapping, must_exist);
 
 	return GPOS_NEW(mp) CLogicalIntersect(mp, pdrgpcrOutput, pdrgpdrgpcrInput);
 }
@@ -158,7 +158,7 @@ CLogicalIntersect::PstatsDerive
 	(
 	IMemoryPool *mp,
 	CExpressionHandle &exprhdl,
-	IStatsArray * // not used
+	IStatisticsArray * // not used
 	)
 	const
 {

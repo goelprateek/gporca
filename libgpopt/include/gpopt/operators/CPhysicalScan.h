@@ -60,7 +60,7 @@ namespace gpopt
 				IMemoryPool *mp,
 				ULONG part_idx_id,
 				IMDId *rel_mdid,
-				ColRefArrays *pdrgpdrgpcrPart,
+				CColRefArrays *pdrgpdrgpcrPart,
 				ULONG ulSecondaryPartIndexId,
 				CPartConstraint *ppartcnstr,
 				CPartConstraint *ppartcnstrRel,
@@ -361,7 +361,7 @@ namespace gpopt
 
 			// statistics derivation during costing
 			virtual
-			IStatistics *PstatsDerive(IMemoryPool *mp, CExpressionHandle &exprhdl, CReqdPropPlan *prpplan, IStatsArray *stats_ctxt) const = 0;
+			IStatistics *PstatsDerive(IMemoryPool *mp, CExpressionHandle &exprhdl, CReqdPropPlan *prpplan, IStatisticsArray *stats_ctxt) const = 0;
 			
 			// conversion function
 			static

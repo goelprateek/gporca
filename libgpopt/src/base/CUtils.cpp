@@ -132,7 +132,7 @@ IOstream &
 CUtils::OsPrintDrgPcoldesc
 	(
 	IOstream &os,
-	CColumnDescrArray *pdrgpcoldesc,
+	CColumnDescriptorArray *pdrgpcoldesc,
 	ULONG ulLengthMax
 	)
 {
@@ -982,7 +982,7 @@ CUtils::FUsesNullableCol
 CColRef *
 CUtils::PcrExtractPartKey
 	(
-	ColRefArrays *pdrgpdrgpcr,
+	CColRefArrays *pdrgpdrgpcr,
 	ULONG ulLevel
 	)
 {
@@ -3801,11 +3801,11 @@ CUtils::PdrgpcrRemapAndCreate
 
 // create an array of column arrays corresponding to the given array
 // and based on the given mapping
-ColRefArrays *
+CColRefArrays *
 CUtils::PdrgpdrgpcrRemap
 	(
 	IMemoryPool *mp,
-	ColRefArrays *pdrgpdrgpcr,
+	CColRefArrays *pdrgpdrgpcr,
 	UlongToColRefMap *colref_mapping,
 	BOOL must_exist
 	)
@@ -3813,7 +3813,7 @@ CUtils::PdrgpdrgpcrRemap
 	GPOS_ASSERT(NULL != pdrgpdrgpcr);
 	GPOS_ASSERT(NULL != colref_mapping);
 
-	ColRefArrays *pdrgpdrgpcrNew = GPOS_NEW(mp) ColRefArrays(mp);
+	CColRefArrays *pdrgpdrgpcrNew = GPOS_NEW(mp) CColRefArrays(mp);
 
 	const ULONG arity = pdrgpdrgpcr->Size();
 	for (ULONG ul = 0; ul < arity; ul++)
@@ -4049,7 +4049,7 @@ CExpression *
 CUtils::PexprConjINDFCond
 	(
 	IMemoryPool *mp,
-	ColRefArrays *pdrgpdrgpcrInput
+	CColRefArrays *pdrgpdrgpcrInput
 	)
 {
 	GPOS_ASSERT(NULL != pdrgpdrgpcrInput);
@@ -4278,7 +4278,7 @@ UlongToConstraintMap *
 CUtils::PhmulcnstrBoolConstOnPartKeys
 	(
 	IMemoryPool *mp,
-	ColRefArrays *pdrgpdrgpcrPartKey,
+	CColRefArrays *pdrgpdrgpcrPartKey,
 	BOOL value
 	)
 {
@@ -4358,7 +4358,7 @@ CUtils::PpartcnstrFromMDPartCnstr
 	(
 	IMemoryPool *mp,
 	CMDAccessor *md_accessor,
-	ColRefArrays *pdrgpdrgpcrPartKey,
+	CColRefArrays *pdrgpdrgpcrPartKey,
 	const IMDPartConstraint *mdpart_constraint,
 	CColRefArray *pdrgpcrOutput,
 	BOOL fDummyConstraint

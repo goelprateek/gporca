@@ -455,7 +455,7 @@ CTranslatorDXLToExpr::PexprLogicalTVF
 	const ULONG ulColumns = dxl_op->Arity();
 	GPOS_ASSERT(0 < ulColumns);
 
-	CColumnDescrArray *pdrgpcoldesc = GPOS_NEW(m_mp) CColumnDescrArray(m_mp);
+	CColumnDescriptorArray *pdrgpcoldesc = GPOS_NEW(m_mp) CColumnDescriptorArray(m_mp);
 
 	for (ULONG ul = 0; ul < ulColumns; ul++)
 	{
@@ -647,7 +647,7 @@ CTranslatorDXLToExpr::PexprLogicalSetOp
 	GPOS_ASSERT(arity == dxl_op->ChildCount());
 
 	// array of input column reference
-	ColRefArrays *pdrgdrgpcrInput = GPOS_NEW(m_mp) ColRefArrays(m_mp);
+	CColRefArrays *pdrgdrgpcrInput = GPOS_NEW(m_mp) CColRefArrays(m_mp);
 		// array of output column descriptors
 	ULongPtrArray *pdrgpulOutput = GPOS_NEW(m_mp) ULongPtrArray(m_mp);
 	
@@ -900,7 +900,7 @@ CExpressionArray *
 CTranslatorDXLToExpr::PdrgpexprPreprocessSetOpInputs
 	(
 	const CDXLNode *dxlnode,
-	ColRefArrays *pdrgdrgpcrInput,
+	CColRefArrays *pdrgdrgpcrInput,
 	ULongPtrArray *pdrgpulOutput
 	)
 {
@@ -2409,7 +2409,7 @@ CTranslatorDXLToExpr::PexprLogicalConstTableGet
 	const CDXLColDescrArray *dxl_col_descr_array = pdxlopConstTable->GetDXLColumnDescrArray();
 
 	// translate the column descriptors
-	CColumnDescrArray *pdrgpcoldesc = GPOS_NEW(m_mp) CColumnDescrArray(m_mp);
+	CColumnDescriptorArray *pdrgpcoldesc = GPOS_NEW(m_mp) CColumnDescriptorArray(m_mp);
 	const ULONG ulColumns = dxl_col_descr_array->Size();
 
 	for (ULONG ulColIdx = 0; ulColIdx < ulColumns; ulColIdx++)

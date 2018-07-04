@@ -51,7 +51,7 @@ namespace gpopt
 				CTableDescriptor *ptabdesc,
 				ULONG ulPartIndex,
 				CColRefArray *colref_array,
-				ColRefArrays *pdrgpdrgpcrPart,
+				CColRefArrays *pdrgpdrgpcrPart,
 				ULONG ulSecondaryPartIndexId,
 				BOOL is_partial,
 				CPartConstraint *ppartcnstr,
@@ -151,7 +151,7 @@ namespace gpopt
 						(
 						IMemoryPool *mp,
 						CExpressionHandle &exprhdl,
-						IStatsArray *stats_ctxt
+						IStatisticsArray *stats_ctxt
 						)
 						const;
 
