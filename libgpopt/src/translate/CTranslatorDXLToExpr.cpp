@@ -2192,7 +2192,7 @@ CTranslatorDXLToExpr::RegisterMDRelationCtas
 	}
 	pdxlopCTAS->GetDxlCtasStorageOption()->AddRef();
 	
-	MDColumnPtrArray *mdcol_array = GPOS_NEW(m_mp) MDColumnPtrArray(m_mp);
+	CMDColumnArray *mdcol_array = GPOS_NEW(m_mp) CMDColumnArray(m_mp);
 	CDXLColDescrArray *dxl_col_descr_array = pdxlopCTAS->GetDXLColumnDescrArray();
 	const ULONG length = dxl_col_descr_array->Size();
 	for (ULONG ul = 0; ul < length; ul++)

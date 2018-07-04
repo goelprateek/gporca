@@ -161,7 +161,7 @@ CParseHandlerMDRelationCtas::EndElement(const XMLCh *const,  // element_uri,
 	GPOS_ASSERT(NULL != md_cols_parse_handler->GetMdColArray());
 	GPOS_ASSERT(NULL != ctas_options_parse_handler->GetDxlCtasStorageOption());
 
-	MDColumnPtrArray *md_col_array = md_cols_parse_handler->GetMdColArray();
+	CMDColumnArray *md_col_array = md_cols_parse_handler->GetMdColArray();
 	CDXLCtasStorageOptions *dxl_ctas_storage_options =
 		ctas_options_parse_handler->GetDxlCtasStorageOption();
 

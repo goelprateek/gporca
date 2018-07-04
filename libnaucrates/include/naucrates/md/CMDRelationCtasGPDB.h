@@ -72,7 +72,7 @@ namespace gpmd
 		Ereldistrpolicy m_rel_distr_policy;
 
 		// columns
-		MDColumnPtrArray *m_md_col_array;
+		CMDColumnArray *m_md_col_array;
 
 		// indices of distribution columns
 		ULongPtrArray *m_distr_col_array;
@@ -112,7 +112,7 @@ namespace gpmd
 							BOOL fHasOids,
 							Erelstoragetype rel_storage_type,
 							Ereldistrpolicy rel_distr_policy,
-							MDColumnPtrArray *mdcol_array,
+							CMDColumnArray *mdcol_array,
 							ULongPtrArray *distr_col_array,
 							ULongPtrArray2D *keyset_array,
 							CDXLCtasStorageOptions *dxl_ctas_storage_options,

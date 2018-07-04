@@ -155,7 +155,7 @@ CParseHandlerMDRelationExternal::EndElement(const XMLCh *const,  // element_uri,
 	GPOS_ASSERT(NULL != mdid_check_constraint_parse_handler->GetMdIdArray());
 
 	// refcount child objects
-	MDColumnPtrArray *md_col_array = md_cols_parse_handler->GetMdColArray();
+	CMDColumnArray *md_col_array = md_cols_parse_handler->GetMdColArray();
 	CMDIndexInfoArray *md_index_info_array =
 		md_index_info_list_parse_handler->GetMdIndexInfoArray();
 	IMdIdArray *mdid_triggers_array = mdid_triggers_parse_list->GetMdIdArray();

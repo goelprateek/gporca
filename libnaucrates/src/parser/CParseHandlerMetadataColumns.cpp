@@ -71,7 +71,7 @@ CParseHandlerMetadataColumns::StartElement(const XMLCh *const element_uri,
 		// start of a columns' list
 		GPOS_ASSERT(NULL == m_md_col_array);
 
-		m_md_col_array = GPOS_NEW(m_mp) MDColumnPtrArray(m_mp);
+		m_md_col_array = GPOS_NEW(m_mp) CMDColumnArray(m_mp);
 	}
 	else if (0 ==
 			 XMLString::compareString(CDXLTokens::XmlstrToken(EdxltokenColumn), element_local_name))
@@ -152,7 +152,7 @@ CParseHandlerMetadataColumns::EndElement(const XMLCh *const,  // element_uri,
 //		Return the constructed list of metadata columns
 //
 //---------------------------------------------------------------------------
-MDColumnPtrArray *
+CMDColumnArray *
 CParseHandlerMetadataColumns::GetMdColArray()
 {
 	return m_md_col_array;

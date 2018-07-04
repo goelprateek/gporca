@@ -121,7 +121,7 @@ namespace gpmd
 	};
 
 	// array of metadata column descriptor
-	typedef CDynamicPtrArray<CMDColumn, CleanupRelease> MDColumnPtrArray;
+	typedef CDynamicPtrArray<CMDColumn, CleanupRelease> CMDColumnArray;
 
 }  // namespace gpmd
 

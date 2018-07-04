@@ -68,7 +68,7 @@ namespace gpmd
 	};
 
 	// IMDColumn array
-	//	typedef CDynamicPtrArray<IMDColumn, CleanupRelease> MDColumnPtrArray;
+	//	typedef CDynamicPtrArray<IMDColumn, CleanupRelease> CMDColumnArray;
 
 }  // namespace gpmd
 

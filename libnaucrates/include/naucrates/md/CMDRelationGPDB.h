@@ -67,7 +67,7 @@ namespace gpmd
 		Ereldistrpolicy m_rel_distr_policy;
 
 		// columns
-		MDColumnPtrArray *m_md_col_array;
+		CMDColumnArray *m_md_col_array;
 
 		// number of dropped columns
 		ULONG m_dropped_cols;
@@ -132,7 +132,7 @@ namespace gpmd
 						BOOL is_temp_table,
 						Erelstoragetype rel_storage_type,
 						Ereldistrpolicy rel_distr_policy,
-						MDColumnPtrArray *mdcol_array,
+						CMDColumnArray *mdcol_array,
 						ULongPtrArray *distr_col_array,
 						ULongPtrArray *partition_cols_array,
 						CharPtrArray *str_part_types_array,
