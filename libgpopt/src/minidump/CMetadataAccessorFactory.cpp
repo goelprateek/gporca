@@ -18,8 +18,8 @@ namespace gpopt
 
 		// set up MD providers
 		CAutoRef<CMDProviderMemory> apmdp(GPOS_NEW(mp) CMDProviderMemory(mp, file_name));
-		const SysidPtrArray *pdrgpsysid = pdxlmd->GetSysidPtrArray();
-		CAutoRef<MDProviderPtrArray> apdrgpmdp(GPOS_NEW(mp) MDProviderPtrArray(mp));
+		const CSystemIdArray *pdrgpsysid = pdxlmd->GetSysidPtrArray();
+		CAutoRef<CMDProviderArray> apdrgpmdp(GPOS_NEW(mp) CMDProviderArray(mp));
 
 		// ensure there is at least ONE system id
 		apmdp->AddRef();

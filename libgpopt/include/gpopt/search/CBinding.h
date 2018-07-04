@@ -44,7 +44,7 @@ namespace gpopt
 				IMemoryPool *mp,
 				CGroupExpression *pgexpr,
 				CExpression *pexprPattern,
-				ExpressionArray *pdrgpexpr
+				CExpressionArray *pdrgpexpr
 				);
 
 			// advance cursors of child expressions
@@ -54,7 +54,7 @@ namespace gpopt
 				CGroupExpression *pgexpr,
 				CExpression *pexprPattern,
 				CExpression *pexprLast,
-				ExpressionArray *pdrgpexpr
+				CExpressionArray *pdrgpexpr
 				);
 
 			// extraction of child expressions
@@ -63,7 +63,7 @@ namespace gpopt
 				IMemoryPool *mp,
 				CExpression *pexprPattern,
 				CGroupExpression *pgexprCursor,
-				ExpressionArray *pdrgpexpr
+				CExpressionArray *pdrgpexpr
 				);
 			
 			// move cursor
@@ -89,7 +89,7 @@ namespace gpopt
 				CGroupExpression *pgexpr,
 				CExpression *pexprPattern,
 				CExpression *pexprLast,
-				ExpressionArray *pdrgpexprChildren
+				CExpressionArray *pdrgpexprChildren
 				);
 			
 			// extract binding from a group
@@ -106,7 +106,7 @@ namespace gpopt
 				(
 				IMemoryPool *mp,
 				CGroupExpression *pgexpr,
-				ExpressionArray *pdrgpexprChildren
+				CExpressionArray *pdrgpexprChildren
 				);
 			
 			// private copy ctor

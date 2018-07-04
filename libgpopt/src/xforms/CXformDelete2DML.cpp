@@ -91,7 +91,7 @@ CXformDelete2DML::Transform
 	CTableDescriptor *ptabdesc = popDelete->Ptabdesc();
 	ptabdesc->AddRef();
 
-	ColRefArray *colref_array = popDelete->Pdrgpcr();
+	CColRefArray *colref_array = popDelete->Pdrgpcr();
 	colref_array->AddRef();
 
 	CColRef *pcrCtid = popDelete->PcrCtid();

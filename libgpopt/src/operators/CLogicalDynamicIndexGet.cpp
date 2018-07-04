@@ -65,7 +65,7 @@ CLogicalDynamicIndexGet::CLogicalDynamicIndexGet
 	ULONG ulOriginOpId,
 	const CName *pnameAlias,
 	ULONG part_idx_id,
-	ColRefArray *pdrgpcrOutput,
+	CColRefArray *pdrgpcrOutput,
 	ColRefArrays *pdrgpdrgpcrPart,
 	ULONG ulSecondaryPartIndexId,
 	CPartConstraint *ppartcnstr,
@@ -172,7 +172,7 @@ CLogicalDynamicIndexGet::PopCopyWithRemappedColumns
 	const IMDIndex *pmdindex = md_accessor->RetrieveIndex(m_pindexdesc->MDId());
 	CName *pnameAlias = GPOS_NEW(mp) CName(mp, *m_pnameAlias);
 
-	ColRefArray *pdrgpcrOutput = NULL;
+	CColRefArray *pdrgpcrOutput = NULL;
 	if (must_exist)
 	{
 		pdrgpcrOutput = CUtils::PdrgpcrRemapAndCreate(mp, m_pdrgpcrOutput, colref_mapping);
@@ -266,7 +266,7 @@ CLogicalDynamicIndexGet::PstatsDerive
 	(
 	IMemoryPool *mp,
 	CExpressionHandle &exprhdl,
-	StatsArray *stats_ctxt
+	IStatsArray *stats_ctxt
 	)
 	const
 {

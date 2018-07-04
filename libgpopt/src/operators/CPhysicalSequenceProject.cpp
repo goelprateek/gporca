@@ -37,8 +37,8 @@ CPhysicalSequenceProject::CPhysicalSequenceProject
 	(
 	IMemoryPool *mp,
 	CDistributionSpec *pds,
-	OrderSpecArray *pdrgpos,
-	WindowFrameArray *pdrgpwf
+	COrderSpecArray *pdrgpos,
+	CWindowFrameArray *pdrgpwf
 	)
 	:
 	CPhysical(mp),
@@ -83,7 +83,7 @@ CPhysicalSequenceProject::CreateOrderSpec
 	{
 		CDistributionSpecHashed *pdshashed = CDistributionSpecHashed::PdsConvert(m_pds);
 
-		const ExpressionArray *pdrgpexpr = pdshashed->Pdrgpexpr();
+		const CExpressionArray *pdrgpexpr = pdshashed->Pdrgpexpr();
 		const ULONG size = pdrgpexpr->Size();
 		for (ULONG ul = 0; ul < size; ul++)
 		{
@@ -256,7 +256,7 @@ CPhysicalSequenceProject::PcrsRequired
 	CExpressionHandle &exprhdl,
 	CColRefSet *pcrsRequired,
 	ULONG child_index,
-	DrgPdp *, // pdrgpdpCtxt
+	CDrvdPropArrays *, // pdrgpdpCtxt
 	ULONG // ulOptReq
 	)
 {
@@ -292,7 +292,7 @@ CPhysicalSequenceProject::PosRequired
 	child_index
 #endif // GPOS_DEBUG
 	,
-	DrgPdp *, // pdrgpdpCtxt
+	CDrvdPropArrays *, // pdrgpdpCtxt
 	ULONG // ulOptReq
 	)
 	const
@@ -319,7 +319,7 @@ CPhysicalSequenceProject::PdsRequired
 	CExpressionHandle &exprhdl,
 	CDistributionSpec *pdsRequired,
 	ULONG child_index,
-	DrgPdp *, // pdrgpdpCtxt
+	CDrvdPropArrays *, // pdrgpdpCtxt
 	ULONG // ulOptReq
 	)
 	const
@@ -371,7 +371,7 @@ CPhysicalSequenceProject::PrsRequired
 	CExpressionHandle &exprhdl,
 	CRewindabilitySpec *prsRequired,
 	ULONG child_index,
-	DrgPdp *, // pdrgpdpCtxt
+	CDrvdPropArrays *, // pdrgpdpCtxt
 	ULONG // ulOptReq
 	)
 	const
@@ -406,7 +406,7 @@ CPhysicalSequenceProject::PppsRequired
 	child_index
 #endif
 	,
-	DrgPdp *, //pdrgpdpCtxt,
+	CDrvdPropArrays *, //pdrgpdpCtxt,
 	ULONG //ulOptReq
 	)
 {
@@ -435,7 +435,7 @@ CPhysicalSequenceProject::PcteRequired
 	child_index
 #endif
 	,
-	DrgPdp *, //pdrgpdpCtxt,
+	CDrvdPropArrays *, //pdrgpdpCtxt,
 	ULONG //ulOptReq
 	)
 	const

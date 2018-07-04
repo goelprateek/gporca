@@ -55,7 +55,7 @@ namespace gpmd
 		//		<strTokenListItem .../>...
 		// </strTokenList>
 		static void SerializeMDIdList(CXMLSerializer *xml_serializer,
-									  const MdidPtrArray *mdid_array,
+									  const IMdIdArray *mdid_array,
 									  const CWStringConst *strTokenList,
 									  const CWStringConst *strTokenListItem);
 
@@ -104,7 +104,7 @@ namespace gpmd
 #endif
 	};
 
-	typedef CDynamicPtrArray<IMDCacheObject, CleanupRelease> IMDCachePtrArray;
+	typedef CDynamicPtrArray<IMDCacheObject, CleanupRelease> IMDCacheObjectArray;
 
 }  // namespace gpmd
 

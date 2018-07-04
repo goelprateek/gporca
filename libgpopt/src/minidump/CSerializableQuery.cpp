@@ -33,8 +33,8 @@ CSerializableQuery::CSerializableQuery
 	(
 	IMemoryPool *mp,
 	const CDXLNode *query,
-	const DXLNodeArray *query_output_dxlnode_array,
-	const DXLNodeArray *cte_producers
+	const CDXLNodeArray *query_output_dxlnode_array,
+	const CDXLNodeArray *cte_producers
 	)
 	:
 	CSerializable(),

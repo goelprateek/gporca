@@ -64,7 +64,7 @@ CParseHandlerScalarAssertConstraintList::StartElement(const XMLCh *const,  // el
 
 		m_dxl_op = GPOS_NEW(m_mp) CDXLScalarAssertConstraintList(m_mp);
 		m_dxlnode_assert_constraints_parsed_array =
-			GPOS_NEW(m_mp) DXLNodeArray(m_mp);
+			GPOS_NEW(m_mp) CDXLNodeArray(m_mp);
 	}
 	else if (0 == XMLString::compareString(CDXLTokens::XmlstrToken(EdxltokenScalarAssertConstraint),
 										   element_local_name))

@@ -61,7 +61,7 @@ namespace gpmd
 		ULongPtrArray *m_included_cols_array;
 
 		// operator classes for each index key
-		MdidPtrArray *m_mdid_op_classes_array;
+		IMdIdArray *m_mdid_op_classes_array;
 
 		// partition constraint
 		IMDPartConstraint *m_mdpart_constraint;
@@ -82,7 +82,7 @@ namespace gpmd
 					 IMDId *mdid_item_type,
 					 ULongPtrArray *index_key_cols_array,
 					 ULongPtrArray *included_cols_array,
-					 MdidPtrArray *mdid_op_classes_array,
+					 IMdIdArray *mdid_op_classes_array,
 					 IMDPartConstraint *mdpart_constraint);
 
 		// dtor

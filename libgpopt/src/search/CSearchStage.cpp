@@ -120,7 +120,7 @@ CSearchStage::SetBestExpr
 //		one stage with all xforms and no time/cost thresholds
 //
 //---------------------------------------------------------------------------
-SearchStageArray *
+CSearchStageArray *
 CSearchStage::PdrgpssDefault
 	(
 	IMemoryPool *mp
@@ -128,7 +128,7 @@ CSearchStage::PdrgpssDefault
 {
 	CXformSet *xform_set = GPOS_NEW(mp) CXformSet(mp);
 	xform_set->Union(CXformFactory::Pxff()->PxfsExploration());
-	SearchStageArray *search_stage_array = GPOS_NEW(mp) SearchStageArray(mp);
+	CSearchStageArray *search_stage_array = GPOS_NEW(mp) CSearchStageArray(mp);
 
 	search_stage_array->Append(GPOS_NEW(mp) CSearchStage(xform_set));
 

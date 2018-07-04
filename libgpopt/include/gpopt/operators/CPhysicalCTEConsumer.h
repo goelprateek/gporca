@@ -32,7 +32,7 @@ namespace gpopt
 			ULONG m_id;
 
 			// cte columns
-			ColRefArray *m_pdrgpcr;
+			CColRefArray *m_pdrgpcr;
 
 			// hashmap for all the columns in the CTE expression
 			UlongToColRefMap *m_phmulcr;
@@ -43,7 +43,7 @@ namespace gpopt
 		public:
 
 			// ctor
-			CPhysicalCTEConsumer(IMemoryPool *mp, ULONG id, ColRefArray *colref_array, UlongToColRefMap *colref_mapping);
+			CPhysicalCTEConsumer(IMemoryPool *mp, ULONG id, CColRefArray *colref_array, UlongToColRefMap *colref_mapping);
 
 			// dtor
 			virtual
@@ -69,7 +69,7 @@ namespace gpopt
 			}
 
 			// cte columns
-			ColRefArray *Pdrgpcr() const
+			CColRefArray *Pdrgpcr() const
 			{
 				return m_pdrgpcr;
 			}
@@ -107,7 +107,7 @@ namespace gpopt
 				CExpressionHandle &exprhdl,
 				CColRefSet *pcrsRequired,
 				ULONG child_index,
-				DrgPdp *pdrgpdpCtxt,
+				CDrvdPropArrays *pdrgpdpCtxt,
 				ULONG ulOptReq
 				);
 
@@ -119,7 +119,7 @@ namespace gpopt
 				CExpressionHandle &exprhdl,
 				CCTEReq *pcter,
 				ULONG child_index,
-				DrgPdp *pdrgpdpCtxt,
+				CDrvdPropArrays *pdrgpdpCtxt,
 				ULONG ulOptReq
 				)
 				const;
@@ -132,7 +132,7 @@ namespace gpopt
 				CExpressionHandle &exprhdl,
 				COrderSpec *posRequired,
 				ULONG child_index,
-				DrgPdp *pdrgpdpCtxt,
+				CDrvdPropArrays *pdrgpdpCtxt,
 				ULONG ulOptReq
 				)
 				const;
@@ -145,7 +145,7 @@ namespace gpopt
 				CExpressionHandle &exprhdl,
 				CDistributionSpec *pdsRequired,
 				ULONG child_index,
-				DrgPdp *pdrgpdpCtxt,
+				CDrvdPropArrays *pdrgpdpCtxt,
 				ULONG ulOptReq
 				)
 				const;
@@ -158,7 +158,7 @@ namespace gpopt
 				CExpressionHandle &exprhdl,
 				CRewindabilitySpec *prsRequired,
 				ULONG child_index,
-				DrgPdp *pdrgpdpCtxt,
+				CDrvdPropArrays *pdrgpdpCtxt,
 				ULONG ulOptReq
 				)
 				const;
@@ -171,7 +171,7 @@ namespace gpopt
 				CExpressionHandle &exprhdl,
 				CPartitionPropagationSpec *pppsRequired,
 				ULONG child_index,
-				DrgPdp *pdrgpdpCtxt,
+				CDrvdPropArrays *pdrgpdpCtxt,
 				ULONG ulOptReq
 				);
 

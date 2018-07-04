@@ -37,10 +37,10 @@ namespace gpopt
 			INT m_type;
 
 			// old columns
-			ColRefArray *m_pdrgpcrOld;
+			CColRefArray *m_pdrgpcrOld;
 
 			// new columns
-			ColRefArray *m_pdrgpcrNew;
+			CColRefArray *m_pdrgpcrNew;
 
 			// required columns by local members
 			CColRefSet *m_pcrsRequiredLocal;
@@ -56,8 +56,8 @@ namespace gpopt
 				IMemoryPool *mp,
 				IMDId *rel_mdid,
 				INT type,
-				ColRefArray *pdrgpcrOld,
-				ColRefArray *pdrgpcrNew
+				CColRefArray *pdrgpcrOld,
+				CColRefArray *pdrgpcrNew
 				);
 
 			// dtor
@@ -91,13 +91,13 @@ namespace gpopt
 			}
 
 			// old columns
-			ColRefArray *PdrgpcrOld() const
+			CColRefArray *PdrgpcrOld() const
 			{
 				return m_pdrgpcrOld;
 			}
 
 			// new columns
-			ColRefArray *PdrgpcrNew() const
+			CColRefArray *PdrgpcrNew() const
 			{
 				return m_pdrgpcrNew;
 			}
@@ -129,7 +129,7 @@ namespace gpopt
 				CExpressionHandle &exprhdl,
 				COrderSpec *posRequired,
 				ULONG child_index,
-				DrgPdp *pdrgpdpCtxt,
+				CDrvdPropArrays *pdrgpdpCtxt,
 				ULONG ulOptReq
 				)
 				const;
@@ -163,7 +163,7 @@ namespace gpopt
 				CExpressionHandle &exprhdl,
 				CColRefSet *pcrsRequired,
 				ULONG child_index,
-				DrgPdp *pdrgpdpCtxt,
+				CDrvdPropArrays *pdrgpdpCtxt,
 				ULONG ulOptReq
 				);
 
@@ -175,7 +175,7 @@ namespace gpopt
 				CExpressionHandle &exprhdl,
 				CCTEReq *pcter,
 				ULONG child_index,
-				DrgPdp *pdrgpdpCtxt,
+				CDrvdPropArrays *pdrgpdpCtxt,
 				ULONG ulOptReq
 				)
 				const;
@@ -188,7 +188,7 @@ namespace gpopt
 				CExpressionHandle &exprhdl,
 				CDistributionSpec *pdsRequired,
 				ULONG child_index,
-				DrgPdp *pdrgpdpCtxt,
+				CDrvdPropArrays *pdrgpdpCtxt,
 				ULONG ulOptReq
 				)
 				const;
@@ -201,7 +201,7 @@ namespace gpopt
 				CExpressionHandle &exprhdl,
 				CRewindabilitySpec *prsRequired,
 				ULONG child_index,
-				DrgPdp *pdrgpdpCtxt,
+				CDrvdPropArrays *pdrgpdpCtxt,
 				ULONG ulOptReq
 				)
 				const;
@@ -219,7 +219,7 @@ namespace gpopt
 				CExpressionHandle &exprhdl,
 				CPartitionPropagationSpec *pppsRequired,
 				ULONG child_index,
-				DrgPdp *pdrgpdpCtxt,
+				CDrvdPropArrays *pdrgpdpCtxt,
 				ULONG ulOptReq
 				);
 

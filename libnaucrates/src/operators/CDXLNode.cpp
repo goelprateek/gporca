@@ -32,7 +32,7 @@ CDXLNode::CDXLNode(IMemoryPool *mp)
 	  m_dxl_properties(NULL),
 	  m_direct_dispatch_info(NULL)
 {
-	m_dxl_array = GPOS_NEW(mp) DXLNodeArray(mp);
+	m_dxl_array = GPOS_NEW(mp) CDXLNodeArray(mp);
 }
 
 //---------------------------------------------------------------------------
@@ -50,7 +50,7 @@ CDXLNode::CDXLNode(IMemoryPool *mp, CDXLOperator *dxl_op)
 	  m_direct_dispatch_info(NULL)
 {
 	GPOS_ASSERT(NULL != dxl_op);
-	m_dxl_array = GPOS_NEW(mp) DXLNodeArray(mp);
+	m_dxl_array = GPOS_NEW(mp) CDXLNodeArray(mp);
 }
 
 //---------------------------------------------------------------------------
@@ -71,7 +71,7 @@ CDXLNode::CDXLNode(IMemoryPool *mp, CDXLOperator *dxl_op, CDXLNode *child_dxlnod
 	GPOS_ASSERT(NULL != dxl_op);
 	GPOS_ASSERT(NULL != child_dxlnode);
 
-	m_dxl_array = GPOS_NEW(mp) DXLNodeArray(mp);
+	m_dxl_array = GPOS_NEW(mp) CDXLNodeArray(mp);
 	m_dxl_array->Append(child_dxlnode);
 }
 
@@ -97,7 +97,7 @@ CDXLNode::CDXLNode(IMemoryPool *mp,
 	GPOS_ASSERT(NULL != first_child_dxlnode);
 	GPOS_ASSERT(NULL != second_child_dxlnode);
 
-	m_dxl_array = GPOS_NEW(mp) DXLNodeArray(mp);
+	m_dxl_array = GPOS_NEW(mp) CDXLNodeArray(mp);
 	m_dxl_array->Append(first_child_dxlnode);
 	m_dxl_array->Append(second_child_dxlnode);
 }
@@ -126,7 +126,7 @@ CDXLNode::CDXLNode(IMemoryPool *mp,
 	GPOS_ASSERT(NULL != second_child_dxlnode);
 	GPOS_ASSERT(NULL != third_child_dxlnode);
 
-	m_dxl_array = GPOS_NEW(mp) DXLNodeArray(mp);
+	m_dxl_array = GPOS_NEW(mp) CDXLNodeArray(mp);
 	m_dxl_array->Append(first_child_dxlnode);
 	m_dxl_array->Append(second_child_dxlnode);
 	m_dxl_array->Append(third_child_dxlnode);
@@ -140,7 +140,7 @@ CDXLNode::CDXLNode(IMemoryPool *mp,
 //		Ctor
 //
 //---------------------------------------------------------------------------
-CDXLNode::CDXLNode(IMemoryPool *mp, CDXLOperator *dxl_op, DXLNodeArray *dxl_array)
+CDXLNode::CDXLNode(IMemoryPool *mp, CDXLOperator *dxl_op, CDXLNodeArray *dxl_array)
 	: m_mp(mp),
 	  m_dxl_op(dxl_op),
 	  m_dxl_properties(NULL),

@@ -50,7 +50,7 @@ CLogicalIntersectAll::CLogicalIntersectAll
 CLogicalIntersectAll::CLogicalIntersectAll
 	(
 	IMemoryPool *mp,
-	ColRefArray *pdrgpcrOutput,
+	CColRefArray *pdrgpcrOutput,
 	ColRefArrays *pdrgpdrgpcrInput
 	)
 	:
@@ -119,7 +119,7 @@ CLogicalIntersectAll::PopCopyWithRemappedColumns
 	BOOL must_exist
 	)
 {
-	ColRefArray *pdrgpcrOutput = CUtils::PdrgpcrRemap(mp, m_pdrgpcrOutput, colref_mapping, must_exist);
+	CColRefArray *pdrgpcrOutput = CUtils::PdrgpcrRemap(mp, m_pdrgpcrOutput, colref_mapping, must_exist);
 	ColRefArrays *pdrgpdrgpcrInput = CUtils::PdrgpdrgpcrRemap(mp, m_pdrgpdrgpcrInput, colref_mapping, must_exist);
 
 	return GPOS_NEW(mp) CLogicalIntersectAll(mp, pdrgpcrOutput, pdrgpdrgpcrInput);
@@ -180,7 +180,7 @@ CLogicalIntersectAll::PstatsDerive
 	IMemoryPool *mp,
 	CExpressionHandle &exprhdl,
 	ColRefArrays *pdrgpdrgpcrInput,
-	ColRefSetArray *output_colrefsets // output of relational children
+	CColRefSetArray *output_colrefsets // output of relational children
 	)
 {
 	GPOS_ASSERT(2 == exprhdl.Arity());
@@ -194,7 +194,7 @@ CLogicalIntersectAll::PstatsDerive
 	// TODO:  Jan 8th 2012, add the stats for window operation
 	CExpression *pexprScCond = CUtils::PexprConjINDFCond(mp, pdrgpdrgpcrInput);
 	CColRefSet *outer_refs = exprhdl.GetRelationalProperties()->PcrsOuter();
-	StatsPredJoinArray *join_preds_stats = CStatsPredUtils::ExtractJoinStatsFromExpr
+	CStatsPredJoinArray *join_preds_stats = CStatsPredUtils::ExtractJoinStatsFromExpr
 														(
 														mp, 
 														exprhdl, 
@@ -224,13 +224,13 @@ CLogicalIntersectAll::PstatsDerive
 	(
 	IMemoryPool *mp,
 	CExpressionHandle &exprhdl,
-	StatsArray * // not used
+	IStatsArray * // not used
 	)
 	const
 {
 	GPOS_ASSERT(Esp(exprhdl) > EspNone);
 
-	ColRefSetArray *output_colrefsets = GPOS_NEW(mp) ColRefSetArray(mp);
+	CColRefSetArray *output_colrefsets = GPOS_NEW(mp) CColRefSetArray(mp);
 	const ULONG size = m_pdrgpdrgpcrInput->Size();
 	for (ULONG ul = 0; ul < size; ul++)
 	{

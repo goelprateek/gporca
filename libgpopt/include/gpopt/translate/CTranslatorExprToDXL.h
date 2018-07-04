@@ -74,8 +74,8 @@ namespace gpopt
 			typedef CDXLNode * (CTranslatorExprToDXL::*PfPdxlnPhysical)
 						(
 						CExpression *pexpr, 
-						ColRefArray *colref_array, 
-						DrgPds *pdrgpdsBaseTables, 	// output: array of base table hash distributions
+						CColRefArray *colref_array, 
+						CDistributionSpecArray *pdrgpdsBaseTables, 	// output: array of base table hash distributions
 						ULONG *pulNonGatherMotions, // output: number of non-Gather motion nodes
 						BOOL *pfDML					// output: is this a DML operation
 						);
@@ -154,8 +154,8 @@ namespace gpopt
 						(
 						CExpression *pexprTblScan,
 						CColRefSet *pcrsOutput,
-						ColRefArray *colref_array,
-						DrgPds *pdrgpdsBaseTables, 
+						CColRefArray *colref_array,
+						CDistributionSpecArray *pdrgpdsBaseTables, 
 						CExpression *pexprScalarCond,
 						CDXLPhysicalProperties *dxl_properties
 						);
@@ -166,19 +166,19 @@ namespace gpopt
 				CExpression *pexprIndexScan, 
 				CExpression *pexprScalarCond, 
 				CDXLPhysicalProperties *dxl_properties, 
-				ColRefArray *colref_array, 
-				DrgPds *pdrgpdsBaseTables
+				CColRefArray *colref_array, 
+				CDistributionSpecArray *pdrgpdsBaseTables
 				);
 
 			// translate index scan based on passed properties
-			CDXLNode *PdxlnIndexScan(CExpression *pexprIndexScan, ColRefArray *colref_array, CDXLPhysicalProperties *dxl_properties, CReqdPropPlan *prpp);
+			CDXLNode *PdxlnIndexScan(CExpression *pexprIndexScan, CColRefArray *colref_array, CDXLPhysicalProperties *dxl_properties, CReqdPropPlan *prpp);
 
 			// translate index scan
 			CDXLNode *PdxlnIndexScan
 				(
 				CExpression *pexprIndexScan, 
-				ColRefArray *colref_array, 
-				DrgPds *pdrgpdsBaseTables, 
+				CColRefArray *colref_array, 
+				CDistributionSpecArray *pdrgpdsBaseTables, 
 				ULONG *pulNonGatherMotions, 
 				BOOL *pfDML
 				);
@@ -193,8 +193,8 @@ namespace gpopt
 			CDXLNode *PdxlnBitmapTableScan
 				(
 				CExpression *pexprBitmapTableScan, 
-				ColRefArray *colref_array, 	
-				DrgPds *pdrgpdsBaseTables, 
+				CColRefArray *colref_array, 	
+				CDistributionSpecArray *pdrgpdsBaseTables, 
 				ULONG *pulNonGatherMotions, 
 				BOOL *pfDML
 				);
@@ -204,22 +204,22 @@ namespace gpopt
 				(
 				CExpression *pexprBitmapTableScan,
 				CColRefSet *pcrsOutput,
-				ColRefArray *colref_array,
-				DrgPds *pdrgpdsBaseTables, 
+				CColRefArray *colref_array,
+				CDistributionSpecArray *pdrgpdsBaseTables, 
 				CExpression *pexprScalar,
 				CDXLPhysicalProperties *dxl_properties
 				);
 
 			// translate a partition selector into DXL while inlining the given condition in the child
-			CDXLNode *PdxlnPartitionSelectorWithInlinedCondition(CExpression *pexprFilter, ColRefArray *colref_array, DrgPds *pdrgpdsBaseTables, ULONG *pulNonGatherMotions, BOOL *pfDML);
+			CDXLNode *PdxlnPartitionSelectorWithInlinedCondition(CExpression *pexprFilter, CColRefArray *colref_array, CDistributionSpecArray *pdrgpdsBaseTables, ULONG *pulNonGatherMotions, BOOL *pfDML);
 
 			// create a DXL result node from an optimizer filter node
-			CDXLNode *PdxlnResultFromFilter(CExpression *pexprFilter, ColRefArray *colref_array, DrgPds *pdrgpdsBaseTables, ULONG *pulNonGatherMotions, BOOL *pfDML);
+			CDXLNode *PdxlnResultFromFilter(CExpression *pexprFilter, CColRefArray *colref_array, CDistributionSpecArray *pdrgpdsBaseTables, ULONG *pulNonGatherMotions, BOOL *pfDML);
 
-			CDXLNode *PdxlnResult(CExpression *pexprFilter, ColRefArray *colref_array, DrgPds *pdrgpdsBaseTables, ULONG *pulNonGatherMotions, BOOL *pfDML);
+			CDXLNode *PdxlnResult(CExpression *pexprFilter, CColRefArray *colref_array, CDistributionSpecArray *pdrgpdsBaseTables, ULONG *pulNonGatherMotions, BOOL *pfDML);
 
 			// create a DXL result node for the given project list
-			CDXLNode *PdxlnResult(CDXLNode *proj_list_dxlnode, CExpression *pexprFilter, ColRefArray *colref_array, DrgPds *pdrgpdsBaseTables, ULONG *pulNonGatherMotions, BOOL *pfDML);
+			CDXLNode *PdxlnResult(CDXLNode *proj_list_dxlnode, CExpression *pexprFilter, CColRefArray *colref_array, CDistributionSpecArray *pdrgpdsBaseTables, ULONG *pulNonGatherMotions, BOOL *pfDML);
 
 			// given a DXL plan tree child_dxlnode which represents the physical plan pexprRelational, construct a DXL
 			// Result node that filters on top of it using the scalar condition pdxlnScalar
@@ -229,14 +229,14 @@ namespace gpopt
 				CDXLNode *pdxlnScalarChild,
 				CDXLPhysicalProperties *dxl_properties,
 				CColRefSet *pcrsOutput,
-				ColRefArray *pdrgpcrOrder
+				CColRefArray *pdrgpcrOrder
 				);
 
 			CDXLNode *PdxlnResult
 				(
 				CExpression *pexprFilter, 
-				ColRefArray *colref_array, 
-				DrgPds *pdrgpdsBaseTables,
+				CColRefArray *colref_array, 
+				CDistributionSpecArray *pdrgpdsBaseTables,
 				ULONG *pulNonGatherMotions, 
 				BOOL *pfDML, 
 				CDXLPhysicalProperties *dxl_properties
@@ -245,8 +245,8 @@ namespace gpopt
 			CDXLNode *PdxlnResult
 				(
 				CExpression *pexprRelational, 
-				ColRefArray *colref_array, 
-				DrgPds *pdrgpdsBaseTables, 
+				CColRefArray *colref_array, 
+				CDistributionSpecArray *pdrgpdsBaseTables, 
 				ULONG *pulNonGatherMotions, 
 				BOOL *pfDML, 
 				CDXLNode *pdxlnScalar, 
@@ -256,46 +256,46 @@ namespace gpopt
 			CDXLNode *PdxlnResult
 				(
 				CExpression *pexprRelational, 
-				ColRefArray *colref_array, 
-				DrgPds *pdrgpdsBaseTables, 
+				CColRefArray *colref_array, 
+				CDistributionSpecArray *pdrgpdsBaseTables, 
 				ULONG *pulNonGatherMotions, 
 				BOOL *pfDML, 
 				CDXLNode *pdxlnScalar
 				);
 
-			CDXLNode *PdxlnComputeScalar(CExpression *pexprComputeScalar, ColRefArray *colref_array, DrgPds *pdrgpdsBaseTables, ULONG *pulNonGatherMotions, BOOL *pfDML);
+			CDXLNode *PdxlnComputeScalar(CExpression *pexprComputeScalar, CColRefArray *colref_array, CDistributionSpecArray *pdrgpdsBaseTables, ULONG *pulNonGatherMotions, BOOL *pfDML);
 
-			CDXLNode *PdxlnAggregate(CExpression *pexprHashAgg, ColRefArray *colref_array, DrgPds *pdrgpdsBaseTables, ULONG *pulNonGatherMotions, BOOL *pfDML);
+			CDXLNode *PdxlnAggregate(CExpression *pexprHashAgg, CColRefArray *colref_array, CDistributionSpecArray *pdrgpdsBaseTables, ULONG *pulNonGatherMotions, BOOL *pfDML);
 
-			CDXLNode *PdxlnAggregateDedup(CExpression *pexprAgg, ColRefArray *colref_array, DrgPds *pdrgpdsBaseTables, ULONG *pulNonGatherMotions, BOOL *pfDML);
+			CDXLNode *PdxlnAggregateDedup(CExpression *pexprAgg, CColRefArray *colref_array, CDistributionSpecArray *pdrgpdsBaseTables, ULONG *pulNonGatherMotions, BOOL *pfDML);
 
 			CDXLNode *PdxlnAggregate
 				(
 				CExpression *pexprAgg,
-				ColRefArray *colref_array,
-				DrgPds *pdrgpdsBaseTables, 
+				CColRefArray *colref_array,
+				CDistributionSpecArray *pdrgpdsBaseTables, 
 				ULONG *pulNonGatherMotions,
 				BOOL *pfDML,
 				EdxlAggStrategy dxl_agg_strategy,
-				const ColRefArray *pdrgpcrGroupingCols,
+				const CColRefArray *pdrgpcrGroupingCols,
 				CColRefSet *pcrsKeys
 				);
 
-			CDXLNode *PdxlnSort(CExpression *pexprSort, ColRefArray *colref_array, DrgPds *pdrgpdsBaseTables, ULONG *pulNonGatherMotions, BOOL *pfDML);
+			CDXLNode *PdxlnSort(CExpression *pexprSort, CColRefArray *colref_array, CDistributionSpecArray *pdrgpdsBaseTables, ULONG *pulNonGatherMotions, BOOL *pfDML);
 
-			CDXLNode *PdxlnLimit(CExpression *pexprLimit, ColRefArray *colref_array, DrgPds *pdrgpdsBaseTables, ULONG *pulNonGatherMotions, BOOL *pfDML);
+			CDXLNode *PdxlnLimit(CExpression *pexprLimit, CColRefArray *colref_array, CDistributionSpecArray *pdrgpdsBaseTables, ULONG *pulNonGatherMotions, BOOL *pfDML);
 
-			CDXLNode *PdxlnWindow(CExpression *pexprSeqPrj, ColRefArray *colref_array, DrgPds *pdrgpdsBaseTables, ULONG *pulNonGatherMotions, BOOL *pfDML);
+			CDXLNode *PdxlnWindow(CExpression *pexprSeqPrj, CColRefArray *colref_array, CDistributionSpecArray *pdrgpdsBaseTables, ULONG *pulNonGatherMotions, BOOL *pfDML);
 		
-			CDXLNode *PdxlnNLJoin(CExpression *pexprNLJ, ColRefArray *colref_array, DrgPds *pdrgpdsBaseTables, ULONG *pulNonGatherMotions, BOOL *pfDML);
+			CDXLNode *PdxlnNLJoin(CExpression *pexprNLJ, CColRefArray *colref_array, CDistributionSpecArray *pdrgpdsBaseTables, ULONG *pulNonGatherMotions, BOOL *pfDML);
 			
-			CDXLNode *PdxlnHashJoin(CExpression *pexprHJ, ColRefArray *colref_array, DrgPds *pdrgpdsBaseTables, ULONG *pulNonGatherMotions, BOOL *pfDML);
+			CDXLNode *PdxlnHashJoin(CExpression *pexprHJ, CColRefArray *colref_array, CDistributionSpecArray *pdrgpdsBaseTables, ULONG *pulNonGatherMotions, BOOL *pfDML);
 
-			CDXLNode *PdxlnCorrelatedNLJoin(CExpression *pexprNLJ, ColRefArray *colref_array, DrgPds *pdrgpdsBaseTables, ULONG *pulNonGatherMotions, BOOL *pfDML);
+			CDXLNode *PdxlnCorrelatedNLJoin(CExpression *pexprNLJ, CColRefArray *colref_array, CDistributionSpecArray *pdrgpdsBaseTables, ULONG *pulNonGatherMotions, BOOL *pfDML);
 
-			CDXLNode *PdxlnCTEProducer(CExpression *pexprCTEProducer, ColRefArray *colref_array, DrgPds *pdrgpdsBaseTables, ULONG *pulNonGatherMotions, BOOL *pfDML);
+			CDXLNode *PdxlnCTEProducer(CExpression *pexprCTEProducer, CColRefArray *colref_array, CDistributionSpecArray *pdrgpdsBaseTables, ULONG *pulNonGatherMotions, BOOL *pfDML);
 
-			CDXLNode *PdxlnCTEConsumer(CExpression *pexprCTEConsumer, ColRefArray *colref_array, DrgPds *pdrgpdsBaseTables, ULONG *pulNonGatherMotions, BOOL *pfDML);
+			CDXLNode *PdxlnCTEConsumer(CExpression *pexprCTEConsumer, CColRefArray *colref_array, CDistributionSpecArray *pdrgpdsBaseTables, ULONG *pulNonGatherMotions, BOOL *pfDML);
 
 			// store outer references in index NLJ inner child into global map
 			void StoreIndexNLJOuterRefs(CPhysical *pop);
@@ -305,14 +305,14 @@ namespace gpopt
 						(
 						CDXLNode *pdxlnRelChild,
 						const CColRef *colref,
-						DXLColRefArray *dxl_colref_array
+						CDXLColRefArray *dxl_colref_array
 						);
 
 			// build a boolean scalar dxl node with a subplan as its child
 			CDXLNode *PdxlnBooleanScalarWithSubPlan
 						(
 						CDXLNode *pdxlnRelChild,
-						DXLColRefArray *dxl_colref_array
+						CDXLColRefArray *dxl_colref_array
 						);
 
 			CDXLNode *PdxlnScBoolExpr(EdxlBoolExprType boolexptype,	CDXLNode *dxlnode_left, CDXLNode *dxlnode_right);
@@ -321,8 +321,8 @@ namespace gpopt
 						(
 						CExpression *pexprRelational,
 						CDXLNode *pdxlnScalar,
-						ColRefArray *colref_array,
-						DrgPds *pdrgpdsBaseTables, 
+						CColRefArray *colref_array,
+						CDistributionSpecArray *pdrgpdsBaseTables, 
 						ULONG *pulNonGatherMotions,
 						CDXLPhysicalProperties *dxl_properties
 						);
@@ -331,28 +331,28 @@ namespace gpopt
 						(
 						CExpression *pexprRelational,
 						CDXLNode *pdxlnScalar,
-						ColRefArray *colref_array,
-						DrgPds *pdrgpdsBaseTables, 
+						CColRefArray *colref_array,
+						CDistributionSpecArray *pdrgpdsBaseTables, 
 						ULONG *pulNonGatherMotions, BOOL *pfDML,
 						CDXLPhysicalProperties *dxl_properties
 						);
 
-			CDXLNode *PdxlnMotion(CExpression *pexprMotion, ColRefArray *colref_array, DrgPds *pdrgpdsBaseTables, ULONG *pulNonGatherMotions, BOOL *pfDML);
+			CDXLNode *PdxlnMotion(CExpression *pexprMotion, CColRefArray *colref_array, CDistributionSpecArray *pdrgpdsBaseTables, ULONG *pulNonGatherMotions, BOOL *pfDML);
 
-			CDXLNode *PdxlnMaterialize(CExpression *pexprSpool, ColRefArray *colref_array, DrgPds *pdrgpdsBaseTables, ULONG *pulNonGatherMotions, BOOL *pfDML);
+			CDXLNode *PdxlnMaterialize(CExpression *pexprSpool, CColRefArray *colref_array, CDistributionSpecArray *pdrgpdsBaseTables, ULONG *pulNonGatherMotions, BOOL *pfDML);
 			
 			// translate a sequence expression
-			CDXLNode *PdxlnSequence(CExpression *pexprSequence, ColRefArray *colref_array, DrgPds *pdrgpdsBaseTables, ULONG *pulNonGatherMotions, BOOL *pfDML);
+			CDXLNode *PdxlnSequence(CExpression *pexprSequence, CColRefArray *colref_array, CDistributionSpecArray *pdrgpdsBaseTables, ULONG *pulNonGatherMotions, BOOL *pfDML);
 			
 			// translate a dynamic table scan
-			CDXLNode *PdxlnDynamicTableScan(CExpression *pexprDTS, ColRefArray *colref_array, DrgPds *pdrgpdsBaseTables, ULONG *pulNonGatherMotions, BOOL *pfDML);
+			CDXLNode *PdxlnDynamicTableScan(CExpression *pexprDTS, CColRefArray *colref_array, CDistributionSpecArray *pdrgpdsBaseTables, ULONG *pulNonGatherMotions, BOOL *pfDML);
 
 			// translate a dynamic table scan with a scalar condition
 			CDXLNode *PdxlnDynamicTableScan
 				(
 				CExpression *pexprDTS, 
-				ColRefArray *colref_array, 
-				DrgPds *pdrgpdsBaseTables, 
+				CColRefArray *colref_array, 
+				CDistributionSpecArray *pdrgpdsBaseTables, 
 				CExpression *pexprScalarCond, 
 				CDXLPhysicalProperties *dxl_properties
 				);
@@ -361,8 +361,8 @@ namespace gpopt
 			CDXLNode *PdxlnDynamicBitmapTableScan
 				(
 				CExpression *pexprDynamicBitmapTableScan, 
-				ColRefArray *colref_array, 
-				DrgPds *pdrgpdsBaseTables, 
+				CColRefArray *colref_array, 
+				CDistributionSpecArray *pdrgpdsBaseTables, 
 				ULONG *pulNonGatherMotions, 
 				BOOL *pfDML
 				);
@@ -371,39 +371,39 @@ namespace gpopt
 			CDXLNode *PdxlnDynamicBitmapTableScan
 				(
 				CExpression *pexprDynamicBitmapTableScan,
-				ColRefArray *colref_array,
-				DrgPds *pdrgpdsBaseTables, 
+				CColRefArray *colref_array,
+				CDistributionSpecArray *pdrgpdsBaseTables, 
 				CExpression *pexprScalar,
 				CDXLPhysicalProperties *dxl_properties
 				);
 
 			// translate a dynamic index scan based on passed properties
-			CDXLNode *PdxlnDynamicIndexScan(CExpression *pexprDIS, ColRefArray *colref_array, CDXLPhysicalProperties *dxl_properties, CReqdPropPlan *prpp);
+			CDXLNode *PdxlnDynamicIndexScan(CExpression *pexprDIS, CColRefArray *colref_array, CDXLPhysicalProperties *dxl_properties, CReqdPropPlan *prpp);
 
 			// translate a dynamic index scan
-			CDXLNode *PdxlnDynamicIndexScan(CExpression *pexprDIS, ColRefArray *colref_array, DrgPds *pdrgpdsBaseTables, ULONG *pulNonGatherMotions, BOOL *pfDML);
+			CDXLNode *PdxlnDynamicIndexScan(CExpression *pexprDIS, CColRefArray *colref_array, CDistributionSpecArray *pdrgpdsBaseTables, ULONG *pulNonGatherMotions, BOOL *pfDML);
 			
 			// translate a const table get into a result node
-			CDXLNode *PdxlnResultFromConstTableGet(CExpression *pexprCTG, ColRefArray *colref_array, DrgPds *pdrgpdsBaseTables, ULONG *pulNonGatherMotions, BOOL *pfDML);
+			CDXLNode *PdxlnResultFromConstTableGet(CExpression *pexprCTG, CColRefArray *colref_array, CDistributionSpecArray *pdrgpdsBaseTables, ULONG *pulNonGatherMotions, BOOL *pfDML);
 
 			// translate a const table get into a result node
-			CDXLNode *PdxlnResultFromConstTableGet(CExpression *pexprCTG, ColRefArray *colref_array, CExpression *pexprScalarCond);
+			CDXLNode *PdxlnResultFromConstTableGet(CExpression *pexprCTG, CColRefArray *colref_array, CExpression *pexprScalarCond);
 
 			// translate a table-valued function
-			CDXLNode *PdxlnTVF(CExpression *pexprTVF, ColRefArray *colref_array, DrgPds *pdrgpdsBaseTables, ULONG *pulNonGatherMotions, BOOL *pfDML);
+			CDXLNode *PdxlnTVF(CExpression *pexprTVF, CColRefArray *colref_array, CDistributionSpecArray *pdrgpdsBaseTables, ULONG *pulNonGatherMotions, BOOL *pfDML);
 
 			// translate an union all op
-			CDXLNode *PdxlnAppend(CExpression *pexprUnionAll, ColRefArray *colref_array, DrgPds *pdrgpdsBaseTables, ULONG *pulNonGatherMotions, BOOL *pfDML);
+			CDXLNode *PdxlnAppend(CExpression *pexprUnionAll, CColRefArray *colref_array, CDistributionSpecArray *pdrgpdsBaseTables, ULONG *pulNonGatherMotions, BOOL *pfDML);
 
 			// translate a partition selector
-			CDXLNode *PdxlnPartitionSelector(CExpression *pexpr, ColRefArray *colref_array, DrgPds *pdrgpdsBaseTables, ULONG *pulNonGatherMotions, BOOL *pfDML);
+			CDXLNode *PdxlnPartitionSelector(CExpression *pexpr, CColRefArray *colref_array, CDistributionSpecArray *pdrgpdsBaseTables, ULONG *pulNonGatherMotions, BOOL *pfDML);
 
 			// translate a partition selector
 			CDXLNode *PdxlnPartitionSelector
 				(
 				CExpression *pexpr, 
-				ColRefArray *colref_array, 
-				DrgPds *pdrgpdsBaseTables, 
+				CColRefArray *colref_array, 
+				CDistributionSpecArray *pdrgpdsBaseTables, 
 				ULONG *pulNonGatherMotions, 
 				BOOL *pfDML, 
 				CExpression *pexprScalarCond, 
@@ -411,14 +411,14 @@ namespace gpopt
 				);
 
 			// translate a DML partition selector
-			CDXLNode *PdxlnPartitionSelectorDML(CExpression *pexpr, ColRefArray *pdrgpc, DrgPds *pdrgpdsBaseTables, ULONG *pulNonGatherMotions, BOOL *pfDMLr);
+			CDXLNode *PdxlnPartitionSelectorDML(CExpression *pexpr, CColRefArray *pdrgpc, CDistributionSpecArray *pdrgpdsBaseTables, ULONG *pulNonGatherMotions, BOOL *pfDMLr);
 
 			// translate an expansion-based partition selector with a scalar condition to inline
 			CDXLNode *PdxlnPartitionSelectorExpand
 				(
 				CExpression *pexpr, 
-				ColRefArray *colref_array, 
-				DrgPds *pdrgpdsBaseTables, 
+				CColRefArray *colref_array, 
+				CDistributionSpecArray *pdrgpdsBaseTables, 
 				ULONG *pulNonGatherMotions, 
 				BOOL *pfDML, 
 				CExpression *pexprScalarCond, 
@@ -437,8 +437,8 @@ namespace gpopt
 			CDXLNode *PdxlnPartitionSelectorFilter
 				(
 				CExpression *pexpr, 
-				ColRefArray *colref_array,	
-				DrgPds *pdrgpdsBaseTables,
+				CColRefArray *colref_array,	
+				CDistributionSpecArray *pdrgpdsBaseTables,
 				ULONG *pulNonGatherMotions,
 				BOOL *pfDML, 
 				CExpression *pexprScalarCond, 
@@ -516,8 +516,8 @@ namespace gpopt
 				CExpression *pexprChild, 
 				CExpression *pexprScalarCond, 
 				CDXLPhysicalProperties *dxl_properties, 
-				ColRefArray *colref_array, 
-				DrgPds *pdrgpdsBaseTables, 
+				CColRefArray *colref_array, 
+				CDistributionSpecArray *pdrgpdsBaseTables, 
 				ULONG *pulNonGatherMotions, 
 				BOOL *pfDML
 				);
@@ -535,19 +535,19 @@ namespace gpopt
 				);
 
 			// translate a DML operator
-			CDXLNode *PdxlnDML(CExpression *pexpr, ColRefArray *colref_array, DrgPds *pdrgpdsBaseTables, ULONG *pulNonGatherMotions, BOOL *pfDML);
+			CDXLNode *PdxlnDML(CExpression *pexpr, CColRefArray *colref_array, CDistributionSpecArray *pdrgpdsBaseTables, ULONG *pulNonGatherMotions, BOOL *pfDML);
 
 			// translate a CTAS operator
-			CDXLNode *PdxlnCTAS(CExpression *pexpr, DrgPds *pdrgpdsBaseTables, ULONG *pulNonGatherMotions, BOOL *pfDML);
+			CDXLNode *PdxlnCTAS(CExpression *pexpr, CDistributionSpecArray *pdrgpdsBaseTables, ULONG *pulNonGatherMotions, BOOL *pfDML);
 			
 			// translate a split operator
-			CDXLNode *PdxlnSplit(CExpression *pexpr, ColRefArray *colref_array, DrgPds *pdrgpdsBaseTables, ULONG *pulNonGatherMotions, BOOL *pfDML);
+			CDXLNode *PdxlnSplit(CExpression *pexpr, CColRefArray *colref_array, CDistributionSpecArray *pdrgpdsBaseTables, ULONG *pulNonGatherMotions, BOOL *pfDML);
 
 			// translate an assert operator 
-			CDXLNode *PdxlnAssert(CExpression *pexprAssert, ColRefArray *colref_array, DrgPds *pdrgpdsBaseTables, ULONG *pulNonGatherMotions, BOOL *pfDML);
+			CDXLNode *PdxlnAssert(CExpression *pexprAssert, CColRefArray *colref_array, CDistributionSpecArray *pdrgpdsBaseTables, ULONG *pulNonGatherMotions, BOOL *pfDML);
 
 			// translate a row trigger operator
-			CDXLNode *PdxlnRowTrigger(CExpression *pexpr, ColRefArray *colref_array, DrgPds *pdrgpdsBaseTables, ULONG *pulNonGatherMotions, BOOL *pfDML);
+			CDXLNode *PdxlnRowTrigger(CExpression *pexpr, CColRefArray *colref_array, CDistributionSpecArray *pdrgpdsBaseTables, ULONG *pulNonGatherMotions, BOOL *pfDML);
 
 			// translate a scalar If statement
 			CDXLNode *PdxlnScIfStmt(CExpression *pexprScIf);
@@ -645,13 +645,13 @@ namespace gpopt
 			// translate a window frame
 			CDXLWindowFrame *GetWindowFrame(CWindowFrame *pwf);
 
-			CDXLTableDescr *MakeDXLTableDescr(const CTableDescriptor *ptabdesc, const ColRefArray *pdrgpcrOutput);
+			CDXLTableDescr *MakeDXLTableDescr(const CTableDescriptor *ptabdesc, const CColRefArray *pdrgpcrOutput);
 
 			// compute physical properties like operator cost from the expression
 			CDXLPhysicalProperties *GetProperties(const CExpression *pexpr);
 					
 			// translate a colref set of output col into a dxl proj list
-			CDXLNode *PdxlnProjList(const CColRefSet *pcrsOutput, ColRefArray *colref_array);
+			CDXLNode *PdxlnProjList(const CColRefSet *pcrsOutput, CColRefArray *colref_array);
 			
 			// translate a project list expression into a DXL proj list node 
 			// according to the order specified in the dynamic array 
@@ -659,7 +659,7 @@ namespace gpopt
 						(
 						const CExpression *pexprProjList, 
 						const CColRefSet *pcrsOutput, 
-						ColRefArray *colref_array
+						CColRefArray *colref_array
 						);			
 
 			// translate a project list expression into a DXL proj list node
@@ -673,8 +673,8 @@ namespace gpopt
 			// const table get operator
 			CDXLNode *PdxlnProjListFromConstTableGet
 				(
-				ColRefArray *pdrgpcrReqOutput, 
-				ColRefArray *pdrgpcrCTGOutput,
+				CColRefArray *pdrgpcrReqOutput, 
+				CColRefArray *pdrgpcrCTGOutput,
 				IDatumArray *pdrgpdatumValues
 				);
 
@@ -692,7 +692,7 @@ namespace gpopt
 			CDXLNode *GetSortColListDXL(CExpression *pexprMotion);
 
 			// create a DXL hash expr list from an array of hash columns
-			CDXLNode *PdxlnHashExprList(const ExpressionArray *pdrgpexpr);
+			CDXLNode *PdxlnHashExprList(const CExpressionArray *pdrgpexpr);
 			
 			// create a DXL filter node with the given scalar expression
 			CDXLNode *PdxlnFilter(CDXLNode *pdxlnCond);
@@ -704,14 +704,14 @@ namespace gpopt
 			IntPtrArray *GetOutputSegIdsArray(CExpression *pexprMotion);
 
 			// find the position of the given colref in the array
-			ULONG UlPosInArray(const CColRef *colref, const ColRefArray *colref_array) const;
+			ULONG UlPosInArray(const CColRef *colref, const CColRefArray *colref_array) const;
 			
 			// return hash join type
 			static
 			EdxlJoinType EdxljtHashJoin(CPhysicalHashJoin *popHJ);
 
 			// main translation routine for Expr tree -> DXL tree
-			CDXLNode *CreateDXLNode(CExpression *pexpr, ColRefArray *colref_array, DrgPds *pdrgpdsBaseTables, ULONG *pulNonGatherMotions, BOOL *pfDML, BOOL fRemap, BOOL fRoot);
+			CDXLNode *CreateDXLNode(CExpression *pexpr, CColRefArray *colref_array, CDistributionSpecArray *pdrgpdsBaseTables, ULONG *pulNonGatherMotions, BOOL *pfDML, BOOL fRemap, BOOL fRoot);
 
 			// translate expression children and add them as children of the DXL node
 			void TranslateScalarChildren(CExpression *pexpr, CDXLNode *dxlnode);
@@ -727,16 +727,16 @@ namespace gpopt
 						(
 						CExpression *pexpr,
 						CDXLNode *dxlnode,
-						ColRefArray *pdrgpcrRequired,
-						ColRefArray *pdrgpcrOrder
+						CColRefArray *pdrgpcrRequired,
+						CColRefArray *pdrgpcrOrder
 						);
 
 			// combines the ordered columns and required columns into a single list
-			ColRefArray *PdrgpcrMerge
+			CColRefArray *PdrgpcrMerge
 					(
 					IMemoryPool *mp,
-					ColRefArray *pdrgpcrOrder,
-					ColRefArray *pdrgpcrRequired
+					CColRefArray *pdrgpcrOrder,
+					CColRefArray *pdrgpcrRequired
 					);
 
 			// helper to add a project of bool constant
@@ -749,9 +749,9 @@ namespace gpopt
 			void BuildSubplansForCorrelatedLOJ
 				(
 				CExpression *pexprCorrelatedLOJ,
-				DXLColRefArray *dxl_colref_array,
+				CDXLColRefArray *dxl_colref_array,
 				CDXLNode **ppdxlnScalar, // output: scalar condition after replacing inner child reference with subplan
-				DrgPds *pdrgpdsBaseTables,
+				CDistributionSpecArray *pdrgpdsBaseTables,
 				ULONG *pulNonGatherMotions,
 				BOOL *pfDML
 				);
@@ -760,9 +760,9 @@ namespace gpopt
 			void BuildSubplans
 				(
 				CExpression *pexprCorrelatedNLJoin,
-				DXLColRefArray *dxl_colref_array,
+				CDXLColRefArray *dxl_colref_array,
 				CDXLNode **ppdxlnScalar, // output: scalar condition after replacing inner child reference with subplan
-				DrgPds *pdrgpdsBaseTables, 
+				CDistributionSpecArray *pdrgpdsBaseTables, 
 				ULONG *pulNonGatherMotions, 
 				BOOL *pfDML
 				);
@@ -771,10 +771,10 @@ namespace gpopt
 			// in subplan map
 			void BuildScalarSubplans
 				(
-				ColRefArray *pdrgpcrInner,
+				CColRefArray *pdrgpcrInner,
 				CExpression *pexprInner,
-				DXLColRefArray *dxl_colref_array,
-				DrgPds *pdrgpdsBaseTables, 
+				CDXLColRefArray *dxl_colref_array,
+				CDistributionSpecArray *pdrgpdsBaseTables, 
 				ULONG *pulNonGatherMotions, 
 				BOOL *pfDML
 				);
@@ -782,10 +782,10 @@ namespace gpopt
 			// helper to build subplans for quantified (ANY/ALL) subqueries
 			CDXLNode *PdxlnQuantifiedSubplan
 				(
-				ColRefArray *pdrgpcrInner,
+				CColRefArray *pdrgpcrInner,
 				CExpression *pexprCorrelatedNLJoin,
-				DXLColRefArray *dxl_colref_array,
-				DrgPds *pdrgpdsBaseTables, 
+				CDXLColRefArray *dxl_colref_array,
+				CDistributionSpecArray *pdrgpdsBaseTables, 
 				ULONG *pulNonGatherMotions, 
 				BOOL *pfDML
 				);
@@ -793,10 +793,10 @@ namespace gpopt
 			// helper to build subplans for existential subqueries
 			CDXLNode *PdxlnExistentialSubplan
 				(
-				ColRefArray *pdrgpcrInner,
+				CColRefArray *pdrgpcrInner,
 				CExpression *pexprCorrelatedNLJoin,
-				DXLColRefArray *dxl_colref_array,
-				DrgPds *pdrgpdsBaseTables, 
+				CDXLColRefArray *dxl_colref_array,
+				CDistributionSpecArray *pdrgpdsBaseTables, 
 				ULONG *pulNonGatherMotions, 
 				BOOL *pfDML
 				);
@@ -843,7 +843,7 @@ namespace gpopt
 			~CTranslatorExprToDXL();
 			
 			// main driver
-			CDXLNode *PdxlnTranslate(CExpression *pexpr, ColRefArray *colref_array, MDNameArray *pdrgpmdname);
+			CDXLNode *PdxlnTranslate(CExpression *pexpr, CColRefArray *colref_array, CMDNameArray *pdrgpmdname);
 
 			// translate a scalar expression into a DXL scalar node
 			// if the expression is not a scalar, an UnsupportedOp exception is raised

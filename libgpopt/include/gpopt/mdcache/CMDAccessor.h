@@ -284,7 +284,7 @@ namespace gpopt
 			// ctors
 			CMDAccessor(IMemoryPool *mp, MDCache *pcache);
 			CMDAccessor(IMemoryPool *mp, MDCache *pcache, CSystemId sysid, IMDProvider *pmdp);
-			CMDAccessor(IMemoryPool *mp, MDCache *pcache, const SysidPtrArray *pdrgpsysid, const MDProviderPtrArray *pdrgpmdp);
+			CMDAccessor(IMemoryPool *mp, MDCache *pcache, const CSystemIdArray *pdrgpsysid, const CMDProviderArray *pdrgpmdp);
 			
 			//dtor
 			~CMDAccessor();
@@ -299,7 +299,7 @@ namespace gpopt
 			void RegisterProvider(CSystemId sysid, IMDProvider *pmdp);
 			
 			// register given MD providers
-			void RegisterProviders(const SysidPtrArray *pdrgpsysid, const MDProviderPtrArray *pdrgpmdp);
+			void RegisterProviders(const CSystemIdArray *pdrgpsysid, const CMDProviderArray *pdrgpmdp);
 
 			// interface to a relation object from the MD cache
 			const IMDRelation *RetrieveRel(IMDId *mdid);

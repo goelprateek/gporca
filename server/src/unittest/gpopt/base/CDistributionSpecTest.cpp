@@ -383,11 +383,11 @@ CDistributionSpecTest::EresUnittest_Hashed()
 	CExpression *pexprScalarA = CUtils::PexprScalarIdent(mp, pcrA);
 	CExpression *pexprScalarB = CUtils::PexprScalarIdent(mp, pcrB);
 
-	ExpressionArray *prgpexpr1 = GPOS_NEW(mp) ExpressionArray(mp);
+	CExpressionArray *prgpexpr1 = GPOS_NEW(mp) CExpressionArray(mp);
 	prgpexpr1->Append(pexprScalarA);
 	prgpexpr1->Append(pexprScalarB);
 	
-	ExpressionArray *prgpexpr2 = GPOS_NEW(mp) ExpressionArray(mp);
+	CExpressionArray *prgpexpr2 = GPOS_NEW(mp) CExpressionArray(mp);
 	pexprScalarA->AddRef();
 	prgpexpr2->Append(pexprScalarA);
 

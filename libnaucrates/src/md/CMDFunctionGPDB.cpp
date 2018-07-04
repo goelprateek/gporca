@@ -32,7 +32,7 @@ CMDFunctionGPDB::CMDFunctionGPDB(IMemoryPool *mp,
 								 IMDId *mdid,
 								 CMDName *mdname,
 								 IMDId *result_type_mdid,
-								 MdidPtrArray *mdid_array,
+								 IMdIdArray *mdid_array,
 								 BOOL ReturnsSet,
 								 EFuncStbl func_stability,
 								 EFuncDataAcc func_data_access,
@@ -147,7 +147,7 @@ CMDFunctionGPDB::GetResultTypeMdid() const
 //		Output argument types
 //
 //---------------------------------------------------------------------------
-MdidPtrArray *
+IMdIdArray *
 CMDFunctionGPDB::OutputArgTypesMdidArray() const
 {
 	return m_mdid_types_array;

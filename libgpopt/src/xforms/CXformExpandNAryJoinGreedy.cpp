@@ -115,7 +115,7 @@ CXformExpandNAryJoinGreedy::Transform
 	const ULONG ulArity = pexpr->Arity();
 	GPOS_ASSERT(ulArity >= 3);
 
-	ExpressionArray *pdrgpexpr = GPOS_NEW(pmp) ExpressionArray(pmp);
+	CExpressionArray *pdrgpexpr = GPOS_NEW(pmp) CExpressionArray(pmp);
 	for (ULONG ul = 0; ul < ulArity - 1; ul++)
 	{
 		CExpression *pexprChild = (*pexpr)[ul];
@@ -124,7 +124,7 @@ CXformExpandNAryJoinGreedy::Transform
 	}
 
 	CExpression *pexprScalar = (*pexpr)[ulArity - 1];
-	ExpressionArray *pdrgpexprPreds = CPredicateUtils::PdrgpexprConjuncts(pmp, pexprScalar);
+	CExpressionArray *pdrgpexprPreds = CPredicateUtils::PdrgpexprConjuncts(pmp, pexprScalar);
 
 	// create a join order based on cardinality of intermediate results
 	CJoinOrderGreedy jomc(pmp, pdrgpexpr, pdrgpexprPreds);

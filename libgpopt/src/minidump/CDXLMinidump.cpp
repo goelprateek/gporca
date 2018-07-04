@@ -34,11 +34,11 @@ CDXLMinidump::CDXLMinidump
 	CBitSet *pbs,
 	COptimizerConfig *optimizer_config,
 	CDXLNode *query, 
-	DXLNodeArray *query_output_dxlnode_array,
-	DXLNodeArray *cte_producers,
+	CDXLNodeArray *query_output_dxlnode_array,
+	CDXLNodeArray *cte_producers,
 	CDXLNode *pdxlnPlan, 
-	IMDCachePtrArray *mdcache_obj_array,
-	SysidPtrArray *pdrgpsysid,
+	IMDCacheObjectArray *mdcache_obj_array,
+	CSystemIdArray *pdrgpsysid,
 	ULLONG plan_id,
 	ULLONG plan_space_size
 	)
@@ -113,7 +113,7 @@ CDXLMinidump::GetQueryDXLRoot() const
 //		Query output columns
 //
 //---------------------------------------------------------------------------
-const DXLNodeArray *
+const CDXLNodeArray *
 CDXLMinidump::PdrgpdxlnQueryOutput() const
 {
 	return m_query_output;
@@ -127,7 +127,7 @@ CDXLMinidump::PdrgpdxlnQueryOutput() const
 //		CTE list
 //
 //---------------------------------------------------------------------------
-const DXLNodeArray *
+const CDXLNodeArray *
 CDXLMinidump::GetCTEProducerDXLArray() const
 {
 	return m_cte_producers;
@@ -155,7 +155,7 @@ CDXLMinidump::PdxlnPlan() const
 //		Metadata objects
 //
 //---------------------------------------------------------------------------
-const IMDCachePtrArray *
+const IMDCacheObjectArray *
 CDXLMinidump::GetMdIdCachedObjArray() const
 {
 	return m_mdid_cached_obj_array;
@@ -169,7 +169,7 @@ CDXLMinidump::GetMdIdCachedObjArray() const
 //		Metadata source system ids
 //
 //---------------------------------------------------------------------------
-const SysidPtrArray *
+const CSystemIdArray *
 CDXLMinidump::GetSysidPtrArray() const
 {
 	return m_system_id_array;

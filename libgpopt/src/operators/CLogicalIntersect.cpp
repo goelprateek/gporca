@@ -49,7 +49,7 @@ CLogicalIntersect::CLogicalIntersect
 CLogicalIntersect::CLogicalIntersect
 	(
 	IMemoryPool *mp,
-	ColRefArray *pdrgpcrOutput,
+	CColRefArray *pdrgpcrOutput,
 	ColRefArrays *pdrgpdrgpcrInput
 	)
 	:
@@ -118,7 +118,7 @@ CLogicalIntersect::PopCopyWithRemappedColumns
 	BOOL must_exist
 	)
 {
-	ColRefArray *pdrgpcrOutput = CUtils::PdrgpcrRemap(mp, m_pdrgpcrOutput, colref_mapping, must_exist);
+	CColRefArray *pdrgpcrOutput = CUtils::PdrgpcrRemap(mp, m_pdrgpcrOutput, colref_mapping, must_exist);
 	ColRefArrays *pdrgpdrgpcrInput = CUtils::PdrgpdrgpcrRemap(mp, m_pdrgpdrgpcrInput, colref_mapping, must_exist);
 
 	return GPOS_NEW(mp) CLogicalIntersect(mp, pdrgpcrOutput, pdrgpdrgpcrInput);
@@ -158,7 +158,7 @@ CLogicalIntersect::PstatsDerive
 	(
 	IMemoryPool *mp,
 	CExpressionHandle &exprhdl,
-	StatsArray * // not used
+	IStatsArray * // not used
 	)
 	const
 {
@@ -167,7 +167,7 @@ CLogicalIntersect::PstatsDerive
 	// intersect is transformed into a group by over an intersect all
 	// we follow the same route to compute statistics
 
-	ColRefSetArray *output_colrefsets = GPOS_NEW(mp) ColRefSetArray(mp);
+	CColRefSetArray *output_colrefsets = GPOS_NEW(mp) CColRefSetArray(mp);
 	const ULONG size = m_pdrgpdrgpcrInput->Size();
 	for (ULONG ul = 0; ul < size; ul++)
 	{

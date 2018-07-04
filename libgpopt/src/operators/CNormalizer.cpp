@@ -165,7 +165,7 @@ CNormalizer::PexprRecursiveNormalize
 	GPOS_ASSERT(NULL != pexpr);
 
 	const ULONG arity = pexpr->Arity();
-	ExpressionArray *pdrgpexpr = GPOS_NEW(mp) ExpressionArray(mp);
+	CExpressionArray *pdrgpexpr = GPOS_NEW(mp) CExpressionArray(mp);
 	for (ULONG ul = 0; ul < arity; ul++)
 	{
 		CExpression *pexprChild = PexprNormalize(mp, (*pexpr)[ul]);
@@ -194,8 +194,8 @@ CNormalizer::SplitConjunct
 	IMemoryPool *mp,
 	CExpression *pexpr,
 	CExpression *pexprConj,
-	ExpressionArray **ppdrgpexprPushable,
-	ExpressionArray **ppdrgpexprUnpushable
+	CExpressionArray **ppdrgpexprPushable,
+	CExpressionArray **ppdrgpexprUnpushable
 	)
 {
 	GPOS_ASSERT(pexpr->Pop()->FLogical());
@@ -204,9 +204,9 @@ CNormalizer::SplitConjunct
 	GPOS_ASSERT(NULL != ppdrgpexprUnpushable);
 
 	// collect pushable predicates from given conjunct
-	*ppdrgpexprPushable =  GPOS_NEW(mp) ExpressionArray(mp);
-	*ppdrgpexprUnpushable =  GPOS_NEW(mp) ExpressionArray(mp);
-	ExpressionArray *pdrgpexprConjuncts = CPredicateUtils::PdrgpexprConjuncts(mp, pexprConj);
+	*ppdrgpexprPushable =  GPOS_NEW(mp) CExpressionArray(mp);
+	*ppdrgpexprUnpushable =  GPOS_NEW(mp) CExpressionArray(mp);
+	CExpressionArray *pdrgpexprConjuncts = CPredicateUtils::PdrgpexprConjuncts(mp, pexprConj);
 	const ULONG size = pdrgpexprConjuncts->Size();
 	for (ULONG ul = 0; ul < size; ul++)
 	{
@@ -265,8 +265,8 @@ CNormalizer::PushThruOuterChild
 	CExpression *pexprInner = (*pexpr)[1];
 	CExpression *pexprPred = (*pexpr)[2];
 
-	ExpressionArray *pdrgpexprPushable = NULL;
-	ExpressionArray *pdrgpexprUnpushable = NULL;
+	CExpressionArray *pdrgpexprPushable = NULL;
+	CExpressionArray *pdrgpexprUnpushable = NULL;
 	SplitConjunct(mp, pexprOuter, pexprConj, &pdrgpexprPushable, &pdrgpexprUnpushable);
 
 	if (0 < pdrgpexprPushable->Size())
@@ -453,8 +453,8 @@ CNormalizer::PushThruSelect
 	{
 		// logical child may not pass all predicates through, we need to collect
 		// unpushable predicates, if any, into a top Select node
-		ExpressionArray *pdrgpexprConjuncts = CPredicateUtils::PdrgpexprConjuncts(mp, pexprPred);
-		ExpressionArray *pdrgpexprRemaining = NULL;
+		CExpressionArray *pdrgpexprConjuncts = CPredicateUtils::PdrgpexprConjuncts(mp, pexprPred);
+		CExpressionArray *pdrgpexprRemaining = NULL;
 		CExpression *pexpr = NULL;
 		PushThru(mp, pexprLogicalChild, pdrgpexprConjuncts, &pexpr, &pdrgpexprRemaining);
 		*ppexprResult = PexprSelect(mp, pexpr, pdrgpexprRemaining);
@@ -479,7 +479,7 @@ CNormalizer::PexprSelect
 	(
 	IMemoryPool *mp,
 	CExpression *pexpr,
-	ExpressionArray *pdrgpexpr
+	CExpressionArray *pdrgpexpr
 	)
 {
 	GPOS_ASSERT(NULL != pexpr);
@@ -549,14 +549,14 @@ CNormalizer::PushThruUnaryWithoutScalarChild
 	GPOS_ASSERT(NULL != ppexprResult);
 
 	// break scalar expression to conjuncts
-	ExpressionArray *pdrgpexprConjuncts = CPredicateUtils::PdrgpexprConjuncts(mp, pexprConj);
+	CExpressionArray *pdrgpexprConjuncts = CPredicateUtils::PdrgpexprConjuncts(mp, pexprConj);
 
 	// get logical child
 	CExpression *pexprLogicalChild = (*pexprLogical)[0];
 
 	// push conjuncts through the logical child
 	CExpression *pexprNewLogicalChild = NULL;
-	ExpressionArray *pdrgpexprUnpushable = NULL;
+	CExpressionArray *pdrgpexprUnpushable = NULL;
 	PushThru(mp, pexprLogicalChild, pdrgpexprConjuncts, &pexprNewLogicalChild, &pdrgpexprUnpushable);
 	pdrgpexprConjuncts->Release();
 
@@ -596,10 +596,10 @@ CNormalizer::PushThruUnaryWithScalarChild
 
 	// push conjuncts through the logical child
 	CExpression *pexprNewLogicalChild = NULL;
-	ExpressionArray *pdrgpexprUnpushable = NULL;
+	CExpressionArray *pdrgpexprUnpushable = NULL;
 
 	// break scalar expression to conjuncts
-	ExpressionArray *pdrgpexprConjuncts = CPredicateUtils::PdrgpexprConjuncts(mp, pexprConj);
+	CExpressionArray *pdrgpexprConjuncts = CPredicateUtils::PdrgpexprConjuncts(mp, pexprConj);
 
 	PushThru(mp, pexprLogicalChild, pdrgpexprConjuncts, &pexprNewLogicalChild, &pdrgpexprUnpushable);
 	pdrgpexprConjuncts->Release();
@@ -627,8 +627,8 @@ CNormalizer::SplitConjunctForSeqPrj
 	IMemoryPool *mp,
 	CExpression *pexprSeqPrj,
 	CExpression *pexprConj,
-	ExpressionArray **ppdrgpexprPushable,
-	ExpressionArray **ppdrgpexprUnpushable
+	CExpressionArray **ppdrgpexprPushable,
+	CExpressionArray **ppdrgpexprUnpushable
 	)
 {
 	GPOS_ASSERT(NULL != pexprSeqPrj);
@@ -636,9 +636,9 @@ CNormalizer::SplitConjunctForSeqPrj
 	GPOS_ASSERT(NULL != ppdrgpexprPushable);
 	GPOS_ASSERT(NULL != ppdrgpexprUnpushable);
 
-	*ppdrgpexprPushable =  GPOS_NEW(mp) ExpressionArray(mp);
-	*ppdrgpexprUnpushable = GPOS_NEW(mp) ExpressionArray(mp);
-	ExpressionArray *pdrgpexprPreds = CPredicateUtils::PdrgpexprConjuncts(mp, pexprConj);
+	*ppdrgpexprPushable =  GPOS_NEW(mp) CExpressionArray(mp);
+	*ppdrgpexprUnpushable = GPOS_NEW(mp) CExpressionArray(mp);
+	CExpressionArray *pdrgpexprPreds = CPredicateUtils::PdrgpexprConjuncts(mp, pexprConj);
 	const ULONG ulPreds = pdrgpexprPreds->Size();
 	for (ULONG ul = 0; ul < ulPreds; ul++)
 	{
@@ -684,8 +684,8 @@ CNormalizer::PushThruSeqPrj
 	CExpression *pexprScalarChild = (*pexprSeqPrj)[1];
 
 	// break scalar expression to pushable and unpushable conjuncts
-	ExpressionArray *pdrgpexprPushable = NULL;
-	ExpressionArray *pdrgpexprUnpushable = NULL;
+	CExpressionArray *pdrgpexprPushable = NULL;
+	CExpressionArray *pdrgpexprUnpushable = NULL;
 	SplitConjunctForSeqPrj(mp, pexprSeqPrj, pexprConj, &pdrgpexprPushable, &pdrgpexprUnpushable);
 
 	CExpression *pexprNewLogicalChild = NULL;
@@ -737,15 +737,15 @@ CNormalizer::PushThruSetOp
 	GPOS_ASSERT(NULL != ppexprResult);
 
 	CLogicalSetOp *popSetOp = CLogicalSetOp::PopConvert(pexprSetOp->Pop());
-	ColRefArray *pdrgpcrOutput = popSetOp->PdrgpcrOutput();
+	CColRefArray *pdrgpcrOutput = popSetOp->PdrgpcrOutput();
 	CColRefSet *pcrsOutput = GPOS_NEW(mp) CColRefSet(mp, pdrgpcrOutput);
 	ColRefArrays *pdrgpdrgpcrInput = popSetOp->PdrgpdrgpcrInput();
-	ExpressionArray *pdrgpexprNewChildren = GPOS_NEW(mp) ExpressionArray(mp);
+	CExpressionArray *pdrgpexprNewChildren = GPOS_NEW(mp) CExpressionArray(mp);
 	const ULONG arity = pexprSetOp->Arity();
 	for (ULONG ul = 0; ul < arity; ul++)
 	{
 		CExpression *pexprChild = (*pexprSetOp)[ul];
-		ColRefArray *pdrgpcrChild = (*pdrgpdrgpcrInput)[ul];
+		CColRefArray *pdrgpcrChild = (*pdrgpdrgpcrInput)[ul];
 		CColRefSet *pcrsChild =  GPOS_NEW(mp) CColRefSet(mp, pdrgpcrChild);
 
 		pexprConj->AddRef();
@@ -828,11 +828,11 @@ CNormalizer::PushThruJoin
 	CExpression *pexprPred =  CPredicateUtils::PexprConjunction(mp, pexprScalar, pexprConj);
 
 	// break predicate to conjuncts
-	ExpressionArray *pdrgpexprConjuncts = CPredicateUtils::PdrgpexprConjuncts(mp, pexprPred);
+	CExpressionArray *pdrgpexprConjuncts = CPredicateUtils::PdrgpexprConjuncts(mp, pexprPred);
 	pexprPred->Release();
 
 	// push predicates through children and compute new child expressions
-	ExpressionArray *pdrgpexprChildren =  GPOS_NEW(mp) ExpressionArray(mp);
+	CExpressionArray *pdrgpexprChildren =  GPOS_NEW(mp) CExpressionArray(mp);
 
 	for (ULONG ul = 0; ul < arity - 1; ul++)
 	{
@@ -856,7 +856,7 @@ CNormalizer::PushThruJoin
 			continue;
 		}
 
-		ExpressionArray *pdrgpexprRemaining = NULL;
+		CExpressionArray *pdrgpexprRemaining = NULL;
 		PushThru(mp, pexprChild, pdrgpexprConjuncts, &pexprNewChild, &pdrgpexprRemaining);
 		pdrgpexprChildren->Append(pexprNewChild);
 
@@ -979,17 +979,17 @@ CNormalizer::PushThru
 	(
 	IMemoryPool *mp,
 	CExpression *pexprLogical,
-	ExpressionArray *pdrgpexprConjuncts,
+	CExpressionArray *pdrgpexprConjuncts,
 	CExpression **ppexprResult,
-	ExpressionArray **ppdrgpexprRemaining
+	CExpressionArray **ppdrgpexprRemaining
 	)
 {
 	GPOS_ASSERT(NULL != pexprLogical);
 	GPOS_ASSERT(NULL != pdrgpexprConjuncts);
 	GPOS_ASSERT(NULL != ppexprResult);
 
-	ExpressionArray *pdrgpexprPushable =  GPOS_NEW(mp) ExpressionArray(mp);
-	ExpressionArray *pdrgpexprUnpushable =  GPOS_NEW(mp) ExpressionArray(mp);
+	CExpressionArray *pdrgpexprPushable =  GPOS_NEW(mp) CExpressionArray(mp);
+	CExpressionArray *pdrgpexprUnpushable =  GPOS_NEW(mp) CExpressionArray(mp);
 
 	const ULONG size = pdrgpexprConjuncts->Size();
 	for (ULONG ul = 0; ul < size; ul++)
@@ -1061,7 +1061,7 @@ CNormalizer::PexprNormalize
 		{
 			// add-ref all children except scalar predicate
 			const ULONG arity = pexpr->Arity();
-			ExpressionArray *pdrgpexpr = GPOS_NEW(mp) ExpressionArray(mp);
+			CExpressionArray *pdrgpexpr = GPOS_NEW(mp) CExpressionArray(mp);
 			for (ULONG ul = 0; ul < arity - 1; ul++)
 			{
 				CExpression *pexprChild = (*pexpr)[ul];
@@ -1119,8 +1119,8 @@ CNormalizer::PexprPullUpAndCombineProjects
 		return pexpr;
 	}
 
-	ExpressionArray *pdrgpexprChildren = GPOS_NEW(mp) ExpressionArray(mp);
-	ExpressionArray *pdrgpexprPrElPullUp = GPOS_NEW(mp) ExpressionArray(mp);
+	CExpressionArray *pdrgpexprChildren = GPOS_NEW(mp) CExpressionArray(mp);
+	CExpressionArray *pdrgpexprPrElPullUp = GPOS_NEW(mp) CExpressionArray(mp);
 	CExpressionHandle exprhdl(mp);
 	exprhdl.Attach(pexpr);
 
@@ -1208,7 +1208,7 @@ CNormalizer::PexprPullUpProjectElements
 	CExpression *pexpr,
 	CColRefSet *pcrsUsed,
 	CColRefSet *pcrsOutput,
-	ExpressionArray **ppdrgpexprPrElPullUp	// output: the pulled-up project elements
+	CExpressionArray **ppdrgpexprPrElPullUp	// output: the pulled-up project elements
 	)
 {
 	GPOS_ASSERT(NULL != pexpr);
@@ -1225,7 +1225,7 @@ CNormalizer::PexprPullUpProjectElements
 		return pexpr;
 	}
 
-	ExpressionArray *pdrgpexprPrElNoPullUp = GPOS_NEW(mp) ExpressionArray(mp);
+	CExpressionArray *pdrgpexprPrElNoPullUp = GPOS_NEW(mp) CExpressionArray(mp);
 	CExpression *pexprPrL = (*pexpr)[1];
 
 	const ULONG ulProjElements = pexprPrL->Arity();

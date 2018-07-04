@@ -145,7 +145,7 @@ CFunctionalDependency::OsPrint
 ULONG
 CFunctionalDependency::HashValue
 	(
-	const FunctionalDependencyArray *pdrgpfd
+	const CFunctionalDependencyArray *pdrgpfd
 	)
 {
 	ULONG ulHash = 0;
@@ -173,8 +173,8 @@ CFunctionalDependency::HashValue
 BOOL
 CFunctionalDependency::Equals
 	(
-	const FunctionalDependencyArray *pdrgpfdFst,
-	const FunctionalDependencyArray *pdrgpfdSnd
+	const CFunctionalDependencyArray *pdrgpfdFst,
+	const CFunctionalDependencyArray *pdrgpfdSnd
 	)
 {
 	if (NULL == pdrgpfdFst && NULL == pdrgpfdSnd)
@@ -218,7 +218,7 @@ CColRefSet *
 CFunctionalDependency::PcrsKeys
 	(
 	IMemoryPool *mp,
-	const FunctionalDependencyArray *pdrgpfd
+	const CFunctionalDependencyArray *pdrgpfd
 	)
 {
 	CColRefSet *pcrs = GPOS_NEW(mp) CColRefSet(mp);
@@ -244,15 +244,15 @@ CFunctionalDependency::PcrsKeys
 //		Create an array of all keys
 //
 //---------------------------------------------------------------------------
-ColRefArray *
+CColRefArray *
 CFunctionalDependency::PdrgpcrKeys
 	(
 	IMemoryPool *mp,
-	const FunctionalDependencyArray *pdrgpfd
+	const CFunctionalDependencyArray *pdrgpfd
 	)
 {
 	CColRefSet *pcrs = PcrsKeys(mp, pdrgpfd);
-	ColRefArray *colref_array = pcrs->Pdrgpcr(mp);
+	CColRefArray *colref_array = pcrs->Pdrgpcr(mp);
 	pcrs->Release();
 
 	return colref_array;

@@ -31,10 +31,10 @@ namespace gpopt
 {
 	// cleanup function for arrays
 	class CExpression;	
-	typedef CDynamicPtrArray<CExpression, CleanupRelease> ExpressionArray;
+	typedef CDynamicPtrArray<CExpression, CleanupRelease> CExpressionArray;
 
 	// array of arrays of expression pointers
-	typedef CDynamicPtrArray<ExpressionArray, CleanupRelease> ExpressionArrays;
+	typedef CDynamicPtrArray<CExpressionArray, CleanupRelease> ExpressionArrays;
 
 	class CGroupExpression;
 	class CDrvdPropPlan;
@@ -63,7 +63,7 @@ namespace gpopt
 			COperator *m_pop;
 			
 			// array of children
-			ExpressionArray *m_pdrgpexpr;
+			CExpressionArray *m_pdrgpexpr;
 
 			// derived relational properties
 			CDrvdPropRelational *m_pdprel;
@@ -164,7 +164,7 @@ namespace gpopt
 				(
 				IMemoryPool *mp,
 				COperator *pop,
-				ExpressionArray *pdrgpexpr
+				CExpressionArray *pdrgpexpr
 				);
 			
 			// ctor for n-ary expression with origin group expression
@@ -173,7 +173,7 @@ namespace gpopt
 				IMemoryPool *mp,
 				COperator *pop,
 				CGroupExpression *pgexpr,
-				ExpressionArray *pdrgpexpr,
+				CExpressionArray *pdrgpexpr,
 				IStatistics *input_stats,
 				CCost cost = GPOPT_INVALID_COST
 				);
@@ -213,7 +213,7 @@ namespace gpopt
 			}
 		
 			// accessor of children array
-			ExpressionArray *PdrgPexpr() const
+			CExpressionArray *PdrgPexpr() const
 			{
 				return m_pdrgpexpr;
 			}
@@ -252,7 +252,7 @@ namespace gpopt
 			DrvdPropArray *PdpDerive(CDrvdPropCtxt *pdpctxt = NULL);
 
 			// derive statistics
-			IStatistics *PstatsDerive(CReqdPropRelational *prprel, StatsArray *stats_ctxt);
+			IStatistics *PstatsDerive(CReqdPropRelational *prprel, IStatsArray *stats_ctxt);
 
 			// reset a derived property
 			void ResetDerivedProperty(DrvdPropArray::EPropType ept);
@@ -314,7 +314,7 @@ namespace gpopt
 
 			// rehydrate expression from a given cost context and child expressions
 			static
-			CExpression *PexprRehydrate(IMemoryPool *mp, CCostContext *pcc, ExpressionArray *pdrgpexpr, CDrvdPropCtxtPlan *pdpctxtplan);
+			CExpression *PexprRehydrate(IMemoryPool *mp, CCostContext *pcc, CExpressionArray *pdrgpexpr, CDrvdPropCtxtPlan *pdpctxtplan);
 
 
 	}; // class CExpression

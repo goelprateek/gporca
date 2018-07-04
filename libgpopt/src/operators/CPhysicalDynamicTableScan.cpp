@@ -42,7 +42,7 @@ CPhysicalDynamicTableScan::CPhysicalDynamicTableScan
 	CTableDescriptor *ptabdesc,
 	ULONG ulOriginOpId,
 	ULONG scan_id,
-	ColRefArray *pdrgpcrOutput,
+	CColRefArray *pdrgpcrOutput,
 	ColRefArrays *pdrgpdrgpcrParts,
 	ULONG ulSecondaryScanId,
 	CPartConstraint *ppartcnstr,
@@ -84,7 +84,7 @@ CPhysicalDynamicTableScan::PstatsDerive
 	IMemoryPool *mp,
 	CExpressionHandle &exprhdl,
 	CReqdPropPlan *prpplan,
-	StatsArray * // stats_ctxt
+	IStatsArray * // stats_ctxt
 	)
 	const
 {

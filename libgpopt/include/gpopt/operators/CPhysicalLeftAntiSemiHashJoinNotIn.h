@@ -36,7 +36,7 @@ namespace gpopt
 		public:
 
 			// ctor
-			CPhysicalLeftAntiSemiHashJoinNotIn(IMemoryPool *mp, ExpressionArray *pdrgpexprOuterKeys, ExpressionArray *pdrgpexprInnerKeys);
+			CPhysicalLeftAntiSemiHashJoinNotIn(IMemoryPool *mp, CExpressionArray *pdrgpexprOuterKeys, CExpressionArray *pdrgpexprInnerKeys);
 
 			// ident accessors
 			virtual
@@ -64,7 +64,7 @@ namespace gpopt
 				CExpressionHandle &exprhdl,
 				CDistributionSpec *pdsRequired,
 				ULONG child_index,
-				DrgPdp *pdrgpdpCtxt,
+				CDrvdPropArrays *pdrgpdpCtxt,
 				ULONG ulOptReq
 				)
 				const;

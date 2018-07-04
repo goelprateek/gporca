@@ -41,7 +41,7 @@ namespace gpopt
 			CLogicalInnerApply(IMemoryPool *mp);
 
 			// ctor
-			CLogicalInnerApply(IMemoryPool *mp, ColRefArray *pdrgpcrInner, EOperatorId eopidOriginSubq);
+			CLogicalInnerApply(IMemoryPool *mp, CColRefArray *pdrgpcrInner, EOperatorId eopidOriginSubq);
 
 			// dtor
 			virtual

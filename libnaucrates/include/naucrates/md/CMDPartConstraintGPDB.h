@@ -74,7 +74,7 @@ namespace gpmd
 		// the scalar expression of the part constraint
 		virtual CExpression *GetPartConstraintExpr(IMemoryPool *mp,
 												   CMDAccessor *md_accessor,
-												   ColRefArray *colref_array) const;
+												   CColRefArray *colref_array) const;
 
 		// included default partitions
 		virtual ULongPtrArray *GetDefaultPartsArray() const;

@@ -19,7 +19,7 @@ CStatistics *
 CLeftOuterJoinStatsProcessor::CalcLOJoinStatsStatic(IMemoryPool *mp,
 													const IStatistics *outer_side_stats,
 													const IStatistics *inner_side_stats,
-													StatsPredJoinArray *join_preds_stats)
+													CStatsPredJoinArray *join_preds_stats)
 {
 	GPOS_ASSERT(NULL != outer_side_stats);
 	GPOS_ASSERT(NULL != inner_side_stats);
@@ -88,7 +88,7 @@ CLeftOuterJoinStatsProcessor::MakeLOJHistogram(IMemoryPool *mp,
 											   const CStatistics *outer_side_stats,
 											   const CStatistics *inner_side_stats,
 											   CStatistics *inner_join_stats,
-											   StatsPredJoinArray *join_preds_stats,
+											   CStatsPredJoinArray *join_preds_stats,
 											   CDouble num_rows_inner_join,
 											   CDouble *result_rows_LASJ)
 {
@@ -203,7 +203,7 @@ CLeftOuterJoinStatsProcessor::AddHistogramsLOJInner(IMemoryPool *mp,
 
 		// the number of nulls added to the inner side should be the number of rows of the LASJ on the outer side.
 		CHistogram *null_histogram =
-			GPOS_NEW(mp) CHistogram(GPOS_NEW(mp) BucketArray(mp),
+			GPOS_NEW(mp) CHistogram(GPOS_NEW(mp) CBucketArray(mp),
 											 true /*is_well_defined*/,
 											 1.0 /*null_freq*/,
 											 CHistogram::DefaultNDVRemain,

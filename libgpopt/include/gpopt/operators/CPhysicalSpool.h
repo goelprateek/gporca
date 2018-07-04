@@ -79,7 +79,7 @@ namespace gpopt
 				CExpressionHandle &exprhdl,
 				CColRefSet *pcrsRequired,
 				ULONG child_index,
-				DrgPdp *pdrgpdpCtxt,
+				CDrvdPropArrays *pdrgpdpCtxt,
 				ULONG ulOptReq
 				);
 
@@ -91,7 +91,7 @@ namespace gpopt
 				CExpressionHandle &exprhdl,
 				CCTEReq *pcter,
 				ULONG child_index,
-				DrgPdp *pdrgpdpCtxt,
+				CDrvdPropArrays *pdrgpdpCtxt,
 				ULONG ulOptReq
 				)
 				const;
@@ -104,7 +104,7 @@ namespace gpopt
 				CExpressionHandle &exprhdl,
 				COrderSpec *posRequired,
 				ULONG child_index,
-				DrgPdp *pdrgpdpCtxt,
+				CDrvdPropArrays *pdrgpdpCtxt,
 				ULONG ulOptReq
 				)
 				const;
@@ -117,7 +117,7 @@ namespace gpopt
 				CExpressionHandle &exprhdl,
 				CDistributionSpec *pdsRequired,
 				ULONG child_index,
-				DrgPdp *pdrgpdpCtxt,
+				CDrvdPropArrays *pdrgpdpCtxt,
 				ULONG ulOptReq
 				)
 				const;
@@ -130,7 +130,7 @@ namespace gpopt
 				CExpressionHandle &exprhdl,
 				CRewindabilitySpec *prsRequired,
 				ULONG child_index,
-				DrgPdp *pdrgpdpCtxt,
+				CDrvdPropArrays *pdrgpdpCtxt,
 				ULONG ulOptReq
 				)
 				const;
@@ -148,7 +148,7 @@ namespace gpopt
 				CExpressionHandle &exprhdl,
 				CPartitionPropagationSpec *pppsRequired,
 				ULONG child_index,
-				DrgPdp *pdrgpdpCtxt,
+				CDrvdPropArrays *pdrgpdpCtxt,
 				ULONG ulOptReq
 				);
 			
@@ -158,7 +158,7 @@ namespace gpopt
 				(
 				CReqdPropPlan *prppInput,
 				ULONG,  // child_index
-				DrgPdp *, //pdrgpdpCtxt
+				CDrvdPropArrays *, //pdrgpdpCtxt
 				ULONG // ulOptReq
 				)
 			{
@@ -265,7 +265,7 @@ namespace gpopt
 			}
 
 			virtual BOOL
-			FValidContext(IMemoryPool *mp, COptimizationContext *poc, OptimizationContextArray *pdrgpocChild) const;
+			FValidContext(IMemoryPool *mp, COptimizationContext *poc, COptimizationContextArray *pdrgpocChild) const;
 
 	}; // class CPhysicalSpool
 

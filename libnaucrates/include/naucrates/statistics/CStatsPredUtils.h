@@ -75,11 +75,11 @@ namespace gpopt
 		// extract statistics filtering information from a scalar array compare operator
 		static void ProcessArrayCmp(IMemoryPool *mp,
 									CExpression *predicate_expr,
-									StatsPredPtrArry *pdrgpstatspred);
+									CStatsPredPtrArry *pdrgpstatspred);
 
 		// create and add statistics filtering information for supported filters
 		static void AddSupportedStatsFilters(IMemoryPool *mp,
-											 StatsPredPtrArry *pdrgpstatspred,
+											 CStatsPredPtrArry *pdrgpstatspred,
 											 CExpression *predicate_expr,
 											 CColRefSet *outer_refs);
 
@@ -149,9 +149,9 @@ namespace gpopt
 		static CStatsPredJoin *ExtractJoinStatsFromJoinPred(
 			IMemoryPool *mp,
 			CExpression *join_predicate_expr,
-			ColRefSetArray *join_output_col_refset,  // array of output columns of join's relational inputs
+			CColRefSetArray *join_output_col_refset,  // array of output columns of join's relational inputs
 			CColRefSet *outer_refs,
-			ExpressionArray *unsupported_predicates_expr);
+			CExpressionArray *unsupported_predicates_expr);
 
 		// is the expression a comparison of scalar idents (or casted scalar idents).
 		// If so, extract relevant info.
@@ -167,22 +167,22 @@ namespace gpopt
 											CColRefSet *outer_refs);
 
 		// helper function to extract array of statistics join filter from an array of join predicates
-		static StatsPredJoinArray *ExtractJoinStatsFromJoinPredArray(
+		static CStatsPredJoinArray *ExtractJoinStatsFromJoinPredArray(
 			IMemoryPool *mp,
 			CExpression *scalar_expr,
-			ColRefSetArray *output_col_refset,  // array of output columns of join's relational inputs
+			CColRefSetArray *output_col_refset,  // array of output columns of join's relational inputs
 			CColRefSet *outer_refs,
 			CStatsPred **unsupported_pred_stats);
 
 		// helper function to extract array of statistics join filter from an expression handle
-		static StatsPredJoinArray *ExtractJoinStatsFromExprHandle(IMemoryPool *mp,
+		static CStatsPredJoinArray *ExtractJoinStatsFromExprHandle(IMemoryPool *mp,
 																  CExpressionHandle &expr_handle);
 
 		// helper function to extract array of statistics join filter from an expression
-		static StatsPredJoinArray *ExtractJoinStatsFromExpr(IMemoryPool *mp,
+		static CStatsPredJoinArray *ExtractJoinStatsFromExpr(IMemoryPool *mp,
 															CExpressionHandle &expr_handle,
 															CExpression *scalar_expression,
-															ColRefSetArray *output_col_refset,
+															CColRefSetArray *output_col_refset,
 															CColRefSet *outer_refs);
 
 		// is the predicate a conjunctive or disjunctive predicate

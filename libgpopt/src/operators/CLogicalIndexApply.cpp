@@ -26,7 +26,7 @@ CLogicalIndexApply::CLogicalIndexApply
 CLogicalIndexApply::CLogicalIndexApply
 	(
 	IMemoryPool *mp,
-	ColRefArray *pdrgpcrOuterRefs,
+	CColRefArray *pdrgpcrOuterRefs,
 	BOOL fOuterJoin
 	)
 	:
@@ -91,7 +91,7 @@ CLogicalIndexApply::PstatsDerive
 	(
 	IMemoryPool *mp,
 	CExpressionHandle &exprhdl,
-	StatsArray* // stats_ctxt
+	IStatsArray* // stats_ctxt
 	)
 	const
 {
@@ -102,7 +102,7 @@ CLogicalIndexApply::PstatsDerive
 	CExpression *pexprScalar = exprhdl.PexprScalarChild(2 /*child_index*/);
 
 	// join stats of the children
-	StatsArray *statistics_array = GPOS_NEW(mp) StatsArray(mp);
+	IStatsArray *statistics_array = GPOS_NEW(mp) IStatsArray(mp);
 	outer_stats->AddRef();
 	statistics_array->Append(outer_stats);
 	inner_side_stats->AddRef();
@@ -128,7 +128,7 @@ CLogicalIndexApply::PopCopyWithRemappedColumns
 	BOOL must_exist
 	)
 {
-	ColRefArray *colref_array = CUtils::PdrgpcrRemap(mp, m_pdrgpcrOuterRefs, colref_mapping, must_exist);
+	CColRefArray *colref_array = CUtils::PdrgpcrRemap(mp, m_pdrgpcrOuterRefs, colref_mapping, must_exist);
 
 	return GPOS_NEW(mp) CLogicalIndexApply(mp, colref_array, m_fOuterJoin);
 }

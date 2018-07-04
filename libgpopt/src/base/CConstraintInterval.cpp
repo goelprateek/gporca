@@ -38,7 +38,7 @@ CConstraintInterval::CConstraintInterval
 	(
 	IMemoryPool *mp,
 	const CColRef *colref,
-	RangeArray *pdrgprng,
+	CRangeArray *pdrgprng,
 	BOOL fIncludesNull
 	)
 	:
@@ -165,7 +165,7 @@ CConstraintInterval::PciIntervalFromScalarExpr
 				}
 				else
 				{
-					pci =  GPOS_NEW(mp) CConstraintInterval(mp, colref, GPOS_NEW(mp) RangeArray(mp), false /*fIncludesNull*/);
+					pci =  GPOS_NEW(mp) CConstraintInterval(mp, colref, GPOS_NEW(mp) CRangeArray(mp), false /*fIncludesNull*/);
 				}
 			}
 			break;
@@ -227,7 +227,7 @@ CConstraintInterval::PcnstrIntervalFromScalarArrayCmp
 	const IComparator *pcomp = COptCtxt::PoctxtFromTLS()->Pcomp();
 	gpos::CAutoRef<CDatumSortedSet> apdatumsortedset(GPOS_NEW(mp) CDatumSortedSet(mp, pexprArray, pcomp));
 	// construct ranges representing IN or NOT IN
-	RangeArray *prgrng = GPOS_NEW(mp) RangeArray(mp);
+	CRangeArray *prgrng = GPOS_NEW(mp) CRangeArray(mp);
 
 	switch(cmp_type)
 	{
@@ -358,7 +358,7 @@ CConstraintInterval::PciIntervalFromScalarNullTest
 		CScalarIdent *popScId = CScalarIdent::PopConvert(pexprChild->Pop());
 		GPOS_ASSERT (colref == (CColRef *) popScId->Pcr());
 #endif // GPOS_DEBUG
-		return GPOS_NEW(mp) CConstraintInterval(mp, colref, GPOS_NEW(mp) RangeArray(mp), true /*fIncludesNull*/);
+		return GPOS_NEW(mp) CConstraintInterval(mp, colref, GPOS_NEW(mp) CRangeArray(mp), true /*fIncludesNull*/);
 	}
 
 	return NULL;
@@ -384,7 +384,7 @@ CConstraintInterval::PciIntervalFromColConstCmp
 	)
 {
 	CConstraintInterval *pcri = NULL;
-	RangeArray *pdrngprng = PciRangeFromColConstCmp(mp, cmp_type, popScConst);
+	CRangeArray *pdrngprng = PciRangeFromColConstCmp(mp, cmp_type, popScConst);
 	if (NULL != pdrngprng)
 	{
 		pcri = GPOS_NEW(mp) CConstraintInterval(mp, colref, pdrngprng, false /*fIncludesNull*/);
@@ -468,14 +468,14 @@ CConstraintInterval::PciIntervalFromScalarIDF
 		{
 			// col IS DISTINCT FROM NULL
 			CConstraintInterval *pcriChild = GPOS_NEW(mp)
-							CConstraintInterval(mp, colref, GPOS_NEW(mp) RangeArray(mp), true /*fIncludesNull*/);
+							CConstraintInterval(mp, colref, GPOS_NEW(mp) CRangeArray(mp), true /*fIncludesNull*/);
 			pcri = pcriChild->PciComplement(mp);
 			pcriChild->Release();
 		}
 		else
 		{
 			// col IS DISTINCT FROM const
-			RangeArray *pdrgprng = PciRangeFromColConstCmp(mp, popScCmp->ParseCmpType(), popScConst);
+			CRangeArray *pdrgprng = PciRangeFromColConstCmp(mp, popScCmp->ParseCmpType(), popScConst);
 			if (NULL != pdrgprng)
 			{
 				pcri = GPOS_NEW(mp) CConstraintInterval(mp, colref, pdrgprng, true /*fIncludesNull*/);
@@ -708,7 +708,7 @@ CConstraintInterval::PexprConstructDisjunctionScalar
 	)
 	const
 {
-	ExpressionArray *pdrgpexpr = GPOS_NEW(mp) ExpressionArray(mp);
+	CExpressionArray *pdrgpexpr = GPOS_NEW(mp) CExpressionArray(mp);
 
 	const ULONG length = m_pdrgprng->Size();
 	for (ULONG ul = 0; ul < length; ul++)
@@ -839,7 +839,7 @@ CConstraintInterval::PexprConstructArrayScalar(IMemoryPool *mp, bool fIn) const
 	}
 
 	// loop through all of the constants in the ranges, creating an array of CScalarConst Expressions
-	ExpressionArray *prngexpr = GPOS_NEW(mp) ExpressionArray(mp);
+	CExpressionArray *prngexpr = GPOS_NEW(mp) CExpressionArray(mp);
 
 	// this method assumes IN or NOT IN which means that the ranges stored will look like either
 	// [x,x], ... ,[y,y] or the NOT IN case (-inf, x),(x,y), ... ,(z,inf).
@@ -986,9 +986,9 @@ CConstraintInterval::PciIntersect
 	GPOS_ASSERT(NULL != pci);
 	GPOS_ASSERT(m_pcr == pci->Pcr());
 
-	RangeArray *pdrgprngOther = pci->Pdrgprng();
+	CRangeArray *pdrgprngOther = pci->Pdrgprng();
 
-	RangeArray *pdrgprngNew = GPOS_NEW(mp) RangeArray(mp);
+	CRangeArray *pdrgprngNew = GPOS_NEW(mp) CRangeArray(mp);
 
 	ULONG ulFst = 0;
 	ULONG ulSnd = 0;
@@ -1044,9 +1044,9 @@ CConstraintInterval::PciUnion
 	GPOS_ASSERT(NULL != pci);
 	GPOS_ASSERT(m_pcr == pci->Pcr());
 
-	RangeArray *pdrgprngOther = pci->Pdrgprng();
+	CRangeArray *pdrgprngOther = pci->Pdrgprng();
 
-	RangeArray *pdrgprngNew = GPOS_NEW(mp) RangeArray(mp);
+	CRangeArray *pdrgprngNew = GPOS_NEW(mp) CRangeArray(mp);
 
 	ULONG ulFst = 0;
 	ULONG ulSnd = 0;
@@ -1102,13 +1102,13 @@ CConstraintInterval::PciDifference
 	GPOS_ASSERT(NULL != pci);
 	GPOS_ASSERT(m_pcr == pci->Pcr());
 
-	RangeArray *pdrgprngOther = pci->Pdrgprng();
+	CRangeArray *pdrgprngOther = pci->Pdrgprng();
 
-	RangeArray *pdrgprngNew = GPOS_NEW(mp) RangeArray(mp);
+	CRangeArray *pdrgprngNew = GPOS_NEW(mp) CRangeArray(mp);
 
 	ULONG ulFst = 0;
 	ULONG ulSnd = 0;
-	RangeArray *pdrgprngResidual = GPOS_NEW(mp) RangeArray(mp);
+	CRangeArray *pdrgprngResidual = GPOS_NEW(mp) CRangeArray(mp);
 	CRange *prangeResidual = NULL;
 	const ULONG ulNumRangesFst = m_pdrgprng->Size();
 	const ULONG ulNumRangesSnd = pdrgprngOther->Size();
@@ -1226,7 +1226,7 @@ CConstraintInterval::PciUnbounded
 								CRange::EriExcluded
 								);
 
-	RangeArray *pdrgprng = GPOS_NEW(mp) RangeArray(mp);
+	CRangeArray *pdrgprng = GPOS_NEW(mp) CRangeArray(mp);
 	pdrgprng->Append(prange);
 
 	return GPOS_NEW(mp) CConstraintInterval(mp, colref, pdrgprng, fIncludesNull);
@@ -1328,7 +1328,7 @@ CConstraintInterval::PrangeDiffWithRightResidual
 	CRange *prangeFirst,
 	CRange *prangeSecond,
 	CRange **pprangeResidual,
-	RangeArray *pdrgprngResidual
+	CRangeArray *pdrgprngResidual
 	)
 {
 	if (prangeSecond->FDisjointLeft(prangeFirst))
@@ -1367,9 +1367,9 @@ void
 CConstraintInterval::AddRemainingRanges
 	(
 	IMemoryPool *mp,
-	RangeArray *pdrgprngSrc,
+	CRangeArray *pdrgprngSrc,
 	ULONG ulStart,
-	RangeArray *pdrgprngDest
+	CRangeArray *pdrgprngDest
 	)
 {
 	const ULONG length = pdrgprngSrc->Size();
@@ -1394,7 +1394,7 @@ void
 CConstraintInterval::AppendOrExtend
 	(
 	IMemoryPool *mp,
-	RangeArray *pdrgprng,
+	CRangeArray *pdrgprng,
 	CRange *prange
 	)
 {
@@ -1469,7 +1469,7 @@ CConstraintInterval::OsPrint
 //		a scalar.
 //
 //---------------------------------------------------------------------------
-RangeArray*
+CRangeArray*
 CConstraintInterval::PciRangeFromColConstCmp
 	(
 	IMemoryPool *mp,
@@ -1486,7 +1486,7 @@ CConstraintInterval::PciRangeFromColConstCmp
 	}
 
 	IDatum *datum = popsccnst->GetDatum();
-	RangeArray *pdrgprng = GPOS_NEW(mp) RangeArray(mp);
+	CRangeArray *pdrgprng = GPOS_NEW(mp) CRangeArray(mp);
 
 	const IComparator *pcomp = COptCtxt::PoctxtFromTLS()->Pcomp();
 	if (IMDType::EcmptNEq == cmp_type || IMDType::EcmptIDF == cmp_type)

@@ -83,7 +83,7 @@ CTranslatorDXLToExprUtils::Pdrgpdatum
 	(
 	IMemoryPool *mp,
 	CMDAccessor *md_accessor,
-	const DXLDatumArray *pdrgpdxldatum
+	const CDXLDatumArray *pdrgpdxldatum
 	)
 {
 	GPOS_ASSERT(NULL != pdrgpdxldatum);
@@ -243,7 +243,7 @@ CTranslatorDXLToExprUtils::EBoolOperator
 //		given col ids
 //
 //---------------------------------------------------------------------------
-ColRefArray *
+CColRefArray *
 CTranslatorDXLToExprUtils::Pdrgpcr
 	(
 	IMemoryPool *mp,
@@ -253,7 +253,7 @@ CTranslatorDXLToExprUtils::Pdrgpcr
 {
 	GPOS_ASSERT(NULL != colids);
 
-	ColRefArray *colref_array = GPOS_NEW(mp) ColRefArray(mp);
+	CColRefArray *colref_array = GPOS_NEW(mp) CColRefArray(mp);
 
 	for (ULONG ul = 0; ul < colids->Size(); ul++)
 	{

@@ -43,7 +43,7 @@ CProjectStatsProcessor::CalcProjStats(IMemoryPool *mp,
 		if (NULL == histogram)
 		{
 			// create histogram for the new project column
-			BucketArray *proj_col_bucket = GPOS_NEW(mp) BucketArray(mp);
+			CBucketArray *proj_col_bucket = GPOS_NEW(mp) CBucketArray(mp);
 			CDouble null_freq = 0.0;
 
 			BOOL is_well_defined = false;

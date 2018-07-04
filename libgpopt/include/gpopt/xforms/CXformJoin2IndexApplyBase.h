@@ -61,7 +61,7 @@ namespace gpopt
 				{
 					CColRefSet *pcrsEquivPredInner = GPOS_NEW(mp) CColRefSet(mp);
 					// extract array of join predicates from join condition expression
-					ExpressionArray *pdrgpexpr = CPredicateUtils::PdrgpexprConjuncts(mp, pexprScalar);
+					CExpressionArray *pdrgpexpr = CPredicateUtils::PdrgpexprConjuncts(mp, pexprScalar);
 					for (ULONG ul = 0; ul < pdrgpexpr->Size(); ul++)
 					{
 						CExpression *pexprPred = (*pdrgpexpr)[ul];
@@ -108,7 +108,7 @@ namespace gpopt
 			CLogicalApply *PopLogicalApply
 				(
 				IMemoryPool *mp,
-				ColRefArray *colref_array
+				CColRefArray *colref_array
 				) const
 			{
 				return GPOS_NEW(mp) TApply(mp, colref_array, m_fOuterJoin);

@@ -90,7 +90,7 @@ CXformIntersect2Join::Transform
 											(
 											mp,
 											GPOS_NEW(mp) CScalarProjectList(mp),
-											GPOS_NEW(mp) ExpressionArray(mp)
+											GPOS_NEW(mp) CExpressionArray(mp)
 											);
 	pexprProjList->AddRef();
 	pexprLeftChild->AddRef();

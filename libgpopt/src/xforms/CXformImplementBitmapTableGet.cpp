@@ -76,7 +76,7 @@ CXformImplementBitmapTableGet::Transform
 	CTableDescriptor *ptabdesc = popLogical->Ptabdesc();
 	ptabdesc->AddRef();
 
-	ColRefArray *pdrgpcrOutput = popLogical->PdrgpcrOutput();
+	CColRefArray *pdrgpcrOutput = popLogical->PdrgpcrOutput();
 	pdrgpcrOutput->AddRef();
 
 	CPhysicalBitmapTableScan *popPhysical =

@@ -54,7 +54,7 @@ namespace gpopt
 			CLogicalLeftAntiSemiCorrelatedApplyNotIn
 				(
 				IMemoryPool *mp,
-				ColRefArray *pdrgpcrInner,
+				CColRefArray *pdrgpcrInner,
 				EOperatorId eopidOriginSubq
 				)
 				:

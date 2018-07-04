@@ -49,7 +49,7 @@ CMDProviderMemory::CMDProviderMemory(IMemoryPool *mp, const CHAR *file_name)
 	CAutoRg<CHAR> dxl_file;
 	dxl_file = CDXLUtils::Read(mp, file_name);
 
-	CAutoRef<IMDCachePtrArray> mdcache_obj_array;
+	CAutoRef<IMDCacheObjectArray> mdcache_obj_array;
 	mdcache_obj_array =
 		CDXLUtils::ParseDXLToIMDObjectArray(mp, dxl_file.Rgt(), NULL /*xsd_file_path*/);
 
@@ -69,7 +69,7 @@ CMDProviderMemory::CMDProviderMemory(IMemoryPool *mp, const CHAR *file_name)
 //		Ctor
 //
 //---------------------------------------------------------------------------
-CMDProviderMemory::CMDProviderMemory(IMemoryPool *mp, IMDCachePtrArray *mdcache_obj_array)
+CMDProviderMemory::CMDProviderMemory(IMemoryPool *mp, IMDCacheObjectArray *mdcache_obj_array)
 	: m_mdmap(NULL)
 {
 	LoadMetadataObjectsFromArray(mp, mdcache_obj_array);
@@ -85,7 +85,7 @@ CMDProviderMemory::CMDProviderMemory(IMemoryPool *mp, IMDCachePtrArray *mdcache_
 //---------------------------------------------------------------------------
 void
 CMDProviderMemory::LoadMetadataObjectsFromArray(IMemoryPool *mp,
-												IMDCachePtrArray *mdcache_obj_array)
+												IMDCacheObjectArray *mdcache_obj_array)
 {
 	GPOS_ASSERT(NULL != mdcache_obj_array);
 

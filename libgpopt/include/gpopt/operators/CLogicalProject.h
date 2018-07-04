@@ -38,7 +38,7 @@ namespace gpopt
 
 			// return equivalence class from scalar ident project element
 			static
-			ColRefSetArray *PdrgpcrsEquivClassFromScIdent(IMemoryPool *mp, CExpression *pexprPrEl);
+			CColRefSetArray *PdrgpcrsEquivClassFromScIdent(IMemoryPool *mp, CExpression *pexprPrEl);
 
 			// extract constraint from scalar constant project element
 			static
@@ -46,8 +46,8 @@ namespace gpopt
 					(
 					IMemoryPool *mp,
 					CExpression *pexprPrEl,
-					ConstraintArray *pdrgpcnstr,
-					ColRefSetArray *pdrgpcrs
+					CConstraintArray *pdrgpcnstr,
+					CColRefSetArray *pdrgpcrs
 					);
 
 		public:
@@ -108,7 +108,7 @@ namespace gpopt
 						(
 						IMemoryPool *mp,
 						CExpressionHandle &exprhdl,
-						StatsArray *stats_ctxt
+						IStatsArray *stats_ctxt
 						)
 						const;
 

@@ -196,7 +196,7 @@ CCastUtils::PexprWithoutBinaryCoercibleCasts
 }
 
 // add explicit casting to equality operations between compatible types
-ExpressionArray *
+CExpressionArray *
 CCastUtils::PdrgpexprCastEquality
     (
 	IMemoryPool *mp,
@@ -205,8 +205,8 @@ CCastUtils::PdrgpexprCastEquality
 {
     GPOS_ASSERT(pexpr->Pop()->FScalar());
 
-    ExpressionArray *pdrgpexpr = CPredicateUtils::PdrgpexprConjuncts(mp, pexpr);
-    ExpressionArray *pdrgpexprNew = GPOS_NEW(mp) ExpressionArray(mp);
+    CExpressionArray *pdrgpexpr = CPredicateUtils::PdrgpexprConjuncts(mp, pexpr);
+    CExpressionArray *pdrgpexprNew = GPOS_NEW(mp) CExpressionArray(mp);
     const ULONG ulPreds = pdrgpexpr->Size();
     for (ULONG ul = 0; ul < ulPreds; ul++)
     {

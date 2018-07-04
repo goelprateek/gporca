@@ -64,7 +64,7 @@ CParseHandlerCTEList::StartElement(const XMLCh *const element_uri,
 		XMLString::compareString(CDXLTokens::XmlstrToken(EdxltokenCTEList), element_local_name))
 	{
 		GPOS_ASSERT(NULL == m_dxl_array);
-		m_dxl_array = GPOS_NEW(m_mp) DXLNodeArray(m_mp);
+		m_dxl_array = GPOS_NEW(m_mp) CDXLNodeArray(m_mp);
 	}
 	else if (0 == XMLString::compareString(CDXLTokens::XmlstrToken(EdxltokenLogicalCTEProducer),
 										   element_local_name))

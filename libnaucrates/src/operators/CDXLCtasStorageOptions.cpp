@@ -26,7 +26,7 @@ using namespace gpdxl;
 //---------------------------------------------------------------------------
 CDXLCtasStorageOptions::CDXLCtasStorageOptions(CMDName *mdname_tablespace,
 											   ECtasOnCommitAction ctas_on_commit_action,
-											   DXLCtasOptionArray *ctas_storage_option_array)
+											   CDXLCtasOptionArray *ctas_storage_option_array)
 	: m_mdname_tablespace(mdname_tablespace),
 	  m_ctas_on_commit_action(ctas_on_commit_action),
 	  m_ctas_storage_option_array(ctas_storage_option_array)
@@ -78,13 +78,13 @@ CDXLCtasStorageOptions::GetOnCommitAction() const
 
 //---------------------------------------------------------------------------
 //	@function:
-//		CDXLCtasStorageOptions::DXLCtasOptionArray
+//		CDXLCtasStorageOptions::CDXLCtasOptionArray
 //
 //	@doc:
 //		Returns array of storage options
 //
 //---------------------------------------------------------------------------
-CDXLCtasStorageOptions::DXLCtasOptionArray *
+CDXLCtasStorageOptions::CDXLCtasOptionArray *
 CDXLCtasStorageOptions::GetDXLCtasOptionArray() const
 {
 	return m_ctas_storage_option_array;

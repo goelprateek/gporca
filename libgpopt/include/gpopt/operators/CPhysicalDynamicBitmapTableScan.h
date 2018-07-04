@@ -54,7 +54,7 @@ namespace gpopt
 				ULONG ulOriginOpId,
 				const CName *pnameAlias,
 				ULONG scan_id,
-				ColRefArray *pdrgpcrOutput,
+				CColRefArray *pdrgpcrOutput,
 				ColRefArrays *pdrgpdrgpcrParts,
 				ULONG ulSecondaryScanId,
 				CPartConstraint *ppartcnstr,
@@ -81,7 +81,7 @@ namespace gpopt
 
 			// statistics derivation during costing
 			virtual
-			IStatistics *PstatsDerive(IMemoryPool *mp, CExpressionHandle &exprhdl, CReqdPropPlan *prpplan, StatsArray *stats_ctxt) const;
+			IStatistics *PstatsDerive(IMemoryPool *mp, CExpressionHandle &exprhdl, CReqdPropPlan *prpplan, IStatsArray *stats_ctxt) const;
 
 			// conversion function
 			static

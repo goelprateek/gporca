@@ -75,7 +75,7 @@ namespace gpnaucrates
 
 	private:
 		// all the buckets in the histogram
-		BucketArray *m_histogram_buckets;
+		CBucketArray *m_histogram_buckets;
 
 		// well-defined histogram. if false, then bounds are unknown
 		BOOL m_is_well_defined;
@@ -108,10 +108,10 @@ namespace gpnaucrates
 		CHistogram &operator=(const CHistogram &);
 
 		// return an array buckets after applying equality filter on the histogram buckets
-		BucketArray *MakeBucketsWithEqualityFilter(IMemoryPool *mp, CPoint *point) const;
+		CBucketArray *MakeBucketsWithEqualityFilter(IMemoryPool *mp, CPoint *point) const;
 
 		// return an array buckets after applying non equality filter on the histogram buckets
-		BucketArray *MakeBucketsWithInequalityFilter(IMemoryPool *mp, CPoint *point) const;
+		CBucketArray *MakeBucketsWithInequalityFilter(IMemoryPool *mp, CPoint *point) const;
 
 		// less than or less than equal filter
 		CHistogram *MakeHistogramLessThanOrLessThanEqualFilter(
@@ -157,16 +157,16 @@ namespace gpnaucrates
 
 		// helper to add buckets from one histogram to another
 		static void AddBuckets(IMemoryPool *mp,
-							   BucketArray *src_buckets,
-							   BucketArray *dest_buckets,
+							   CBucketArray *src_buckets,
+							   CBucketArray *dest_buckets,
 							   CDouble rows_old,
 							   CDouble rows_new,
 							   ULONG begin,
 							   ULONG end);
 
 		static void AddBuckets(IMemoryPool *mp,
-							   BucketArray *src_buckets,
-							   BucketArray *dest_buckets,
+							   CBucketArray *src_buckets,
+							   CBucketArray *dest_buckets,
 							   CDouble rows,
 							   CDoubleArray *dest_bucket_freqs,
 							   ULONG begin,
@@ -181,7 +181,7 @@ namespace gpnaucrates
 		static void ComputeJoinNDVRemainInfo(
 			const CHistogram *histogram1,
 			const CHistogram *histogram2,
-			BucketArray *join_buckets,  // join buckets
+			CBucketArray *join_buckets,  // join buckets
 			CDouble
 				hist1_buckets_freq,  // frequency of the buckets in input1 that contributed to the join
 			CDouble
@@ -195,9 +195,9 @@ namespace gpnaucrates
 
 	public:
 		// ctors
-		explicit CHistogram(BucketArray *histogram_buckets, BOOL is_well_defined = true);
+		explicit CHistogram(CBucketArray *histogram_buckets, BOOL is_well_defined = true);
 
-		CHistogram(BucketArray *histogram_buckets,
+		CHistogram(CBucketArray *histogram_buckets,
 				   BOOL is_well_defined,
 				   CDouble null_freq,
 				   CDouble distinct_remaining,
@@ -298,7 +298,7 @@ namespace gpnaucrates
 
 		// create a new histogram with updated bucket frequency
 		CHistogram *MakeHistogramUpdateFreq(IMemoryPool *mp,
-											BucketArray *histogram_buckets,
+											CBucketArray *histogram_buckets,
 											CDoubleArray *dest_bucket_freqs,
 											CDouble *num_output_rows,
 											CDouble num_null_rows,
@@ -307,7 +307,7 @@ namespace gpnaucrates
 
 		// add residual union all buckets after the merge
 		ULONG AddResidualUnionAllBucket(IMemoryPool *mp,
-										BucketArray *histogram_buckets,
+										CBucketArray *histogram_buckets,
 										CBucket *bucket,
 										CDouble rows_old,
 										CDouble rows_new,
@@ -316,7 +316,7 @@ namespace gpnaucrates
 
 		// add residual union buckets after the merge
 		ULONG AddResidualUnionBucket(IMemoryPool *mp,
-									 BucketArray *histogram_buckets,
+									 CBucketArray *histogram_buckets,
 									 CBucket *bucket,
 									 CDouble rows,
 									 BOOL bucket_is_residual,
@@ -331,7 +331,7 @@ namespace gpnaucrates
 		}
 
 		// buckets accessor
-		const BucketArray *
+		const CBucketArray *
 		ParseDXLToBucketsArray() const
 		{
 			return m_histogram_buckets;

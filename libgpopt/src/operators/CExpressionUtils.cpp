@@ -49,7 +49,7 @@ void CExpressionUtils::UnnestChild
 	BOOL fAnd, // is expression an AND node?
 	BOOL fOr, // is expression an OR node?
 	BOOL fHasNegatedChild, // does expression have NOT child nodes?
-	ExpressionArray *pdrgpexpr // array to append results to
+	CExpressionArray *pdrgpexpr // array to append results to
 	)
 {
 	GPOS_ASSERT(NULL != mp);
@@ -93,14 +93,14 @@ void CExpressionUtils::AppendChildren
 	(
 	IMemoryPool *mp,
 	CExpression *pexpr,
-	ExpressionArray *pdrgpexpr
+	CExpressionArray *pdrgpexpr
 	)
 {
 	GPOS_ASSERT(NULL != mp);
 	GPOS_ASSERT(NULL != pexpr);
 	GPOS_ASSERT(NULL != pdrgpexpr);
 
-	ExpressionArray *pdrgpexprChildren = PdrgpexprUnnestChildren(mp, pexpr);
+	CExpressionArray *pdrgpexprChildren = PdrgpexprUnnestChildren(mp, pexpr);
 	CUtils::AddRefAppend<CExpression, CleanupRelease>(pdrgpexpr, pdrgpexprChildren);
 	pdrgpexprChildren->Release();
 }
@@ -114,7 +114,7 @@ void CExpressionUtils::AppendChildren
 //		AND/OR/NOT subtrees
 //
 //---------------------------------------------------------------------------
-ExpressionArray *
+CExpressionArray *
 CExpressionUtils::PdrgpexprUnnestChildren
 	(
 	IMemoryPool *mp,
@@ -131,7 +131,7 @@ CExpressionUtils::PdrgpexprUnnestChildren
 	BOOL fOr = CPredicateUtils::FOr(pexpr);
 	BOOL fHasNegatedChild = CPredicateUtils::FHasNegatedChild(pexpr);
 
-	ExpressionArray *pdrgpexpr = GPOS_NEW(mp) ExpressionArray(mp);
+	CExpressionArray *pdrgpexpr = GPOS_NEW(mp) CExpressionArray(mp);
 	const ULONG arity = pexpr->Arity();
 	for (ULONG ul = 0; ul < arity; ul++)
 	{
@@ -167,7 +167,7 @@ CExpressionUtils::PexprUnnest
 		CExpression *pexprPushedNot = PexprPushNotOneLevel(mp, pexprChild);
 
 		COperator *pop = pexprPushedNot->Pop();
-		ExpressionArray *pdrgpexpr = PdrgpexprUnnestChildren(mp, pexprPushedNot);
+		CExpressionArray *pdrgpexpr = PdrgpexprUnnestChildren(mp, pexprPushedNot);
 		pop->AddRef();
 
 		// clean up
@@ -177,7 +177,7 @@ CExpressionUtils::PexprUnnest
 	}
 
 	COperator *pop = pexpr->Pop();
-	ExpressionArray *pdrgpexpr = PdrgpexprUnnestChildren(mp, pexpr);
+	CExpressionArray *pdrgpexpr = PdrgpexprUnnestChildren(mp, pexpr);
 	pop->AddRef();
 
 	return GPOS_NEW(mp) CExpression(mp, pop, pdrgpexpr);
@@ -220,7 +220,7 @@ CExpressionUtils::PexprPushNotOneLevel
 			popNew = GPOS_NEW(mp) CScalarBoolOp(mp, CScalarBoolOp::EboolopOr);
 		}
 
-		ExpressionArray *pdrgpexpr = GPOS_NEW(mp) ExpressionArray(mp);
+		CExpressionArray *pdrgpexpr = GPOS_NEW(mp) CExpressionArray(mp);
 		const ULONG arity = pexpr->Arity();
 		for (ULONG ul = 0; ul < arity; ul++)
 		{
@@ -288,7 +288,7 @@ CExpressionUtils::PexprDedupChildren
 
 	// recursively process children
 	const ULONG arity = pexpr->Arity();
-	ExpressionArray *pdrgpexprChildren = GPOS_NEW(mp) ExpressionArray(mp);
+	CExpressionArray *pdrgpexprChildren = GPOS_NEW(mp) CExpressionArray(mp);
 	for (ULONG ul = 0; ul < arity; ul++)
 	{
 		CExpression *pexprChild = PexprDedupChildren(mp, (*pexpr)[ul]);
@@ -297,7 +297,7 @@ CExpressionUtils::PexprDedupChildren
 
 	if (CPredicateUtils::FAnd(pexpr) || CPredicateUtils::FOr(pexpr))
 	{
-		ExpressionArray *pdrgpexprNewChildren = CUtils::PdrgpexprDedup(mp, pdrgpexprChildren);
+		CExpressionArray *pdrgpexprNewChildren = CUtils::PdrgpexprDedup(mp, pdrgpexprChildren);
 
 		pdrgpexprChildren->Release();
 		pdrgpexprChildren = pdrgpexprNewChildren;

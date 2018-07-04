@@ -236,7 +236,7 @@ CScalarArrayCmp::PexprExpand
 		return pexprArrayCmp;
 	}
 
-	ExpressionArray *pdrgpexpr = GPOS_NEW(mp) ExpressionArray(mp);
+	CExpressionArray *pdrgpexpr = GPOS_NEW(mp) CExpressionArray(mp);
 	for (ULONG ul = 0; ul < ulArrayElems; ul++)
 	{
 		CExpression *pexprArrayElem = CUtils::PScalarArrayExprChildAt(mp, pexprArray, ul);
@@ -253,7 +253,7 @@ CScalarArrayCmp::PexprExpand
 	GPOS_ASSERT(0 < pdrgpexpr->Size());
 
 	// deduplicate resulting array
-	ExpressionArray *pdrgpexprDeduped = CUtils::PdrgpexprDedup(mp, pdrgpexpr);
+	CExpressionArray *pdrgpexprDeduped = CUtils::PdrgpexprDedup(mp, pdrgpexpr);
 	pdrgpexpr->Release();
 
 	EArrCmpType earrcmpt = popArrayCmp->Earrcmpt();

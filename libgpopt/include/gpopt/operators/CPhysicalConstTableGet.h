@@ -32,13 +32,13 @@ namespace gpopt
 		private:
 
 			// array of column descriptors: the schema of the const table
-			ColumnDescrArray *m_pdrgpcoldesc;
+			CColumnDescrArray *m_pdrgpcoldesc;
 		
 			// array of datum arrays
 			IDatumArrays *m_pdrgpdrgpdatum;
 			
 			// output columns
-			ColRefArray *m_pdrgpcrOutput;
+			CColRefArray *m_pdrgpcrOutput;
 			
 			// private copy ctor
 			CPhysicalConstTableGet(const CPhysicalConstTableGet &);
@@ -49,9 +49,9 @@ namespace gpopt
 			CPhysicalConstTableGet
 				(
 				IMemoryPool *mp,
-				ColumnDescrArray *pdrgpcoldesc,
+				CColumnDescrArray *pdrgpcoldesc,
 				IDatumArrays *pdrgpdrgpconst,
-				ColRefArray *pdrgpcrOutput
+				CColRefArray *pdrgpcrOutput
 				);
 
 			// dtor
@@ -72,7 +72,7 @@ namespace gpopt
 			}
 
 			// col descr accessor
-			ColumnDescrArray *Pdrgpcoldesc() const
+			CColumnDescrArray *Pdrgpcoldesc() const
 			{
 				return m_pdrgpcoldesc;
 			}
@@ -84,7 +84,7 @@ namespace gpopt
 			}
 			
 			// output columns accessors
-			ColRefArray *PdrgpcrOutput() const
+			CColRefArray *PdrgpcrOutput() const
 			{
 				return m_pdrgpcrOutput;
 			}
@@ -114,7 +114,7 @@ namespace gpopt
 				CExpressionHandle &exprhdl,
 				CColRefSet *pcrsRequired,
 				ULONG child_index,
-				DrgPdp *pdrgpdpCtxt,
+				CDrvdPropArrays *pdrgpdpCtxt,
 				ULONG ulOptReq
 				);
 		
@@ -126,7 +126,7 @@ namespace gpopt
 				CExpressionHandle &exprhdl,
 				CCTEReq *pcter,
 				ULONG child_index,
-				DrgPdp *pdrgpdpCtxt,
+				CDrvdPropArrays *pdrgpdpCtxt,
 				ULONG ulOptReq
 				)
 				const;
@@ -139,7 +139,7 @@ namespace gpopt
 				CExpressionHandle &exprhdl,
 				COrderSpec *posRequired,
 				ULONG child_index,
-				DrgPdp *pdrgpdpCtxt,
+				CDrvdPropArrays *pdrgpdpCtxt,
 				ULONG ulOptReq
 				)
 				const;
@@ -152,7 +152,7 @@ namespace gpopt
 				CExpressionHandle &exprhdl,
 				CDistributionSpec *pdsRequired,
 				ULONG child_index,
-				DrgPdp *pdrgpdpCtxt,
+				CDrvdPropArrays *pdrgpdpCtxt,
 				ULONG ulOptReq
 				)
 				const;
@@ -165,7 +165,7 @@ namespace gpopt
 				CExpressionHandle &exprhdl,
 				CRewindabilitySpec *prsRequired,
 				ULONG child_index,
-				DrgPdp *pdrgpdpCtxt,
+				CDrvdPropArrays *pdrgpdpCtxt,
 				ULONG ulOptReq
 				)
 				const;
@@ -178,7 +178,7 @@ namespace gpopt
 				CExpressionHandle &, //exprhdl,
 				CPartitionPropagationSpec *, //pppsRequired,
 				ULONG , //child_index,
-				DrgPdp *, //pdrgpdpCtxt,
+				CDrvdPropArrays *, //pdrgpdpCtxt,
 				ULONG //ulOptReq
 				)
 			{

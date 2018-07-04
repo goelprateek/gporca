@@ -23,7 +23,7 @@ namespace gpopt
 			static GPOS_RESULT EresUnittest();
 			static GPOS_RESULT EresUnittest_NotDisjointEquivalanceClasses();
 			static GPOS_RESULT EresUnittest_IntersectEquivalanceClasses();
-			static ColRefSetArray* createEquivalenceClasses(IMemoryPool *mp, CColRefSet *pcrs, int breakpoints[]);
+			static CColRefSetArray* createEquivalenceClasses(IMemoryPool *mp, CColRefSet *pcrs, int breakpoints[]);
 
 	}; // class CEquivalenceClassesTest
 }

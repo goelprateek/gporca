@@ -40,12 +40,12 @@ namespace gpopt
 		private:
 
 			// map CTE id to collected predicates
-			typedef CHashMap<ULONG, ExpressionArray, gpos::HashValue<ULONG>, gpos::Equals<ULONG>,
-						CleanupDelete<ULONG>, CleanupRelease<ExpressionArray> > CTEPredsMap;
+			typedef CHashMap<ULONG, CExpressionArray, gpos::HashValue<ULONG>, gpos::Equals<ULONG>,
+						CleanupDelete<ULONG>, CleanupRelease<CExpressionArray> > CTEPredsMap;
 
 			// iterator for map of CTE id to collected predicates
-			typedef CHashMapIter<ULONG, ExpressionArray, gpos::HashValue<ULONG>, gpos::Equals<ULONG>,
-						CleanupDelete<ULONG>, CleanupRelease<ExpressionArray> > CTEPredsMapIter;
+			typedef CHashMapIter<ULONG, CExpressionArray, gpos::HashValue<ULONG>, gpos::Equals<ULONG>,
+						CleanupDelete<ULONG>, CleanupRelease<CExpressionArray> > CTEPredsMapIter;
 
 			// generate a conjunction of equality predicates between the columns in the given set
 			static
@@ -196,7 +196,7 @@ namespace gpopt
 
 			// generate a scalar bool op expression or return the only child expression in array
 			static CExpression *
-			PexprScalarBoolOpConvert2In(IMemoryPool *mp, CScalarBoolOp::EBoolOperator eboolop, ExpressionArray *pdrgpexpr);
+			PexprScalarBoolOpConvert2In(IMemoryPool *mp, CScalarBoolOp::EBoolOperator eboolop, CExpressionArray *pdrgpexpr);
 
 			// determines if the expression is likely convertible to an array expression
 			static BOOL

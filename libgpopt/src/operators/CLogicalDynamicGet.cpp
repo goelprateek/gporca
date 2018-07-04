@@ -58,7 +58,7 @@ CLogicalDynamicGet::CLogicalDynamicGet
 	const CName *pnameAlias,
 	CTableDescriptor *ptabdesc,
 	ULONG ulPartIndex,
-	ColRefArray *pdrgpcrOutput,
+	CColRefArray *pdrgpcrOutput,
 	ColRefArrays *pdrgpdrgpcrPart,
 	ULONG ulSecondaryPartIndexId,
 	BOOL is_partial,
@@ -156,7 +156,7 @@ CLogicalDynamicGet::PopCopyWithRemappedColumns
 	BOOL must_exist
 	)
 {
-	ColRefArray *pdrgpcrOutput = NULL;
+	CColRefArray *pdrgpcrOutput = NULL;
 	if (must_exist)
 	{
 		pdrgpcrOutput = CUtils::PdrgpcrRemapAndCreate(mp, m_pdrgpcrOutput, colref_mapping);
@@ -269,7 +269,7 @@ CLogicalDynamicGet::PstatsDerive
 	(
 	IMemoryPool *mp,
 	CExpressionHandle &exprhdl,
-	StatsArray * // not used
+	IStatsArray * // not used
 	)
 	const
 {

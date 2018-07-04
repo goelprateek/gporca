@@ -90,8 +90,8 @@ CXformUpdate2DML::Transform
 	// extract components for alternative
 
 	CTableDescriptor *ptabdesc = popUpdate->Ptabdesc();
-	ColRefArray *pdrgpcrDelete = popUpdate->PdrgpcrDelete();
-	ColRefArray *pdrgpcrInsert = popUpdate->PdrgpcrInsert();
+	CColRefArray *pdrgpcrDelete = popUpdate->PdrgpcrDelete();
+	CColRefArray *pdrgpcrInsert = popUpdate->PdrgpcrInsert();
 	CColRef *pcrCtid = popUpdate->PcrCtid();
 	CColRef *pcrSegmentId = popUpdate->PcrSegmentId();
 	CColRef *pcrTupleOid = popUpdate->PcrTupleOid();

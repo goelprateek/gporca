@@ -65,31 +65,31 @@ namespace gpdxl
 		CDXLNode *m_query_dxl_root;
 
 		// list of query output columns
-		DXLNodeArray *m_output_colums_dxl_array;
+		CDXLNodeArray *m_output_colums_dxl_array;
 
 		// list of CTE producers
-		DXLNodeArray *m_cte_producers;
+		CDXLNodeArray *m_cte_producers;
 
 		// the root of the parsed DXL plan
 		CDXLNode *m_plan_dxl_root;
 
 		// list of parsed metadata objects
-		IMDCachePtrArray *m_mdid_cached_obj_array;
+		IMDCacheObjectArray *m_mdid_cached_obj_array;
 
 		// list of parsed metadata ids
-		MdidPtrArray *m_mdid_array;
+		IMdIdArray *m_mdid_array;
 
 		// the root of the parsed scalar expression
 		CDXLNode *m_scalar_expr_dxl;
 
 		// list of source system ids
-		SysidPtrArray *m_system_id_array;
+		CSystemIdArray *m_system_id_array;
 
 		// list of parsed statistics objects
-		DXLStatsDerivedRelArray *m_dxl_stats_derived_rel_array;
+		CDXLStatsDerivedRelationArray *m_dxl_stats_derived_rel_array;
 
 		// search strategy
-		SearchStageArray *m_search_stage_array;
+		CSearchStageArray *m_search_stage_array;
 
 		// plan Id
 		ULLONG m_plan_id;
@@ -169,19 +169,19 @@ namespace gpdxl
 		CDXLNode *GetQueryDXLRoot() const;
 
 		// returns the list of query output columns
-		DXLNodeArray *GetOutputColumnsDXLArray() const;
+		CDXLNodeArray *GetOutputColumnsDXLArray() const;
 
 		// returns the list of CTE producers
-		DXLNodeArray *GetCTEProducerDXLArray() const;
+		CDXLNodeArray *GetCTEProducerDXLArray() const;
 
 		// returns the root of the parsed DXL plan
 		CDXLNode *PdxlnPlan() const;
 
 		// return the list of parsed metadata objects
-		IMDCachePtrArray *GetMdIdCachedObjArray() const;
+		IMDCacheObjectArray *GetMdIdCachedObjArray() const;
 
 		// return the list of parsed metadata ids
-		MdidPtrArray *GetMdIdArray() const;
+		IMdIdArray *GetMdIdArray() const;
 
 		// return the MD request object
 		CMDRequest *GetMiniDumper() const;
@@ -190,13 +190,13 @@ namespace gpdxl
 		CDXLNode *GetScalarExprDXLRoot() const;
 
 		// return the list of parsed source system id objects
-		SysidPtrArray *GetSysidPtrArray() const;
+		CSystemIdArray *GetSysidPtrArray() const;
 
 		// return the list of statistics objects
-		DXLStatsDerivedRelArray *GetStatsDerivedRelDXLArray() const;
+		CDXLStatsDerivedRelationArray *GetStatsDerivedRelDXLArray() const;
 
 		// return search strategy
-		SearchStageArray *GetSearchStageArray() const;
+		CSearchStageArray *GetSearchStageArray() const;
 
 		// return plan id
 		ULLONG GetPlanId() const;

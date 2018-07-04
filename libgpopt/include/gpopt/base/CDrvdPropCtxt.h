@@ -26,7 +26,7 @@ namespace gpopt
 	class DrvdPropArray;
 
 	// dynamic array for properties
-	typedef CDynamicPtrArray<CDrvdPropCtxt, CleanupRelease> DrvdPropCtxtArray;
+	typedef CDynamicPtrArray<CDrvdPropCtxt, CleanupRelease> CDrvdPropCtxtArray;
 
 	//---------------------------------------------------------------------------
 	//	@class:

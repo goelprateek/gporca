@@ -14,7 +14,7 @@ namespace gpopt
 		public:
 			CDistributionSpecHashedNoOp
 			(
-			ExpressionArray *pdrgpexr
+			CExpressionArray *pdrgpexr
 			);
 
 			virtual EDistributionType Edt() const;
@@ -32,7 +32,7 @@ namespace gpopt
 			IMemoryPool *mp,
 			CExpressionHandle &exprhdl,
 			CReqdPropPlan *prpp,
-			ExpressionArray *pdrgpexpr,
+			CExpressionArray *pdrgpexpr,
 			CExpression *pexpr
 			);
 	};

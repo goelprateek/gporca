@@ -369,7 +369,7 @@ CMemo::PexprExtractPlan
 		return NULL;
 	}
 
-	ExpressionArray *pdrgpexpr = GPOS_NEW(mp) ExpressionArray(mp);
+	CExpressionArray *pdrgpexpr = GPOS_NEW(mp) CExpressionArray(mp);
 	// Get the length of groups for the best group expression
 	// i.e. given the best expression is
 	// 0: CScalarCmp (>=) [ 1 7 ]

@@ -126,7 +126,7 @@ CPhysicalMotionGather::PcrsRequired
 	CExpressionHandle &exprhdl,
 	CColRefSet *pcrsRequired,
 	ULONG child_index,
-	DrgPdp *, // pdrgpdpCtxt
+	CDrvdPropArrays *, // pdrgpdpCtxt
 	ULONG // ulOptReq
 	)
 {
@@ -213,7 +213,7 @@ CPhysicalMotionGather::PosRequired
 	CExpressionHandle &exprhdl,
 	COrderSpec *,//posInput,
 	ULONG child_index,
-	DrgPdp *, // pdrgpdpCtxt
+	CDrvdPropArrays *, // pdrgpdpCtxt
 	ULONG // ulOptReq
 	)
 	const

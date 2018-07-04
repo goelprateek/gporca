@@ -357,7 +357,7 @@ CGroup::PocLookup
 								this,
 								prpp,
 								GPOS_NEW(mp) CReqdPropRelational(GPOS_NEW(mp) CColRefSet(mp)), // required relational props is not used when looking up contexts
-								GPOS_NEW(mp) StatsArray(mp), // stats context is not used when looking up contexts
+								GPOS_NEW(mp) IStatsArray(mp), // stats context is not used when looking up contexts
 								ulSearchStageIndex
 								);
 
@@ -568,8 +568,8 @@ CGroup::SetState
 void
 CGroup::SetHashJoinKeys
 	(
-	ExpressionArray *pdrgpexprOuter,
-	ExpressionArray *pdrgpexprInner
+	CExpressionArray *pdrgpexprOuter,
+	CExpressionArray *pdrgpexprInner
 	)
 {
 	GPOS_ASSERT(m_fScalar);
@@ -1069,7 +1069,7 @@ CGroup::CreateScalarExpression()
 		return;
 	}
 
-	ExpressionArray *pdrgpexpr = GPOS_NEW(m_mp) ExpressionArray(m_mp);
+	CExpressionArray *pdrgpexpr = GPOS_NEW(m_mp) CExpressionArray(m_mp);
 	const ULONG arity = pgexprFirst->Arity();
 	for (ULONG ul = 0; ul < arity; ul++)
 	{
@@ -1116,7 +1116,7 @@ CGroup::CreateDummyCostContext()
 						this,
 						CReqdPropPlan::PrppEmpty(m_mp),
 						GPOS_NEW(m_mp) CReqdPropRelational(GPOS_NEW(m_mp) CColRefSet(m_mp)),
-						GPOS_NEW(m_mp) StatsArray(m_mp),
+						GPOS_NEW(m_mp) IStatsArray(m_mp),
 						0 // ulSearchStageIndex
 						);
 
@@ -1165,7 +1165,7 @@ CGroup::RecursiveBuildTreeMap
 	GPOS_ASSERT(NULL != ptmap);
 	GPOS_ASSERT_IMP(NULL != pccParent, child_index < pccParent->Pgexpr()->Arity());
 
-	CostContextArray *pdrgpcc = pgexprCurrent->PdrgpccLookupAll(mp, poc);
+	CCostContextArray *pdrgpcc = pgexprCurrent->PdrgpccLookupAll(mp, poc);
 	const ULONG ulCCSize = pdrgpcc->Size();
 
 	if (0 == ulCCSize)
@@ -1187,7 +1187,7 @@ CGroup::RecursiveBuildTreeMap
 			ptmap->Insert(pccParent, child_index, pccCurrent);
 		}
 
-		OptimizationContextArray *pdrgpoc = pccCurrent->Pdrgpoc();
+		COptimizationContextArray *pdrgpoc = pccCurrent->Pdrgpoc();
 		if (NULL != pdrgpoc)
 		{
 			// process children recursively
@@ -1434,7 +1434,7 @@ CGroup::EspDerive
 	IMemoryPool *pmpGlobal,
 	CGroupExpression *pgexpr,
 	CReqdPropRelational *prprel,
-	StatsArray *stats_ctxt,
+	IStatsArray *stats_ctxt,
 	BOOL fDeriveChildStats
 	)
 {
@@ -1487,7 +1487,7 @@ CGroup::PstatsRecursiveDerive
 	IMemoryPool *pmpLocal,
 	IMemoryPool *pmpGlobal,
 	CReqdPropRelational *prprel,
-	StatsArray *stats_ctxt
+	IStatsArray *stats_ctxt
 	)
 {
 	GPOS_CHECK_STACK_SIZE;
@@ -1591,7 +1591,7 @@ CGroup::PgexprBestPromise
 	GPOS_ASSERT(NULL != pgexprToMatch);
 
 	CReqdPropRelational *prprel = GPOS_NEW(mp) CReqdPropRelational(GPOS_NEW(mp) CColRefSet(mp));
-	StatsArray *stats_ctxt = GPOS_NEW(mp) StatsArray(mp);
+	IStatsArray *stats_ctxt = GPOS_NEW(mp) IStatsArray(mp);
 
 	CLogical::EStatPromise espBest = CLogical::EspNone;
 	CGroupExpression *pgexprCurrent = NULL;
@@ -1644,7 +1644,7 @@ CGroup::PgexprBestPromise
 	IMemoryPool *pmpLocal,
 	IMemoryPool *pmpGlobal,
 	CReqdPropRelational *prprelInput,
-	StatsArray *stats_ctxt
+	IStatsArray *stats_ctxt
 	)
 {
 	CGroupExpression *pgexprBest = NULL;

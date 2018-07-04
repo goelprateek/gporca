@@ -474,7 +474,7 @@ CSchedulerTest::BuildMemoMultiThreaded
 	(
 	IMemoryPool *mp,
 	CExpression *pexprInput,
-	 SearchStageArray *search_stage_array
+	 CSearchStageArray *search_stage_array
 	)
 {
 	CQueryContext *pqc = CTestUtils::PqcGenerate(mp, pexprInput);

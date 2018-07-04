@@ -39,7 +39,7 @@ namespace gpdxl
 		DXLDatumArrays *m_const_tuples_datum_array;
 
 		// array of datums
-		DXLDatumArray *m_dxl_datum_array;
+		CDXLDatumArray *m_dxl_datum_array;
 
 		// private copy ctor
 		CParseHandlerLogicalConstTable(const CParseHandlerLogicalConstTable &);

@@ -97,7 +97,7 @@ CPhysicalMotionHashDistribute::PcrsRequired
 	CExpressionHandle &exprhdl,
 	CColRefSet *pcrsRequired,
 	ULONG child_index,
-	DrgPdp *, // pdrgpdpCtxt
+	CDrvdPropArrays *, // pdrgpdpCtxt
 	ULONG // ulOptReq
 	)
 {
@@ -171,7 +171,7 @@ CPhysicalMotionHashDistribute::PosRequired
 	child_index
 #endif // GPOS_DEBUG
 	,
-	DrgPdp *, // pdrgpdpCtxt
+	CDrvdPropArrays *, // pdrgpdpCtxt
 	ULONG // ulOptReq
 	)
 	const
@@ -249,7 +249,7 @@ CPhysicalMotionHashDistribute::PdsRequired
 		CExpressionHandle &exprhdl,
 		CDistributionSpec *pdsRequired,
 		ULONG child_index,
-		DrgPdp *pdrgpdpCtxt,
+		CDrvdPropArrays *pdrgpdpCtxt,
 		ULONG ulOptReq
 	) const
 {
@@ -260,7 +260,7 @@ CPhysicalMotionHashDistribute::PdsRequired
 	}
 	else
 	{
-		ExpressionArray *pdrgpexpr = pdsNoOp->Pdrgpexpr();
+		CExpressionArray *pdrgpexpr = pdsNoOp->Pdrgpexpr();
 		pdrgpexpr->AddRef();
 		CDistributionSpecHashed* pdsHashed = GPOS_NEW(mp) CDistributionSpecHashed(pdrgpexpr, pdsNoOp->FNullsColocated());
 		return pdsHashed;

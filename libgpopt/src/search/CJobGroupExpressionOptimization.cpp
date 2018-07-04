@@ -305,10 +305,10 @@ CJobGroupExpressionOptimization::InitChildGroupsOptimization
 	}
 
 	// create child groups derived properties
-	m_pdrgpdp = GPOS_NEW(psc->GetGlobalMemoryPool()) DrgPdp(psc->GetGlobalMemoryPool());
+	m_pdrgpdp = GPOS_NEW(psc->GetGlobalMemoryPool()) CDrvdPropArrays(psc->GetGlobalMemoryPool());
 
 	// initialize stats context with input stats context
-	m_pdrgpstatCurrentCtxt = GPOS_NEW(psc->GetGlobalMemoryPool()) StatsArray(psc->GetGlobalMemoryPool());
+	m_pdrgpstatCurrentCtxt = GPOS_NEW(psc->GetGlobalMemoryPool()) IStatsArray(psc->GetGlobalMemoryPool());
 	CUtils::AddRefAppend<IStatistics, CleanupStats>(m_pdrgpstatCurrentCtxt, m_poc->Pdrgpstat());
 }
 
@@ -492,7 +492,7 @@ CJobGroupExpressionOptimization::ScheduleChildGroupsJobs
 	m_pexprhdlPlan->Prpp(m_ulChildIndex)->AddRef();
 
 	// use current stats for optimizing current child
-	StatsArray *stats_ctxt = GPOS_NEW(psc->GetGlobalMemoryPool()) StatsArray(psc->GetGlobalMemoryPool());
+	IStatsArray *stats_ctxt = GPOS_NEW(psc->GetGlobalMemoryPool()) IStatsArray(psc->GetGlobalMemoryPool());
 	CUtils::AddRefAppend<IStatistics, CleanupStats>(stats_ctxt, m_pdrgpstatCurrentCtxt);
 
 	// compute required relational properties
@@ -648,7 +648,7 @@ CJobGroupExpressionOptimization::EevtOptimizeSelf
 	// compute group expression cost under current context
 	COptimizationContext *poc = pjgeo->m_poc;
 	CGroupExpression *pgexpr = pjgeo->m_pgexpr;
-	OptimizationContextArray *pdrgpoc = pjgeo->m_pdrgpoc;
+	COptimizationContextArray *pdrgpoc = pjgeo->m_pdrgpoc;
 	ULONG ulOptReq = pjgeo->m_ulOptReq;
 
 	CCostContext *pcc = pgexpr->PccComputeCost(psc->GetGlobalMemoryPool(), poc, ulOptReq, pdrgpoc, false /*fPruned*/, CCost(0.0));

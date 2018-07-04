@@ -192,7 +192,7 @@ namespace gpmd
 	};
 
 	// common structure over relation and external relation metadata for index info
-	typedef CDynamicPtrArray<CMDIndexInfo, CleanupRelease> MDIndexInfoPtrArray;
+	typedef CDynamicPtrArray<CMDIndexInfo, CleanupRelease> CMDIndexInfoArray;
 
 }  // namespace gpmd
 

@@ -320,7 +320,7 @@ CSubqueryTestUtils::PexprSelectWithAggSubqueryOverJoin
 	}
 
 	// generate N-Ary join
-	ExpressionArray *pdrgpexpr = GPOS_NEW(mp) ExpressionArray(mp);
+	CExpressionArray *pdrgpexpr = GPOS_NEW(mp) CExpressionArray(mp);
 	pdrgpexpr->Append(pexprR);
 	pdrgpexpr->Append(pexprS);
 	pdrgpexpr->Append(pexprPred);
@@ -933,7 +933,7 @@ CSubqueryTestUtils::PexprSelectWith2LevelsCorrSubquery
 		CExpression *pexprOuterSubq = (*(*pexpr)[1])[1];
 		CExpression *pexprInnerSubq = (*(*(*pexprOuterSubq)[0])[1])[1];
 		CExpression *pexprInnerSelect = (*(*pexprInnerSubq)[0])[0];
-		ExpressionArray *pdrgpexpr = (*pexprInnerSelect)[1]->PdrgPexpr();
+		CExpressionArray *pdrgpexpr = (*pexprInnerSelect)[1]->PdrgPexpr();
 
 		CColRef *pcrOuter = CDrvdPropRelational::GetRelationalProperties(pexpr->PdpDerive())->PcrsOutput()->PcrAny();
 		CColRef *pcrInner = CDrvdPropRelational::GetRelationalProperties(pexprInnerSelect->PdpDerive())->PcrsOutput()->PcrAny();
@@ -1037,7 +1037,7 @@ CSubqueryTestUtils::PexprSubquery
 		CExpression *pexprCorrelated = CUtils::PexprScalarEqCmp(mp, pcrOuter, pcrInner);
 
 		// generate AND expression of correlated and non-correlated predicates
-		ExpressionArray *pdrgpexpr = GPOS_NEW(mp) ExpressionArray(mp);
+		CExpressionArray *pdrgpexpr = GPOS_NEW(mp) CExpressionArray(mp);
 		pdrgpexpr->Append(pexprCorrelated);
 		pdrgpexpr->Append(pexprNonCorrelated);
 		pexprPred = CUtils::PexprScalarBoolOp(mp, CScalarBoolOp::EboolopAnd, pdrgpexpr);
@@ -1159,7 +1159,7 @@ CSubqueryTestUtils::PexprUndecorrelatableSubquery
 	CExpression *pexprPred = CUtils::PexprScalarEqCmp(mp, pcrOuter, CUtils::PexprScalarConstInt4(mp, 5 /*val*/));
 
 	// generate OR expression of  predicates
-	ExpressionArray *pdrgpexpr = GPOS_NEW(mp) ExpressionArray(mp);
+	CExpressionArray *pdrgpexpr = GPOS_NEW(mp) CExpressionArray(mp);
 	pdrgpexpr->Append(pexprSubquery);
 	pdrgpexpr->Append(pexprPred);
 
@@ -1349,7 +1349,7 @@ CSubqueryTestUtils::PexprSubqueryAgg
 	CExpression *pexprProjList = GPOS_NEW(mp) CExpression(mp, GPOS_NEW(mp) CScalarProjectList(mp), pexprProjElem);
 
 	// generate empty grouping columns list
-	ColRefArray *colref_array = GPOS_NEW(mp) ColRefArray(mp);
+	CColRefArray *colref_array = GPOS_NEW(mp) CColRefArray(mp);
 
 	// generate a group by on top of select expression
 	CExpression *pexprLogicalGbAgg = CUtils::PexprLogicalGbAggGlobal(mp, colref_array, pexprSelect, pexprProjList);
@@ -1404,7 +1404,7 @@ CSubqueryTestUtils::PexprSelectWithSubqueryBoolOp
 	CExpression *pexprSubqueryExists = PexprSubqueryExistential(mp, COperator::EopScalarSubqueryExists, pexprOuter, pexprGet2, fCorrelated);
 
 	// generate AND expression of all predicates
-	ExpressionArray *pdrgpexpr = GPOS_NEW(mp) ExpressionArray(mp);
+	CExpressionArray *pdrgpexpr = GPOS_NEW(mp) CExpressionArray(mp);
 	pdrgpexpr->Append(pexprPred1);
 	pdrgpexpr->Append(pexprPred2);
 	pdrgpexpr->Append(pexprSubqueryExists);
@@ -1440,7 +1440,7 @@ CSubqueryTestUtils::PexprProjectWithSubqueries
 	CMDAccessor *md_accessor = COptCtxt::PoctxtFromTLS()->Pmda();
 
 	// generate an array of project elements holding subquery expressions
-	ExpressionArray *pdrgpexpr = GPOS_NEW(mp) ExpressionArray(mp);
+	CExpressionArray *pdrgpexpr = GPOS_NEW(mp) CExpressionArray(mp);
 
 	CColRef *pcrComputed = NULL;
 	CExpression *pexprPrjElem = NULL;
@@ -1658,7 +1658,7 @@ CSubqueryTestUtils::PexprSelectWithTrimmableExistentialSubquery
 	(*pexprInner)[0]->AddRef();
 	(*pexprInner)[1]->AddRef();
 	CExpression *pexprGbAgg =
-		CUtils::PexprLogicalGbAggGlobal(mp, GPOS_NEW(mp) ColRefArray(mp), (*pexprInner)[0], (*pexprInner)[1]);
+		CUtils::PexprLogicalGbAggGlobal(mp, GPOS_NEW(mp) CColRefArray(mp), (*pexprInner)[0], (*pexprInner)[1]);
 	pexprInner->Release();
 
 	// create existential subquery
@@ -1836,7 +1836,7 @@ CSubqueryTestUtils::PexprSubqueryWithDisjunction
 									);
 	pexprSubquery->AddRef();
 
-	ExpressionArray *pdrgpexpr = GPOS_NEW(mp) ExpressionArray(mp);
+	CExpressionArray *pdrgpexpr = GPOS_NEW(mp) CExpressionArray(mp);
 	pdrgpexpr->Append(pexprSubquery);
 	pdrgpexpr->Append(pexprSubquery);
 

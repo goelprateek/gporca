@@ -44,7 +44,7 @@ namespace gpopt
 				CExpressionHandle &exprhdl,
 				CPartitionPropagationSpec *pppsRequired,
 				ULONG child_index,
-				DrgPdp *pdrgpdpCtxt,
+				CDrvdPropArrays *pdrgpdpCtxt,
 				ULONG ulOptReq
 				);
 			
@@ -70,7 +70,7 @@ namespace gpopt
 				CExpressionHandle &exprhdl,
 				COrderSpec *posInput,
 				ULONG child_index,
-				DrgPdp *pdrgpdpCtxt,
+				CDrvdPropArrays *pdrgpdpCtxt,
 				ULONG ulOptReq
 				)
 				const;
@@ -83,7 +83,7 @@ namespace gpopt
 				CExpressionHandle &exprhdl,
 				CRewindabilitySpec *prsRequired,
 				ULONG child_index,
-				DrgPdp *pdrgpdpCtxt,
+				CDrvdPropArrays *pdrgpdpCtxt,
 				ULONG ulOptReq
 				)
 				const;
@@ -96,7 +96,7 @@ namespace gpopt
 				CExpressionHandle &exprhdl,
 				CColRefSet *pcrsRequired,
 				ULONG child_index,
-				DrgPdp *, // pdrgpdpCtxt
+				CDrvdPropArrays *, // pdrgpdpCtxt
 				ULONG // ulOptReq
 				);
 			
@@ -108,7 +108,7 @@ namespace gpopt
 				CExpressionHandle &exprhdl,
 				CPartitionPropagationSpec *pppsRequired,
 				ULONG child_index,
-				DrgPdp *pdrgpdpCtxt,
+				CDrvdPropArrays *pdrgpdpCtxt,
 				ULONG ulOptReq
 				)
 			{
@@ -142,7 +142,7 @@ namespace gpopt
 
 			// return required inner columns -- overloaded by correlated join children
 			virtual
-			ColRefArray *PdrgPcrInner() const
+			CColRefArray *PdrgPcrInner() const
 			{
 				return NULL;
 			}

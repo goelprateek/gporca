@@ -67,9 +67,9 @@ CParseHandlerMDRequest::StartElement(const XMLCh *const,  // element_uri,
 	{
 		// start of MD request section
 		GPOS_ASSERT(NULL == m_mdid_array);
-		m_mdid_array = GPOS_NEW(m_mp) MdidPtrArray(m_mp);
+		m_mdid_array = GPOS_NEW(m_mp) IMdIdArray(m_mp);
 		m_mdtype_request_array =
-			GPOS_NEW(m_mp) CMDRequest::MDTypeRequestPtrArray(m_mp);
+			GPOS_NEW(m_mp) CMDRequest::SMDTypeRequestArray(m_mp);
 
 		return;
 	}
@@ -152,7 +152,7 @@ CParseHandlerMDRequest::GetParseHandlerType() const
 //		Parsed array of mdids
 //
 //---------------------------------------------------------------------------
-MdidPtrArray *
+IMdIdArray *
 CParseHandlerMDRequest::GetMdIdArray() const
 {
 	return m_mdid_array;
@@ -166,7 +166,7 @@ CParseHandlerMDRequest::GetMdIdArray() const
 //		Parsed array of type requests
 //
 //---------------------------------------------------------------------------
-CMDRequest::MDTypeRequestPtrArray *
+CMDRequest::SMDTypeRequestArray *
 CParseHandlerMDRequest::GetMDTypeRequestArray() const
 {
 	return m_mdtype_request_array;

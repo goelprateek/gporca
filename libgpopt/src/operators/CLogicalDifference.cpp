@@ -51,7 +51,7 @@ CLogicalDifference::CLogicalDifference
 CLogicalDifference::CLogicalDifference
 	(
 	IMemoryPool *mp,
-	ColRefArray *pdrgpcrOutput,
+	CColRefArray *pdrgpcrOutput,
 	ColRefArrays *pdrgpdrgpcrInput
 	)
 	:
@@ -112,7 +112,7 @@ CLogicalDifference::PopCopyWithRemappedColumns
 	BOOL must_exist
 	)
 {
-	ColRefArray *pdrgpcrOutput = CUtils::PdrgpcrRemap(mp, m_pdrgpcrOutput, colref_mapping, must_exist);
+	CColRefArray *pdrgpcrOutput = CUtils::PdrgpcrRemap(mp, m_pdrgpcrOutput, colref_mapping, must_exist);
 	ColRefArrays *pdrgpdrgpcrInput = CUtils::PdrgpdrgpcrRemap(mp, m_pdrgpdrgpcrInput, colref_mapping, must_exist);
 
 	return GPOS_NEW(mp) CLogicalDifference(mp, pdrgpcrOutput, pdrgpdrgpcrInput);
@@ -152,7 +152,7 @@ CLogicalDifference::PstatsDerive
 	(
 	IMemoryPool *mp,
 	CExpressionHandle &exprhdl,
-	StatsArray * // not used
+	IStatsArray * // not used
 	)
 	const
 {
@@ -160,7 +160,7 @@ CLogicalDifference::PstatsDerive
 
 	// difference is transformed into an aggregate over a LASJ,
 	// we follow the same route to compute statistics
-	ColRefSetArray *output_colrefsets = GPOS_NEW(mp) ColRefSetArray(mp);
+	CColRefSetArray *output_colrefsets = GPOS_NEW(mp) CColRefSetArray(mp);
 	const ULONG size = m_pdrgpdrgpcrInput->Size();
 	for (ULONG ul = 0; ul < size; ul++)
 	{
@@ -176,7 +176,7 @@ CLogicalDifference::PstatsDerive
 
 	// compute the statistics for LASJ
 	CColRefSet *outer_refs = exprhdl.GetRelationalProperties()->PcrsOuter();
-	StatsPredJoinArray *join_preds_stats = CStatsPredUtils::ExtractJoinStatsFromExpr
+	CStatsPredJoinArray *join_preds_stats = CStatsPredUtils::ExtractJoinStatsFromExpr
 														(
 														mp, 
 														exprhdl, 

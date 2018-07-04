@@ -73,7 +73,7 @@ namespace gpmd
 	};
 
 	// dynamic arrays over md system id elements
-	typedef CDynamicPtrArray<CSystemId, CleanupDelete> SysidPtrArray;
+	typedef CDynamicPtrArray<CSystemId, CleanupDelete> CSystemIdArray;
 }  // namespace gpmd
 
 

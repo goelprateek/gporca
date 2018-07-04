@@ -70,7 +70,7 @@ namespace gpnaucrates
 		};
 
 		// array of SMcvVPairs
-		typedef CDynamicPtrArray<SMcvPair, CleanupDelete> McvPairPtrArray;
+		typedef CDynamicPtrArray<SMcvPair, CleanupDelete> SMcvPairPtrArray;
 
 		// private ctor
 		CStatisticsUtils();
@@ -82,14 +82,14 @@ namespace gpnaucrates
 		CStatisticsUtils(const CStatisticsUtils &);
 
 		// given MCVs and histogram buckets, merge them into buckets of a single histogram
-		static BucketArray *MergeMcvHistBucket(IMemoryPool *mp,
-											   const BucketArray *mcv_buckets,
-											   const BucketArray *histogram_buckets);
+		static CBucketArray *MergeMcvHistBucket(IMemoryPool *mp,
+											   const CBucketArray *mcv_buckets,
+											   const CBucketArray *histogram_buckets);
 
 		// split a histogram bucket given an MCV bucket
-		static BucketArray *SplitHistBucketGivenMcvBuckets(IMemoryPool *mp,
+		static CBucketArray *SplitHistBucketGivenMcvBuckets(IMemoryPool *mp,
 														   const CBucket *histogram_bucket,
-														   const BucketArray *mcv_buckets);
+														   const CBucketArray *mcv_buckets);
 
 		// given lower and upper bound information and their closedness, return a bucket if they can form a valid bucket
 		static CBucket *CreateValidBucket(IMemoryPool *mp,
@@ -107,15 +107,15 @@ namespace gpnaucrates
 		// find the MCVs that fall within the same histogram bucket and perform the split
 		static void SplitHistDriver(IMemoryPool *mp,
 									const CBucket *histogram_bucket,
-									const BucketArray *mcv_buckets,
-									BucketArray *merged_buckets,
+									const CBucketArray *mcv_buckets,
+									CBucketArray *merged_buckets,
 									ULONG *mcv_index,
 									ULONG mcv);
 
 		// distribute total distinct and frequency of the histogram bucket into the new buckets
 		static void DistributeBucketProperties(CDouble total_frequency,
 											   CDouble total_distinct_values,
-											   BucketArray *buckets);
+											   CBucketArray *buckets);
 
 		// add the NDVs for all of the grouping columns
 		static void AddNdvForAllGrpCols(IMemoryPool *mp,
@@ -209,12 +209,12 @@ namespace gpnaucrates
 
 		// return the column identifier of the filter if the predicate is
 		// on a single column else	return gpos::ulong_max
-		static ULONG GetColId(const StatsPredPtrArry *stats_preds_array);
+		static ULONG GetColId(const CStatsPredPtrArry *stats_preds_array);
 
 		// add remaining buckets from one array of buckets to the other
 		static void AddRemainingBuckets(IMemoryPool *mp,
-										const BucketArray *src_buckets,
-										BucketArray *dest_buckets,
+										const CBucketArray *src_buckets,
+										CBucketArray *dest_buckets,
 										ULONG *start_val);
 
 		// generate a null datum with the type of passed colref
@@ -234,12 +234,12 @@ namespace gpnaucrates
 		// derive statistics of (dynamic) index-get
 		static IStatistics *DeriveStatsForIndexGet(IMemoryPool *mp,
 												   CExpressionHandle &exprhdl,
-												   StatsArray *stats_contexts);
+												   IStatsArray *stats_contexts);
 
 		// derive statistics of bitmap table-get
 		static IStatistics *DeriveStatsForBitmapTableGet(IMemoryPool *mp,
 														 CExpressionHandle &exprhdl,
-														 StatsArray *stats_contexts);
+														 IStatsArray *stats_contexts);
 
 		// compute the cumulative number of distinct values (NDV) of the group by operator
 		// from the array of NDV of the individual grouping columns
@@ -294,10 +294,10 @@ namespace gpnaucrates
 
 
 		// return the total number of distinct values in the given array of buckets
-		static CDouble GetNumDistinct(const BucketArray *histogram_buckets);
+		static CDouble GetNumDistinct(const CBucketArray *histogram_buckets);
 
 		// return the cumulative frequency in the given array of buckets
-		static CDouble GetFrequency(const BucketArray *histogram_buckets);
+		static CDouble GetFrequency(const CBucketArray *histogram_buckets);
 
 		// true if the given operator increases risk of cardinality misestimation
 		static BOOL IncreasesRisk(CLogical *logical_op);

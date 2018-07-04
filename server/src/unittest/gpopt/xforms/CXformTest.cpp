@@ -161,7 +161,7 @@ CXformTest::EresUnittest_ApplyXforms_CTE()
 					CTestUtils::GetCostModel(mp)
 					);
 
-	ExpressionArray *pdrgpexpr = GPOS_NEW(mp) ExpressionArray(mp);
+	CExpressionArray *pdrgpexpr = GPOS_NEW(mp) CExpressionArray(mp);
 
 	// create producer
 	ULONG ulCTEId = 0;
@@ -170,8 +170,8 @@ CXformTest::EresUnittest_ApplyXforms_CTE()
 
 	pdrgpexpr->Append(pexprProducer);
 
-	ColRefArray *pdrgpcrProducer = CLogicalCTEProducer::PopConvert(pexprProducer->Pop())->Pdrgpcr();
-	ColRefArray *pdrgpcrConsumer = CUtils::PdrgpcrCopy(mp, pdrgpcrProducer);
+	CColRefArray *pdrgpcrProducer = CLogicalCTEProducer::PopConvert(pexprProducer->Pop())->Pdrgpcr();
+	CColRefArray *pdrgpcrConsumer = CUtils::PdrgpcrCopy(mp, pdrgpcrProducer);
 
 	CExpression *pexprConsumer =
 			GPOS_NEW(mp) CExpression

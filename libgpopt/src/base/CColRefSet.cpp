@@ -67,7 +67,7 @@ CColRefSet::CColRefSet
 CColRefSet::CColRefSet
 	(
 	IMemoryPool *mp,
-	const ColRefArray *colref_array,
+	const CColRefArray *colref_array,
 	ULONG size
 	)
 	:
@@ -173,7 +173,7 @@ CColRefSet::Include
 void 
 CColRefSet::Include
 	(
-	const ColRefArray *colref_array
+	const CColRefArray *colref_array
 	)
 {
 	ULONG length = colref_array->Size();
@@ -257,7 +257,7 @@ CColRefSet::Exclude
 void
 CColRefSet::Exclude
 	(
-	const ColRefArray *colref_array
+	const CColRefArray *colref_array
 	)
 {
 	for (ULONG i = 0; i < colref_array->Size(); i++)
@@ -301,8 +301,8 @@ CColRefSet::Replace
 void
 CColRefSet::Replace
 	(
-	const ColRefArray *pdrgpcrOut,
-	const ColRefArray *pdrgpcrIn
+	const CColRefArray *pdrgpcrOut,
+	const CColRefArray *pdrgpcrIn
 	)
 {
 	const ULONG length = pdrgpcrOut->Size();
@@ -323,14 +323,14 @@ CColRefSet::Replace
 //		Convert set into array
 //
 //---------------------------------------------------------------------------
-ColRefArray *
+CColRefArray *
 CColRefSet::Pdrgpcr
 	(
 	IMemoryPool *mp
 	)
 	const
 {
-	ColRefArray *colref_array = GPOS_NEW(mp) ColRefArray(mp);
+	CColRefArray *colref_array = GPOS_NEW(mp) CColRefArray(mp);
 	
 	CColRefSetIter crsi(*this);
 	while(crsi.Advance())
@@ -446,7 +446,7 @@ CColRefSet::ExtractColIds
 BOOL
 CColRefSet::FContained
 	(
-	const ColRefSetArray *pdrgpcrs
+	const CColRefSetArray *pdrgpcrs
 	)
 {
 	GPOS_ASSERT(NULL != pdrgpcrs);
@@ -475,7 +475,7 @@ CColRefSet::FContained
 BOOL
 CColRefSet::FCovered
 	(
-	ColRefSetArray *pdrgpcrs,
+	CColRefSetArray *pdrgpcrs,
 	CColRefSet *pcrs
 	)
 {

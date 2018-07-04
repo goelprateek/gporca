@@ -384,7 +384,7 @@ CPhysicalPartitionSelector::PexprCombinedPartPred
 	)
 	const
 {
-	ExpressionArray *pdrgpexpr = GPOS_NEW(mp) ExpressionArray(mp);
+	CExpressionArray *pdrgpexpr = GPOS_NEW(mp) CExpressionArray(mp);
 
 	const ULONG ulLevels = UlPartLevels();
 	for (ULONG ul = 0; ul < ulLevels; ul++)
@@ -470,7 +470,7 @@ CPhysicalPartitionSelector::PcrsRequired
 	CExpressionHandle &exprhdl,
 	CColRefSet *pcrsInput,
 	ULONG child_index,
-	DrgPdp *, // pdrgpdpCtxt
+	CDrvdPropArrays *, // pdrgpdpCtxt
 	ULONG // ulOptReq
 	)
 {
@@ -499,7 +499,7 @@ CPhysicalPartitionSelector::PosRequired
 	CExpressionHandle &exprhdl,
 	COrderSpec *posRequired,
 	ULONG child_index,
-	DrgPdp *, // pdrgpdpCtxt
+	CDrvdPropArrays *, // pdrgpdpCtxt
 	ULONG // ulOptReq
 	)
 	const
@@ -524,7 +524,7 @@ CPhysicalPartitionSelector::PdsRequired
 	CExpressionHandle &exprhdl,
 	CDistributionSpec *pdsInput,
 	ULONG child_index,
-	DrgPdp *, // pdrgpdpCtxt
+	CDrvdPropArrays *, // pdrgpdpCtxt
 	ULONG // ulOptReq
 	)
 	const
@@ -561,7 +561,7 @@ CPhysicalPartitionSelector::PrsRequired
 	CExpressionHandle &exprhdl,
 	CRewindabilitySpec *prsRequired,
 	ULONG child_index,
-	DrgPdp *, // pdrgpdpCtxt
+	CDrvdPropArrays *, // pdrgpdpCtxt
 	ULONG // ulOptReq
 	)
 	const
@@ -590,7 +590,7 @@ CPhysicalPartitionSelector::PppsRequired
 	child_index
 #endif // GPOS_DEBUG
 	,
-	DrgPdp *, //pdrgpdpCtxt,
+	CDrvdPropArrays *, //pdrgpdpCtxt,
 	ULONG //ulOptReq
 	)
 {
@@ -627,7 +627,7 @@ CPhysicalPartitionSelector::PppsRequired
 		}
 
 		IMDId *mdid = ppimInput->GetRelMdId(scan_id);
-		PartKeysArray *pdrgppartkeys = ppimInput->Pdrgppartkeys(scan_id);
+		CPartKeysArray *pdrgppartkeys = ppimInput->Pdrgppartkeys(scan_id);
 		UlongToPartConstraintMap *ppartcnstrmap = ppimInput->Ppartcnstrmap(scan_id);
 		CPartConstraint *ppartcnstr = ppimInput->PpartcnstrRel(scan_id);
 		CPartIndexMap::EPartIndexManipulator epim = ppimInput->Epim(scan_id);
@@ -665,7 +665,7 @@ CPhysicalPartitionSelector::PcteRequired
 	child_index
 #endif
 	,
-	DrgPdp *, //pdrgpdpCtxt,
+	CDrvdPropArrays *, //pdrgpdpCtxt,
 	ULONG //ulOptReq
 	)
 	const
@@ -767,7 +767,7 @@ CPhysicalPartitionSelector::PpimDerive
 		m_ppartcnstrmap->AddRef();
 		m_part_constraint->AddRef();
 
-		PartKeysArray *pdrgppartkeys = GPOS_NEW(mp) PartKeysArray(mp);
+		CPartKeysArray *pdrgppartkeys = GPOS_NEW(mp) CPartKeysArray(mp);
 		pdrgppartkeys->Append(GPOS_NEW(mp) CPartKeys(m_pdrgpdrgpcr));
 
 		ppim->Insert(m_scan_id, m_ppartcnstrmap, CPartIndexMap::EpimPropagator, 0 /*ulExpectedPropagators*/, MDId(), pdrgppartkeys, m_part_constraint);

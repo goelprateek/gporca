@@ -82,8 +82,8 @@ namespace gpopt
 				(
 				IMemoryPool *mp,
 				CExpression *pexpr,
-				ExpressionArray *pdrgpexprFactors,
-				ExpressionArray *pdrgpexprResidual,
+				CExpressionArray *pdrgpexprFactors,
+				CExpressionArray *pdrgpexprResidual,
 				ExprMap *pexprmap,
 				ULONG ulDisjuncts
 				);
@@ -182,7 +182,7 @@ namespace gpopt
 				IMemoryPool *mp,
 				const ExpressionArrays *pdrgpdrgpexpr,
 				ULONG ulDisjChildrenLength,
-				ExpressionArray *pdrgpexprPrefilters
+				CExpressionArray *pdrgpexprPrefilters
 				);
 
 			// create a conjunction of the given expression and inferred filters constructed out

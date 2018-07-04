@@ -279,7 +279,7 @@ CPhysical::PdsCompute
 	(
 	IMemoryPool *mp,
 	const CTableDescriptor *ptabdesc,
-	ColRefArray *pdrgpcrOutput
+	CColRefArray *pdrgpcrOutput
 	)
 {
 	CDistributionSpec *pds = NULL;
@@ -296,8 +296,8 @@ CPhysical::PdsCompute
 			
 		case IMDRelation::EreldistrHash:
 		{
-			const ColumnDescrArray *pdrgpcoldesc = ptabdesc->PdrgpcoldescDist();
-			ColRefArray *colref_array = GPOS_NEW(mp) ColRefArray(mp);
+			const CColumnDescrArray *pdrgpcoldesc = ptabdesc->PdrgpcoldescDist();
+			CColRefArray *colref_array = GPOS_NEW(mp) CColRefArray(mp);
 			
 			const ULONG size = pdrgpcoldesc->Size();
 			for (ULONG ul = 0; ul < size; ul++)
@@ -311,7 +311,7 @@ CPhysical::PdsCompute
 				colref_array->Append(colref);
 			}
 
-			ExpressionArray *pdrgpexpr = CUtils::PdrgpexprScalarIdents(mp, colref_array);
+			CExpressionArray *pdrgpexpr = CUtils::PdrgpexprScalarIdents(mp, colref_array);
 			colref_array->Release();
 
 			pds = GPOS_NEW(mp) CDistributionSpecHashed(pdrgpexpr, true /*fNullsColocated*/);
@@ -719,7 +719,7 @@ CCTEMap *
 CPhysical::PcmCombine
 	(
 	IMemoryPool *mp,
-	DrgPdp *pdrgpdpCtxt
+	CDrvdPropArrays *pdrgpdpCtxt
 	)
 {
 	GPOS_ASSERT(NULL != pdrgpdpCtxt);
@@ -755,7 +755,7 @@ CPhysical::PcterNAry
 	CExpressionHandle &exprhdl,
 	CCTEReq *pcter,
 	ULONG child_index,
-	DrgPdp *pdrgpdpCtxt
+	CDrvdPropArrays *pdrgpdpCtxt
 	)
 	const
 {
@@ -863,7 +863,7 @@ CPhysical::PppsRequiredPushThruNAry
 		// clean up
 		pbsPartConsumer->Release();
 
-		PartKeysArray *pdrgppartkeys = exprhdl.GetRelationalProperties(child_index)->Ppartinfo()->PdrgppartkeysByScanId(part_idx_id);
+		CPartKeysArray *pdrgppartkeys = exprhdl.GetRelationalProperties(child_index)->Ppartinfo()->PdrgppartkeysByScanId(part_idx_id);
 		GPOS_ASSERT(NULL != pdrgppartkeys);
 		pdrgppartkeys->AddRef();
 
@@ -1267,7 +1267,7 @@ CPhysical::GetSkew
 	if (CDistributionSpec::EdtHashed == pds->Edt())
 	{
 		CDistributionSpecHashed *pdshashed = CDistributionSpecHashed::PdsConvert(pds);
-		const ExpressionArray *pdrgpexpr = pdshashed->Pdrgpexpr();
+		const CExpressionArray *pdrgpexpr = pdshashed->Pdrgpexpr();
 		const ULONG size = pdrgpexpr->Size();
 		for (ULONG ul = 0; ul < size; ul++)
 		{
@@ -1372,21 +1372,21 @@ CPhysical::FUnaryUsesDefinedColumns
 }
 
 CEnfdDistribution::EDistributionMatching
-CPhysical::Edm(CReqdPropPlan *, ULONG , DrgPdp *, ULONG)
+CPhysical::Edm(CReqdPropPlan *, ULONG , CDrvdPropArrays *, ULONG)
 {
 	// by default, request distribution satisfaction
 	return CEnfdDistribution::EdmSatisfy;
 }
 
 CEnfdOrder::EOrderMatching
-CPhysical::Eom(CReqdPropPlan *, ULONG , DrgPdp *, ULONG)
+CPhysical::Eom(CReqdPropPlan *, ULONG , CDrvdPropArrays *, ULONG)
 {
 	// request satisfaction by default
 	return CEnfdOrder::EomSatisfy;
 }
 
 CEnfdRewindability::ERewindabilityMatching
-CPhysical::Erm(CReqdPropPlan *, ULONG , DrgPdp *, ULONG)
+CPhysical::Erm(CReqdPropPlan *, ULONG , CDrvdPropArrays *, ULONG)
 {
 	// request satisfaction by default
 	return CEnfdRewindability::ErmSatisfy;

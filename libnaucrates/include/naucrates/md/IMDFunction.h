@@ -76,7 +76,7 @@ namespace gpmd
 		virtual IMDId *GetResultTypeMdid() const = 0;
 
 		// output argument types
-		virtual MdidPtrArray *OutputArgTypesMdidArray() const = 0;
+		virtual IMdIdArray *OutputArgTypesMdidArray() const = 0;
 	};
 
 }  // namespace gpmd

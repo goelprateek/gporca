@@ -53,7 +53,7 @@ namespace gpmd
 		// frequency of remaining tuples
 		CDouble m_freq_remaining;
 
-		DXLBucketPtrArray *m_dxl_stats_bucket_array;
+		CDXLBucketArray *m_dxl_stats_bucket_array;
 
 		// private copy ctor
 		CDXLStatsDerivedColumn(const CDXLStatsDerivedColumn &);
@@ -65,7 +65,7 @@ namespace gpmd
 							   CDouble null_freq,
 							   CDouble distinct_remaining,
 							   CDouble freq_remaining,
-							   DXLBucketPtrArray *dxl_stats_bucket_array);
+							   CDXLBucketArray *dxl_stats_bucket_array);
 
 		// dtor
 		virtual ~CDXLStatsDerivedColumn();
@@ -105,7 +105,7 @@ namespace gpmd
 			return m_freq_remaining;
 		}
 
-		const DXLBucketPtrArray *TransformHistogramToDXLBucketArray() const;
+		const CDXLBucketArray *TransformHistogramToDXLBucketArray() const;
 
 		// serialize bucket in DXL format
 		void Serialize(gpdxl::CXMLSerializer *) const;
@@ -117,7 +117,7 @@ namespace gpmd
 	};
 
 	// array of dxl buckets
-	typedef CDynamicPtrArray<CDXLStatsDerivedColumn, CleanupRelease> DXLStatsDerivedColArray;
+	typedef CDynamicPtrArray<CDXLStatsDerivedColumn, CleanupRelease> CDXLStatsDerivedColumnArray;
 }  // namespace gpmd
 
 #endif  // !GPMD_CDXLStatsDerivedColumn_H

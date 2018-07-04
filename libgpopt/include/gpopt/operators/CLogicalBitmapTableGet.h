@@ -49,7 +49,7 @@ namespace gpopt
 			const CName *m_pnameTableAlias;
 
 			// output columns
-			ColRefArray *m_pdrgpcrOutput;
+			CColRefArray *m_pdrgpcrOutput;
 
 			// private copy ctor
 			CLogicalBitmapTableGet(const CLogicalBitmapTableGet &);
@@ -62,7 +62,7 @@ namespace gpopt
 				CTableDescriptor *ptabdesc,
 				ULONG ulOriginOpId,
 				const CName *pnameTableAlias,
-				ColRefArray *pdrgpcrOutput
+				CColRefArray *pdrgpcrOutput
 				);
 
 			// ctor
@@ -87,7 +87,7 @@ namespace gpopt
 			}
 
 			// array of output column references
-			ColRefArray *PdrgpcrOutput() const
+			CColRefArray *PdrgpcrOutput() const
 			{
 				return m_pdrgpcrOutput;
 			}
@@ -191,7 +191,7 @@ namespace gpopt
 				(
 				IMemoryPool *mp,
 				CExpressionHandle &exprhdl,
-				StatsArray *stats_ctxt
+				IStatsArray *stats_ctxt
 				)
 				const;
 

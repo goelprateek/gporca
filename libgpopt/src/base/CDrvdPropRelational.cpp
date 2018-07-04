@@ -215,7 +215,7 @@ CDrvdPropRelational::GetRelationalProperties
 //		Helper for getting applicable FDs from child
 //
 //---------------------------------------------------------------------------
-FunctionalDependencyArray *
+CFunctionalDependencyArray *
 CDrvdPropRelational::PdrgpfdChild
 	(
 	IMemoryPool *mp,
@@ -227,13 +227,13 @@ CDrvdPropRelational::PdrgpfdChild
 	GPOS_ASSERT(!exprhdl.FScalarChild(child_index));
 
 	// get FD's of the child
-	FunctionalDependencyArray *pdrgpfdChild = exprhdl.GetRelationalProperties(child_index)->Pdrgpfd();
+	CFunctionalDependencyArray *pdrgpfdChild = exprhdl.GetRelationalProperties(child_index)->Pdrgpfd();
 
 	// get output columns of the parent
 	CColRefSet *pcrsOutput = CDrvdPropRelational::GetRelationalProperties(exprhdl.Pdp())->PcrsOutput();
 
 	// collect child FD's that are applicable to the parent
-	FunctionalDependencyArray *pdrgpfd = GPOS_NEW(mp) FunctionalDependencyArray(mp);
+	CFunctionalDependencyArray *pdrgpfd = GPOS_NEW(mp) CFunctionalDependencyArray(mp);
 	const ULONG size = pdrgpfdChild->Size();
 	for (ULONG ul = 0; ul < size; ul++)
 	{
@@ -271,14 +271,14 @@ CDrvdPropRelational::PdrgpfdChild
 //		Helper for deriving local FDs
 //
 //---------------------------------------------------------------------------
-FunctionalDependencyArray *
+CFunctionalDependencyArray *
 CDrvdPropRelational::PdrgpfdLocal
 	(
 	IMemoryPool *mp,
 	CExpressionHandle &exprhdl
 	)
 {
-	FunctionalDependencyArray *pdrgpfd = GPOS_NEW(mp) FunctionalDependencyArray(mp);
+	CFunctionalDependencyArray *pdrgpfd = GPOS_NEW(mp) CFunctionalDependencyArray(mp);
 
 	// get local key
 	CKeyCollection *pkc = CDrvdPropRelational::GetRelationalProperties(exprhdl.Pdp())->Pkc();
@@ -291,7 +291,7 @@ CDrvdPropRelational::PdrgpfdLocal
 	ULONG ulKeys = pkc->Keys();
 	for (ULONG ul = 0; ul < ulKeys; ul++)
 	{
-		ColRefArray *pdrgpcrKey = pkc->PdrgpcrKey(mp, ul);
+		CColRefArray *pdrgpcrKey = pkc->PdrgpcrKey(mp, ul);
 		CColRefSet *pcrsKey = GPOS_NEW(mp) CColRefSet(mp);
 		pcrsKey->Include(pdrgpcrKey);
 
@@ -327,7 +327,7 @@ CDrvdPropRelational::PdrgpfdLocal
 //		Helper for deriving functional dependencies
 //
 //---------------------------------------------------------------------------
-FunctionalDependencyArray *
+CFunctionalDependencyArray *
 CDrvdPropRelational::Pdrgpfd
 	(
 	IMemoryPool *mp,
@@ -336,7 +336,7 @@ CDrvdPropRelational::Pdrgpfd
 {
 	GPOS_ASSERT(exprhdl.Pop()->FLogical());
 
-	FunctionalDependencyArray *pdrgpfd = GPOS_NEW(mp) FunctionalDependencyArray(mp);
+	CFunctionalDependencyArray *pdrgpfd = GPOS_NEW(mp) CFunctionalDependencyArray(mp);
 	const ULONG arity = exprhdl.Arity();
 
 	// collect applicable FD's from logical children
@@ -344,13 +344,13 @@ CDrvdPropRelational::Pdrgpfd
 	{
 		if (!exprhdl.FScalarChild(ul))
 		{
-			FunctionalDependencyArray *pdrgpfdChild = PdrgpfdChild(mp, ul, exprhdl);
+			CFunctionalDependencyArray *pdrgpfdChild = PdrgpfdChild(mp, ul, exprhdl);
 			CUtils::AddRefAppend<CFunctionalDependency, CleanupRelease>(pdrgpfd, pdrgpfdChild);
 			pdrgpfdChild->Release();
 		}
 	}
 	// add local FD's
-	FunctionalDependencyArray *pdrgpfdLocal = PdrgpfdLocal(mp, exprhdl);
+	CFunctionalDependencyArray *pdrgpfdLocal = PdrgpfdLocal(mp, exprhdl);
 	CUtils::AddRefAppend<CFunctionalDependency, CleanupRelease>(pdrgpfd, pdrgpfdLocal);
 	pdrgpfdLocal->Release();
 

@@ -136,7 +136,7 @@ CReqdPropPlan::ComputeReqdCols
 	CExpressionHandle &exprhdl,
 	CReqdProp *prpInput,
 	ULONG child_index,
-	DrgPdp *pdrgpdpCtxt
+	CDrvdPropArrays *pdrgpdpCtxt
 	)
 {
 	GPOS_ASSERT(NULL == m_pcrs);
@@ -162,7 +162,7 @@ CReqdPropPlan::ComputeReqdCTEs
 	CExpressionHandle &exprhdl,
 	CReqdProp *prpInput,
 	ULONG child_index,
-	DrgPdp *pdrgpdpCtxt
+	CDrvdPropArrays *pdrgpdpCtxt
 	)
 {
 	GPOS_ASSERT(NULL == m_pcter);
@@ -188,7 +188,7 @@ CReqdPropPlan::Compute
 	CExpressionHandle &exprhdl,
 	CReqdProp *prpInput,
 	ULONG child_index,
-	DrgPdp *pdrgpdpCtxt,
+	CDrvdPropArrays *pdrgpdpCtxt,
 	ULONG ulOptReq
 	)
 {
@@ -282,7 +282,7 @@ CReqdPropPlan::PpfmCombineDerived
 	CExpressionHandle &exprhdl,
 	CReqdPropPlan *prppInput,
 	ULONG child_index,
-	DrgPdp *pdrgpdpCtxt
+	CDrvdPropArrays *pdrgpdpCtxt
 	)
 {
 	// get partitioning info below required child
@@ -363,7 +363,7 @@ CReqdPropPlan::InitReqdPartitionPropagation
 	{
 		ULONG scan_id = ppartinfo->ScanId(ul);
 		IMDId *mdid = ppartinfo->GetRelMdId(ul);
-		PartKeysArray *pdrgppartkeys = ppartinfo->Pdrgppartkeys(ul);
+		CPartKeysArray *pdrgppartkeys = ppartinfo->Pdrgppartkeys(ul);
 		CPartConstraint *ppartcnstr = ppartinfo->Ppartcnstr(ul);
 
 		mdid->AddRef();

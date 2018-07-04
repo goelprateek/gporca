@@ -29,8 +29,8 @@ using namespace gpopt;
 CPhysicalLeftOuterHashJoin::CPhysicalLeftOuterHashJoin
 	(
 	IMemoryPool *mp,
-	ExpressionArray *pdrgpexprOuterKeys,
-	ExpressionArray *pdrgpexprInnerKeys
+	CExpressionArray *pdrgpexprOuterKeys,
+	CExpressionArray *pdrgpexprInnerKeys
 	)
 	:
 	CPhysicalHashJoin(mp, pdrgpexprOuterKeys, pdrgpexprInnerKeys)

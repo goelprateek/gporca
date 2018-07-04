@@ -212,8 +212,8 @@ COptimizationContext::FOptimize
 BOOL
 COptimizationContext::FEqualContextIds
 	(
-	OptimizationContextArray *pdrgpocFst,
-	OptimizationContextArray *pdrgpocSnd
+	COptimizationContextArray *pdrgpocFst,
+	COptimizationContextArray *pdrgpocSnd
 	)
 {
 	if (NULL == pdrgpocFst || NULL == pdrgpocSnd)

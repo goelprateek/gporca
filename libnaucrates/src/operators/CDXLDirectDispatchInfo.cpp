@@ -83,7 +83,7 @@ CDXLDirectDispatchInfo::Serialize(CXMLSerializer *xml_serializer)
 		xml_serializer->OpenElement(CDXLTokens::GetDXLTokenStr(EdxltokenNamespacePrefix),
 									CDXLTokens::GetDXLTokenStr(EdxltokenDirectDispatchKeyValue));
 
-		DXLDatumArray *dispatch_identifier_array = (*m_dispatch_identifer_datum_array)[idx1];
+		CDXLDatumArray *dispatch_identifier_array = (*m_dispatch_identifer_datum_array)[idx1];
 
 		const ULONG num_of_datums = dispatch_identifier_array->Size();
 		for (ULONG idx2 = 0; idx2 < num_of_datums; idx2++)

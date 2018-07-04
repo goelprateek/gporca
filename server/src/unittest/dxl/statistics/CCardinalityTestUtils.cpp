@@ -98,7 +98,7 @@ CCardinalityTestUtils::PhistInt4Remain
 	)
 {
 	// generate histogram of the form [0, 100), [100, 200), [200, 300) ...
-	BucketArray *histogram_buckets = GPOS_NEW(mp) BucketArray(mp);
+	CBucketArray *histogram_buckets = GPOS_NEW(mp) CBucketArray(mp);
 	for (ULONG idx = 0; idx < num_of_buckets; idx++)
 	{
 		INT iLower = INT(idx * 100);
@@ -134,7 +134,7 @@ CCardinalityTestUtils::PhistExampleInt4
 	)
 {
 	// generate histogram of the form [0, 10), [10, 20), [20, 30) ... [80, 90)
-	BucketArray *histogram_buckets = GPOS_NEW(mp) BucketArray(mp);
+	CBucketArray *histogram_buckets = GPOS_NEW(mp) CBucketArray(mp);
 	for (ULONG idx = 0; idx < 9; idx++)
 	{
 		INT iLower = INT(idx * 10);
@@ -158,7 +158,7 @@ CCardinalityTestUtils::PhistExampleBool
 	IMemoryPool *mp
 	)
 {
-	BucketArray *histogram_buckets = GPOS_NEW(mp) BucketArray(mp);
+	CBucketArray *histogram_buckets = GPOS_NEW(mp) CBucketArray(mp);
 	CBucket *pbucketFalse = CCardinalityTestUtils::PbucketSingletonBoolVal(mp, false, 0.1);
 	CBucket *pbucketTrue = CCardinalityTestUtils::PbucketSingletonBoolVal(mp, true, 0.2);
 	histogram_buckets->Append(pbucketFalse);

@@ -59,13 +59,13 @@ namespace gpopt
 			CReqdPropPlan *m_prpp;
 
 			// required array of output columns
-			ColRefArray *m_pdrgpcr;
+			CColRefArray *m_pdrgpcr;
 
 			// required system columns, collected from of output columns
-			ColRefArray *m_pdrgpcrSystemCols;
+			CColRefArray *m_pdrgpcrSystemCols;
 
 			// array of output column names
-			MDNameArray *m_pdrgpmdname;
+			CMDNameArray *m_pdrgpmdname;
 
 			// logical expression tree to be optimized
 			CExpression *m_pexpr;
@@ -91,8 +91,8 @@ namespace gpopt
 				IMemoryPool *mp,
 				CExpression *pexpr,
 				CReqdPropPlan *prpp,
-				ColRefArray *colref_array,
-				MDNameArray *pdrgpmdname,
+				CColRefArray *colref_array,
+				CMDNameArray *pdrgpmdname,
 				BOOL fDeriveStats
 				);
 
@@ -118,19 +118,19 @@ namespace gpopt
 			}
 			
 			// return the array of output column references
-			ColRefArray *PdrgPcr() const
+			CColRefArray *PdrgPcr() const
 			{
 				return m_pdrgpcr;
 			}
 
 			// system columns
-			ColRefArray *PdrgpcrSystemCols() const
+			CColRefArray *PdrgpcrSystemCols() const
 			{
 				return m_pdrgpcrSystemCols;
 			}
 
 			// return the array of output column names
-			MDNameArray *Pdrgpmdname() const
+			CMDNameArray *Pdrgpmdname() const
 			{
 				return m_pdrgpmdname;
 			}
@@ -142,7 +142,7 @@ namespace gpopt
 							IMemoryPool *mp, // memory pool
 							CExpression *pexpr, // expression representing the query
 							ULongPtrArray *pdrgpulQueryOutputColRefId, // array of output column reference id
-							MDNameArray *pdrgpmdname, // array of output column names
+							CMDNameArray *pdrgpmdname, // array of output column names
 							BOOL fDeriveStats
 							);
 

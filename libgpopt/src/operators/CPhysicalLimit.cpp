@@ -112,7 +112,7 @@ CPhysicalLimit::PcrsRequired
 	CExpressionHandle &exprhdl,
 	CColRefSet *pcrsRequired,
 	ULONG child_index,
-	DrgPdp *, // pdrgpdpCtxt
+	CDrvdPropArrays *, // pdrgpdpCtxt
 	ULONG // ulOptReq
 	)
 {
@@ -148,7 +148,7 @@ CPhysicalLimit::PosRequired
 		child_index
 #endif // GPOS_DEBUG
 	,
-	DrgPdp *, // pdrgpdpCtxt
+	CDrvdPropArrays *, // pdrgpdpCtxt
 	ULONG // ulOptReq
 	)
 	const
@@ -179,7 +179,7 @@ CPhysicalLimit::PdsRequired
 	CExpressionHandle &exprhdl,
 	CDistributionSpec *pdsInput,
 	ULONG child_index,
-	DrgPdp *, // pdrgpdpCtxt
+	CDrvdPropArrays *, // pdrgpdpCtxt
 	ULONG // ulOptReq
 	)
 	const
@@ -247,7 +247,7 @@ CPhysicalLimit::PrsRequired
 	CExpressionHandle &exprhdl,
 	CRewindabilitySpec *prsRequired,
 	ULONG child_index,
-	DrgPdp *, // pdrgpdpCtxt
+	CDrvdPropArrays *, // pdrgpdpCtxt
 	ULONG // ulOptReq
 	)
 	const
@@ -276,7 +276,7 @@ CPhysicalLimit::PppsRequired
 	child_index
 #endif
 	,
-	DrgPdp *, //pdrgpdpCtxt
+	CDrvdPropArrays *, //pdrgpdpCtxt
 	ULONG //ulOptReq
 	)
 {
@@ -310,7 +310,7 @@ CPhysicalLimit::PcteRequired
 	child_index
 #endif
 	,
-	DrgPdp *, //pdrgpdpCtxt,
+	CDrvdPropArrays *, //pdrgpdpCtxt,
 	ULONG //ulOptReq
 	)
 	const

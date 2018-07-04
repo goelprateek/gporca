@@ -74,8 +74,8 @@ CXformJoinAssociativity::CreatePredicates
 	(
 	IMemoryPool *mp,
 	CExpression *pexpr,
-	ExpressionArray *pdrgpexprLower,
-	ExpressionArray *pdrgpexprUpper
+	CExpressionArray *pdrgpexprLower,
+	CExpressionArray *pdrgpexprUpper
 	)
 	const
 {
@@ -86,7 +86,7 @@ CXformJoinAssociativity::CreatePredicates
 	CExpression *pexprLeftLeft = (*pexprLeft)[0];
 	CExpression *pexprRight = (*pexpr)[1];
 	
-	ExpressionArray *pdrgpexprJoins = GPOS_NEW(mp) ExpressionArray(mp);
+	CExpressionArray *pdrgpexprJoins = GPOS_NEW(mp) CExpressionArray(mp);
 
 	pexprLeft->AddRef();
 	pdrgpexprJoins->Append(pexprLeft);
@@ -100,11 +100,11 @@ CXformJoinAssociativity::CreatePredicates
 	pcrsLower->Union(CDrvdPropRelational::GetRelationalProperties(pexprRight->PdpDerive())->PcrsOutput());
 	
 	// convert current predicates into arrays of conjuncts
-	ExpressionArray *pdrgpexprOrig = GPOS_NEW(mp) ExpressionArray(mp);
+	CExpressionArray *pdrgpexprOrig = GPOS_NEW(mp) CExpressionArray(mp);
 	
 	for (ULONG ul = 0; ul < 2; ul++)
 	{
-		ExpressionArray *pdrgpexprPreds = CPredicateUtils::PdrgpexprConjuncts(mp, (*(*pdrgpexprJoins)[ul])[2]);
+		CExpressionArray *pdrgpexprPreds = CPredicateUtils::PdrgpexprConjuncts(mp, (*(*pdrgpexprJoins)[ul])[2]);
 		ULONG length = pdrgpexprPreds->Size();
 		for (ULONG ulConj = 0; ulConj < length; ulConj++)
 		{	
@@ -231,8 +231,8 @@ CXformJoinAssociativity::Transform
 	IMemoryPool *mp = pxfctxt->Pmp();
 	
 	// create new predicates
-	ExpressionArray *pdrgpexprLower = GPOS_NEW(mp) ExpressionArray(mp);
-	ExpressionArray *pdrgpexprUpper = GPOS_NEW(mp) ExpressionArray(mp);
+	CExpressionArray *pdrgpexprLower = GPOS_NEW(mp) CExpressionArray(mp);
+	CExpressionArray *pdrgpexprUpper = GPOS_NEW(mp) CExpressionArray(mp);
 	CreatePredicates(mp, pexpr, pdrgpexprLower, pdrgpexprUpper);
 	
 	GPOS_ASSERT(pdrgpexprLower->Size() > 0);

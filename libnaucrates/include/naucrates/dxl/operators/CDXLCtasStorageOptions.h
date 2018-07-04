@@ -70,7 +70,7 @@ namespace gpdxl
 			}
 		};
 
-		typedef CDynamicPtrArray<CDXLCtasOption, CleanupDelete> DXLCtasOptionArray;
+		typedef CDynamicPtrArray<CDXLCtasOption, CleanupDelete> CDXLCtasOptionArray;
 
 		//-------------------------------------------------------------------
 		//	@enum:
@@ -98,7 +98,7 @@ namespace gpdxl
 		ECtasOnCommitAction m_ctas_on_commit_action;
 
 		// array of name-m_bytearray_value pairs of storage options
-		DXLCtasOptionArray *m_ctas_storage_option_array;
+		CDXLCtasOptionArray *m_ctas_storage_option_array;
 
 		// private copy ctor
 		CDXLCtasStorageOptions(const CDXLCtasStorageOptions &);
@@ -110,7 +110,7 @@ namespace gpdxl
 		// ctor
 		CDXLCtasStorageOptions(CMDName *mdname_tablespace,
 							   ECtasOnCommitAction ctas_on_commit_action,
-							   DXLCtasOptionArray *ctas_storage_option_array);
+							   CDXLCtasOptionArray *ctas_storage_option_array);
 
 		// dtor
 		virtual ~CDXLCtasStorageOptions();
@@ -122,7 +122,7 @@ namespace gpdxl
 		CDXLCtasStorageOptions::ECtasOnCommitAction GetOnCommitAction() const;
 
 		// accessor to options
-		DXLCtasOptionArray *GetDXLCtasOptionArray() const;
+		CDXLCtasOptionArray *GetDXLCtasOptionArray() const;
 
 		// serialize to DXL
 		void Serialize(CXMLSerializer *xml_serializer) const;

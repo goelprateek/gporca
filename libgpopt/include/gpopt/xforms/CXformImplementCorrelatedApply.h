@@ -83,7 +83,7 @@ namespace gpopt
                 CExpression *pexprRight = (*pexpr)[1];
                 CExpression *pexprScalar = (*pexpr)[2];
                 TLogicalApply *popApply = TLogicalApply::PopConvert(pexpr->Pop());
-                ColRefArray *colref_array = popApply->PdrgPcrInner();
+                CColRefArray *colref_array = popApply->PdrgPcrInner();
 
                 colref_array->AddRef();
 

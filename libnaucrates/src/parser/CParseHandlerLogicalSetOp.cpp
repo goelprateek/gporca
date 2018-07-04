@@ -201,7 +201,7 @@ CParseHandlerLogicalSetOp::EndElement(const XMLCh *const,  // element_uri,
 	CParseHandlerColDescr *col_descr_parse_handler =
 		dynamic_cast<CParseHandlerColDescr *>((*this)[0]);
 	GPOS_ASSERT(NULL != col_descr_parse_handler->GetDXLColumnDescrArray());
-	DXLColumnDescrArray *cold_descr_dxl_array = col_descr_parse_handler->GetDXLColumnDescrArray();
+	CDXLColDescrArray *cold_descr_dxl_array = col_descr_parse_handler->GetDXLColumnDescrArray();
 
 	cold_descr_dxl_array->AddRef();
 	CDXLLogicalSetOp *dxl_op = GPOS_NEW(m_mp) CDXLLogicalSetOp(m_mp,

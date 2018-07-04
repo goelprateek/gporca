@@ -169,8 +169,8 @@ CParseHandlerStatsDerivedColumn::EndElement(const XMLCh *const,  // element_uri,
 		GPOS_RAISE(gpdxl::ExmaDXL, gpdxl::ExmiDXLUnexpectedTag, str->GetBuffer());
 	}
 
-	DXLBucketPtrArray *dxl_stats_bucket_array =
-		GPOS_NEW(m_mp) DXLBucketPtrArray(m_mp);
+	CDXLBucketArray *dxl_stats_bucket_array =
+		GPOS_NEW(m_mp) CDXLBucketArray(m_mp);
 
 	const ULONG num_of_buckets = this->Length();
 	// add constructed children from child parse handlers

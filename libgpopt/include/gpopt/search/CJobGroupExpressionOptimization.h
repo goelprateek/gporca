@@ -84,13 +84,13 @@ namespace gpopt
 			ULONG m_ulOptReq;
 
 			// array of child groups optimization contexts
-			OptimizationContextArray *m_pdrgpoc;
+			COptimizationContextArray *m_pdrgpoc;
 
 			// stats context to be used during costing
-			StatsArray *m_pdrgpstatCurrentCtxt;
+			IStatsArray *m_pdrgpstatCurrentCtxt;
 
 			// array of derived properties of optimal implementations of child groups
-			DrgPdp *m_pdrgpdp;
+			CDrvdPropArrays *m_pdrgpdp;
 
 			// optimization order of children
 			CPhysical::EChildExecOrder m_eceo;

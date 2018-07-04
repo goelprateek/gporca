@@ -38,7 +38,7 @@ CParseHandlerBase::CParseHandlerBase(IMemoryPool *mp,
 	GPOS_ASSERT(NULL != mp);
 	GPOS_ASSERT(NULL != parse_handler_mgr);
 
-	m_parse_handler_base_array = GPOS_NEW(m_mp) ParseHandlerBaseArray(m_mp);
+	m_parse_handler_base_array = GPOS_NEW(m_mp) CParseHandlerBaseArray(m_mp);
 }
 
 //---------------------------------------------------------------------------

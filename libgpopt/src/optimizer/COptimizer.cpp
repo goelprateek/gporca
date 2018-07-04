@@ -65,7 +65,7 @@ COptimizer::PrintQuery
 	CAutoTrace at(mp);
 	at.Os() << std::endl << "Algebrized query: " << std::endl << *pexprTranslated;
 
-	ExpressionArray *pdrgpexpr = COptCtxt::PoctxtFromTLS()->Pcteinfo()->PdrgPexpr(mp);
+	CExpressionArray *pdrgpexpr = COptCtxt::PoctxtFromTLS()->Pcteinfo()->PdrgPexpr(mp);
 	const ULONG ulCTEs = pdrgpexpr->Size();
 	if (0 < ulCTEs)
 	{
@@ -184,13 +184,13 @@ COptimizer::PdxlnOptimize
 	IMemoryPool *mp, 
 	CMDAccessor *md_accessor,
 	const CDXLNode *query,
-	const DXLNodeArray *query_output_dxlnode_array, 
-	const DXLNodeArray *cte_producers, 
+	const CDXLNodeArray *query_output_dxlnode_array, 
+	const CDXLNodeArray *cte_producers, 
 	IConstExprEvaluator *pceeval,
 	ULONG ulHosts,	// actual number of data nodes in the system
 	ULONG ulSessionId,
 	ULONG ulCmdId,
-	SearchStageArray *search_stage_array,
+	CSearchStageArray *search_stage_array,
 	COptimizerConfig *optimizer_config,
 	const CHAR *szMinidumpFileName 	// name of minidump file to be created
 	)
@@ -246,7 +246,7 @@ COptimizer::PdxlnOptimize
 			CExpression *pexprTranslated =	dxltr.PexprTranslateQuery(query, query_output_dxlnode_array, cte_producers);
 			GPOS_CHECK_ABORT;
 			gpdxl::ULongPtrArray *pdrgpul = dxltr.PdrgpulOutputColRefs();
-			gpmd::MDNameArray *pdrgpmdname = dxltr.Pdrgpmdname();
+			gpmd::CMDNameArray *pdrgpmdname = dxltr.Pdrgpmdname();
 
 			CQueryContext *pqc = CQueryContext::PqcGenerate(mp, pexprTranslated, pdrgpul, pdrgpmdname, true /*fDeriveStats*/);
 			GPOS_CHECK_ABORT;
@@ -377,7 +377,7 @@ COptimizer::PexprOptimize
 	(
 	IMemoryPool *mp,
 	CQueryContext *pqc,
-	SearchStageArray *search_stage_array
+	CSearchStageArray *search_stage_array
 	)
 {
 	CEngine eng(mp);
@@ -411,8 +411,8 @@ COptimizer::CreateDXLNode
 	IMemoryPool *mp, 
 	CMDAccessor *md_accessor, 
 	CExpression *pexpr,
-	ColRefArray *colref_array,
-	MDNameArray *pdrgpmdname,
+	CColRefArray *colref_array,
+	CMDNameArray *pdrgpmdname,
 	ULONG ulHosts
 	)
 {

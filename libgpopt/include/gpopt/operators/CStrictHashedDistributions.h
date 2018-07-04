@@ -18,13 +18,13 @@ namespace gpopt
 	// distribution on UnionAll output columns
 	// If there exists no redistributable columns in the input list,
 	// it creates a random distribution.
-	class CStrictHashedDistributions : public DrgPds
+	class CStrictHashedDistributions : public CDistributionSpecArray
 	{
 		public:
 			CStrictHashedDistributions
 			(
 			IMemoryPool *mp,
-			ColRefArray *pdrgpcrOutput,
+			CColRefArray *pdrgpcrOutput,
 			ColRefArrays *pdrgpdrgpcrInput
 			);
 	};

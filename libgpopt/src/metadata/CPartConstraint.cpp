@@ -87,7 +87,7 @@ CPartConstraint::CPartConstraint
 	GPOS_ASSERT(1 == pcrsUsed->Size());
 	CColRef *pcrPartKey = pcrsUsed->PcrFirst();
 
-	ColRefArray *colref_array = GPOS_NEW(mp) ColRefArray(mp);
+	CColRefArray *colref_array = GPOS_NEW(mp) CColRefArray(mp);
 	colref_array->Append(pcrPartKey);
 
 	m_pdrgpdrgpcr = GPOS_NEW(mp) ColRefArrays(mp);
@@ -158,7 +158,7 @@ CPartConstraint::PcnstrBuildCombined
 	IMemoryPool *mp
 	)
 {
-	ConstraintArray *pdrgpcnstr = GPOS_NEW(mp) ConstraintArray(mp);
+	CConstraintArray *pdrgpcnstr = GPOS_NEW(mp) CConstraintArray(mp);
 	for (ULONG ul = 0; ul < m_num_of_part_levels; ul++)
 	{
 		CConstraint *pcnstr = m_phmulcnstr->Find(&ul);
@@ -322,7 +322,7 @@ CPartConstraint::FOverlapLevel
 	GPOS_ASSERT(!IsConstraintUnbounded());
 	GPOS_ASSERT(!ppartcnstr->IsConstraintUnbounded());
 
-	ConstraintArray *pdrgpcnstr = GPOS_NEW(mp) ConstraintArray(mp);
+	CConstraintArray *pdrgpcnstr = GPOS_NEW(mp) CConstraintArray(mp);
 	CConstraint *pcnstrCurrent = Pcnstr(ulLevel);
 	CConstraint *pcnstrOther = ppartcnstr->Pcnstr(ulLevel);
 	GPOS_ASSERT(NULL != pcnstrCurrent);
@@ -546,7 +546,7 @@ CPartConstraint::PcnstrRemaining
 		return pcnstrNegation;
 	}
 
-	ConstraintArray *pdrgpcnstr = GPOS_NEW(mp) ConstraintArray(mp);
+	CConstraintArray *pdrgpcnstr = GPOS_NEW(mp) CConstraintArray(mp);
 	pcnstrFst->AddRef();
 	pdrgpcnstr->Append(pcnstrFst);
 	pdrgpcnstr->Append(pcnstrNegation);
@@ -580,8 +580,8 @@ CPartConstraint::PpartcnstrCopyWithRemappedColumns
 
 	for (ULONG ul = 0; ul < m_num_of_part_levels; ul++)
 	{
-		ColRefArray *colref_array = (*m_pdrgpdrgpcr)[ul];
-		ColRefArray *pdrgpcrMapped = CUtils::PdrgpcrRemap(mp, colref_array, colref_mapping, must_exist);
+		CColRefArray *colref_array = (*m_pdrgpdrgpcr)[ul];
+		CColRefArray *pdrgpcrMapped = CUtils::PdrgpcrRemap(mp, colref_array, colref_mapping, must_exist);
 		pdrgpdrgpcr->Append(pdrgpcrMapped);
 
 		CConstraint *pcnstr = Pcnstr(ul);
@@ -751,7 +751,7 @@ CPartConstraint::PpartcnstrDisjunction
 
 	pcnstrFst->AddRef();
 	pcnstrSnd->AddRef();
-	ConstraintArray *pdrgpcnstrCombined = GPOS_NEW(mp) ConstraintArray(mp);
+	CConstraintArray *pdrgpcnstrCombined = GPOS_NEW(mp) CConstraintArray(mp);
 	
 	pdrgpcnstrCombined->Append(pcnstrFst);
 	pdrgpcnstrCombined->Append(pcnstrSnd);

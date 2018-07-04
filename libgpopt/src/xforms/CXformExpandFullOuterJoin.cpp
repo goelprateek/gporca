@@ -107,16 +107,16 @@ CXformExpandFullOuterJoin::Transform
 
 	// 1. create the CTE producers
 	const ULONG ulCTEIdA = COptCtxt::PoctxtFromTLS()->Pcteinfo()->next_id();
-	ColRefArray *pdrgpcrOutA = CDrvdPropRelational::GetRelationalProperties(pexprA->PdpDerive())->PcrsOutput()->Pdrgpcr(mp);
+	CColRefArray *pdrgpcrOutA = CDrvdPropRelational::GetRelationalProperties(pexprA->PdpDerive())->PcrsOutput()->Pdrgpcr(mp);
 	(void) CXformUtils::PexprAddCTEProducer(mp, ulCTEIdA, pdrgpcrOutA, pexprA);
 
 	const ULONG ulCTEIdB = COptCtxt::PoctxtFromTLS()->Pcteinfo()->next_id();
-	ColRefArray *pdrgpcrOutB = CDrvdPropRelational::GetRelationalProperties(pexprB->PdpDerive())->PcrsOutput()->Pdrgpcr(mp);
+	CColRefArray *pdrgpcrOutB = CDrvdPropRelational::GetRelationalProperties(pexprB->PdpDerive())->PcrsOutput()->Pdrgpcr(mp);
 	(void) CXformUtils::PexprAddCTEProducer(mp, ulCTEIdB, pdrgpcrOutB, pexprB);
 
 	// 2. create the right child (PROJECT over LASJ)
-	ColRefArray *pdrgpcrRightA = CUtils::PdrgpcrCopy(mp, pdrgpcrOutA);
-	ColRefArray *pdrgpcrRightB = CUtils::PdrgpcrCopy(mp, pdrgpcrOutB);
+	CColRefArray *pdrgpcrRightA = CUtils::PdrgpcrCopy(mp, pdrgpcrOutA);
+	CColRefArray *pdrgpcrRightB = CUtils::PdrgpcrCopy(mp, pdrgpcrOutB);
 	CExpression *pexprScalarRight = CXformUtils::PexprRemapColumns
 									(
 									mp,
@@ -137,7 +137,7 @@ CXformExpandFullOuterJoin::Transform
 	// 4. create the UNION ALL expression
 
 	// output columns of the union are the same as the outputs of the first child (LOJ)
-	ColRefArray *pdrgpcrOutput = GPOS_NEW(mp) ColRefArray(mp);
+	CColRefArray *pdrgpcrOutput = GPOS_NEW(mp) CColRefArray(mp);
 	pdrgpcrOutput->AppendArray(pdrgpcrOutA);
 	pdrgpcrOutput->AppendArray(pdrgpcrOutB);
 
@@ -154,7 +154,7 @@ CXformExpandFullOuterJoin::Transform
 	CColRefSet *pcrsProjOnly = GPOS_NEW(mp) CColRefSet(mp);
 	pcrsProjOnly->Include(pdprelProject->PcrsOutput());
 	pcrsProjOnly->Exclude(pdrgpcrRightB);
-	ColRefArray *pdrgpcrProj = pcrsProjOnly->Pdrgpcr(mp);
+	CColRefArray *pdrgpcrProj = pcrsProjOnly->Pdrgpcr(mp);
 	pcrsProjOnly->Release();
 	// b. add columns from the LASJ expression
 	pdrgpcrProj->AppendArray(pdrgpcrRightB);
@@ -204,16 +204,16 @@ CXformExpandFullOuterJoin::PexprLogicalJoinOverCTEs
 	IMemoryPool *mp,
 	EdxlJoinType edxljointype,
 	ULONG ulLeftCTEId,
-	ColRefArray *pdrgpcrLeft,
+	CColRefArray *pdrgpcrLeft,
 	ULONG ulRightCTEId,
-	ColRefArray *pdrgpcrRight,
+	CColRefArray *pdrgpcrRight,
 	CExpression *pexprScalar
 	)
 	const
 {
 	GPOS_ASSERT(NULL != pexprScalar);
 
-	ExpressionArray *pdrgpexprChildren = GPOS_NEW(mp) ExpressionArray(mp);
+	CExpressionArray *pdrgpexprChildren = GPOS_NEW(mp) CExpressionArray(mp);
 	CCTEInfo *pcteinfo = COptCtxt::PoctxtFromTLS()->Pcteinfo();
 
 	CLogicalCTEConsumer *popConsumerLeft = GPOS_NEW(mp) CLogicalCTEConsumer(mp, ulLeftCTEId, pdrgpcrLeft);

@@ -32,7 +32,7 @@ namespace gpopt
 		private:
 
 			// columns from inner child used in correlated execution
-			ColRefArray *m_pdrgpcrInner;
+			CColRefArray *m_pdrgpcrInner;
 
 			// origin subquery id
 			EOperatorId m_eopidOriginSubq;
@@ -46,7 +46,7 @@ namespace gpopt
 			CPhysicalCorrelatedLeftOuterNLJoin
 				(
 				IMemoryPool *mp,
-				ColRefArray *pdrgpcrInner,
+				CColRefArray *pdrgpcrInner,
 				EOperatorId eopidOriginSubq
 				)
 				:
@@ -105,7 +105,7 @@ namespace gpopt
 				CExpressionHandle &exprhdl,
 				CDistributionSpec *pdsRequired,
 				ULONG child_index,
-				DrgPdp *pdrgpdpCtxt,
+				CDrvdPropArrays *pdrgpdpCtxt,
 				ULONG  ulOptReq
 				)
 				const
@@ -121,7 +121,7 @@ namespace gpopt
 				CExpressionHandle &exprhdl,
 				CRewindabilitySpec *prsRequired,
 				ULONG child_index,
-				DrgPdp *pdrgpdpCtxt,
+				CDrvdPropArrays *pdrgpdpCtxt,
 				ULONG ulOptReq
 				)
 				const
@@ -135,7 +135,7 @@ namespace gpopt
 				(
 				CReqdPropPlan *, // prppInput
 				ULONG,  // child_index
-				DrgPdp *, //pdrgpdpCtxt
+				CDrvdPropArrays *, //pdrgpdpCtxt
 				ULONG // ulOptReq
 				)
 			{
@@ -151,7 +151,7 @@ namespace gpopt
 
 			// return required inner columns
 			virtual
-			ColRefArray *PdrgPcrInner() const
+			CColRefArray *PdrgPcrInner() const
 			{
 				return m_pdrgpcrInner;
 			}

@@ -54,7 +54,7 @@ namespace gpopt
 				ULONG ulOriginOpId,
 				const CName *pnameTableAlias,
 				ULONG ulPartIndex,
-				ColRefArray *pdrgpcrOutput,
+				CColRefArray *pdrgpcrOutput,
 				ColRefArrays *pdrgpdrgpcrPart,
 				ULONG ulSecondaryPartIndexId,
 				BOOL is_partial,
@@ -134,7 +134,7 @@ namespace gpopt
 				(
 				IMemoryPool *mp,
 				CExpressionHandle &exprhdl,
-				StatsArray *stats_ctxt
+				IStatsArray *stats_ctxt
 				)
 				const;
 

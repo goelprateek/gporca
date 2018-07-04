@@ -32,11 +32,11 @@ using namespace gpopt;
 CPhysicalScalarAgg::CPhysicalScalarAgg
 	(
 	IMemoryPool *mp,
-	ColRefArray *colref_array,
-	ColRefArray *pdrgpcrMinimal,
+	CColRefArray *colref_array,
+	CColRefArray *pdrgpcrMinimal,
 	COperator::EGbAggType egbaggtype,
 	BOOL fGeneratesDuplicates,
-	ColRefArray *pdrgpcrArgDQA,
+	CColRefArray *pdrgpcrArgDQA,
 	BOOL fMultiStage
 	)
 	:
@@ -75,7 +75,7 @@ CPhysicalScalarAgg::PosRequired
 	child_index
 #endif // GPOS_DEBUG
 	,
-	DrgPdp *, // pdrgpdpCtxt
+	CDrvdPropArrays *, // pdrgpdpCtxt
 	ULONG // ulOptReq
 	)
 	const

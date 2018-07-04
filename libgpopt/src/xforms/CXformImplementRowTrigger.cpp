@@ -91,13 +91,13 @@ CXformImplementRowTrigger::Transform
 
 	INT type = popRowTrigger->GetType();
 
-	ColRefArray *pdrgpcrOld = popRowTrigger->PdrgpcrOld();
+	CColRefArray *pdrgpcrOld = popRowTrigger->PdrgpcrOld();
 	if (NULL != pdrgpcrOld)
 	{
 		pdrgpcrOld->AddRef();
 	}
 
-	ColRefArray *pdrgpcrNew = popRowTrigger->PdrgpcrNew();
+	CColRefArray *pdrgpcrNew = popRowTrigger->PdrgpcrNew();
 	if (NULL != pdrgpcrNew)
 	{
 		pdrgpcrNew->AddRef();

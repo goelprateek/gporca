@@ -33,7 +33,7 @@ namespace gpdxl
 	{
 	private:
 		// list of window specification
-		DXLWindowSpecArray *m_window_spec_array;
+		CDXLWindowSpecArray *m_window_spec_array;
 
 		// private copy ctor
 		CParseHandlerLogicalWindow(const CParseHandlerLogicalWindow &);

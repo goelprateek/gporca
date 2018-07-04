@@ -39,7 +39,7 @@ namespace gpopt
 		public:
 
 			// ctor
-			CLogicalLeftOuterCorrelatedApply(IMemoryPool *mp, ColRefArray *pdrgpcrInner, EOperatorId eopidOriginSubq);
+			CLogicalLeftOuterCorrelatedApply(IMemoryPool *mp, CColRefArray *pdrgpcrInner, EOperatorId eopidOriginSubq);
 
 			// ctor for patterns
 			explicit

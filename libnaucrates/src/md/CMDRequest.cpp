@@ -28,8 +28,8 @@ using namespace gpmd;
 //
 //---------------------------------------------------------------------------
 CMDRequest::CMDRequest(IMemoryPool *mp,
-					   MdidPtrArray *mdid_array,
-					   MDTypeRequestPtrArray *mdtype_request_array)
+					   IMdIdArray *mdid_array,
+					   SMDTypeRequestArray *mdtype_request_array)
 	: m_mp(mp),
 	  m_mdid_array(mdid_array),
 	  m_mdtype_request_array(mdtype_request_array)
@@ -53,8 +53,8 @@ CMDRequest::CMDRequest(IMemoryPool *mp, SMDTypeRequest *md_type_request)
 	GPOS_ASSERT(NULL != mp);
 	GPOS_ASSERT(NULL != md_type_request);
 
-	m_mdid_array = GPOS_NEW(m_mp) MdidPtrArray(m_mp);
-	m_mdtype_request_array = GPOS_NEW(m_mp) MDTypeRequestPtrArray(m_mp);
+	m_mdid_array = GPOS_NEW(m_mp) IMdIdArray(m_mp);
+	m_mdtype_request_array = GPOS_NEW(m_mp) SMDTypeRequestArray(m_mp);
 
 	m_mdtype_request_array->Append(md_type_request);
 }

@@ -204,21 +204,21 @@ CMCVTest::EresUnittest_MergeHistMCV()
 		CMDAccessor *md_accessor = COptCtxt::PoctxtFromTLS()->Pmda();
 
 		// parse the stats objects
-		DXLStatsDerivedRelArray *pdrgpdxlstatsderrelMCV = CDXLUtils::ParseDXLToStatsDerivedRelArray(mp, szDXLInputMCV, NULL);
-		DXLStatsDerivedRelArray *pdrgpdxlstatsderrelHist = CDXLUtils::ParseDXLToStatsDerivedRelArray(mp, szDXLInputHist, NULL);
+		CDXLStatsDerivedRelationArray *pdrgpdxlstatsderrelMCV = CDXLUtils::ParseDXLToStatsDerivedRelArray(mp, szDXLInputMCV, NULL);
+		CDXLStatsDerivedRelationArray *pdrgpdxlstatsderrelHist = CDXLUtils::ParseDXLToStatsDerivedRelArray(mp, szDXLInputHist, NULL);
 
 		GPOS_CHECK_ABORT;
 
 		CDXLStatsDerivedRelation *pdxlstatsderrelMCV = (*pdrgpdxlstatsderrelMCV)[0];
-		const DXLStatsDerivedColArray *pdrgpdxlstatsdercolMCV = pdxlstatsderrelMCV->GetDXLStatsDerivedColArray();
+		const CDXLStatsDerivedColumnArray *pdrgpdxlstatsdercolMCV = pdxlstatsderrelMCV->GetDXLStatsDerivedColArray();
 		CDXLStatsDerivedColumn *pdxlstatsdercolMCV = (*pdrgpdxlstatsdercolMCV)[0];
-		BucketArray *pdrgppbucketMCV = CDXLUtils::ParseDXLToBucketsArray(mp, md_accessor, pdxlstatsdercolMCV);
+		CBucketArray *pdrgppbucketMCV = CDXLUtils::ParseDXLToBucketsArray(mp, md_accessor, pdxlstatsdercolMCV);
 		CHistogram *phistMCV =  GPOS_NEW(mp) CHistogram(pdrgppbucketMCV);
 
 		CDXLStatsDerivedRelation *pdxlstatsderrelHist = (*pdrgpdxlstatsderrelHist)[0];
-		const DXLStatsDerivedColArray *pdrgpdxlstatsdercolHist = pdxlstatsderrelHist->GetDXLStatsDerivedColArray();
+		const CDXLStatsDerivedColumnArray *pdrgpdxlstatsdercolHist = pdxlstatsderrelHist->GetDXLStatsDerivedColArray();
 		CDXLStatsDerivedColumn *pdxlstatsdercolHist = (*pdrgpdxlstatsdercolHist)[0];
-		BucketArray *pdrgppbucketHist = CDXLUtils::ParseDXLToBucketsArray(mp, md_accessor, pdxlstatsdercolHist);
+		CBucketArray *pdrgppbucketHist = CDXLUtils::ParseDXLToBucketsArray(mp, md_accessor, pdxlstatsdercolHist);
 		CHistogram *phistHist =  GPOS_NEW(mp) CHistogram(pdrgppbucketHist);
 
 		GPOS_CHECK_ABORT;

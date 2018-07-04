@@ -36,7 +36,7 @@ namespace gpdxl
 		BOOL m_has_param_list;
 
 		// array of outer column references
-		DXLColRefArray *m_dxl_colref_array;
+		CDXLColRefArray *m_dxl_colref_array;
 
 		// private copy ctor
 		CParseHandlerScalarSubPlanParamList(const CParseHandlerScalarSubPlanParamList &);
@@ -64,7 +64,7 @@ namespace gpdxl
 		virtual ~CParseHandlerScalarSubPlanParamList();
 
 		// return param column references
-		DXLColRefArray *
+		CDXLColRefArray *
 		GetDXLColRefArray() const
 		{
 			return m_dxl_colref_array;

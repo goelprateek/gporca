@@ -127,8 +127,8 @@ CJoinOrderDP::SComponentPair::~SComponentPair()
 CJoinOrderDP::CJoinOrderDP
 	(
 	IMemoryPool *mp,
-	ExpressionArray *pdrgpexprComponents,
-	ExpressionArray *pdrgpexprConjuncts
+	CExpressionArray *pdrgpexprComponents,
+	CExpressionArray *pdrgpexprConjuncts
 	)
 	:
 	CJoinOrder(mp, pdrgpexprComponents, pdrgpexprConjuncts)
@@ -136,7 +136,7 @@ CJoinOrderDP::CJoinOrderDP
 	m_phmcomplink = GPOS_NEW(mp) ComponentPairToExpressionMap(mp);
 	m_phmbsexpr = GPOS_NEW(mp) BitSetToExpressionMap(mp);
 	m_phmexprcost = GPOS_NEW(mp) ExpressionToCostMap(mp);
-	m_pdrgpexprTopKOrders = GPOS_NEW(mp) ExpressionArray(mp);
+	m_pdrgpexprTopKOrders = GPOS_NEW(mp) CExpressionArray(mp);
 	m_pexprDummy = GPOS_NEW(mp) CExpression(mp, GPOS_NEW(mp) CPatternLeaf(mp));
 
 #ifdef GPOS_DEBUG
@@ -521,7 +521,7 @@ CJoinOrderDP::PexprBestJoinOrderDP
 	CDouble dMinCost(0.0);
 	CExpression *pexprResult = NULL;
 
-	BitSetArray *pdrgpbsSubsets = PdrgpbsSubsets(m_mp, pbs);
+	CBitSetArray *pdrgpbsSubsets = PdrgpbsSubsets(m_mp, pbs);
 	const ULONG ulSubsets = pdrgpbsSubsets->Size();
 	for (ULONG ul = 0; ul < ulSubsets; ul++)
 	{
@@ -603,7 +603,7 @@ CJoinOrderDP::GenerateSubsets
 	ULONG *pulElems,
 	ULONG size,
 	ULONG ulIndex,
-	BitSetArray *pdrgpbsSubsets
+	CBitSetArray *pdrgpbsSubsets
 	)
 {
 	GPOS_CHECK_STACK_SIZE;
@@ -639,7 +639,7 @@ CJoinOrderDP::GenerateSubsets
 //		 Driver of subset generation
 //
 //---------------------------------------------------------------------------
-BitSetArray *
+CBitSetArray *
 CJoinOrderDP::PdrgpbsSubsets
 	(
 	IMemoryPool *mp,
@@ -656,7 +656,7 @@ CJoinOrderDP::PdrgpbsSubsets
 	}
 
 	CBitSet *pbsCurrent = GPOS_NEW(mp) CBitSet(mp);
-	BitSetArray *pdrgpbsSubsets = GPOS_NEW(mp) BitSetArray(mp);
+	CBitSetArray *pdrgpbsSubsets = GPOS_NEW(mp) CBitSetArray(mp);
 	GenerateSubsets(mp, pbsCurrent, pulElems, size, 0, pdrgpbsSubsets);
 	GPOS_DELETE_ARRAY(pulElems);
 
@@ -960,7 +960,7 @@ CJoinOrderDP::PexprBuildPred
 	CExpression *pexprPred = NULL;
 	if (0 < pbsEdges->Size())
 	{
-		ExpressionArray *pdrgpexpr = GPOS_NEW(m_mp) ExpressionArray(m_mp);
+		CExpressionArray *pdrgpexpr = GPOS_NEW(m_mp) CExpressionArray(m_mp);
 		CBitSetIter bsi(*pbsEdges);
 		while (bsi.Advance())
 		{

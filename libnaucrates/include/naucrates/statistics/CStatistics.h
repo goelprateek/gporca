@@ -120,7 +120,7 @@ namespace gpnaucrates
 
 		// array of upper bound of ndv per source;
 		// source can be one of the following operators: like Get, Group By, and Project
-		UpperBoundNDVPtrArray *m_src_upper_bound_NDVs;
+		CUpperBoundNDVPtrArray *m_src_upper_bound_NDVs;
 
 		// mutex for locking entry when accessing hashmap from source id -> upper bound of source cardinality
 		CMutex m_src_upper_bound_mapping_mutex;
@@ -220,18 +220,18 @@ namespace gpnaucrates
 		// inner join with another stats structure
 		virtual CStatistics *CalcInnerJoinStats(IMemoryPool *mp,
 												const IStatistics *other_stats,
-												StatsPredJoinArray *join_preds_stats) const;
+												CStatsPredJoinArray *join_preds_stats) const;
 
 		// LOJ with another stats structure
 		virtual CStatistics *CalcLOJoinStats(IMemoryPool *mp,
 											 const IStatistics *other_stats,
-											 StatsPredJoinArray *join_preds_stats) const;
+											 CStatsPredJoinArray *join_preds_stats) const;
 
 		// left anti semi join with another stats structure
 		virtual CStatistics *CalcLASJoinStats(
 			IMemoryPool *mp,
 			const IStatistics *other_stats,
-			StatsPredJoinArray *join_preds_stats,
+			CStatsPredJoinArray *join_preds_stats,
 			BOOL
 				DoIgnoreLASJHistComputation  // except for the case of LOJ cardinality estimation this flag is always
 			// "true" since LASJ stats computation is very aggressive
@@ -240,7 +240,7 @@ namespace gpnaucrates
 		// semi join stats computation
 		virtual CStatistics *CalcLSJoinStats(IMemoryPool *mp,
 											 const IStatistics *inner_side_stats,
-											 StatsPredJoinArray *join_preds_stats) const;
+											 CStatsPredJoinArray *join_preds_stats) const;
 
 		// return required props associated with stats object
 		virtual CReqdPropRelational *GetReqdRelationalProps(IMemoryPool *mp) const;
@@ -302,7 +302,7 @@ namespace gpnaucrates
 			return m_stats_conf;
 		}
 
-		UpperBoundNDVPtrArray *
+		CUpperBoundNDVPtrArray *
 		GetUpperBoundNDVs() const
 		{
 			return m_src_upper_bound_NDVs;

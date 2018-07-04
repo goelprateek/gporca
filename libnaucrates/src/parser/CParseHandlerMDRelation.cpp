@@ -258,9 +258,9 @@ CParseHandlerMDRelation::EndElement(const XMLCh *const,  // element_uri,
 
 	// refcount child objects
 	MDColumnPtrArray *md_col_array = md_cols_parse_handler->GetMdColArray();
-	MDIndexInfoPtrArray *md_index_info_array = pphMdlIndexInfo->GetMdIndexInfoArray();
-	MdidPtrArray *mdid_triggers_array = pphMdidlTriggers->GetMdIdArray();
-	MdidPtrArray *mdid_check_constraint_array = pphMdidlCheckConstraints->GetMdIdArray();
+	CMDIndexInfoArray *md_index_info_array = pphMdlIndexInfo->GetMdIndexInfoArray();
+	IMdIdArray *mdid_triggers_array = pphMdidlTriggers->GetMdIdArray();
+	IMdIdArray *mdid_check_constraint_array = pphMdidlCheckConstraints->GetMdIdArray();
 
 	md_col_array->AddRef();
 	md_index_info_array->AddRef();

@@ -28,7 +28,7 @@ CFilterStatsProcessor::MakeStatsFilterForScalarExpr(
 	IStatistics *child_stats,
 	CExpression *local_scalar_expr,		  // filter expression on local columns only
 	CExpression *outer_refs_scalar_expr,  // filter expression involving outer references
-	StatsArray *all_outer_stats)
+	IStatsArray *all_outer_stats)
 {
 	GPOS_ASSERT(NULL != child_stats);
 	GPOS_ASSERT(NULL != local_scalar_expr);

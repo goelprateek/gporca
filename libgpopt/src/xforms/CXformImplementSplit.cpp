@@ -88,10 +88,10 @@ CXformImplementSplit::Transform
 	IMemoryPool *mp = pxfctxt->Pmp();
 
 	// extract components for alternative
-	ColRefArray *pdrgpcrDelete = popSplit->PdrgpcrDelete();
+	CColRefArray *pdrgpcrDelete = popSplit->PdrgpcrDelete();
 	pdrgpcrDelete->AddRef();
 
-	ColRefArray *pdrgpcrInsert = popSplit->PdrgpcrInsert();
+	CColRefArray *pdrgpcrInsert = popSplit->PdrgpcrInsert();
 	pdrgpcrInsert->AddRef();
 
 	CColRef *pcrAction = popSplit->PcrAction();

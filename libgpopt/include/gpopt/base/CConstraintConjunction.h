@@ -35,7 +35,7 @@ namespace gpopt
 		private:
 
 			// array of constraints
-			ConstraintArray *m_pdrgpcnstr;
+			CConstraintArray *m_pdrgpcnstr;
 
 			// mapping colref -> array of child constraints
 			ColRefToConstraintArrayMap *m_phmcolconstr;
@@ -46,7 +46,7 @@ namespace gpopt
 		public:
 
 			// ctor
-			CConstraintConjunction(IMemoryPool *mp, ConstraintArray *pdrgpcnstr);
+			CConstraintConjunction(IMemoryPool *mp, CConstraintArray *pdrgpcnstr);
 
 			// dtor
 			virtual
@@ -60,7 +60,7 @@ namespace gpopt
 			}
 
 			// all constraints in conjunction
-			ConstraintArray *Pdrgpcnstr() const
+			CConstraintArray *Pdrgpcnstr() const
 			{
 				return m_pdrgpcnstr;
 			}

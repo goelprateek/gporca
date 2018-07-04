@@ -78,13 +78,13 @@ namespace gpopt
 			CReqdProp *m_prp;
 
 			// array of children's derived properties
-			DrgPdp *m_pdrgpdp;
+			CDrvdPropArrays *m_pdrgpdp;
 
 			// array of children's derived stats
-			StatsArray *m_pdrgpstat;
+			IStatsArray *m_pdrgpstat;
 
 			// array of children's required properties
-			ReqdPropArray *m_pdrgprp;
+			CReqdPropArray *m_pdrgprp;
 
 			// private copy ctor
 			CExpressionHandle(const CExpressionHandle &);
@@ -103,7 +103,7 @@ namespace gpopt
 			void DerivePlanProps(CDrvdPropCtxtPlan *pdpctxtplan);
 
 			// return an array of stats objects starting from the first stats object referenced by child
-			StatsArray *PdrgpstatOuterRefs(StatsArray *statistics_array, ULONG child_index) const;
+			IStatsArray *PdrgpstatOuterRefs(IStatsArray *statistics_array, ULONG child_index) const;
 
 			// check if stats are derived for attached expression and its children
 			BOOL FStatsDerived() const;
@@ -115,7 +115,7 @@ namespace gpopt
 			BOOL FAttachedToLeafPattern() const;
 
 			// stat derivation at root operator where handle is attached
-			void DeriveRootStats(StatsArray *stats_ctxt);
+			void DeriveRootStats(IStatsArray *stats_ctxt);
 
 		public:
 		
@@ -139,13 +139,13 @@ namespace gpopt
 			void DeriveProps(CDrvdPropCtxt *pdpctxt);
 
 			// recursive stats derivation
-			void DeriveStats(StatsArray *stats_ctxt, BOOL fComputeRootStats = true);
+			void DeriveStats(IStatsArray *stats_ctxt, BOOL fComputeRootStats = true);
 
 			// stats derivation for attached cost context
 			void DeriveCostContextStats();
 
 			// stats derivation using given properties and context
-			void DeriveStats(IMemoryPool *pmpLocal, IMemoryPool *pmpGlobal, CReqdPropRelational *prprel, StatsArray *stats_ctxt);
+			void DeriveStats(IMemoryPool *pmpLocal, IMemoryPool *pmpGlobal, CReqdPropRelational *prprel, IStatsArray *stats_ctxt);
 
 			// derive the properties of the plan carried by attached cost context
 			void DerivePlanProps();
@@ -154,13 +154,13 @@ namespace gpopt
 			void InitReqdProps(CReqdProp *prpInput);
 
 			// compute required properties of the n-th child
-			void ComputeChildReqdProps(ULONG child_index, DrgPdp *pdrgpdpCtxt, ULONG ulOptReq);
+			void ComputeChildReqdProps(ULONG child_index, CDrvdPropArrays *pdrgpdpCtxt, ULONG ulOptReq);
 
 			// copy required properties of the n-th child
 			void CopyChildReqdProps(ULONG child_index, CReqdProp *prp);
 
 			// compute required columns of the n-th child
-			void ComputeChildReqdCols(ULONG child_index, DrgPdp *pdrgpdpCtxt);
+			void ComputeChildReqdCols(ULONG child_index, CDrvdPropArrays *pdrgpdpCtxt);
 
 			// required properties computation of all children
 			void ComputeReqdProps(CReqdProp *prpInput, ULONG ulOptReq);

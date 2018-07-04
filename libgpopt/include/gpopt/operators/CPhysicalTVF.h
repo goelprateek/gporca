@@ -43,7 +43,7 @@ namespace gpopt
 			const IMDFunction *m_pmdfunc;
 
 			// array of column descriptors: the schema of the function result
-			ColumnDescrArray *m_pdrgpcoldesc;
+			CColumnDescrArray *m_pdrgpcoldesc;
 
 			// output columns
 			CColRefSet *m_pcrsOutput;
@@ -60,7 +60,7 @@ namespace gpopt
 				IMDId *mdid_func,
 				IMDId *mdid_return_type,
 				CWStringConst *str,
-				ColumnDescrArray *pdrgpcoldesc,
+				CColumnDescrArray *pdrgpcoldesc,
 				CColRefSet *pcrsOutput
 				);
 
@@ -101,7 +101,7 @@ namespace gpopt
 			}
 
 			// col descr accessor
-			ColumnDescrArray *Pdrgpcoldesc() const
+			CColumnDescrArray *Pdrgpcoldesc() const
 			{
 				return m_pdrgpcoldesc;
 			}
@@ -131,7 +131,7 @@ namespace gpopt
 				CExpressionHandle &exprhdl,
 				CColRefSet *pcrsRequired,
 				ULONG child_index,
-				DrgPdp *pdrgpdpCtxt,
+				CDrvdPropArrays *pdrgpdpCtxt,
 				ULONG ulOptReq
 				);
 
@@ -143,7 +143,7 @@ namespace gpopt
 				CExpressionHandle &exprhdl,
 				CCTEReq *pcter,
 				ULONG child_index,
-				DrgPdp *pdrgpdpCtxt,
+				CDrvdPropArrays *pdrgpdpCtxt,
 				ULONG ulOptReq
 				)
 				const;
@@ -156,7 +156,7 @@ namespace gpopt
 				CExpressionHandle &exprhdl,
 				COrderSpec *posRequired,
 				ULONG child_index,
-				DrgPdp *pdrgpdpCtxt,
+				CDrvdPropArrays *pdrgpdpCtxt,
 				ULONG ulOptReq
 				)
 				const;
@@ -169,7 +169,7 @@ namespace gpopt
 				CExpressionHandle &exprhdl,
 				CDistributionSpec *pdsRequired,
 				ULONG child_index,
-				DrgPdp *pdrgpdpCtxt,
+				CDrvdPropArrays *pdrgpdpCtxt,
 				ULONG ulOptReq
 				)
 				const;
@@ -182,7 +182,7 @@ namespace gpopt
 				CExpressionHandle &exprhdl,
 				CRewindabilitySpec *prsRequired,
 				ULONG child_index,
-				DrgPdp *pdrgpdpCtxt,
+				CDrvdPropArrays *pdrgpdpCtxt,
 				ULONG ulOptReq
 				)
 				const;
@@ -195,7 +195,7 @@ namespace gpopt
 				CExpressionHandle &, //exprhdl,
 				CPartitionPropagationSpec *, //pppsRequired,
 				ULONG , //child_index,
-				DrgPdp *, //pdrgpdpCtxt,
+				CDrvdPropArrays *, //pdrgpdpCtxt,
 				ULONG //ulOptReq
 				)
 			{

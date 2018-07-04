@@ -62,8 +62,8 @@ namespace gpopt
 			class CTreeNode;
 
 			// arrays of internal nodes
-			typedef CDynamicPtrArray<CTreeNode, CleanupNULL> DrgPtn;
-			typedef CDynamicPtrArray<DrgPtn, CleanupRelease> DrgDrgPtn;
+			typedef CDynamicPtrArray<CTreeNode, CleanupNULL> CTreeNodeArray;
+			typedef CDynamicPtrArray<CTreeNodeArray, CleanupRelease> CTreeNodeArrays;
 
 			//---------------------------------------------------------------------------
 			//	@class:
@@ -174,7 +174,7 @@ namespace gpopt
 					const T *m_value;
 					
 					// array of children arrays
-					DrgDrgPtn *m_pdrgdrgptn;
+					CTreeNodeArrays *m_pdrgdrgptn;
 					
 					// number of trees rooted in this node
 					ULLONG m_ullCount;
@@ -210,7 +210,7 @@ namespace gpopt
                         GPOS_CHECK_STACK_SIZE;
                         GPOS_ASSERT(ullRank < UllCount(ulChild));
 
-                        DrgPtn *pdrgptn = (*m_pdrgdrgptn)[ulChild];
+                        CTreeNodeArray *pdrgptn = (*m_pdrgdrgptn)[ulChild];
                         ULONG ulCandidates = pdrgptn->Size();
 
                         CTreeNode *ptn = NULL;
@@ -246,7 +246,7 @@ namespace gpopt
                         m_ulIncoming(0),
                         m_ens(EnsUncounted)
                     {
-                        m_pdrgdrgptn = GPOS_NEW(mp) DrgDrgPtn(mp);
+                        m_pdrgdrgptn = GPOS_NEW(mp) CTreeNodeArrays(mp);
                     }
 					
 					// dtor
@@ -265,7 +265,7 @@ namespace gpopt
                         ULONG length = m_pdrgdrgptn->Size();
                         for (ULONG ul = length; ul <= ulPos; ul++)
                         {
-                            DrgPtn *pdrg = GPOS_NEW(m_mp) DrgPtn(m_mp);
+                            CTreeNodeArray *pdrg = GPOS_NEW(m_mp) CTreeNodeArray(m_mp);
                             m_pdrgdrgptn->Append(pdrg);
                         }
 
@@ -273,7 +273,7 @@ namespace gpopt
                         ptn->m_ulIncoming++;
 
                         // insert to appropriate array
-                        DrgPtn *pdrg = (*m_pdrgdrgptn)[ulPos];
+                        CTreeNodeArray *pdrg = (*m_pdrgdrgptn)[ulPos];
                         GPOS_ASSERT(NULL != pdrg);		
                         pdrg->Append(ptn);
                     }

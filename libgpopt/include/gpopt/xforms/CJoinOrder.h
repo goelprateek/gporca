@@ -131,8 +131,8 @@ namespace gpopt
 			CJoinOrder
 				(
 				IMemoryPool *mp,
-				ExpressionArray *pdrgpexprComponents,
-				ExpressionArray *pdrgpexprConjuncts
+				CExpressionArray *pdrgpexprComponents,
+				CExpressionArray *pdrgpexprConjuncts
 				);
 		
 			// dtor

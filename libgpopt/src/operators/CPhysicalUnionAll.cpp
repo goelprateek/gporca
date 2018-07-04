@@ -90,7 +90,7 @@ CPhysicalUnionAll::FInputOrderSensitive() const
 CPhysicalUnionAll::CPhysicalUnionAll
 	(
 		IMemoryPool *mp,
-		ColRefArray *pdrgpcrOutput,
+		CColRefArray *pdrgpcrOutput,
 		ColRefArrays *pdrgpdrgpcrInput,
 		ULONG ulScanIdPartialIndex
 	)
@@ -106,11 +106,11 @@ CPhysicalUnionAll::CPhysicalUnionAll
 	GPOS_ASSERT(NULL != pdrgpdrgpcrInput);
 
 	// build set representation of input columns
-	m_pdrgpcrsInput = GPOS_NEW(mp) ColRefSetArray(mp);
+	m_pdrgpcrsInput = GPOS_NEW(mp) CColRefSetArray(mp);
 	const ULONG arity = m_pdrgpdrgpcrInput->Size();
 	for (ULONG ulChild = 0; ulChild < arity; ulChild++)
 	{
-		ColRefArray *colref_array = (*m_pdrgpdrgpcrInput)[ulChild];
+		CColRefArray *colref_array = (*m_pdrgpdrgpcrInput)[ulChild];
 		m_pdrgpcrsInput->Append(GPOS_NEW(mp) CColRefSet(mp, colref_array));
 	}
 }
@@ -124,7 +124,7 @@ CPhysicalUnionAll::~CPhysicalUnionAll()
 }
 
 // accessor of output column array
-ColRefArray *
+CColRefArray *
 CPhysicalUnionAll::PdrgpcrOutput() const
 {
 	return m_pdrgpcrOutput;
@@ -209,7 +209,7 @@ CPhysicalUnionAll::PcrsRequired
 		CExpressionHandle &,//exprhdl,
 		CColRefSet *, //pcrsRequired,
 		ULONG child_index,
-		DrgPdp *, // pdrgpdpCtxt
+		CDrvdPropArrays *, // pdrgpdpCtxt
 		ULONG // ulOptReq
 	)
 {
@@ -238,7 +238,7 @@ CPhysicalUnionAll::PosRequired
 	child_index
 #endif // GPOS_DEBUG
 	,
-		DrgPdp *, // pdrgpdpCtxt
+		CDrvdPropArrays *, // pdrgpdpCtxt
 		ULONG // ulOptReq
 )
 const
@@ -265,7 +265,7 @@ CPhysicalUnionAll::PrsRequired
 		CExpressionHandle &exprhdl,
 		CRewindabilitySpec *prsRequired,
 		ULONG child_index,
-		DrgPdp *, // pdrgpdpCtxt
+		CDrvdPropArrays *, // pdrgpdpCtxt
 		ULONG // ulOptReq
 	)
 const
@@ -290,7 +290,7 @@ CPhysicalUnionAll::PppsRequired
 		CExpressionHandle &exprhdl,
 		CPartitionPropagationSpec *pppsRequired,
 		ULONG child_index,
-		DrgPdp *, //pdrgpdpCtxt,
+		CDrvdPropArrays *, //pdrgpdpCtxt,
 		ULONG //ulOptReq
 	)
 {
@@ -325,7 +325,7 @@ CPhysicalUnionAll::PcteRequired
 		CExpressionHandle &exprhdl,
 		CCTEReq *pcter,
 		ULONG child_index,
-		DrgPdp *pdrgpdpCtxt,
+		CDrvdPropArrays *pdrgpdpCtxt,
 		ULONG //ulOptReq
 	)
 const
@@ -706,7 +706,7 @@ const
 
 	GPOS_ASSERT(num_cols <= PdrgpcrOutput()->Size());
 
-	ExpressionArray *pdrgpexpr = GPOS_NEW(mp) ExpressionArray(mp);
+	CExpressionArray *pdrgpexpr = GPOS_NEW(mp) CExpressionArray(mp);
 	for (ULONG ulCol = 0; ulCol < num_cols; ulCol++)
 	{
 		ULONG idx = *(*pdrgpulOuter)[ulCol];
@@ -737,12 +737,12 @@ CPhysicalUnionAll::PdshashedPassThru
 	)
 const
 {
-	ExpressionArray *pdrgpexprRequired = pdshashedRequired->Pdrgpexpr();
-	ColRefArray *pdrgpcrChild = (*PdrgpdrgpcrInput())[child_index];
+	CExpressionArray *pdrgpexprRequired = pdshashedRequired->Pdrgpexpr();
+	CColRefArray *pdrgpcrChild = (*PdrgpdrgpcrInput())[child_index];
 	const ULONG ulExprs = pdrgpexprRequired->Size();
 	const ULONG ulOutputCols = PdrgpcrOutput()->Size();
 
-	ExpressionArray *pdrgpexprChildRequired = GPOS_NEW(mp) ExpressionArray(mp);
+	CExpressionArray *pdrgpexprChildRequired = GPOS_NEW(mp) CExpressionArray(mp);
 	for (ULONG ulExpr = 0; ulExpr < ulExprs; ulExpr++)
 	{
 		CExpression *pexpr = (*pdrgpexprRequired)[ulExpr];
@@ -863,14 +863,14 @@ ULongPtrArray *
 CPhysicalUnionAll::PdrgpulMap
 	(
 		IMemoryPool *mp,
-		ExpressionArray *pdrgpexpr,
+		CExpressionArray *pdrgpexpr,
 		ULONG child_index
 	)
 const
 {
 	GPOS_ASSERT(NULL != pdrgpexpr);
 
-	ColRefArray *colref_array = (*PdrgpdrgpcrInput())[child_index];
+	CColRefArray *colref_array = (*PdrgpdrgpcrInput())[child_index];
 	const ULONG ulExprs = pdrgpexpr->Size();
 	const ULONG num_cols = colref_array->Size();
 	ULongPtrArray *pdrgpul = GPOS_NEW(mp) ULongPtrArray(mp);

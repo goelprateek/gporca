@@ -55,7 +55,7 @@ namespace gpopt
 			CQueryContext *m_pqc;
 
 			// search strategy
-			SearchStageArray *m_search_stage_array;
+			CSearchStageArray *m_search_stage_array;
 
 			// index of current search stage
 			ULONG m_ulCurrSearchStage;
@@ -116,8 +116,8 @@ namespace gpopt
 				COptimizationContext *pocOrigin, // optimization context of parent operator
 				CExpressionHandle &exprhdlPlan, // handle to compute required plan properties
 				CExpressionHandle &exprhdlRel, // handle to compute required relational properties
-				DrgPdp *pdrgpdpChildren, // derived plan properties of optimized children
-				StatsArray *pdrgpstatCurrentCtxt,
+				CDrvdPropArrays *pdrgpdpChildren, // derived plan properties of optimized children
+				IStatsArray *pdrgpstatCurrentCtxt,
 				ULONG child_index,
 				ULONG ulOptReq
 				);
@@ -128,14 +128,14 @@ namespace gpopt
 				CExpressionHandle &exprhdl,
 				CExpressionHandle &exprhdlRel,
 				COptimizationContext *pocOrigin,
-				DrgPdp *pdrgpdp,
-				StatsArray *pdrgpstatCurrentCtxt,
+				CDrvdPropArrays *pdrgpdp,
+				IStatsArray *pdrgpstatCurrentCtxt,
 				ULONG child_index,
 				ULONG ulOptReq
 				);
 
 			// optimize child groups of a given group expression
-			OptimizationContextArray *PdrgpocOptimizeChildren(CExpressionHandle &exprhdl, COptimizationContext *pocOrigin, ULONG ulOptReq);
+			COptimizationContextArray *PdrgpocOptimizeChildren(CExpressionHandle &exprhdl, COptimizationContext *pocOrigin, ULONG ulOptReq);
 
 			// optimize group expression under a given context
 			void OptimizeGroupExpression(CGroupExpression *pgexpr, COptimizationContext *poc);
@@ -189,7 +189,7 @@ namespace gpopt
 			void SamplePlans();
 
 			// check if all children were successfully optimized
-			BOOL FChildrenOptimized(OptimizationContextArray *pdrgpoc);
+			BOOL FChildrenOptimized(COptimizationContextArray *pdrgpoc);
 
 			// check if ayn of the given property enforcing types prohibits enforcement
 			static
@@ -247,7 +247,7 @@ namespace gpopt
 			void Init
 				(
 				CQueryContext *pqc,
-				SearchStageArray *search_stage_array
+				CSearchStageArray *search_stage_array
 				);
 
 			// accessor of memo's root group
@@ -285,7 +285,7 @@ namespace gpopt
 				);
 
 			// add enforcers to the memo
-			void AddEnforcers(CGroupExpression *pgexprChild, ExpressionArray *pdrgpexprEnforcers);
+			void AddEnforcers(CGroupExpression *pgexprChild, CExpressionArray *pdrgpexprEnforcers);
 
 			// extract a physical plan from the memo
 			CExpression *PexprExtractPlan();
@@ -307,7 +307,7 @@ namespace gpopt
 				CGroupExpression *pgexpr,
 				COptimizationContext *poc,
 				ULONG ulOptReq,
-				OptimizationContextArray *pdrgpoc
+				COptimizationContextArray *pdrgpoc
 				);
 
 			// check if the given expression has valid cte and partition properties
@@ -399,7 +399,7 @@ namespace gpopt
 			}
 
 			// return array of child optimization contexts corresponding to handle requirements
-			OptimizationContextArray *PdrgpocChildren(IMemoryPool *mp, CExpressionHandle &exprhdl);
+			COptimizationContextArray *PdrgpocChildren(IMemoryPool *mp, CExpressionHandle &exprhdl);
 
 			// build tree map on memo
 			MemoTreeMap *Pmemotmap();

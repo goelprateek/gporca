@@ -85,7 +85,7 @@ namespace gpopt
 				CExpression *pexprOuter = (*pexpr)[0];
 				CExpression *pexprInner = (*pexpr)[1];
 				CExpression *pexprScalar = (*pexpr)[2];
-				ColRefArray *colref_array = CLogicalIndexApply::PopConvert(pexpr->Pop())->PdrgPcrOuterRefs();
+				CColRefArray *colref_array = CLogicalIndexApply::PopConvert(pexpr->Pop())->PdrgPcrOuterRefs();
 				colref_array->AddRef();
 
 				// addref all components

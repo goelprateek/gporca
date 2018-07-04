@@ -78,10 +78,10 @@ CMinidumperUtils::PdxlmdLoad
 	CBitSet *pbs = parse_handler_dxl->Pbs();
 	COptimizerConfig *optimizer_config = parse_handler_dxl->GetOptimizerConfig();
 	CDXLNode *query = parse_handler_dxl->GetQueryDXLRoot();
-	DXLNodeArray *query_output_dxlnode_array = parse_handler_dxl->GetOutputColumnsDXLArray();
-	DXLNodeArray *cte_producers = parse_handler_dxl->GetCTEProducerDXLArray();
-	IMDCachePtrArray *mdcache_obj_array = parse_handler_dxl->GetMdIdCachedObjArray();
-	SysidPtrArray *pdrgpsysid = parse_handler_dxl->GetSysidPtrArray();
+	CDXLNodeArray *query_output_dxlnode_array = parse_handler_dxl->GetOutputColumnsDXLArray();
+	CDXLNodeArray *cte_producers = parse_handler_dxl->GetCTEProducerDXLArray();
+	IMDCacheObjectArray *mdcache_obj_array = parse_handler_dxl->GetMdIdCachedObjArray();
+	CSystemIdArray *pdrgpsysid = parse_handler_dxl->GetSysidPtrArray();
 	CDXLNode *pdxlnPlan = parse_handler_dxl->PdxlnPlan();
 	ULLONG plan_id = parse_handler_dxl->GetPlanId();
 	ULLONG plan_space_size = parse_handler_dxl->GetPlanSpaceSize();

@@ -87,7 +87,7 @@ CMDProviderTest::EresUnittest_Basic()
 	// test lookup with a memory-based provider
 	CHAR *dxl_string = CDXLUtils::Read(mp, file_name);
 
-	IMDCachePtrArray *mdcache_obj_array = CDXLUtils::ParseDXLToIMDObjectArray(mp, dxl_string, NULL /*xsd_file_path*/);
+	IMDCacheObjectArray *mdcache_obj_array = CDXLUtils::ParseDXLToIMDObjectArray(mp, dxl_string, NULL /*xsd_file_path*/);
 	
 	CMDProviderMemory *pmdpMemory = GPOS_NEW(mp) CMDProviderMemory(mp, mdcache_obj_array);
 	pmdpMemory->AddRef();

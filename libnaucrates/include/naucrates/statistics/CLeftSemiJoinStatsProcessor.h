@@ -21,7 +21,7 @@ namespace gpnaucrates
 		static CStatistics *CalcLSJoinStatsStatic(IMemoryPool *mp,
 												  const IStatistics *outer_stats,
 												  const IStatistics *inner_side_stats,
-												  StatsPredJoinArray *join_preds_stats);
+												  CStatsPredJoinArray *join_preds_stats);
 	};
 }  // namespace gpnaucrates
 

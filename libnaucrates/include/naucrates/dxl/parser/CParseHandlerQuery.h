@@ -37,10 +37,10 @@ namespace gpdxl
 		CDXLNode *m_dxlnode;
 
 		// list of output columns (represented as scalar ident nodes)
-		DXLNodeArray *m_output_colums_dxl_array;
+		CDXLNodeArray *m_output_colums_dxl_array;
 
 		// list of CTE priducers
-		DXLNodeArray *m_cte_producers;
+		CDXLNodeArray *m_cte_producers;
 
 		// private ctor
 		CParseHandlerQuery(const CParseHandlerQuery &);
@@ -70,10 +70,10 @@ namespace gpdxl
 		CDXLNode *CreateDXLNode() const;
 
 		// returns the dxl representation of the query output
-		DXLNodeArray *GetOutputColumnsDXLArray() const;
+		CDXLNodeArray *GetOutputColumnsDXLArray() const;
 
 		// returns the CTEs
-		DXLNodeArray *GetCTEProducerDXLArray() const;
+		CDXLNodeArray *GetCTEProducerDXLArray() const;
 
 		EDxlParseHandlerType GetParseHandlerType() const;
 	};

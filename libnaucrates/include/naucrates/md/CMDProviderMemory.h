@@ -51,14 +51,14 @@ namespace gpmd
 
 		// load MD objects in the hash map
 		void LoadMetadataObjectsFromArray(IMemoryPool *mp,
-										  IMDCachePtrArray *mdcache_obj_array);
+										  IMDCacheObjectArray *mdcache_obj_array);
 
 		// private copy ctor
 		CMDProviderMemory(const CMDProviderMemory &);
 
 	public:
 		// ctor
-		CMDProviderMemory(IMemoryPool *mp, IMDCachePtrArray *mdcache_obj_array);
+		CMDProviderMemory(IMemoryPool *mp, IMDCacheObjectArray *mdcache_obj_array);
 
 		// ctor
 		CMDProviderMemory(IMemoryPool *mp, const CHAR *file_name);

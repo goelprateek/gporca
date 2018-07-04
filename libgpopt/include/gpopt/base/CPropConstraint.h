@@ -38,7 +38,7 @@ namespace gpopt
 		private:
 
 			// array of equivalence classes
-			ColRefSetArray *m_pdrgpcrs;
+			CColRefSetArray *m_pdrgpcrs;
 
 			// mapping from column to equivalence class
 			ColRefToColRefSetMap *m_phmcrcrs;
@@ -55,14 +55,14 @@ namespace gpopt
 		public:
 
 			// ctor
-			CPropConstraint(IMemoryPool *mp, ColRefSetArray *pdrgpcrs, CConstraint *pcnstr);
+			CPropConstraint(IMemoryPool *mp, CColRefSetArray *pdrgpcrs, CConstraint *pcnstr);
 
 			// dtor
 			virtual
 			~CPropConstraint();
 
 			// equivalence classes
-			ColRefSetArray *PdrgpcrsEquivClasses() const
+			CColRefSetArray *PdrgpcrsEquivClasses() const
 			{
 				return m_pdrgpcrs;
 			}

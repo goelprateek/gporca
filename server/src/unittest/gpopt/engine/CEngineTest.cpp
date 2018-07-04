@@ -167,10 +167,10 @@ CEngineTest::EresOptimize
 					);
 
 		// generate cross product expressions
-		DrgPexprJoins *pdrgpexprCrossProducts = CTestUtils::PdrgpexprJoins(mp, str, pul, ulRels, true /*fCrossProduct*/);
+		CExpressionJoinsArray *pdrgpexprCrossProducts = CTestUtils::PdrgpexprJoins(mp, str, pul, ulRels, true /*fCrossProduct*/);
 
 		// generate join expressions
-		DrgPexprJoins *pdrgpexpr = CTestUtils::PdrgpexprJoins(mp, str, pul, ulRels, false  /*fCrossProduct*/);
+		CExpressionJoinsArray *pdrgpexpr = CTestUtils::PdrgpexprJoins(mp, str, pul, ulRels, false  /*fCrossProduct*/);
 
 		// build memo for each expression
 		for (ULONG ul = m_ulTestCounter; ul < ulRels; ul++)
@@ -403,7 +403,7 @@ CEngineTest::BuildMemoRecursive
 	(
 	IMemoryPool *mp,
 	CExpression *pexprInput,
-	SearchStageArray *search_stage_array
+	CSearchStageArray *search_stage_array
 	)
 {
 	CQueryContext *pqc = CTestUtils::PqcGenerate(mp, pexprInput);

@@ -37,7 +37,7 @@ namespace gpopt
 	using namespace gpnaucrates;
 
 	// dynamic array of cost model params
-	typedef CDynamicPtrArray<ICostModelParams::SCostParam, CleanupDelete> CostModelParamsArray;
+	typedef CDynamicPtrArray<ICostModelParams::SCostParam, CleanupDelete> ICostModelParamsArray;
 
 	//---------------------------------------------------------------------------
 	//	@class:
@@ -373,7 +373,7 @@ namespace gpopt
 			ECostModelType Ecmt() const = 0;
 			
 			// set cost model params
-			void SetParams(CostModelParamsArray *pdrgpcp);
+			void SetParams(ICostModelParamsArray *pdrgpcp);
 
 			// create a default cost model instance
 			static

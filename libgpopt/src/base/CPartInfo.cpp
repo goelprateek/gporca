@@ -29,7 +29,7 @@ CPartInfo::CPartInfoEntry::CPartInfoEntry
 	(
 	ULONG scan_id,
 	IMDId *mdid,
-	PartKeysArray *pdrgppartkeys,
+	CPartKeysArray *pdrgppartkeys,
 	CPartConstraint *ppartcnstrRel
 	)
 	:
@@ -79,7 +79,7 @@ CPartInfo::CPartInfoEntry::PpartinfoentryAddRemappedKeys
 	GPOS_ASSERT(NULL != pcrs);
 	GPOS_ASSERT(NULL != colref_mapping);
 
-    PartKeysArray *pdrgppartkeys = CPartKeys::PdrgppartkeysCopy(mp, m_pdrgppartkeys);
+    CPartKeysArray *pdrgppartkeys = CPartKeys::PdrgppartkeysCopy(mp, m_pdrgppartkeys);
 
 	const ULONG size = m_pdrgppartkeys->Size();
 	for (ULONG ul = 0; ul < size; ul++)
@@ -148,7 +148,7 @@ CPartInfo::CPartInfoEntry::PpartinfoentryCopy
 	mdid->AddRef();
 
 	// copy part keys
-	PartKeysArray *pdrgppartkeysCopy = CPartKeys::PdrgppartkeysCopy(mp, Pdrgppartkeys());
+	CPartKeysArray *pdrgppartkeysCopy = CPartKeys::PdrgppartkeysCopy(mp, Pdrgppartkeys());
 
 	// copy part constraint using empty remapping to get exact copy
 	UlongToColRefMap *colref_mapping = GPOS_NEW(mp) UlongToColRefMap(mp);
@@ -169,7 +169,7 @@ CPartInfo::CPartInfoEntry::PpartinfoentryCopy
 //---------------------------------------------------------------------------
 CPartInfo::CPartInfo
 	(
-	PartInfoEntryArray *pdrgppartentries
+	CPartInfoEntryArray *pdrgppartentries
 	)
 	:
 	m_pdrgppartentries(pdrgppartentries)
@@ -190,7 +190,7 @@ CPartInfo::CPartInfo
 	IMemoryPool *mp
 	)
 {
-	m_pdrgppartentries = GPOS_NEW(mp) PartInfoEntryArray(mp);
+	m_pdrgppartentries = GPOS_NEW(mp) CPartInfoEntryArray(mp);
 }
 
 //---------------------------------------------------------------------------
@@ -224,7 +224,7 @@ CPartInfo::AddPartConsumer
 	CPartConstraint *ppartcnstrRel
 	)
 {
-	PartKeysArray *pdrgppartkeys = GPOS_NEW(mp) PartKeysArray(mp);
+	CPartKeysArray *pdrgppartkeys = GPOS_NEW(mp) CPartKeysArray(mp);
 	pdrgppartkeys->Append(GPOS_NEW(mp) CPartKeys(pdrgpdrgpcrPart));
 
 	m_pdrgppartentries->Append(GPOS_NEW(mp) CPartInfoEntry(scan_id, mdid, pdrgppartkeys, ppartcnstrRel));
@@ -303,7 +303,7 @@ CPartInfo::GetRelMdId
 //		Return part keys of the entry at the given position
 //
 //---------------------------------------------------------------------------
-PartKeysArray *
+CPartKeysArray *
 CPartInfo::Pdrgppartkeys
 	(
 	ULONG ulPos
@@ -339,7 +339,7 @@ CPartInfo::Ppartcnstr
 //		Return part keys of the entry with the given scan id
 //
 //---------------------------------------------------------------------------
-PartKeysArray *
+CPartKeysArray *
 CPartInfo::PdrgppartkeysByScanId
 	(
 	ULONG scan_id
@@ -372,8 +372,8 @@ CPartInfo *
 CPartInfo::PpartinfoWithRemappedKeys
 	(
 	IMemoryPool *mp,
-	ColRefArray *pdrgpcrSrc,
-	ColRefArray *pdrgpcrDest
+	CColRefArray *pdrgpcrSrc,
+	CColRefArray *pdrgpcrDest
 	)
 	const
 {
@@ -383,7 +383,7 @@ CPartInfo::PpartinfoWithRemappedKeys
 	CColRefSet *pcrs = GPOS_NEW(mp) CColRefSet(mp, pdrgpcrSrc);
 	UlongToColRefMap *colref_mapping = CUtils::PhmulcrMapping(mp, pdrgpcrSrc, pdrgpcrDest);
 
-	PartInfoEntryArray *pdrgppartentries = GPOS_NEW(mp) PartInfoEntryArray(mp);
+	CPartInfoEntryArray *pdrgppartentries = GPOS_NEW(mp) CPartInfoEntryArray(mp);
 
 	const ULONG size = m_pdrgppartentries->Size();
 	for (ULONG ul = 0; ul < size; ul++)
@@ -421,7 +421,7 @@ CPartInfo::PpartinfoCombine
 	GPOS_ASSERT(NULL != ppartinfoFst);
 	GPOS_ASSERT(NULL != ppartinfoSnd);
 
-	PartInfoEntryArray *pdrgppartentries = GPOS_NEW(mp) PartInfoEntryArray(mp);
+	CPartInfoEntryArray *pdrgppartentries = GPOS_NEW(mp) CPartInfoEntryArray(mp);
 
 	// copy part entries from first part info object
 	CUtils::AddRefAppend(pdrgppartentries, ppartinfoFst->m_pdrgppartentries);
@@ -431,13 +431,13 @@ CPartInfo::PpartinfoCombine
 	for (ULONG ul = 0; ul < length; ul++)
 	{
 		CPartInfoEntry *ppartinfoentry = (*(ppartinfoSnd->m_pdrgppartentries))[ul];
-		PartKeysArray *pdrgppartkeys = ppartinfoFst->PdrgppartkeysByScanId(ppartinfoentry->ScanId());
+		CPartKeysArray *pdrgppartkeys = ppartinfoFst->PdrgppartkeysByScanId(ppartinfoentry->ScanId());
 
 		if (NULL != pdrgppartkeys)
 		{
 			// there is already an entry with the same scan id; need to add to it
 			// the keys from the current entry
-			PartKeysArray *pdrgppartkeysCopy = CPartKeys::PdrgppartkeysCopy(mp, ppartinfoentry->Pdrgppartkeys());
+			CPartKeysArray *pdrgppartkeysCopy = CPartKeys::PdrgppartkeysCopy(mp, ppartinfoentry->Pdrgppartkeys());
 			CUtils::AddRefAppend(pdrgppartkeys, pdrgppartkeysCopy);
 			pdrgppartkeysCopy->Release();
 		}
@@ -480,7 +480,7 @@ CPartInfo::OsPrint
 	os << ", Part Keys: ";
 	for (ULONG ulCons = 0; ulCons < length; ulCons++)
 	{
-		PartKeysArray *pdrgppartkeys = Pdrgppartkeys(ulCons);
+		CPartKeysArray *pdrgppartkeys = Pdrgppartkeys(ulCons);
 		os << "(";
 		const ULONG ulPartKeys = pdrgppartkeys->Size();;
 		for (ULONG ulPartKey = 0; ulPartKey < ulPartKeys; ulPartKey++)

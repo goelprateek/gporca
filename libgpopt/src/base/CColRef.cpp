@@ -129,7 +129,7 @@ ULongPtrArray *
 CColRef::Pdrgpul
 	(
 	IMemoryPool *mp,
-	ColRefArray *colref_array
+	CColRefArray *colref_array
 	)
 {
 	ULongPtrArray *pdrgpul = GPOS_NEW(mp) ULongPtrArray(mp);
@@ -154,8 +154,8 @@ CColRef::Pdrgpul
 BOOL
 CColRef::Equals
 	(
-	const ColRefArray *pdrgpcr1,
-	const ColRefArray *pdrgpcr2
+	const CColRefArray *pdrgpcr1,
+	const CColRefArray *pdrgpcr2
 	)
 {
 	if (NULL == pdrgpcr1 || NULL == pdrgpcr2)

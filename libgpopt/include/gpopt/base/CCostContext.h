@@ -35,7 +35,7 @@ namespace gpopt
 	class CCostContext;
 
 	// array of cost contexts
-	typedef CDynamicPtrArray<CCostContext, CleanupRelease> CostContextArray;
+	typedef CDynamicPtrArray<CCostContext, CleanupRelease> CCostContextArray;
 
 	// cost context pointer definition
 	typedef  CCostContext * COSTCTXT_PTR;
@@ -85,7 +85,7 @@ namespace gpopt
 			CGroupExpression *m_pgexprForStats;
 
 			// array of optimization contexts of child groups
-			OptimizationContextArray *m_pdrgpoc;
+			COptimizationContextArray *m_pdrgpoc;
 
 			// derived properties of the carried plan
 			CDrvdPropPlan *m_pdpplan;
@@ -157,7 +157,7 @@ namespace gpopt
 			}
 
 			// accessor of child optimization contexts array
-			OptimizationContextArray *Pdrgpoc() const
+			COptimizationContextArray *Pdrgpoc() const
 			{
 				return m_pdrgpoc;
 			}
@@ -231,7 +231,7 @@ namespace gpopt
 			// set child contexts
 			void SetChildContexts
 				(
-				OptimizationContextArray *pdrgpoc
+				COptimizationContextArray *pdrgpoc
 				)
 			{
 				GPOS_ASSERT(NULL == m_pdrgpoc);
@@ -248,7 +248,7 @@ namespace gpopt
 			BOOL operator == (const CCostContext &cc) const;
 
 			// compute cost
-			CCost CostCompute(IMemoryPool *mp, CostArray *pdrgpcostChildren);
+			CCost CostCompute(IMemoryPool *mp, CCostArray *pdrgpcostChildren);
 
 			// is current context better than the given equivalent context based on cost?
 			BOOL FBetterThan(const CCostContext *pcc) const;

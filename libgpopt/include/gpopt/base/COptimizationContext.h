@@ -37,7 +37,7 @@ namespace gpopt
 	typedef  COptimizationContext * OPTCTXT_PTR;
 
 	// array of optimization contexts
-	typedef CDynamicPtrArray<COptimizationContext, CleanupRelease> OptimizationContextArray;
+	typedef CDynamicPtrArray<COptimizationContext, CleanupRelease> COptimizationContextArray;
 
 	//---------------------------------------------------------------------------
 	//	@class:
@@ -84,7 +84,7 @@ namespace gpopt
 			CReqdPropRelational *m_prprel;
 
 			// stats of previously optimized expressions
-			StatsArray *m_pdrgpstatCtxt;
+			IStatsArray *m_pdrgpstatCtxt;
 
 			// index of search stage where context is generated
 			ULONG m_ulSearchStageIndex;
@@ -144,7 +144,7 @@ namespace gpopt
 				CGroup *pgroup,
 				CReqdPropPlan *prpp,
 				CReqdPropRelational *prprel, // required relational props -- used during stats derivation
-				StatsArray *stats_ctxt, // stats of previously optimized expressions
+				IStatsArray *stats_ctxt, // stats of previously optimized expressions
 				ULONG ulSearchStageIndex
 				)
 				:
@@ -200,7 +200,7 @@ namespace gpopt
 			}
 
 			// stats of previously optimized expressions
-			StatsArray *Pdrgpstat() const
+			IStatsArray *Pdrgpstat() const
 			{
 				return m_pdrgpstatCtxt;
 			}
@@ -352,7 +352,7 @@ namespace gpopt
 
 			// compare array of contexts based on context ids
 			static
-			BOOL FEqualContextIds(OptimizationContextArray *pdrgpocFst, OptimizationContextArray *pdrgpocSnd);
+			BOOL FEqualContextIds(COptimizationContextArray *pdrgpocFst, COptimizationContextArray *pdrgpocSnd);
 
 			// compute required properties to CTE producer based on plan properties of CTE consumer
 			static

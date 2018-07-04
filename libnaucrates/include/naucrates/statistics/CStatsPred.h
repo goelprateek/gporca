@@ -95,7 +95,7 @@ namespace gpnaucrates
 	};  // class CStatsPred
 
 	// array of filters
-	typedef CDynamicPtrArray<CStatsPred, CleanupRelease> StatsPredPtrArry;
+	typedef CDynamicPtrArray<CStatsPred, CleanupRelease> CStatsPredPtrArry;
 
 	// comparison function for sorting predicates
 	INT

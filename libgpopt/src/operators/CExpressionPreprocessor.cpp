@@ -61,7 +61,7 @@ CExpressionPreprocessor::PexprEliminateSelfComparison
 
 	// recursively process children
 	const ULONG arity = pexpr->Arity();
-	ExpressionArray *pdrgpexprChildren = GPOS_NEW(mp) ExpressionArray(mp);
+	CExpressionArray *pdrgpexprChildren = GPOS_NEW(mp) CExpressionArray(mp);
 	for (ULONG ul = 0; ul < arity; ul++)
 	{
 		CExpression *pexprChild = PexprEliminateSelfComparison(mp, (*pexpr)[ul]);
@@ -94,7 +94,7 @@ CExpressionPreprocessor::PexprPruneSuperfluousEquality
 
 	// recursively process children
 	const ULONG arity = pexpr->Arity();
-	ExpressionArray *pdrgpexprChildren = GPOS_NEW(mp) ExpressionArray(mp);
+	CExpressionArray *pdrgpexprChildren = GPOS_NEW(mp) CExpressionArray(mp);
 	for (ULONG ul = 0; ul < arity; ul++)
 	{
 		CExpression *pexprChild = PexprPruneSuperfluousEquality(mp, (*pexpr)[ul]);
@@ -145,7 +145,7 @@ CExpressionPreprocessor::PexprTrimExistentialSubqueries
 
 	// recursively process children
 	const ULONG arity = pexpr->Arity();
-	ExpressionArray *pdrgpexprChildren = GPOS_NEW(mp) ExpressionArray(mp);
+	CExpressionArray *pdrgpexprChildren = GPOS_NEW(mp) CExpressionArray(mp);
 	for (ULONG ul = 0; ul < arity; ul++)
 	{
 		CExpression *pexprChild = PexprTrimExistentialSubqueries(mp, (*pexpr)[ul]);
@@ -231,7 +231,7 @@ CExpressionPreprocessor::PexprSimplifyQuantifiedSubqueries
 
 	// recursively process children
 	const ULONG arity = pexpr->Arity();
-	ExpressionArray *pdrgpexprChildren = GPOS_NEW(mp) ExpressionArray(mp);
+	CExpressionArray *pdrgpexprChildren = GPOS_NEW(mp) CExpressionArray(mp);
 	for (ULONG ul = 0; ul < arity; ul++)
 	{
 		CExpression *pexprChild = PexprSimplifyQuantifiedSubqueries(mp, (*pexpr)[ul]);
@@ -334,7 +334,7 @@ CExpressionPreprocessor::PexprUnnestScalarSubqueries
 
 	// recursively process children
 	const ULONG arity = pexpr->Arity();
-	ExpressionArray *pdrgpexprChildren = GPOS_NEW(mp) ExpressionArray(mp);
+	CExpressionArray *pdrgpexprChildren = GPOS_NEW(mp) CExpressionArray(mp);
 	for (ULONG ul = 0; ul < arity; ul++)
 	{
 		CExpression *pexprChild = PexprUnnestScalarSubqueries(mp, (*pexpr)[ul]);
@@ -375,7 +375,7 @@ CExpressionPreprocessor::PexprRemoveSuperfluousLimit
 
 	// recursively process children
 	const ULONG arity = pexpr->Arity();
-	ExpressionArray *pdrgpexprChildren = GPOS_NEW(mp) ExpressionArray(mp);
+	CExpressionArray *pdrgpexprChildren = GPOS_NEW(mp) CExpressionArray(mp);
 
 	for (ULONG ul = 0; ul < arity; ul++)
 	{
@@ -451,7 +451,7 @@ CExpressionPreprocessor::PexprRemoveSuperfluousOuterRefs
 			CColRefSet *outer_refs = CDrvdPropRelational::GetRelationalProperties(pexpr->PdpDerive())->PcrsOuter();
 
 			CLogicalGbAgg *popAgg = CLogicalGbAgg::PopConvert(pop);
-			ColRefArray *colref_array = CUtils::PdrgpcrExcludeColumns(mp, popAgg->Pdrgpcr(), outer_refs);
+			CColRefArray *colref_array = CUtils::PdrgpcrExcludeColumns(mp, popAgg->Pdrgpcr(), outer_refs);
 
 			CExpression *pExprProjList = (*pexpr)[1];
 
@@ -476,13 +476,13 @@ CExpressionPreprocessor::PexprRemoveSuperfluousOuterRefs
 			//
 			if (0 < pExprProjList->Arity() || 0 < colref_array->Size())
 			{
-				ColRefArray *pdrgpcrMinimal = popAgg->PdrgpcrMinimal();
+				CColRefArray *pdrgpcrMinimal = popAgg->PdrgpcrMinimal();
 				if (NULL != pdrgpcrMinimal)
 				{
 					pdrgpcrMinimal = CUtils::PdrgpcrExcludeColumns(mp, pdrgpcrMinimal, outer_refs);
 				}
 
-				ColRefArray *pdrgpcrArgDQA = popAgg->PdrgpcrArgDQA();
+				CColRefArray *pdrgpcrArgDQA = popAgg->PdrgpcrArgDQA();
 				if (NULL != pdrgpcrArgDQA)
 				{
 					pdrgpcrArgDQA->AddRef();
@@ -523,7 +523,7 @@ CExpressionPreprocessor::PexprRemoveSuperfluousOuterRefs
 
 	// recursively process children
 	const ULONG arity = pexpr->Arity();
-	ExpressionArray *pdrgpexprChildren = GPOS_NEW(mp) ExpressionArray(mp);
+	CExpressionArray *pdrgpexprChildren = GPOS_NEW(mp) CExpressionArray(mp);
 	for (ULONG ul = 0; ul < arity; ul++)
 	{
 		CExpression *pexprChild = PexprRemoveSuperfluousOuterRefs(mp, (*pexpr)[ul]);
@@ -540,7 +540,7 @@ CExpressionPreprocessor::PexprScalarBoolOpConvert2In
 	(
 	IMemoryPool *mp,
 	CScalarBoolOp::EBoolOperator eboolop,
-	ExpressionArray *pdrgpexpr
+	CExpressionArray *pdrgpexpr
 	)
 {
 	GPOS_ASSERT(NULL != pdrgpexpr);
@@ -619,8 +619,8 @@ CExpressionPreprocessor::PexprConvert2In
 		CScalarBoolOp::EBoolOperator eboolop = CScalarBoolOp::PopConvert(pop)->Eboolop();
 		// derive constraints on all of the simple scalar children
 		// and add them to a new AND or OR expression
-		ExpressionArray *pdrgpexprCollapse = GPOS_NEW(mp) ExpressionArray(mp);
-		ExpressionArray *pdrgpexprRemainder = GPOS_NEW(mp) ExpressionArray(mp);
+		CExpressionArray *pdrgpexprCollapse = GPOS_NEW(mp) CExpressionArray(mp);
+		CExpressionArray *pdrgpexprRemainder = GPOS_NEW(mp) CExpressionArray(mp);
 		const ULONG arity = pexpr->Arity();
 		for (ULONG ul = 0; ul < arity; ul++)
 		{
@@ -642,7 +642,7 @@ CExpressionPreprocessor::PexprConvert2In
 		{
 			// create the constraint, rederive the collapsed expression
 			// add the new derived expr to remainder
-			ColRefSetArray *colref_array = NULL;
+			CColRefSetArray *colref_array = NULL;
 			pop->AddRef();
 			CAutoRef<CExpression> apexprPreCollapse(GPOS_NEW(mp) CExpression(mp, pop, pdrgpexprCollapse));
 			CAutoRef<CConstraint> apcnst(CConstraint::PcnstrFromScalarExpr(mp, apexprPreCollapse.Value(), &colref_array));
@@ -663,8 +663,8 @@ CExpressionPreprocessor::PexprConvert2In
 		return PexprScalarBoolOpConvert2In(mp, eboolop, pdrgpexprRemainder);
 	}
 
-	ExpressionArray *pdrgpexpr = GPOS_NEW(mp) ExpressionArray(mp);
-	ExpressionArray *pdrgexprChildren = pexpr->PdrgPexpr();
+	CExpressionArray *pdrgpexpr = GPOS_NEW(mp) CExpressionArray(mp);
+	CExpressionArray *pdrgexprChildren = pexpr->PdrgPexpr();
 	for (ULONG ul = 0; ul < pexpr->Arity(); ul++)
 	{
 		pdrgpexpr->Append(PexprConvert2In(mp, (*pdrgexprChildren)[ul]));
@@ -694,8 +694,8 @@ CExpressionPreprocessor::PexprCollapseInnerJoins
 	if (CPredicateUtils::FInnerJoin(pexpr))
 	{
 		BOOL fCollapsed = false;
-		ExpressionArray *pdrgpexpr = GPOS_NEW(mp) ExpressionArray(mp);
-		ExpressionArray *pdrgpexprPred = GPOS_NEW(mp) ExpressionArray(mp);
+		CExpressionArray *pdrgpexpr = GPOS_NEW(mp) CExpressionArray(mp);
+		CExpressionArray *pdrgpexprPred = GPOS_NEW(mp) CExpressionArray(mp);
 		for (ULONG ul = 0; ul < arity - 1; ul++)
 		{
 			CExpression *pexprChild = (*pexpr)[ul];
@@ -740,7 +740,7 @@ CExpressionPreprocessor::PexprCollapseInnerJoins
 	}
 
 	// current operator is not an inner-join, recursively process children
-	ExpressionArray *pdrgpexprChildren = GPOS_NEW(mp) ExpressionArray(mp);
+	CExpressionArray *pdrgpexprChildren = GPOS_NEW(mp) CExpressionArray(mp);
 	for (ULONG ul = 0; ul < arity; ul++)
 	{
 		CExpression *pexprChild = PexprCollapseInnerJoins(mp, (*pexpr)[ul]);
@@ -764,7 +764,7 @@ CExpressionPreprocessor::PexprCollapseProjects
 	GPOS_ASSERT(NULL != mp);
 	GPOS_ASSERT(NULL != pexpr);
 
-	ExpressionArray *pdrgpexpr = GPOS_NEW(mp) ExpressionArray(mp);
+	CExpressionArray *pdrgpexpr = GPOS_NEW(mp) CExpressionArray(mp);
 
 	const ULONG arity = pexpr->Arity();
 	// recursively process children
@@ -875,7 +875,7 @@ CExpressionPreprocessor::PexprProjBelowSubquery
 		return GPOS_NEW(mp) CExpression(mp, pop, pexprRelNew);
 	}
 
-	ExpressionArray *pdrgpexpr = GPOS_NEW(mp) ExpressionArray(mp);
+	CExpressionArray *pdrgpexpr = GPOS_NEW(mp) CExpressionArray(mp);
 
 	const ULONG arity = pexpr->Arity();
 	for (ULONG ul = 0; ul < arity; ul++)
@@ -904,7 +904,7 @@ CExpressionPreprocessor::PexprCollapseUnionUnionAll
 	COperator *pop = pexpr->Pop();
 	const ULONG arity = pexpr->Arity();
 
-	ExpressionArray *pdrgpexpr = GPOS_NEW(mp) ExpressionArray(mp);
+	CExpressionArray *pdrgpexpr = GPOS_NEW(mp) CExpressionArray(mp);
 
 	// recursively process children
 	for (ULONG ul = 0; ul < arity; ul++)
@@ -921,7 +921,7 @@ CExpressionPreprocessor::PexprCollapseUnionUnionAll
 	}
 
 	// array of input children and its column references
-	ExpressionArray *pdrgpexprNew = GPOS_NEW(mp) ExpressionArray(mp);
+	CExpressionArray *pdrgpexprNew = GPOS_NEW(mp) CExpressionArray(mp);
 	ColRefArrays *pdrgdrgpcrOrig = CLogicalSetOp::PopConvert(pop)->PdrgpdrgpcrInput();
 	ColRefArrays *pdrgdrgpcrNew = GPOS_NEW(mp) ColRefArrays(mp);
 
@@ -946,7 +946,7 @@ CExpressionPreprocessor::PexprCollapseUnionUnionAll
 			pexprChild->AddRef();
 			pdrgpexprNew->Append(pexprChild);
 
-			ColRefArray *pdrgpcrInput = (*pdrgdrgpcrOrig)[ul];
+			CColRefArray *pdrgpcrInput = (*pdrgdrgpcrOrig)[ul];
 			pdrgpcrInput->AddRef();
 			pdrgdrgpcrNew->Append(pdrgpcrInput);
 		}
@@ -962,7 +962,7 @@ CExpressionPreprocessor::PexprCollapseUnionUnionAll
 	}
 
 	COperator *popNew = NULL;
-	ColRefArray *pdrgpcrOutput = CLogicalSetOp::PopConvert(pop)->PdrgpcrOutput();
+	CColRefArray *pdrgpcrOutput = CLogicalSetOp::PopConvert(pop)->PdrgpcrOutput();
 	pdrgpcrOutput->AddRef();
 	if (pop->Eopid() == COperator::EopLogicalUnion)
 	{
@@ -1007,7 +1007,7 @@ CExpressionPreprocessor::PexprOuterJoinToInnerJoin
 	{
 		// the predicates of an inner join on top of outer join can be used to turn the child outer join into another inner join
 		CExpression *pexprScalar = (*pexpr)[arity - 1];
-		ExpressionArray *pdrgpexprChildren = GPOS_NEW(mp) ExpressionArray(mp);
+		CExpressionArray *pdrgpexprChildren = GPOS_NEW(mp) CExpressionArray(mp);
 		for (ULONG ul = 0; ul < arity; ul++)
 		{
 			CExpression *pexprChild = (*pexpr)[ul];
@@ -1039,7 +1039,7 @@ CExpressionPreprocessor::PexprOuterJoinToInnerJoin
 	}
 
 	// current operator is not an NAry-join, recursively process children
-	ExpressionArray *pdrgpexprChildren = GPOS_NEW(mp) ExpressionArray(mp);
+	CExpressionArray *pdrgpexprChildren = GPOS_NEW(mp) CExpressionArray(mp);
 	for (ULONG ul = 0; ul < arity; ul++)
 	{
 		CExpression *pexprChild = PexprOuterJoinToInnerJoin(mp, (*pexpr)[ul]);
@@ -1060,7 +1060,7 @@ CExpressionPreprocessor::PexprConjEqualityPredicates
 {
 	GPOS_ASSERT(NULL != pcrs);
 
-	ExpressionArray *pdrgpexpr = GPOS_NEW(mp) ExpressionArray(mp);
+	CExpressionArray *pdrgpexpr = GPOS_NEW(mp) CExpressionArray(mp);
 	ULONG ulPreds = 0;
 	CColRefSetIter crsiRight(*pcrs);
 	while
@@ -1113,7 +1113,7 @@ CExpressionPreprocessor::FEquivClassFromChild
 			continue;
 		}
 		CDrvdPropRelational *pdprel = CDrvdPropRelational::GetRelationalProperties(pexprChild->PdpDerive());
-		ColRefSetArray *pdrgpcrs = pdprel->Ppc()->PdrgpcrsEquivClasses();
+		CColRefSetArray *pdrgpcrs = pdprel->Ppc()->PdrgpcrsEquivClasses();
 		if (pcrs->FContained(pdrgpcrs))
 		{
 			return true;
@@ -1150,8 +1150,8 @@ CExpressionPreprocessor::PexprAddEqualityPreds
 	}
 	else
 	{
-		ExpressionArray *pdrgpexpr = GPOS_NEW(mp) ExpressionArray(mp);
-		ColRefSetArray *pdrgpcrs = ppc->PdrgpcrsEquivClasses();
+		CExpressionArray *pdrgpexpr = GPOS_NEW(mp) CExpressionArray(mp);
+		CColRefSetArray *pdrgpcrs = ppc->PdrgpcrsEquivClasses();
 		GPOS_ASSERT(NULL != pdrgpcrs);
 		const ULONG ulEquivClasses = pdrgpcrs->Size();
 		for (ULONG ul = 0; ul < ulEquivClasses; ul++)
@@ -1178,7 +1178,7 @@ CExpressionPreprocessor::PexprAddEqualityPreds
 		pexprPred = CPredicateUtils::PexprConjunction(mp, pdrgpexpr);
 	}
 
-	ExpressionArray *pdrgpexprChildren = GPOS_NEW(mp) ExpressionArray(mp);
+	CExpressionArray *pdrgpexprChildren = GPOS_NEW(mp) CExpressionArray(mp);
 	for (ULONG ul = 0; ul < ulChildren; ul++)
 	{
 		CExpression *pexprChild = (*pexpr)[ul];
@@ -1217,7 +1217,7 @@ CExpressionPreprocessor::PexprScalarPredicates
 	CColRefSet *pcrsProcessed
 	)
 {
-	ExpressionArray *pdrgpexpr = GPOS_NEW(mp) ExpressionArray(mp);
+	CExpressionArray *pdrgpexpr = GPOS_NEW(mp) CExpressionArray(mp);
 
 	CColRefSetIter crsi(*pcrs);
 	while (crsi.Advance())
@@ -1272,7 +1272,7 @@ CExpressionPreprocessor::PexprFromConstraintsScalar
 	}
 
 	const ULONG ulChildren = pexpr->Arity();
-	ExpressionArray *pdrgpexprChildren = GPOS_NEW(mp) ExpressionArray(mp);
+	CExpressionArray *pdrgpexprChildren = GPOS_NEW(mp) CExpressionArray(mp);
 
 	for (ULONG ul = 0; ul < ulChildren; ul++)
 	{
@@ -1409,7 +1409,7 @@ CExpressionPreprocessor::PexprOuterJoinInferPredsFromOuterChildToInnerChild
 	}
 
 	// not an outer join, process children recursively
-	ExpressionArray *pdrgpexpr = GPOS_NEW(mp) ExpressionArray(mp);
+	CExpressionArray *pdrgpexpr = GPOS_NEW(mp) CExpressionArray(mp);
 
 	const ULONG ulChildren = pexpr->Arity();
 	for (ULONG ul = 0; ul < ulChildren; ul++)
@@ -1444,7 +1444,7 @@ CExpressionPreprocessor::PexprFromConstraints
 	CPropConstraint *ppc = pdprel->Ppc();
 	CColRefSet *pcrsNotNull = pdprel->PcrsNotNull();
 
-	ExpressionArray *pdrgpexprChildren = GPOS_NEW(mp) ExpressionArray(mp);
+	CExpressionArray *pdrgpexprChildren = GPOS_NEW(mp) CExpressionArray(mp);
 
 	for (ULONG ul = 0; ul < ulChildren; ul++)
 	{
@@ -1514,7 +1514,7 @@ CExpressionPreprocessor::PexprPruneEmptySubtrees
 		if (0 == pdprel->Maxcard())
 		{
 			// output columns
-			ColRefArray *colref_array = pdprel->PcrsOutput()->Pdrgpcr(mp);
+			CColRefArray *colref_array = pdprel->PcrsOutput()->Pdrgpcr(mp);
 
 			// empty output data
 			IDatumArrays *pdrgpdrgpdatum = GPOS_NEW(mp) IDatumArrays(mp);
@@ -1525,7 +1525,7 @@ CExpressionPreprocessor::PexprPruneEmptySubtrees
 	}
 
 	// process children
-	ExpressionArray *pdrgpexpr = GPOS_NEW(mp) ExpressionArray(mp);
+	CExpressionArray *pdrgpexpr = GPOS_NEW(mp) CExpressionArray(mp);
 
 	const ULONG ulChildren = pexpr->Arity();
 	for (ULONG ul = 0; ul < ulChildren; ul++)
@@ -1560,7 +1560,7 @@ CExpressionPreprocessor::PexprRemoveUnusedCTEs
 	}
 
 	// process children
-	ExpressionArray *pdrgpexpr = GPOS_NEW(mp) ExpressionArray(mp);
+	CExpressionArray *pdrgpexpr = GPOS_NEW(mp) CExpressionArray(mp);
 
 	const ULONG ulChildren = pexpr->Arity();
 	for (ULONG ul = 0; ul < ulChildren; ul++)
@@ -1605,10 +1605,10 @@ CExpressionPreprocessor::CollectCTEPredicates
 			CExpression *pexprRemappedScalar = pexprScalar->PexprCopyWithRemappedColumns(mp, colref_mapping, true /*must_exist*/);
 			colref_mapping->Release();
 
-			ExpressionArray *pdrgpexpr = phm->Find(&ulCTEId);
+			CExpressionArray *pdrgpexpr = phm->Find(&ulCTEId);
 			if (NULL == pdrgpexpr)
 			{
-				pdrgpexpr = GPOS_NEW(mp) ExpressionArray(mp);
+				pdrgpexpr = GPOS_NEW(mp) CExpressionArray(mp);
 #ifdef GPOS_DEBUG
 				BOOL fInserted =
 #endif // GPOS_DEBUG
@@ -1647,7 +1647,7 @@ CExpressionPreprocessor::AddPredsToCTEProducers
 		GPOS_ASSERT(NULL != pexprProducer);
 
 		ULONG ulConsumers = pcteinfo->UlConsumers(ulCTEId);
-		ExpressionArray *pdrgpexpr = const_cast<ExpressionArray *>(mi.Value());
+		CExpressionArray *pdrgpexpr = const_cast<CExpressionArray *>(mi.Value());
 
 		// skip the propagation of predicate contains volatile function e.g. random() (m_bytearray_value change within a scan)
 		if (CPredicateUtils::FContainsVolatileFunction(pdrgpexpr))
@@ -1843,7 +1843,7 @@ CExpressionPreprocessor::PexprPruneUnusedComputedColsRecursive
 	}
 
 	// process children
-	ExpressionArray *pdrgpexpr = GPOS_NEW(mp) ExpressionArray(mp);
+	CExpressionArray *pdrgpexpr = GPOS_NEW(mp) CExpressionArray(mp);
 	const ULONG ulChildren = pexpr->Arity();
 
 	for (ULONG ul = 0; ul < ulChildren; ul++)
@@ -1901,7 +1901,7 @@ CExpressionPreprocessor::PexprPruneProjListProjectOrGbAgg
 			GPOS_ASSERT(COperator::EopLogicalGbAgg == pop->Eopid());
 
 			CExpression *pexprProjectListNew = NULL;
-			ColRefArray *pdrgpcrGroupingCols = CLogicalGbAgg::PopConvert(pop)->Pdrgpcr();
+			CColRefArray *pdrgpcrGroupingCols = CLogicalGbAgg::PopConvert(pop)->Pdrgpcr();
 			if (0 < pdrgpcrGroupingCols->Size())
 			{
 				// if grouping cols exist, we need to maintain the GbAgg with an empty project list
@@ -1927,7 +1927,7 @@ CExpressionPreprocessor::PexprPruneProjListProjectOrGbAgg
 	else
 	{
 		// only remove part of the project elements
-		ExpressionArray *pdrgpexprPrElRemain = GPOS_NEW(mp) ExpressionArray(mp);
+		CExpressionArray *pdrgpexprPrElRemain = GPOS_NEW(mp) CExpressionArray(mp);
 		const ULONG ulPrjEls = pexprProjList->Arity();
 		CExpressionHandle exprhdl(mp);
 
@@ -1984,7 +1984,7 @@ CExpressionPreprocessor::PexprReorderScalarCmpChildren
 	}
 
 	// process children
-	ExpressionArray *pdrgpexpr = GPOS_NEW(mp) ExpressionArray(mp);
+	CExpressionArray *pdrgpexpr = GPOS_NEW(mp) CExpressionArray(mp);
 	const ULONG ulChildren = pexpr->Arity();
 
 	for (ULONG ul = 0; ul < ulChildren; ul++)
@@ -2042,7 +2042,7 @@ CExpressionPreprocessor::ConvertInToSimpleExists
 	CExpression *pexprScalarSubqExists = GPOS_NEW(mp) CExpression(mp, GPOS_NEW(mp) CScalarSubqueryExists(mp), pexprSubqOfExists);
 
 	// AND the generated predicate with the EXISTS subquery expression and return.
-	ExpressionArray *pdrgpexprBoolOperands = GPOS_NEW(mp) ExpressionArray(mp);
+	CExpressionArray *pdrgpexprBoolOperands = GPOS_NEW(mp) CExpressionArray(mp);
 
 	pdrgpexprBoolOperands->Append(pexprScalarOp);
 	pdrgpexprBoolOperands->Append(pexprScalarSubqExists);
@@ -2072,7 +2072,7 @@ CExpressionPreprocessor::PexprExistWithPredFromINSubq
 	const ULONG arity = pexpr->Arity();
 	pop->AddRef();
 
-	ExpressionArray *pdrgpexprChildren = GPOS_NEW(mp) ExpressionArray(mp);
+	CExpressionArray *pdrgpexprChildren = GPOS_NEW(mp) CExpressionArray(mp);
 	for (ULONG ul = 0; ul < arity; ul++)
 	{
 		CExpression *pexprChild = PexprExistWithPredFromINSubq(mp, (*pexpr)[ul]);

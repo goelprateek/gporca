@@ -37,7 +37,7 @@ CPhysicalTVF::CPhysicalTVF
 	IMDId *mdid_func,
 	IMDId *mdid_return_type,
 	CWStringConst *str,
-	ColumnDescrArray *pdrgpcoldesc,
+	CColumnDescrArray *pdrgpcoldesc,
 	CColRefSet *pcrsOutput
 	)
 	:
@@ -134,7 +134,7 @@ CPhysicalTVF::PcrsRequired
 	CExpressionHandle &, // exprhdl,
 	CColRefSet *, // pcrsRequired,
 	ULONG , // child_index,
-	DrgPdp *, // pdrgpdpCtxt
+	CDrvdPropArrays *, // pdrgpdpCtxt
 	ULONG // ulOptReq
 	)
 {
@@ -157,7 +157,7 @@ CPhysicalTVF::PosRequired
 	CExpressionHandle &, // exprhdl,
 	COrderSpec *, // posRequired,
 	ULONG ,// child_index,
-	DrgPdp *, // pdrgpdpCtxt
+	CDrvdPropArrays *, // pdrgpdpCtxt
 	ULONG // ulOptReq
 	)
 	const
@@ -181,7 +181,7 @@ CPhysicalTVF::PdsRequired
 	CExpressionHandle &, // exprhdl,
 	CDistributionSpec *, // pdsRequired,
 	ULONG , //child_index
-	DrgPdp *, // pdrgpdpCtxt
+	CDrvdPropArrays *, // pdrgpdpCtxt
 	ULONG // ulOptReq
 	)
 	const
@@ -205,7 +205,7 @@ CPhysicalTVF::PrsRequired
 	CExpressionHandle &, // exprhdl,
 	CRewindabilitySpec *, // prsRequired,
 	ULONG , // child_index,
-	DrgPdp *, // pdrgpdpCtxt
+	CDrvdPropArrays *, // pdrgpdpCtxt
 	ULONG // ulOptReq
 	)
 	const
@@ -229,7 +229,7 @@ CPhysicalTVF::PcteRequired
 	CExpressionHandle &, //exprhdl,
 	CCTEReq *, //pcter,
 	ULONG , //child_index,
-	DrgPdp *, //pdrgpdpCtxt,
+	CDrvdPropArrays *, //pdrgpdpCtxt,
 	ULONG //ulOptReq
 	)
 	const

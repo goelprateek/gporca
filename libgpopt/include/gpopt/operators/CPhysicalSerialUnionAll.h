@@ -34,7 +34,7 @@ namespace gpopt
 			CPhysicalSerialUnionAll
 				(
 				IMemoryPool *mp,
-				ColRefArray *pdrgpcrOutput,
+				CColRefArray *pdrgpcrOutput,
 				ColRefArrays *pdrgpdrgpcrInput,
 				ULONG ulScanIdPartialIndex
 				);
@@ -62,7 +62,7 @@ namespace gpopt
 				(
 				CReqdPropPlan *prppInput,
 				ULONG , // child_index
-				DrgPdp *, //pdrgpdpCtxt
+				CDrvdPropArrays *, //pdrgpdpCtxt
 				ULONG ulOptReq
 				)
 			{
@@ -85,7 +85,7 @@ namespace gpopt
 					CExpressionHandle &exprhdl,
 					CDistributionSpec *pdsRequired,
 					ULONG child_index,
-					DrgPdp *pdrgpdpCtxt,
+					CDrvdPropArrays *pdrgpdpCtxt,
 					ULONG ulOptReq
 				)
 				const;

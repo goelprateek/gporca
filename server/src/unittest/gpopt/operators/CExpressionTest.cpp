@@ -217,7 +217,7 @@ CExpressionTest::EresUnittest_SimpleOps()
 
 		// derive stats on expression
 		CReqdPropRelational *prprel = GPOS_NEW(mp) CReqdPropRelational(GPOS_NEW(mp) CColRefSet(mp));
-		StatsArray *stats_ctxt = GPOS_NEW(mp) StatsArray(mp);
+		IStatsArray *stats_ctxt = GPOS_NEW(mp) IStatsArray(mp);
 		IStatistics *stats = pexpr->PstatsDerive(prprel, stats_ctxt);
 		GPOS_ASSERT(NULL != stats);
 
@@ -280,7 +280,7 @@ CExpressionTest::EresUnittest_Union()
 
 #ifdef GPOS_DEBUG
 	CReqdPropRelational *prprel = GPOS_NEW(mp) CReqdPropRelational(GPOS_NEW(mp) CColRefSet(mp));
-	StatsArray *stats_ctxt = GPOS_NEW(mp) StatsArray(mp);
+	IStatsArray *stats_ctxt = GPOS_NEW(mp) IStatsArray(mp);
 	IStatistics *stats = pexpr->PstatsDerive(prprel, stats_ctxt);
 	GPOS_ASSERT(NULL != stats);
 
@@ -365,7 +365,7 @@ CExpressionTest::EresUnittest_BitmapGet()
 					pexprIndexCond
 					);
 
-	ColRefArray *pdrgpcrTable = GPOS_NEW(mp) ColRefArray(mp);
+	CColRefArray *pdrgpcrTable = GPOS_NEW(mp) CColRefArray(mp);
 	for (ULONG ul = 0; ul < num_cols; ++ul)
 	{
 		const IMDColumn *pmdcol = pmdrel->GetMdCol(ul);
@@ -767,7 +767,7 @@ CExpressionTest::EresUnittest_FValidPlan_InvalidOrder()
 	CColRefSet *pcrsGet = CDrvdPropRelational::GetRelationalProperties(pexprGet->PdpDerive())->PcrsOutput();
 	CColRefSet *pcrsGetCopy = GPOS_NEW(mp) CColRefSet(mp, *pcrsGet);
 
-	ColRefArray *pdrgpcrGet = pcrsGetCopy->Pdrgpcr(mp);
+	CColRefArray *pdrgpcrGet = pcrsGetCopy->Pdrgpcr(mp);
 	GPOS_ASSERT(2 <= pdrgpcrGet->Size());
 
 	COrderSpec *pos = GPOS_NEW(mp) COrderSpec(mp);
@@ -1099,7 +1099,7 @@ CExpressionTest::EresCheckCachedReqdCols
 	exprhdl.InitReqdProps(prppInput);
 
 	// create array of child derived properties
-	DrgPdp *pdrgpdp = GPOS_NEW(mp) DrgPdp(mp);
+	CDrvdPropArrays *pdrgpdp = GPOS_NEW(mp) CDrvdPropArrays(mp);
 
 	GPOS_RESULT eres = GPOS_OK;
 	const ULONG arity =  pexpr->Arity();
@@ -1294,17 +1294,17 @@ CExpressionTest::EresUnittest_InvalidSetOp()
 		CExpression *pexprGet2 = CTestUtils::PexprLogicalGet(mp, ptabdesc2, &strAlias2);
 
 		// create output columns of SetOp from output columns of first Get expression
-		ColRefArray *pdrgpcrOutput = GPOS_NEW(mp) ColRefArray(mp);
+		CColRefArray *pdrgpcrOutput = GPOS_NEW(mp) CColRefArray(mp);
 		pdrgpcrOutput->Append(pcrsOutput1->PcrFirst());
 
 		// create input columns of SetOp while including an outer reference in inner child
 		ColRefArrays *pdrgpdrgpcrInput = GPOS_NEW(mp) ColRefArrays(mp);
 
-		ColRefArray *pdrgpcr1 = GPOS_NEW(mp) ColRefArray(mp);
+		CColRefArray *pdrgpcr1 = GPOS_NEW(mp) CColRefArray(mp);
 		pdrgpcr1->Append(pcrsOutput1->PcrFirst());
 		pdrgpdrgpcrInput->Append(pdrgpcr1);
 
-		ColRefArray *pdrgpcr2 = GPOS_NEW(mp) ColRefArray(mp);
+		CColRefArray *pdrgpcr2 = GPOS_NEW(mp) CColRefArray(mp);
 		CColRef *pcrOuterRef = COptCtxt::PoctxtFromTLS()->Pcf()->PcrCreate(pcrsOutput1->PcrFirst());
 		pdrgpcr2->Append(pcrOuterRef);
 		pdrgpdrgpcrInput->Append(pdrgpcr2);

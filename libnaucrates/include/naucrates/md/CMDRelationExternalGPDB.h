@@ -73,13 +73,13 @@ namespace gpmd
 		ULongPtrArray2D *m_keyset_array;
 
 		// array of index infos
-		MDIndexInfoPtrArray *m_mdindex_info_array;
+		CMDIndexInfoArray *m_mdindex_info_array;
 
 		// array of trigger ids
-		MdidPtrArray *m_mdid_trigger_array;
+		IMdIdArray *m_mdid_trigger_array;
 
 		// array of check constraint mdids
-		MdidPtrArray *m_mdid_check_constraint_array;
+		IMdIdArray *m_mdid_check_constraint_array;
 
 		// reject limit
 		INT m_reject_limit;
@@ -122,9 +122,9 @@ namespace gpmd
 								ULongPtrArray *distr_col_array,
 								BOOL convert_hash_to_random,
 								ULongPtrArray2D *keyset_array,
-								MDIndexInfoPtrArray *md_index_info_array,
-								MdidPtrArray *mdid_triggers_array,
-								MdidPtrArray *mdid_check_constraint_array,
+								CMDIndexInfoArray *md_index_info_array,
+								IMdIdArray *mdid_triggers_array,
+								IMdIdArray *mdid_check_constraint_array,
 								INT reject_limit,
 								BOOL is_reject_limit_in_rows,
 								IMDId *mdid_fmt_err_table);

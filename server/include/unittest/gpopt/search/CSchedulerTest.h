@@ -66,7 +66,7 @@ namespace gpopt
 
 			// build memo using multiple threads
 			static
-			void BuildMemoMultiThreaded(IMemoryPool *mp, CExpression *pexprInput, SearchStageArray *search_stage_array);
+			void BuildMemoMultiThreaded(IMemoryPool *mp, CExpression *pexprInput, CSearchStageArray *search_stage_array);
 
 			// unittests
 			static GPOS_RESULT EresUnittest();

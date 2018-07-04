@@ -31,7 +31,7 @@ CXformResult::CXformResult
 	m_ulExpr(0)
 {
 	GPOS_ASSERT(NULL != mp);
-	m_pdrgpexpr = GPOS_NEW(mp) ExpressionArray(mp);
+	m_pdrgpexpr = GPOS_NEW(mp) CExpressionArray(mp);
 }
 
 

@@ -110,7 +110,7 @@ CXformSimplifyLeftOuterJoin::Transform
 	GPOS_ASSERT(CUtils::FScalarConstFalse(pexprScalar));
 
 	// extract output columns of inner child
-	ColRefArray *colref_array = CDrvdPropRelational::GetRelationalProperties(pexprInner->PdpDerive())->PcrsOutput()->Pdrgpcr(mp);
+	CColRefArray *colref_array = CDrvdPropRelational::GetRelationalProperties(pexprInner->PdpDerive())->PcrsOutput()->Pdrgpcr(mp);
 
 	// generate empty constant table with the same columns
 	COperator *popCTG = GPOS_NEW(mp) CLogicalConstTableGet(mp, colref_array, GPOS_NEW(mp) IDatumArrays(mp));

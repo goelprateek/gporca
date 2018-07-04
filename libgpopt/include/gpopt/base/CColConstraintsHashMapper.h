@@ -17,10 +17,10 @@ namespace gpopt
 			CColConstraintsHashMapper
 				(
 					IMemoryPool *mp,
-					ConstraintArray *pdrgPcnstr
+					CConstraintArray *pdrgPcnstr
 				);
 
-			virtual ConstraintArray *PdrgPcnstrLookup(CColRef *colref);
+			virtual CConstraintArray *PdrgPcnstrLookup(CColRef *colref);
 			virtual ~CColConstraintsHashMapper();
 
 		private:

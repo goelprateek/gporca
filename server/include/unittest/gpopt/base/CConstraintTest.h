@@ -81,7 +81,7 @@ namespace gpopt
 
 			// construct an array of ranges to be used to create an interval
 			static
-			RangeArray *Pdrgprng
+			CRangeArray *Pdrgprng
 						(
 						IMemoryPool *mp,
 						IMDId *mdid,
@@ -180,7 +180,7 @@ namespace gpopt
 			GPOS_RESULT EresUnittest_ConstraintsOnDates();
 
 			// print equivalence classes
-			static void PrintEquivClasses(IMemoryPool *mp, ColRefSetArray *pdrgpcrs, BOOL fExpected = false);
+			static void PrintEquivClasses(IMemoryPool *mp, CColRefSetArray *pdrgpcrs, BOOL fExpected = false);
 	}; // class CConstraintTest
 }
 

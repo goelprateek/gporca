@@ -180,8 +180,8 @@ CParseHandlerColStats::EndElement(const XMLCh *const,  // element_uri,
 
 	// get histogram buckets from child parse handlers
 
-	DXLBucketPtrArray *dxl_stats_bucket_array =
-		GPOS_NEW(m_mp) DXLBucketPtrArray(m_mp);
+	CDXLBucketArray *dxl_stats_bucket_array =
+		GPOS_NEW(m_mp) CDXLBucketArray(m_mp);
 
 	for (ULONG ul = 0; ul < this->Length(); ul++)
 	{

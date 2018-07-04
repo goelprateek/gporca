@@ -32,8 +32,8 @@ CPhysicalRowTrigger::CPhysicalRowTrigger
 	IMemoryPool *mp,
 	IMDId *rel_mdid,
 	INT type,
-	ColRefArray *pdrgpcrOld,
-	ColRefArray *pdrgpcrNew
+	CColRefArray *pdrgpcrOld,
+	CColRefArray *pdrgpcrNew
 	)
 	:
 	CPhysical(mp),
@@ -96,7 +96,7 @@ CPhysicalRowTrigger::PosRequired
 	child_index
 #endif
 	,
-	DrgPdp *, // pdrgpdpCtxt
+	CDrvdPropArrays *, // pdrgpdpCtxt
 	ULONG // ulOptReq
 	)
 	const
@@ -170,7 +170,7 @@ CPhysicalRowTrigger::PcrsRequired
 	child_index
 #endif // GPOS_DEBUG
 	,
-	DrgPdp *, // pdrgpdpCtxt
+	CDrvdPropArrays *, // pdrgpdpCtxt
 	ULONG // ulOptReq
 	)
 {
@@ -197,7 +197,7 @@ CPhysicalRowTrigger::PdsRequired
 	CExpressionHandle &exprhdl,
 	CDistributionSpec *pdsInput,
 	ULONG child_index,
-	DrgPdp *, // pdrgpdpCtxt
+	CDrvdPropArrays *, // pdrgpdpCtxt
 	ULONG // ulOptReq
 	)
 	const
@@ -228,7 +228,7 @@ CPhysicalRowTrigger::PrsRequired
 	CExpressionHandle &exprhdl,
 	CRewindabilitySpec *prsRequired,
 	ULONG child_index,
-	DrgPdp *, // pdrgpdpCtxt
+	CDrvdPropArrays *, // pdrgpdpCtxt
 	ULONG // ulOptReq
 	)
 	const
@@ -253,7 +253,7 @@ CPhysicalRowTrigger::PppsRequired
 	CExpressionHandle &exprhdl,
 	CPartitionPropagationSpec *pppsRequired,
 	ULONG child_index,
-	DrgPdp *, //pdrgpdpCtxt,
+	CDrvdPropArrays *, //pdrgpdpCtxt,
 	ULONG //ulOptReq
 	)
 {
@@ -282,7 +282,7 @@ CPhysicalRowTrigger::PcteRequired
 	child_index
 #endif
 	,
-	DrgPdp *, //pdrgpdpCtxt,
+	CDrvdPropArrays *, //pdrgpdpCtxt,
 	ULONG //ulOptReq
 	)
 	const
@@ -398,8 +398,8 @@ CPhysicalRowTrigger::Matches
 
 	CPhysicalRowTrigger *popRowTrigger = CPhysicalRowTrigger::PopConvert(pop);
 
-	ColRefArray *pdrgpcrOld = popRowTrigger->PdrgpcrOld();
-	ColRefArray *pdrgpcrNew = popRowTrigger->PdrgpcrNew();
+	CColRefArray *pdrgpcrOld = popRowTrigger->PdrgpcrOld();
+	CColRefArray *pdrgpcrNew = popRowTrigger->PdrgpcrNew();
 
 	return m_rel_mdid->Equals(popRowTrigger->GetRelMdId()) &&
 			m_type == popRowTrigger->GetType() &&

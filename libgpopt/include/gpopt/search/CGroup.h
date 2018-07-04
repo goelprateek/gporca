@@ -193,10 +193,10 @@ namespace gpopt
 			BOOL m_fScalar;
 
 			// hash join keys for outer child (only for scalar groups)
-			ExpressionArray *m_pdrgpexprHashJoinKeysOuter;
+			CExpressionArray *m_pdrgpexprHashJoinKeysOuter;
 
 			// hash join keys for inner child (only for scalar groups)
-			ExpressionArray *m_pdrgpexprHashJoinKeysInner;
+			CExpressionArray *m_pdrgpexprHashJoinKeysInner;
 
 			// list of group expressions
 			CList<CGroupExpression> m_listGExprs;
@@ -287,7 +287,7 @@ namespace gpopt
 			void SetState(EState estNewState);
 
 			// set hash join keys
-			void SetHashJoinKeys(ExpressionArray *pdrgpexprOuter, ExpressionArray *pdrgpexprInner);
+			void SetHashJoinKeys(CExpressionArray *pdrgpexprOuter, CExpressionArray *pdrgpexprInner);
 
 			// insert new group expression
 			void Insert(CGroupExpression *pgexpr);
@@ -325,7 +325,7 @@ namespace gpopt
 				IMemoryPool *pmpGlobal,
 				CGroupExpression *pgexpr,
 				CReqdPropRelational *prprel,
-				StatsArray *stats_ctxt,
+				IStatsArray *stats_ctxt,
 				BOOL fDeriveChildStats
 				);
 
@@ -361,7 +361,7 @@ namespace gpopt
 				IMemoryPool *pmpLocal,
 				IMemoryPool *pmpGlobal,
 				CReqdPropRelational *prprelInput,
-				StatsArray *stats_ctxt
+				IStatsArray *stats_ctxt
 				);
 
 		public:
@@ -406,13 +406,13 @@ namespace gpopt
 			}
 
 			// hash join keys of outer child
-			ExpressionArray *PdrgpexprHashJoinKeysOuter() const
+			CExpressionArray *PdrgpexprHashJoinKeysOuter() const
 			{
 				return m_pdrgpexprHashJoinKeysOuter;
 			}
 
 			// hash join keys of inner child
-			ExpressionArray *PdrgpexprHashJoinKeysInner() const
+			CExpressionArray *PdrgpexprHashJoinKeysInner() const
 			{
 				return m_pdrgpexprHashJoinKeysInner;
 			}
@@ -567,7 +567,7 @@ namespace gpopt
 				IMemoryPool *pmpLocal,
 				IMemoryPool *pmpGlobal,
 				CReqdPropRelational *prprel,
-				StatsArray *stats_ctxt
+				IStatsArray *stats_ctxt
 				);
 
 			// find group expression with best stats promise and the same given children

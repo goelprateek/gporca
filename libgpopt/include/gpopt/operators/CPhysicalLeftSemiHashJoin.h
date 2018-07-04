@@ -39,8 +39,8 @@ namespace gpopt
 			CPhysicalLeftSemiHashJoin
 				(
 				IMemoryPool *mp,
-				ExpressionArray *pdrgpexprOuterKeys,
-				ExpressionArray *pdrgpexprInnerKeys
+				CExpressionArray *pdrgpexprOuterKeys,
+				CExpressionArray *pdrgpexprInnerKeys
 				);
 
 			// dtor
@@ -73,7 +73,7 @@ namespace gpopt
 				CExpressionHandle &exprhdl,
 				CPartitionPropagationSpec *pppsRequired,
 				ULONG child_index,
-				DrgPdp *pdrgpdpCtxt,
+				CDrvdPropArrays *pdrgpdpCtxt,
 				ULONG ulOptReq
 				);
 			

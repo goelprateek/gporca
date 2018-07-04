@@ -78,7 +78,7 @@ CStatistics::CStatistics(IMemoryPool *mp,
 	GPOS_ASSERT(CDouble(0.0) <= m_rows);
 
 	// hash map for source id -> max source cardinality mapping
-	m_src_upper_bound_NDVs = GPOS_NEW(mp) UpperBoundNDVPtrArray(mp);
+	m_src_upper_bound_NDVs = GPOS_NEW(mp) CUpperBoundNDVPtrArray(mp);
 
 	m_stats_conf = COptCtxt::PoctxtFromTLS()->GetOptimizerConfig()->GetStatsConf();
 }
@@ -366,7 +366,7 @@ CStatistics::IsEmptyJoin(const CStatistics *outer_stats,
 CStatistics *
 CStatistics::CalcLOJoinStats(IMemoryPool *mp,
 							 const IStatistics *other_stats,
-							 StatsPredJoinArray *join_preds_stats) const
+							 CStatsPredJoinArray *join_preds_stats) const
 {
 	return CLeftOuterJoinStatsProcessor::CalcLOJoinStatsStatic(
 		mp, this, other_stats, join_preds_stats);
@@ -378,7 +378,7 @@ CStatistics::CalcLOJoinStats(IMemoryPool *mp,
 CStatistics *
 CStatistics::CalcLSJoinStats(IMemoryPool *mp,
 							 const IStatistics *inner_side_stats,
-							 StatsPredJoinArray *join_preds_stats) const
+							 CStatsPredJoinArray *join_preds_stats) const
 {
 	return CLeftSemiJoinStatsProcessor::CalcLSJoinStatsStatic(
 		mp, this, inner_side_stats, join_preds_stats);
@@ -390,7 +390,7 @@ CStatistics::CalcLSJoinStats(IMemoryPool *mp,
 CStatistics *
 CStatistics::CalcInnerJoinStats(IMemoryPool *mp,
 								const IStatistics *other_stats,
-								StatsPredJoinArray *join_preds_stats) const
+								CStatsPredJoinArray *join_preds_stats) const
 {
 	return CInnerJoinStatsProcessor::CalcInnerJoinStatsStatic(
 		mp, this, other_stats, join_preds_stats);
@@ -400,7 +400,7 @@ CStatistics::CalcInnerJoinStats(IMemoryPool *mp,
 CStatistics *
 CStatistics::CalcLASJoinStats(IMemoryPool *mp,
 							  const IStatistics *other_stats,
-							  StatsPredJoinArray *join_preds_stats,
+							  CStatsPredJoinArray *join_preds_stats,
 							  BOOL DoIgnoreLASJHistComputation) const
 {
 	return CLeftAntiSemiJoinStatsProcessor::CalcLASJoinStatsStatic(
@@ -464,7 +464,7 @@ CStatistics::CopyHistograms(IMemoryPool *mp) const
 		if (is_empty)
 		{
 			histogram_copy = GPOS_NEW(mp) CHistogram(
-				GPOS_NEW(mp) BucketArray(mp), false /* is_well_defined */);
+				GPOS_NEW(mp) CBucketArray(mp), false /* is_well_defined */);
 		}
 		else
 		{
@@ -741,8 +741,8 @@ CStatistics::AddCardUpperBound(CUpperBoundNDVs *upper_bound_NDVs)
 CDXLStatsDerivedRelation *
 CStatistics::GetDxlStatsDrvdRelation(IMemoryPool *mp, CMDAccessor *md_accessor) const
 {
-	DXLStatsDerivedColArray *dxl_stats_derived_col_array =
-		GPOS_NEW(mp) DXLStatsDerivedColArray(mp);
+	CDXLStatsDerivedColumnArray *dxl_stats_derived_col_array =
+		GPOS_NEW(mp) CDXLStatsDerivedColumnArray(mp);
 
 	UlongToHistogramMapIter col_hist_mapping(m_colid_histogram_mapping);
 	while (col_hist_mapping.Advance())

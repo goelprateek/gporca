@@ -229,7 +229,7 @@ namespace gpopt
 				CExpressionHandle &exprhdl,
 				CCTEReq *pcter,
 				ULONG child_index,
-				DrgPdp *pdrgpdpCtxt
+				CDrvdPropArrays *pdrgpdpCtxt
 				)
 				const;
 
@@ -246,7 +246,7 @@ namespace gpopt
 
 			// compute distribution spec from the table descriptor
 			static
-			CDistributionSpec *PdsCompute(IMemoryPool *mp, const CTableDescriptor *ptabdesc, ColRefArray *pdrgpcrOutput);
+			CDistributionSpec *PdsCompute(IMemoryPool *mp, const CTableDescriptor *ptabdesc, CColRefArray *pdrgpcrOutput);
 
 			// helper for a simple case of computing child's required sort order
 			static
@@ -343,7 +343,7 @@ namespace gpopt
 			CCTEMap *PcmCombine
 				(
 				IMemoryPool *mp,
-				DrgPdp *pdrgpdpCtxt
+				CDrvdPropArrays *pdrgpdpCtxt
 				);
 
 			// helper for common case of sort order derivation
@@ -441,7 +441,7 @@ namespace gpopt
 				CExpressionHandle &exprhdl,
 				CColRefSet *pcrsRequired,
 				ULONG child_index,
-				DrgPdp *pdrgpdpCtxt,
+				CDrvdPropArrays *pdrgpdpCtxt,
 				ULONG ulOptReq
 				) = 0;
 
@@ -453,7 +453,7 @@ namespace gpopt
 				CExpressionHandle &exprhdl,
 				CCTEReq *pcter,
 				ULONG child_index,
-				DrgPdp *pdrgpdpCtxt,
+				CDrvdPropArrays *pdrgpdpCtxt,
 				ULONG ulOptReq
 				)
 				const = 0;
@@ -466,7 +466,7 @@ namespace gpopt
 				CExpressionHandle &exprhdl,
 				COrderSpec *posRequired,
 				ULONG child_index,
-				DrgPdp *pdrgpdpCtxt,
+				CDrvdPropArrays *pdrgpdpCtxt,
 				ULONG ulOptReq
 				)
 				const = 0;
@@ -479,7 +479,7 @@ namespace gpopt
 				CExpressionHandle &exprhdl,
 				CDistributionSpec *pdsRequired,
 				ULONG child_index,
-				DrgPdp *pdrgpdpCtxt,
+				CDrvdPropArrays *pdrgpdpCtxt,
 				ULONG ulOptReq
 				)
 				const = 0;
@@ -492,7 +492,7 @@ namespace gpopt
 				CExpressionHandle &exprhdl,
 				CRewindabilitySpec *prsRequired,
 				ULONG child_index,
-				DrgPdp *pdrgpdpCtxt,
+				CDrvdPropArrays *pdrgpdpCtxt,
 				ULONG ulOptReq
 				)
 				const = 0;
@@ -505,7 +505,7 @@ namespace gpopt
 				CExpressionHandle &exprhdl,
 				CPartitionPropagationSpec *pppsRequired,
 				ULONG child_index,
-				DrgPdp *pdrgpdpCtxt,
+				CDrvdPropArrays *pdrgpdpCtxt,
 				ULONG ulOptReq
 				) = 0;
 			
@@ -589,7 +589,7 @@ namespace gpopt
 				(
 				CReqdPropPlan *prppInput,
 				ULONG child_index,
-				DrgPdp *pdrgpdpCtxt,
+				CDrvdPropArrays *pdrgpdpCtxt,
 				ULONG ulOptReq
 				);
 
@@ -599,7 +599,7 @@ namespace gpopt
 				(
 				CReqdPropPlan *prppInput,
 				ULONG child_index,
-				DrgPdp *pdrgpdpCtxt,
+				CDrvdPropArrays *pdrgpdpCtxt,
 				ULONG ulOptReq
 				);
 			
@@ -609,7 +609,7 @@ namespace gpopt
 				(
 				CReqdPropPlan *prppInput,
 				ULONG child_index,
-				DrgPdp *pdrgpdpCtxt,
+				CDrvdPropArrays *pdrgpdpCtxt,
 				ULONG ulOptReq
 				);
 
@@ -619,7 +619,7 @@ namespace gpopt
 				(
 				IMemoryPool *, // mp
 				COptimizationContext *, // poc,
-				OptimizationContextArray * // pdrgpocChild
+				COptimizationContextArray * // pdrgpocChild
 				)
 				const
 			{

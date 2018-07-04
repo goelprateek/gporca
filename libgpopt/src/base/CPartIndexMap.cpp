@@ -42,7 +42,7 @@ CPartIndexMap::CPartTableInfo::CPartTableInfo
 	UlongToPartConstraintMap *ppartcnstrmap,
 	EPartIndexManipulator epim,
 	IMDId *mdid,
-	PartKeysArray *pdrgppartkeys,
+	CPartKeysArray *pdrgppartkeys,
 	CPartConstraint *ppartcnstrRel,
 	ULONG ulPropagators
 	)
@@ -277,7 +277,7 @@ CPartIndexMap::Insert
 	EPartIndexManipulator epim,
 	ULONG ulExpectedPropagators,
 	IMDId *mdid,
-	PartKeysArray *pdrgppartkeys,
+	CPartKeysArray *pdrgppartkeys,
 	CPartConstraint *ppartcnstrRel
 	)
 {
@@ -345,7 +345,7 @@ CPartIndexMap::PptiLookup
 //		Part keys of the entry with the given scan id
 //
 //---------------------------------------------------------------------------
-PartKeysArray *
+CPartKeysArray *
 CPartIndexMap::Pdrgppartkeys
 	(
 	ULONG scan_id
@@ -570,7 +570,7 @@ CPartIndexMap::AddUnresolved
 		
 		// copy mdid and partition columns from part index map entry
 		IMDId *mdid = pptiFst->MDId();
-		PartKeysArray *pdrgppartkeys = pptiFst->Pdrgppartkeys();
+		CPartKeysArray *pdrgppartkeys = pptiFst->Pdrgppartkeys();
 		CPartConstraint *ppartcnstrRel = pptiFst->PpartcnstrRel();
 		
 		UlongToPartConstraintMap *ppartcnstrmap = CPartConstraint::PpartcnstrmapCombine(mp, pptiFst->Ppartcnstrmap(), ppartcnstrmapSnd);
@@ -915,7 +915,7 @@ CPartIndexMap::AddRequiredPartPropagation
 	CPartIndexMap *ppimSource,
 	ULONG scan_id,
 	EPartPropagationRequestAction eppra,
-	PartKeysArray *pdrgppartkeys
+	CPartKeysArray *pdrgppartkeys
 	)
 {
 	GPOS_ASSERT(NULL != ppimSource);
@@ -973,7 +973,7 @@ CPartIndexMap::PpimPartitionSelector
 		const CPartTableInfo *ppti = pimi.Value();
 		UlongToPartConstraintMap *ppartcnstrmap = ppti->Ppartcnstrmap();
 		IMDId *mdid = ppti->MDId();
-		PartKeysArray *pdrgppartkeys = ppti->Pdrgppartkeys();
+		CPartKeysArray *pdrgppartkeys = ppti->Pdrgppartkeys();
 		CPartConstraint *ppartcnstrRel = ppti->PpartcnstrRel();
 		ppartcnstrmap->AddRef();
 		mdid->AddRef();

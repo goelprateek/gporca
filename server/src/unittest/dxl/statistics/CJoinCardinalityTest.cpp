@@ -211,7 +211,7 @@ CJoinCardinalityTest::EresUnittest_Join()
 		GPOS_CHECK_ABORT;
 
 		// parse the input statistics objects
-		DXLStatsDerivedRelArray *dxl_derived_rel_stats_array = CDXLUtils::ParseDXLToStatsDerivedRelArray(mp, szDXLInput, NULL);
+		CDXLStatsDerivedRelationArray *dxl_derived_rel_stats_array = CDXLUtils::ParseDXLToStatsDerivedRelArray(mp, szDXLInput, NULL);
 		CStatisticsArray *pdrgpstatBefore = CDXLUtils::ParseDXLToOptimizerStatisticObjArray(mp, md_accessor, dxl_derived_rel_stats_array);
 		dxl_derived_rel_stats_array->Release();
 
@@ -225,7 +225,7 @@ CJoinCardinalityTest::EresUnittest_Join()
 		// generate the join conditions
 		FnPdrgpstatjoin *pf = elem.m_pf;
 		GPOS_ASSERT(NULL != pf);
-		StatsPredJoinArray *join_preds_stats = pf(mp);
+		CStatsPredJoinArray *join_preds_stats = pf(mp);
 
 		// calculate the output stats
 		CStatistics *pstatsOutput = NULL;
@@ -290,26 +290,26 @@ CJoinCardinalityTest::EresUnittest_Join()
 }
 
 //	helper method to generate a single join predicate
-StatsPredJoinArray *
+CStatsPredJoinArray *
 CJoinCardinalityTest::PdrgpstatspredjoinSingleJoinPredicate
 	(
 	IMemoryPool *mp
 	)
 {
-	StatsPredJoinArray *join_preds_stats = GPOS_NEW(mp) StatsPredJoinArray(mp);
+	CStatsPredJoinArray *join_preds_stats = GPOS_NEW(mp) CStatsPredJoinArray(mp);
 	join_preds_stats->Append(GPOS_NEW(mp) CStatsPredJoin(0, CStatsPred::EstatscmptEq, 8));
 
 	return join_preds_stats;
 }
 
 //	helper method to generate generate multiple join predicates
-StatsPredJoinArray *
+CStatsPredJoinArray *
 CJoinCardinalityTest::PdrgpstatspredjoinMultiplePredicates
 	(
 	IMemoryPool *mp
 	)
 {
-	StatsPredJoinArray *join_preds_stats = GPOS_NEW(mp) StatsPredJoinArray(mp);
+	CStatsPredJoinArray *join_preds_stats = GPOS_NEW(mp) CStatsPredJoinArray(mp);
 	join_preds_stats->Append(GPOS_NEW(mp) CStatsPredJoin(16, CStatsPred::EstatscmptEq, 32));
 	join_preds_stats->Append(GPOS_NEW(mp) CStatsPredJoin(0, CStatsPred::EstatscmptEq, 31));
 	join_preds_stats->Append(GPOS_NEW(mp) CStatsPredJoin(54, CStatsPred::EstatscmptEq, 32));
@@ -319,13 +319,13 @@ CJoinCardinalityTest::PdrgpstatspredjoinMultiplePredicates
 }
 
 // helper method to generate join predicate over columns that contain null values
-StatsPredJoinArray *
+CStatsPredJoinArray *
 CJoinCardinalityTest::PdrgpstatspredjoinNullableCols
 	(
 	IMemoryPool *mp
 	)
 {
-	StatsPredJoinArray *join_preds_stats = GPOS_NEW(mp) StatsPredJoinArray(mp);
+	CStatsPredJoinArray *join_preds_stats = GPOS_NEW(mp) CStatsPredJoinArray(mp);
 	join_preds_stats->Append(GPOS_NEW(mp) CStatsPredJoin(1, CStatsPred::EstatscmptEq, 2));
 
 	return join_preds_stats;

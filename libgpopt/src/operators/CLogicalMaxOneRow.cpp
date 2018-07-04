@@ -110,7 +110,7 @@ CLogicalMaxOneRow::PstatsDerive
 			(
 			IMemoryPool *mp,
 			CExpressionHandle &exprhdl,
-			StatsArray * // stats_ctxt
+			IStatsArray * // stats_ctxt
 			)
 			const
 {

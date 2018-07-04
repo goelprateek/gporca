@@ -77,7 +77,7 @@ CPhysicalNLJoin::PosRequired
 	CExpressionHandle &exprhdl,
 	COrderSpec *posInput,
 	ULONG child_index,
-	DrgPdp *, // pdrgpdpCtxt
+	CDrvdPropArrays *, // pdrgpdpCtxt
 	ULONG // ulOptReq
 	)
 	const
@@ -109,7 +109,7 @@ CPhysicalNLJoin::PrsRequired
 	CExpressionHandle &exprhdl,
 	CRewindabilitySpec *prsRequired,
 	ULONG child_index,
-	DrgPdp *, //pdrgpdpCtxt
+	CDrvdPropArrays *, //pdrgpdpCtxt
 	ULONG // ulOptReq
 	)
 	const
@@ -148,7 +148,7 @@ CPhysicalNLJoin::PcrsRequired
 	CExpressionHandle &exprhdl,
 	CColRefSet *pcrsRequired,
 	ULONG child_index,
-	DrgPdp *, // pdrgpdpCtxt
+	CDrvdPropArrays *, // pdrgpdpCtxt
 	ULONG // ulOptReq
 	)
 {
@@ -223,7 +223,7 @@ CPhysicalNLJoin::PppsRequiredNLJoinChild
 	CExpressionHandle &exprhdl,
 	CPartitionPropagationSpec *pppsRequired,
 	ULONG child_index,
-	DrgPdp *pdrgpdpCtxt,
+	CDrvdPropArrays *pdrgpdpCtxt,
 	ULONG ulOptReq
 	)
 {

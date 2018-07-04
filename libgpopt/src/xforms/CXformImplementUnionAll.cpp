@@ -74,7 +74,7 @@ CXformImplementUnionAll::Transform
 	CLogicalUnionAll *popUnionAll = CLogicalUnionAll::PopConvert(pexpr->Pop());
 	CPhysicalUnionAllFactory factory(popUnionAll);
 
-	ExpressionArray *pdrgpexpr = GPOS_NEW(mp) ExpressionArray(mp);
+	CExpressionArray *pdrgpexpr = GPOS_NEW(mp) CExpressionArray(mp);
 	const ULONG arity = pexpr->Arity();
 
 	for (ULONG ul = 0; ul < arity; ul++)

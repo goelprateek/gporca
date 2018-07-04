@@ -31,7 +31,7 @@ CDXLStatsDerivedColumn::CDXLStatsDerivedColumn(ULONG colid,
 											   CDouble null_freq,
 											   CDouble distinct_remaining,
 											   CDouble freq_remaining,
-											   DXLBucketPtrArray *dxl_stats_bucket_array)
+											   CDXLBucketArray *dxl_stats_bucket_array)
 	: m_colid(colid),
 	  m_width(width),
 	  m_null_freq(null_freq),
@@ -67,7 +67,7 @@ CDXLStatsDerivedColumn::~CDXLStatsDerivedColumn()
 //		Returns the array of buckets
 //
 //---------------------------------------------------------------------------
-const DXLBucketPtrArray *
+const CDXLBucketArray *
 CDXLStatsDerivedColumn::TransformHistogramToDXLBucketArray() const
 {
 	return m_dxl_stats_bucket_array;

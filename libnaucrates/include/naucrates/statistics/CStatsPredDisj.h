@@ -36,11 +36,11 @@ namespace gpnaucrates
 		CStatsPredDisj &operator=(CStatsPredDisj &);
 
 		// array of filters
-		StatsPredPtrArry *m_disj_pred_stats_array;
+		CStatsPredPtrArry *m_disj_pred_stats_array;
 
 	public:
 		// ctor
-		explicit CStatsPredDisj(StatsPredPtrArry *disj_pred_stats_array);
+		explicit CStatsPredDisj(CStatsPredPtrArry *disj_pred_stats_array);
 
 		// dtor
 		virtual ~CStatsPredDisj()
@@ -59,7 +59,7 @@ namespace gpnaucrates
 		}
 
 		// return the array of predicate filters
-		StatsPredPtrArry *
+		CStatsPredPtrArry *
 		GetDisjPredStatsArray() const
 		{
 			return m_disj_pred_stats_array;
@@ -79,7 +79,7 @@ namespace gpnaucrates
 		}
 
 		// return the column id of the filter based on the column ids of its child filters
-		static ULONG GetColId(const StatsPredPtrArry *pdrgpstatspred);
+		static ULONG GetColId(const CStatsPredPtrArry *pdrgpstatspred);
 
 		// conversion function
 		static CStatsPredDisj *

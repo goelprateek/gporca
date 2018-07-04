@@ -45,7 +45,7 @@ namespace gpmd
 		// column mappings
 		virtual CExpression *GetPartConstraintExpr(IMemoryPool *mp,
 												   CMDAccessor *md_accessor,
-												   ColRefArray *colref_array) const = 0;
+												   CColRefArray *colref_array) const = 0;
 
 		// included default partitions
 		virtual ULongPtrArray *GetDefaultPartsArray() const = 0;

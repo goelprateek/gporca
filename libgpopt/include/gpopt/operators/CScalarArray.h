@@ -23,7 +23,7 @@ namespace gpopt
 	using namespace gpos;
 	using namespace gpmd;
 
-	typedef CDynamicPtrArray<CScalarConst, CleanupRelease> ScalarConstArray;
+	typedef CDynamicPtrArray<CScalarConst, CleanupRelease> CScalarConstArray;
 
 	//---------------------------------------------------------------------------
 	//	@class:
@@ -47,7 +47,7 @@ namespace gpopt
 			BOOL m_fMultiDimensional;
 
 			// const values
-			ScalarConstArray *m_pdrgPconst;
+			CScalarConstArray *m_pdrgPconst;
 
 			// private copy ctor
 			CScalarArray(const CScalarArray &);
@@ -58,7 +58,7 @@ namespace gpopt
 			CScalarArray(IMemoryPool *mp, IMDId *elem_type_mdid, IMDId *array_type_mdid, BOOL is_multidimenstional);
 
 			// ctor
-			CScalarArray(IMemoryPool *mp, IMDId *elem_type_mdid, IMDId *array_type_mdid, BOOL is_multidimenstional, ScalarConstArray *pdrgPconst);
+			CScalarArray(IMemoryPool *mp, IMDId *elem_type_mdid, IMDId *array_type_mdid, BOOL is_multidimenstional, CScalarConstArray *pdrgPconst);
 
 			// dtor
 			virtual 
@@ -130,7 +130,7 @@ namespace gpopt
 			IMDId *MDIdType() const;
 
 			// CScalarConst array
-			ScalarConstArray *PdrgPconst() const;
+			CScalarConstArray *PdrgPconst() const;
 
 			// print
 			IOstream &OsPrint(IOstream &os) const;

@@ -119,7 +119,7 @@ CParseHandlerLogicalWindow::EndElement(const XMLCh *const,  // element_uri,
 	CParseHandlerLogicalOp *lg_op_parse_handler =
 		dynamic_cast<CParseHandlerLogicalOp *>((*this)[2]);
 
-	DXLWindowSpecArray *window_spec_array = window_speclist_parse_handler->GetDxlWindowSpecArray();
+	CDXLWindowSpecArray *window_spec_array = window_speclist_parse_handler->GetDxlWindowSpecArray();
 	GPOS_ASSERT(NULL != window_spec_array);
 
 	CDXLLogicalWindow *lg_window =

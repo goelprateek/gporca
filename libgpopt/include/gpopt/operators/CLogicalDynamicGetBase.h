@@ -45,7 +45,7 @@ namespace gpopt
 			ULONG m_scan_id;
 			
 			// output columns
-			ColRefArray *m_pdrgpcrOutput;
+			CColRefArray *m_pdrgpcrOutput;
 			
 			// partition keys
 			ColRefArrays *m_pdrgpdrgpcrPart;
@@ -87,7 +87,7 @@ namespace gpopt
 				const CName *pnameAlias,
 				CTableDescriptor *ptabdesc,
 				ULONG scan_id,
-				ColRefArray *colref_array,
+				CColRefArray *colref_array,
 				ColRefArrays *pdrgpdrgpcrPart,
 				ULONG ulSecondaryScanId,
 				BOOL is_partial,
@@ -109,7 +109,7 @@ namespace gpopt
 
 			// accessors
 			virtual
-			ColRefArray *PdrgpcrOutput() const
+			CColRefArray *PdrgpcrOutput() const
 			{
 				return m_pdrgpcrOutput;
 			}

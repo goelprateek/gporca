@@ -67,7 +67,7 @@ CXformImplementSequence::Transform
 
 	IMemoryPool *mp = pxfctxt->Pmp();
 
-	ExpressionArray *pdrgpexpr = pexpr->PdrgPexpr();
+	CExpressionArray *pdrgpexpr = pexpr->PdrgPexpr();
 	pdrgpexpr->AddRef();
 	
 	// create alternative expression

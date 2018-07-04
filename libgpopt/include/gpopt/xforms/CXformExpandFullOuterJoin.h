@@ -42,9 +42,9 @@ namespace gpopt
 				IMemoryPool *mp,
 				EdxlJoinType edxljointype,
 				ULONG ulLeftCTEId,
-				ColRefArray *pdrgpcrLeft,
+				CColRefArray *pdrgpcrLeft,
 				ULONG ulRightCTEId,
-				ColRefArray *pdrgpcrRight,
+				CColRefArray *pdrgpcrRight,
 				CExpression *pexprScalar
 				)
 				const;

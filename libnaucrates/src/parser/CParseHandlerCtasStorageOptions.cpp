@@ -100,7 +100,7 @@ CParseHandlerCtasStorageOptions::StartElement(const XMLCh *const,  // element_ur
 		if (NULL == m_ctas_storage_option_array)
 		{
 			m_ctas_storage_option_array =
-				GPOS_NEW(m_mp) CDXLCtasStorageOptions::DXLCtasOptionArray(m_mp);
+				GPOS_NEW(m_mp) CDXLCtasStorageOptions::CDXLCtasOptionArray(m_mp);
 		}
 		m_ctas_storage_option_array->Append(
 			GPOS_NEW(m_mp) CDXLCtasStorageOptions::CDXLCtasOption(

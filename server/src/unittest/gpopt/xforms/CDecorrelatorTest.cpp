@@ -94,7 +94,7 @@ CDecorrelatorTest::EresUnittest_Decorrelate()
 		str.Reset();
 
 		CExpression *pexprResult = NULL;
-		ExpressionArray *pdrgpexpr = GPOS_NEW(mp) ExpressionArray(mp);
+		CExpressionArray *pdrgpexpr = GPOS_NEW(mp) CExpressionArray(mp);
 #ifdef GPOS_DEBUG
 		BOOL fSuccess = 
 #endif // GPOS_DEBUG

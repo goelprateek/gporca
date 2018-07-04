@@ -161,7 +161,7 @@ CHistogramTest::EresUnittest_CHistogramBool()
 	IMemoryPool *mp = amp.Pmp();
 
 	// generate histogram of the form [false, false), [true,true)
-	BucketArray *histogram_buckets = GPOS_NEW(mp) BucketArray(mp);
+	CBucketArray *histogram_buckets = GPOS_NEW(mp) CBucketArray(mp);
 	CBucket *pbucketFalse = CCardinalityTestUtils::PbucketSingletonBoolVal(mp, false, 0.1);
 	CBucket *pbucketTrue = CCardinalityTestUtils::PbucketSingletonBoolVal(mp, false, 0.9);
 	histogram_buckets->Append(pbucketFalse);
@@ -192,7 +192,7 @@ CHistogramTest::EresUnittest_CHistogramValid()
 	CAutoMemoryPool amp;
 	IMemoryPool *mp = amp.Pmp();
 
-	BucketArray *histogram_buckets = GPOS_NEW(mp) BucketArray(mp);
+	CBucketArray *histogram_buckets = GPOS_NEW(mp) CBucketArray(mp);
 
 	// generate histogram of the form [0, 10), [9, 20)
 	CBucket *bucket1 = CCardinalityTestUtils::PbucketIntegerClosedLowerBound(mp, 0, 10, 0.1, 2.0);
@@ -230,7 +230,7 @@ CHistogramTest::PhistExampleInt4Remain
 	)
 {
 	// generate histogram of the form [0, 0], [10, 10], [20, 20] ...
-	BucketArray *histogram_buckets = GPOS_NEW(mp) BucketArray(mp);
+	CBucketArray *histogram_buckets = GPOS_NEW(mp) CBucketArray(mp);
 	for (ULONG idx = 0; idx < 5; idx++)
 	{
 		INT iLower = INT(idx * 10);
@@ -261,13 +261,13 @@ CHistogramTest::EresUnittest_Skew()
 	CBucket *pbucket7 = CCardinalityTestUtils::PbucketIntegerClosedLowerBound(mp, 601, 700, CDouble(0.2), CDouble(100.0));
 	CBucket *pbucket8 = CCardinalityTestUtils::PbucketIntegerClosedLowerBound(mp, 701, 800, CDouble(0.2), CDouble(100.0));
 
-	BucketArray *pdrgppbucket1 = GPOS_NEW(mp) BucketArray(mp);
+	CBucketArray *pdrgppbucket1 = GPOS_NEW(mp) CBucketArray(mp);
 	pdrgppbucket1->Append(bucket1);
 	pdrgppbucket1->Append(bucket2);
 	pdrgppbucket1->Append(pbucket3);
 	CHistogram *histogram1 =  GPOS_NEW(mp) CHistogram(pdrgppbucket1);
 
-	BucketArray *pdrgppbucket2 = GPOS_NEW(mp) BucketArray(mp);
+	CBucketArray *pdrgppbucket2 = GPOS_NEW(mp) CBucketArray(mp);
 	pdrgppbucket2->Append(pbucket4);
 	pdrgppbucket2->Append(pbucket5);
 	pdrgppbucket2->Append(pbucket6);

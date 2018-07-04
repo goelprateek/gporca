@@ -78,7 +78,7 @@ CXformDynamicIndexGet2DynamicIndexScan::Transform
 	CIndexDescriptor *pindexdesc = popIndexGet->Pindexdesc();
 	pindexdesc->AddRef();
 	
-	ColRefArray *pdrgpcrOutput = popIndexGet->PdrgpcrOutput();
+	CColRefArray *pdrgpcrOutput = popIndexGet->PdrgpcrOutput();
 	GPOS_ASSERT(NULL != pdrgpcrOutput);
 	pdrgpcrOutput->AddRef();
 	

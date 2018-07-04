@@ -55,7 +55,7 @@ IMDCacheObject::SerializeMDIdAsElem(CXMLSerializer *xml_serializer,
 //---------------------------------------------------------------------------
 void
 IMDCacheObject::SerializeMDIdList(CXMLSerializer *xml_serializer,
-								  const MdidPtrArray *mdid_array,
+								  const IMdIdArray *mdid_array,
 								  const CWStringConst *strTokenList,
 								  const CWStringConst *strTokenListItem)
 {

@@ -36,7 +36,7 @@ namespace gpopt
 		public:
 
 			// ctor
-			CPhysicalExternalScan(IMemoryPool *, const CName *, CTableDescriptor *, ColRefArray *);
+			CPhysicalExternalScan(IMemoryPool *, const CName *, CTableDescriptor *, CColRefArray *);
 
 			// ident accessors
 			virtual

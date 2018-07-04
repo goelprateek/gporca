@@ -107,7 +107,7 @@ CMissingStatsTest::EresUnittest_RunTests()
 
 		CStatisticsConfig *stats_config = optimizer_config->GetStatsConf();
 
-		MdidPtrArray *pdrgmdidCol = GPOS_NEW(mp) MdidPtrArray(mp);
+		IMdIdArray *pdrgmdidCol = GPOS_NEW(mp) IMdIdArray(mp);
 		stats_config->CollectMissingStatsColumns(pdrgmdidCol);
 		ULONG ulMissingStats = pdrgmdidCol->Size();
 

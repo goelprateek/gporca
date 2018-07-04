@@ -54,7 +54,7 @@ CLogicalConstTableGet::CLogicalConstTableGet
 CLogicalConstTableGet::CLogicalConstTableGet
 	(
 	IMemoryPool *mp,
-	ColumnDescrArray *pdrgpcoldesc,
+	CColumnDescrArray *pdrgpcoldesc,
 	IDatumArrays *pdrgpdrgpdatum
 	)
 	:
@@ -89,7 +89,7 @@ CLogicalConstTableGet::CLogicalConstTableGet
 CLogicalConstTableGet::CLogicalConstTableGet
 	(
 	IMemoryPool *mp,
-	ColRefArray *pdrgpcrOutput,
+	CColRefArray *pdrgpcrOutput,
 	IDatumArrays *pdrgpdrgpdatum
 	)
 	:
@@ -141,7 +141,7 @@ CLogicalConstTableGet::HashValue() const
 {
 	ULONG ulHash = gpos::CombineHashes(COperator::HashValue(),
 								gpos::CombineHashes(
-										gpos::HashPtr<ColumnDescrArray>(m_pdrgpcoldesc),
+										gpos::HashPtr<CColumnDescrArray>(m_pdrgpcoldesc),
 										gpos::HashPtr<IDatumArrays>(m_pdrgpdrgpdatum)));
 	ulHash = gpos::CombineHashes(ulHash, CUtils::UlHashColArray(m_pdrgpcrOutput));
 
@@ -192,7 +192,7 @@ CLogicalConstTableGet::PopCopyWithRemappedColumns
 	BOOL must_exist
 	)
 {
-	ColRefArray *colref_array = NULL;
+	CColRefArray *colref_array = NULL;
 	if (must_exist)
 	{
 		colref_array = CUtils::PdrgpcrRemapAndCreate(mp, m_pdrgpcrOutput, colref_mapping);
@@ -292,16 +292,16 @@ CLogicalConstTableGet::PxfsCandidates
 //		Construct column descriptors from column references
 //
 //---------------------------------------------------------------------------
-ColumnDescrArray *
+CColumnDescrArray *
 CLogicalConstTableGet::PdrgpcoldescMapping
 	(
 	IMemoryPool *mp,
-	ColRefArray *colref_array
+	CColRefArray *colref_array
 	)
 	const
 {
 	GPOS_ASSERT(NULL != colref_array);
-	ColumnDescrArray *pdrgpcoldesc = GPOS_NEW(mp) ColumnDescrArray(mp);
+	CColumnDescrArray *pdrgpcoldesc = GPOS_NEW(mp) CColumnDescrArray(mp);
 
 	const ULONG length = colref_array->Size();
 	for (ULONG ul = 0; ul < length; ul++)
@@ -344,7 +344,7 @@ CLogicalConstTableGet::PstatsDerive
 	(
 	IMemoryPool *mp,
 	CExpressionHandle &exprhdl,
-	StatsArray * // not used
+	IStatsArray * // not used
 	)
 	const
 {

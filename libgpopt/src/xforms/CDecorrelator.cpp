@@ -61,8 +61,8 @@ CDecorrelator::FPullableCorrelations
 	(
 	IMemoryPool *mp,
 	CExpression *pexpr,
-	ExpressionArray *pdrgpexprChildren,
-	ExpressionArray *pdrgpexprCorrelations
+	CExpressionArray *pdrgpexprChildren,
+	CExpressionArray *pdrgpexprCorrelations
 	)
 {
 	GPOS_ASSERT(NULL != pexpr);
@@ -190,7 +190,7 @@ CDecorrelator::FProcess
 	CExpression *pexpr,
 	BOOL fEqualityOnly,
 	CExpression **ppexprDecorrelated,
-	ExpressionArray *pdrgpexprCorrelations
+	CExpressionArray *pdrgpexprCorrelations
 	)
 {
 	GPOS_CHECK_STACK_SIZE;
@@ -237,7 +237,7 @@ CDecorrelator::FProcessOperator
 	CExpression *pexpr,
 	BOOL fEqualityOnly,
 	CExpression **ppexprDecorrelated,
-	ExpressionArray *pdrgpexprCorrelations
+	CExpressionArray *pdrgpexprCorrelations
 	)
 {
 	FnProcessor *pfnp = NULL;
@@ -288,7 +288,7 @@ CDecorrelator::FProcessPredicate
 	BOOL fEqualityOnly,
 	CColRefSet *pcrsOutput,
 	CExpression **ppexprDecorrelated,
-	ExpressionArray *pdrgpexprCorrelations
+	CExpressionArray *pdrgpexprCorrelations
 	)
 {
 	GPOS_ASSERT(pexprLogical->Pop()->FLogical());
@@ -296,8 +296,8 @@ CDecorrelator::FProcessPredicate
 
 	*ppexprDecorrelated = NULL;
 	
-	ExpressionArray *pdrgpexprConj = CPredicateUtils::PdrgpexprConjuncts(mp, pexprScalar);
-	ExpressionArray *pdrgpexprResiduals = GPOS_NEW(mp) ExpressionArray(mp);
+	CExpressionArray *pdrgpexprConj = CPredicateUtils::PdrgpexprConjuncts(mp, pexprScalar);
+	CExpressionArray *pdrgpexprResiduals = GPOS_NEW(mp) CExpressionArray(mp);
 	BOOL fSuccess = true;
 	
 	// divvy up the predicates in residuals (w/ no outer ref) and correlations (w/ outer refs)
@@ -358,7 +358,7 @@ CDecorrelator::FProcessSelect
 	CExpression *pexpr,
 	BOOL fEqualityOnly,
 	CExpression **ppexprDecorrelated,
-	ExpressionArray *pdrgpexprCorrelations
+	CExpressionArray *pdrgpexprCorrelations
 	)
 {
 	GPOS_ASSERT(COperator::EopLogicalSelect == pexpr->Pop()->Eopid());
@@ -416,7 +416,7 @@ CDecorrelator::FProcessGbAgg
 	CExpression *pexpr,
 	BOOL, // fEqualityOnly
 	CExpression **ppexprDecorrelated,
-	ExpressionArray *pdrgpexprCorrelations
+	CExpressionArray *pdrgpexprCorrelations
 	)
 {
 	CLogicalGbAgg *popAggOriginal = CLogicalGbAgg::PopConvert(pexpr->Pop());
@@ -454,7 +454,7 @@ CDecorrelator::FProcessGbAgg
 	pcrs->Include(popAggOriginal->Pdrgpcr());
 
 	// assemble grouping columns
-	ColRefArray *colref_array = pcrs->Pdrgpcr(mp);
+	CColRefArray *colref_array = pcrs->Pdrgpcr(mp);
 	pcrs->Release();
 	
 	// assemble agg
@@ -482,13 +482,13 @@ CDecorrelator::FProcessJoin
 	CExpression *pexpr,
 	BOOL fEqualityOnly,
 	CExpression **ppexprDecorrelated,
-	ExpressionArray *pdrgpexprCorrelations
+	CExpressionArray *pdrgpexprCorrelations
 	)
 {
 	GPOS_ASSERT(CUtils::FLogicalJoin(pexpr->Pop()) || CUtils::FApply(pexpr->Pop()));
 
 	ULONG arity = pexpr->Arity();	
-	ExpressionArray *pdrgpexpr = GPOS_NEW(mp) ExpressionArray(mp, arity);
+	CExpressionArray *pdrgpexpr = GPOS_NEW(mp) CExpressionArray(mp, arity);
 	CColRefSet *pcrsOutput = GPOS_NEW(mp) CColRefSet(mp);
 
 	// decorrelate all relational children
@@ -562,7 +562,7 @@ CDecorrelator::FProcessAssert
 	CExpression *pexpr,
 	BOOL fEqualityOnly,
 	CExpression **ppexprDecorrelated,
-	ExpressionArray *pdrgpexprCorrelations
+	CExpressionArray *pdrgpexprCorrelations
 	)
 {
 	GPOS_ASSERT(NULL != pexpr);
@@ -612,7 +612,7 @@ CDecorrelator::FProcessMaxOneRow
 	CExpression *pexpr,
 	BOOL fEqualityOnly,
 	CExpression **ppexprDecorrelated,
-	ExpressionArray *pdrgpexprCorrelations
+	CExpressionArray *pdrgpexprCorrelations
 	)
 {
 	GPOS_ASSERT(NULL != pexpr);
@@ -676,7 +676,7 @@ CDecorrelator::FProcessProject
 	CExpression *pexpr,
 	BOOL fEqualityOnly,
 	CExpression **ppexprDecorrelated,
-	ExpressionArray *pdrgpexprCorrelations
+	CExpressionArray *pdrgpexprCorrelations
 	)
 {
 	COperator::EOperatorId op_id = pexpr->Pop()->Eopid();
@@ -753,7 +753,7 @@ CDecorrelator::FProcessLimit
 	CExpression *pexpr,
 	BOOL fEqualityOnly,
 	CExpression **ppexprDecorrelated,
-	ExpressionArray *pdrgpexprCorrelations
+	CExpressionArray *pdrgpexprCorrelations
 	)
 {
 	GPOS_ASSERT(COperator::EopLogicalLimit == pexpr->Pop()->Eopid());

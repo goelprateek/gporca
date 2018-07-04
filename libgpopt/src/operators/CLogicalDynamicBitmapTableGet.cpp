@@ -42,7 +42,7 @@ CLogicalDynamicBitmapTableGet::CLogicalDynamicBitmapTableGet
 	ULONG ulOriginOpId,
 	const CName *pnameTableAlias,
 	ULONG ulPartIndex,
-	ColRefArray *pdrgpcrOutput,
+	CColRefArray *pdrgpcrOutput,
 	ColRefArrays *pdrgpdrgpcrPart,
 	ULONG ulSecondaryPartIndexId,
 	BOOL is_partial,
@@ -186,7 +186,7 @@ CLogicalDynamicBitmapTableGet::PstatsDerive
 	(
 	IMemoryPool *mp,
 	CExpressionHandle &exprhdl,
-	StatsArray *stats_ctxt
+	IStatsArray *stats_ctxt
 	)
 	const
 {
@@ -235,7 +235,7 @@ CLogicalDynamicBitmapTableGet::PopCopyWithRemappedColumns
 	BOOL must_exist
 	)
 {
-	ColRefArray *pdrgpcrOutput = NULL;
+	CColRefArray *pdrgpcrOutput = NULL;
 	if (must_exist)
 	{
 		pdrgpcrOutput = CUtils::PdrgpcrRemapAndCreate(mp, m_pdrgpcrOutput, colref_mapping);

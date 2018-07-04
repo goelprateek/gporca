@@ -75,7 +75,7 @@ CParseHandlerStatistics::GetParseHandlerType() const
 //		Returns the list of statistics objects constructed by the parser
 //
 //---------------------------------------------------------------------------
-DXLStatsDerivedRelArray *
+CDXLStatsDerivedRelationArray *
 CParseHandlerStatistics::GetStatsDerivedRelDXLArray() const
 {
 	return m_dxl_stats_derived_rel_array;
@@ -102,7 +102,7 @@ CParseHandlerStatistics::StartElement(const XMLCh *const element_uri,
 		GPOS_ASSERT(NULL == m_dxl_stats_derived_rel_array);
 
 		m_dxl_stats_derived_rel_array =
-			GPOS_NEW(m_mp) DXLStatsDerivedRelArray(m_mp);
+			GPOS_NEW(m_mp) CDXLStatsDerivedRelationArray(m_mp);
 	}
 	else
 	{

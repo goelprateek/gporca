@@ -92,7 +92,7 @@ namespace gpopt
 			void AddMissingStatsColumn(CMDIdColStats *pmdidCol);
 
 			// collect the missing statistics columns
-			void CollectMissingStatsColumns(MdidPtrArray *pdrgmdid);
+			void CollectMissingStatsColumns(IMdIdArray *pdrgmdid);
 
 			// generate default optimizer configurations
 			static

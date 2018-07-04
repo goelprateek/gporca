@@ -38,10 +38,10 @@ namespace gpopt
 			CDistributionSpec *m_pds;
 
 			// order specs of child window functions
-			OrderSpecArray *m_pdrgpos;
+			COrderSpecArray *m_pdrgpos;
 
 			// frames of child window functions
-			WindowFrameArray *m_pdrgpwf;
+			CWindowFrameArray *m_pdrgpwf;
 
 			// order spec to request from child
 			COrderSpec *m_pos;
@@ -65,8 +65,8 @@ namespace gpopt
 				(
 				IMemoryPool *mp,
 				CDistributionSpec *pds,
-				OrderSpecArray *pdrgpos,
-				WindowFrameArray *pdrgpwf
+				COrderSpecArray *pdrgpos,
+				CWindowFrameArray *pdrgpwf
 				);
 
 			// dtor
@@ -94,13 +94,13 @@ namespace gpopt
 			}
 
 			// order by keys
-			OrderSpecArray *Pdrgpos() const
+			COrderSpecArray *Pdrgpos() const
 			{
 				return m_pdrgpos;
 			}
 
 			// frame specifications
-			WindowFrameArray *Pdrgpwf() const
+			CWindowFrameArray *Pdrgpwf() const
 			{
 				return m_pdrgpwf;
 			}
@@ -132,7 +132,7 @@ namespace gpopt
 				CExpressionHandle &exprhdl,
 				CColRefSet *pcrsRequired,
 				ULONG child_index,
-				DrgPdp *pdrgpdpCtxt,
+				CDrvdPropArrays *pdrgpdpCtxt,
 				ULONG ulOptReq
 				);
 
@@ -144,7 +144,7 @@ namespace gpopt
 				CExpressionHandle &exprhdl,
 				CCTEReq *pcter,
 				ULONG child_index,
-				DrgPdp *pdrgpdpCtxt,
+				CDrvdPropArrays *pdrgpdpCtxt,
 				ULONG ulOptReq
 				)
 				const;
@@ -157,7 +157,7 @@ namespace gpopt
 				CExpressionHandle &exprhdl,
 				COrderSpec *posRequired,
 				ULONG child_index,
-				DrgPdp *pdrgpdpCtxt,
+				CDrvdPropArrays *pdrgpdpCtxt,
 				ULONG ulOptReq
 				)
 				const;
@@ -170,7 +170,7 @@ namespace gpopt
 				CExpressionHandle &exprhdl,
 				CDistributionSpec *pdsRequired,
 				ULONG child_index,
-				DrgPdp *pdrgpdpCtxt,
+				CDrvdPropArrays *pdrgpdpCtxt,
 				ULONG ulOptReq
 				)
 				const;
@@ -183,7 +183,7 @@ namespace gpopt
 				CExpressionHandle &exprhdl,
 				CRewindabilitySpec *prsRequired,
 				ULONG child_index,
-				DrgPdp *pdrgpdpCtxt,
+				CDrvdPropArrays *pdrgpdpCtxt,
 				ULONG ulOptReq
 				)
 				const;
@@ -196,7 +196,7 @@ namespace gpopt
 				CExpressionHandle &exprhdl,
 				CPartitionPropagationSpec *pppsRequired,
 				ULONG child_index,
-				DrgPdp *pdrgpdpCtxt,
+				CDrvdPropArrays *pdrgpdpCtxt,
 				ULONG ulOptReq
 				);
 

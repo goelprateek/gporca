@@ -21,7 +21,7 @@ namespace gpopt
 	CPhysicalUnionAll *CPhysicalUnionAllFactory::PopPhysicalUnionAll(IMemoryPool *mp, BOOL fParallel)
 	{
 
-		ColRefArray *pdrgpcrOutput = m_popLogicalUnionAll->PdrgpcrOutput();
+		CColRefArray *pdrgpcrOutput = m_popLogicalUnionAll->PdrgpcrOutput();
 		ColRefArrays *pdrgpdrgpcrInput = m_popLogicalUnionAll->PdrgpdrgpcrInput();
 
 		// TODO:  May 2nd 2012; support compatible types

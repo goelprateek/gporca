@@ -81,7 +81,7 @@ CParseHandlerLogicalConstTable::StartElement(const XMLCh *const,  // element_uri
 		GPOS_ASSERT(NULL == m_dxl_datum_array);
 
 		// initialize the array of datums (const tuple)
-		m_dxl_datum_array = GPOS_NEW(m_mp) DXLDatumArray(m_mp);
+		m_dxl_datum_array = GPOS_NEW(m_mp) CDXLDatumArray(m_mp);
 	}
 	else if (0 ==
 			 XMLString::compareString(CDXLTokens::XmlstrToken(EdxltokenDatum), element_local_name))
@@ -126,7 +126,7 @@ CParseHandlerLogicalConstTable::EndElement(const XMLCh *const,  // element_uri,
 			dynamic_cast<CParseHandlerColDescr *>((*this)[0]);
 		GPOS_ASSERT(NULL != col_descr_parse_handler->GetDXLColumnDescrArray());
 
-		DXLColumnDescrArray *dxl_col_descr_array =
+		CDXLColDescrArray *dxl_col_descr_array =
 			col_descr_parse_handler->GetDXLColumnDescrArray();
 		dxl_col_descr_array->AddRef();
 

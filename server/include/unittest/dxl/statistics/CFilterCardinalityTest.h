@@ -146,7 +146,7 @@ namespace gpnaucrates
 
 			// generate an array of filter given a column identifier, comparison type, and array of integer point
 			static
-			StatsPredPtrArry *PdrgpstatspredInteger
+			CStatsPredPtrArry *PdrgpstatspredInteger
 			(
 					IMemoryPool *mp,
 					ULONG colid,
@@ -157,7 +157,7 @@ namespace gpnaucrates
 
 			// create a numeric predicate on a particular column
 			static
-			StatsPredPtrArry *PdrgppredfilterNumeric(IMemoryPool *mp, ULONG colid, SStatsCmpValElem statsCmpValElem);
+			CStatsPredPtrArry *PdrgppredfilterNumeric(IMemoryPool *mp, ULONG colid, SStatsCmpValElem statsCmpValElem);
 
 			// create a filter on a column with null values
 			static

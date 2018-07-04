@@ -42,7 +42,7 @@ namespace gpopt
 			CTableDescriptor *m_ptabdesc;
 			
 			// output columns
-			ColRefArray *m_pdrgpcrOutput;
+			CColRefArray *m_pdrgpcrOutput;
 			
 			// partition keys
 			ColRefArrays *m_pdrgpdrgpcrPart;
@@ -74,7 +74,7 @@ namespace gpopt
 				IMemoryPool *mp,
 				const CName *pnameAlias,
 				CTableDescriptor *ptabdesc,
-				ColRefArray *pdrgpcrOutput
+				CColRefArray *pdrgpcrOutput
 				);
 
 			// dtor
@@ -103,7 +103,7 @@ namespace gpopt
 			}
 
 			// accessors
-			ColRefArray *PdrgpcrOutput() const
+			CColRefArray *PdrgpcrOutput() const
 			{
 				return m_pdrgpcrOutput;
 			}
@@ -226,7 +226,7 @@ namespace gpopt
 						(
 						IMemoryPool *mp,
 						CExpressionHandle &exprhdl,
-						StatsArray *stats_ctxt
+						IStatsArray *stats_ctxt
 						)
 						const;
 

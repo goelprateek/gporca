@@ -160,7 +160,7 @@ namespace gpopt
 
 			// insert a new consumer entry with the given id. The plan properties are
 			// taken from the given context
-			void InsertConsumer(ULONG id, DrgPdp *pdrgpdpCtxt);
+			void InsertConsumer(ULONG id, CDrvdPropArrays *pdrgpdpCtxt);
 
 			// check if two cte requirements are equal
 			BOOL Equals
@@ -187,7 +187,7 @@ namespace gpopt
 
 			// unresolved CTE requirements given a derived CTE map for a sequence
 			// operator
-			CCTEReq *PcterUnresolvedSequence(IMemoryPool *mp, CCTEMap *pcm, DrgPdp *pdrgpdpCtxt);
+			CCTEReq *PcterUnresolvedSequence(IMemoryPool *mp, CCTEMap *pcm, CDrvdPropArrays *pdrgpdpCtxt);
 
 			// create a copy of the current requirement where all the entries are marked optional
 			CCTEReq *PcterAllOptional(IMemoryPool *mp);

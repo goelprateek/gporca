@@ -39,7 +39,7 @@ CMDScalarOpGPDB::CMDScalarOpGPDB(IMemoryPool *mp,
 								 IMDId *m_mdid_inverse_opr,
 								 IMDType::ECmpType cmp_type,
 								 BOOL returns_null_on_null_input,
-								 MdidPtrArray *mdid_op_classes_array)
+								 IMdIdArray *mdid_op_classes_array)
 	: m_mp(mp),
 	  m_mdid(mdid),
 	  m_mdname(mdname),

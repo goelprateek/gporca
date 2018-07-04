@@ -40,13 +40,13 @@ namespace gpdxl
 	{
 	private:
 		// list of parsed metadata objects
-		IMDCachePtrArray *m_mdid_cached_obj_array;
+		IMDCacheObjectArray *m_mdid_cached_obj_array;
 
 		// list of parsed mdids
-		MdidPtrArray *m_mdid_array;
+		IMdIdArray *m_mdid_array;
 
 		// list of parsed metatadata source system ids
-		SysidPtrArray *m_system_id_array;
+		CSystemIdArray *m_system_id_array;
 
 		// private copy ctor
 		CParseHandlerMetadata(const CParseHandlerMetadata &);
@@ -65,7 +65,7 @@ namespace gpdxl
 		);
 
 		// parse an array of system ids from the XML attributes
-		SysidPtrArray *GetSrcSysIdArray(const Attributes &attr,
+		CSystemIdArray *GetSrcSysIdArray(const Attributes &attr,
 										Edxltoken target_attr,
 										Edxltoken target_elem);
 
@@ -83,13 +83,13 @@ namespace gpdxl
 		virtual EDxlParseHandlerType GetParseHandlerType() const;
 
 		// return the list of parsed metadata objects
-		IMDCachePtrArray *GetMdIdCachedObjArray();
+		IMDCacheObjectArray *GetMdIdCachedObjArray();
 
 		// return the list of parsed mdids
-		MdidPtrArray *GetMdIdArray();
+		IMdIdArray *GetMdIdArray();
 
 		// return the list of parsed system ids
-		SysidPtrArray *GetSysidPtrArray();
+		CSystemIdArray *GetSysidPtrArray();
 	};
 }  // namespace gpdxl
 

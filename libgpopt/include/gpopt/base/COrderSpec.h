@@ -25,7 +25,7 @@ namespace gpopt
 
 	// type definition of corresponding dynamic pointer array
 	class COrderSpec;
-	typedef CDynamicPtrArray<COrderSpec, CleanupRelease> OrderSpecArray;
+	typedef CDynamicPtrArray<COrderSpec, CleanupRelease> COrderSpecArray;
 
 	using namespace gpos;
 	
@@ -125,14 +125,14 @@ namespace gpopt
 			}; // class COrderExpression
 
 			// array of order expressions
-			typedef CDynamicPtrArray<COrderExpression, CleanupDelete> OrderExpressionArray;
+			typedef CDynamicPtrArray<COrderExpression, CleanupDelete> COrderExpressionArray;
 
 		
 			// memory pool
 			IMemoryPool *m_mp;
 		
 			// components of order spec
-			OrderExpressionArray *m_pdrgpoe;
+			COrderExpressionArray *m_pdrgpoe;
 
 			// private copy ctor
 			COrderSpec(const COrderSpec &);
@@ -205,7 +205,7 @@ namespace gpopt
 			
 			// append enforcers to dynamic array for the given plan properties
 			virtual
-			void AppendEnforcers(IMemoryPool *mp, CExpressionHandle &exprhdl, CReqdPropPlan *prpp, ExpressionArray *pdrgpexpr, CExpression *pexpr);
+			void AppendEnforcers(IMemoryPool *mp, CExpressionHandle &exprhdl, CReqdPropPlan *prpp, CExpressionArray *pdrgpexpr, CExpression *pexpr);
 
 			// hash function
 			virtual
@@ -225,23 +225,23 @@ namespace gpopt
 
 			// matching function over order spec arrays
 			static
-			BOOL Equals(const OrderSpecArray *pdrgposFirst, const OrderSpecArray *pdrgposSecond);
+			BOOL Equals(const COrderSpecArray *pdrgposFirst, const COrderSpecArray *pdrgposSecond);
 
 			// combine hash values of a maximum number of entries
 			static
-			ULONG HashValue(const OrderSpecArray *pdrgpos, ULONG ulMaxSize);
+			ULONG HashValue(const COrderSpecArray *pdrgpos, ULONG ulMaxSize);
 
 			// print array of order spec objects
 			static
-			IOstream &OsPrint(IOstream &os, const OrderSpecArray *pdrgpos);
+			IOstream &OsPrint(IOstream &os, const COrderSpecArray *pdrgpos);
 
 			// extract colref set of order columns used by elements of order spec array
 			static
-			CColRefSet *GetColRefSet(IMemoryPool *mp, OrderSpecArray *pdrgpos);
+			CColRefSet *GetColRefSet(IMemoryPool *mp, COrderSpecArray *pdrgpos);
 
 			// filter out array of order specs from order expressions using the passed columns
 			static
-			OrderSpecArray *PdrgposExclude(IMemoryPool *mp, OrderSpecArray *pdrgpos, CColRefSet *pcrsToExclude);
+			COrderSpecArray *PdrgposExclude(IMemoryPool *mp, COrderSpecArray *pdrgpos, CColRefSet *pcrsToExclude);
 
 						
 	}; // class COrderSpec

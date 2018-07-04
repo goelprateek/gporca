@@ -9,18 +9,18 @@ using namespace gpopt;
 CStrictHashedDistributions::CStrictHashedDistributions
 (
 IMemoryPool *mp,
-ColRefArray *pdrgpcrOutput,
+CColRefArray *pdrgpcrOutput,
 ColRefArrays *pdrgpdrgpcrInput
 )
 :
-DrgPds(mp)
+CDistributionSpecArray(mp)
 {
 	const ULONG num_cols = pdrgpcrOutput->Size();
 	const ULONG arity = pdrgpdrgpcrInput->Size();
 	for (ULONG ulChild = 0; ulChild < arity; ulChild++)
 	{
-		ColRefArray *colref_array = (*pdrgpdrgpcrInput)[ulChild];
-		ExpressionArray *pdrgpexpr = GPOS_NEW(mp) ExpressionArray(mp);
+		CColRefArray *colref_array = (*pdrgpdrgpcrInput)[ulChild];
+		CExpressionArray *pdrgpexpr = GPOS_NEW(mp) CExpressionArray(mp);
 		for (ULONG ulCol = 0; ulCol < num_cols; ulCol++)
 		{
 			CColRef *colref = (*colref_array)[ulCol];

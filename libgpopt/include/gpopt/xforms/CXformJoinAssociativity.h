@@ -39,8 +39,8 @@ namespace gpopt
 				(
 				IMemoryPool *mp,
 				CExpression *pexpr,
-				ExpressionArray *pdrgpexprLower,
-				ExpressionArray *pdrgpexprUpper
+				CExpressionArray *pdrgpexprLower,
+				CExpressionArray *pdrgpexprUpper
 				) 
 				const;
 

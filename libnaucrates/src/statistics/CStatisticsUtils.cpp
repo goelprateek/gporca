@@ -121,7 +121,7 @@ CStatisticsUtils::TransformMCVToHist(IMemoryPool *mp,
 
 	// put MCV values and their corresponding frequencies
 	// into a structure in order to sort
-	McvPairPtrArray *mcv_pairs = GPOS_NEW(mp) McvPairPtrArray(mp);
+	SMcvPairPtrArray *mcv_pairs = GPOS_NEW(mp) SMcvPairPtrArray(mp);
 	for (ULONG i = 0; i < num_mcv_values; i++)
 	{
 		IDatum *datum = (*mcv_datums)[i];
@@ -138,7 +138,7 @@ CStatisticsUtils::TransformMCVToHist(IMemoryPool *mp,
 	}
 
 	// now put MCVs and their frequencies in buckets
-	BucketArray *mcv_buckets = GPOS_NEW(mp) BucketArray(mp);
+	CBucketArray *mcv_buckets = GPOS_NEW(mp) CBucketArray(mp);
 
 	for (ULONG i = 0; i < num_mcv_values; i++)
 	{
@@ -182,8 +182,8 @@ CStatisticsUtils::MergeMCVHist(IMemoryPool *mp,
 	GPOS_ASSERT(0 < mcv_histogram->Buckets());
 	GPOS_ASSERT(0 < histogram->Buckets());
 
-	const BucketArray *mcv_buckets = mcv_histogram->ParseDXLToBucketsArray();
-	const BucketArray *histogram_buckets = histogram->ParseDXLToBucketsArray();
+	const CBucketArray *mcv_buckets = mcv_histogram->ParseDXLToBucketsArray();
+	const CBucketArray *histogram_buckets = histogram->ParseDXLToBucketsArray();
 
 	IDatum *datum = (*mcv_buckets)[0]->GetLowerBound()->GetDatum();
 
@@ -205,7 +205,7 @@ CStatisticsUtils::MergeMCVHist(IMemoryPool *mp,
 	GPOS_ASSERT(mcv_histogram->IsValid());
 	GPOS_ASSERT(histogram->IsValid());
 
-	BucketArray *merged_buckets = MergeMcvHistBucket(mp, mcv_buckets, histogram_buckets);
+	CBucketArray *merged_buckets = MergeMcvHistBucket(mp, mcv_buckets, histogram_buckets);
 
 	CHistogram *merged_histogram = GPOS_NEW(mp) CHistogram(merged_buckets);
 	GPOS_ASSERT(merged_histogram->IsValid());
@@ -222,12 +222,12 @@ CStatisticsUtils::MergeMCVHist(IMemoryPool *mp,
 //		an array of buckets.
 //
 //---------------------------------------------------------------------------
-BucketArray *
+CBucketArray *
 CStatisticsUtils::MergeMcvHistBucket(IMemoryPool *mp,
-									 const BucketArray *mcv_buckets,
-									 const BucketArray *histogram_buckets)
+									 const CBucketArray *mcv_buckets,
+									 const CBucketArray *histogram_buckets)
 {
-	BucketArray *merged_buckets = GPOS_NEW(mp) BucketArray(mp);
+	CBucketArray *merged_buckets = GPOS_NEW(mp) CBucketArray(mp);
 	const ULONG mcv = mcv_buckets->Size();
 	const ULONG num_histograms = histogram_buckets->Size();
 	ULONG mcv_index = 0;
@@ -274,8 +274,8 @@ CStatisticsUtils::MergeMcvHistBucket(IMemoryPool *mp,
 //---------------------------------------------------------------------------
 void
 CStatisticsUtils::AddRemainingBuckets(IMemoryPool *mp,
-									  const BucketArray *src_buckets,
-									  BucketArray *dest_buckets,
+									  const CBucketArray *src_buckets,
+									  CBucketArray *dest_buckets,
 									  ULONG *start_val)
 {
 	const ULONG ulTotal = src_buckets->Size();
@@ -300,15 +300,15 @@ CStatisticsUtils::AddRemainingBuckets(IMemoryPool *mp,
 void
 CStatisticsUtils::SplitHistDriver(IMemoryPool *mp,
 								  const CBucket *histogram_bucket,
-								  const BucketArray *mcv_buckets,
-								  BucketArray *merged_buckets,
+								  const CBucketArray *mcv_buckets,
+								  CBucketArray *merged_buckets,
 								  ULONG *mcv_index,
 								  ULONG mcv)
 {
 	GPOS_ASSERT(NULL != histogram_bucket);
 	GPOS_ASSERT(NULL != mcv_buckets);
 
-	BucketArray *temp_mcv_buckets = GPOS_NEW(mp) BucketArray(mp);
+	CBucketArray *temp_mcv_buckets = GPOS_NEW(mp) CBucketArray(mp);
 
 	// find the MCVs that fall into the same histogram bucket and put them in a temp array
 	// E.g. MCV = ..., 6, 8, 12, ... and the current histogram bucket is [5,10)
@@ -321,7 +321,7 @@ CStatisticsUtils::SplitHistDriver(IMemoryPool *mp,
 	}
 
 	// split histogram_bucket given one or more MCVs it contains
-	BucketArray *split_buckets =
+	CBucketArray *split_buckets =
 		SplitHistBucketGivenMcvBuckets(mp, histogram_bucket, temp_mcv_buckets);
 	const ULONG split_bucket_size = split_buckets->Size();
 
@@ -347,15 +347,15 @@ CStatisticsUtils::SplitHistDriver(IMemoryPool *mp,
 //		buckets.
 //
 //---------------------------------------------------------------------------
-BucketArray *
+CBucketArray *
 CStatisticsUtils::SplitHistBucketGivenMcvBuckets(IMemoryPool *mp,
 												 const CBucket *histogram_bucket,
-												 const BucketArray *mcv_buckets)
+												 const CBucketArray *mcv_buckets)
 {
 	GPOS_ASSERT(NULL != histogram_bucket);
 	GPOS_ASSERT(NULL != mcv_buckets);
 
-	BucketArray *buckets_after_split = GPOS_NEW(mp) BucketArray(mp);
+	CBucketArray *buckets_after_split = GPOS_NEW(mp) CBucketArray(mp);
 	const ULONG mcv = mcv_buckets->Size();
 	GPOS_ASSERT(0 < mcv);
 
@@ -517,7 +517,7 @@ CStatisticsUtils::IsValidBucket(CPoint *bucket_lower_bound,
 void
 CStatisticsUtils::DistributeBucketProperties(CDouble total_frequency,
 											 CDouble total_distinct_values,
-											 BucketArray *buckets)
+											 CBucketArray *buckets)
 {
 	GPOS_ASSERT(NULL != buckets);
 
@@ -620,7 +620,7 @@ CStatisticsUtils::ExtractUsedColIds(IMemoryPool *mp,
 	GPOS_ASSERT(CStatsPred::EsptConj == pred_stats->GetPredStatsType() ||
 				CStatsPred::EsptDisj == pred_stats->GetPredStatsType());
 
-	StatsPredPtrArry *stats_pred_array = NULL;
+	CStatsPredPtrArry *stats_pred_array = NULL;
 	if (CStatsPred::EsptConj == pred_stats->GetPredStatsType())
 	{
 		stats_pred_array = CStatsPredConj::ConvertPredStats(pred_stats)->GetConjPredStatsArray();
@@ -895,7 +895,7 @@ CStatisticsUtils::CreateHistHashMapAfterMergingDisjPreds(
 				// disjunction child is "0"
 				merged_histogram->Insert(
 					GPOS_NEW(mp) ULONG(disj_child_colid),
-					GPOS_NEW(mp) CHistogram(GPOS_NEW(mp) BucketArray(mp),
+					GPOS_NEW(mp) CHistogram(GPOS_NEW(mp) CBucketArray(mp),
 													 false /* is_well_defined */));
 			}
 		}
@@ -987,7 +987,7 @@ CStatisticsUtils::CopyHistHashMap(IMemoryPool *mp,
 //
 //---------------------------------------------------------------------------
 ULONG
-CStatisticsUtils::GetColId(const StatsPredPtrArry *pred_stats_array)
+CStatisticsUtils::GetColId(const CStatsPredPtrArry *pred_stats_array)
 {
 	GPOS_ASSERT(NULL != pred_stats_array);
 
@@ -1076,7 +1076,7 @@ CStatisticsUtils::DeriveStatsForDynamicScan(IMemoryPool *mp,
 	IStatistics *part_selector_stats = part_filter_map->Pstats(part_idx_id);
 	CExpression *scalar_expr = part_filter_map->Pexpr(part_idx_id);
 
-	ColRefSetArray *output_colrefs = GPOS_NEW(mp) ColRefSetArray(mp);
+	CColRefSetArray *output_colrefs = GPOS_NEW(mp) CColRefSetArray(mp);
 	output_colrefs->Append(base_table_stats->GetColRefSet(mp));
 	output_colrefs->Append(part_selector_stats->GetColRefSet(mp));
 
@@ -1084,7 +1084,7 @@ CStatisticsUtils::DeriveStatsForDynamicScan(IMemoryPool *mp,
 
 	// extract all the conjuncts
 	CStatsPred *unsupported_pred_stats = NULL;
-	StatsPredJoinArray *join_preds_stats = CStatsPredUtils::ExtractJoinStatsFromJoinPredArray(
+	CStatsPredJoinArray *join_preds_stats = CStatsPredUtils::ExtractJoinStatsFromJoinPredArray(
 		mp, scalar_expr, output_colrefs, outer_refs, &unsupported_pred_stats);
 
 	IStatistics *left_semi_join_stats =
@@ -1111,7 +1111,7 @@ CStatisticsUtils::DeriveStatsForDynamicScan(IMemoryPool *mp,
 IStatistics *
 CStatisticsUtils::DeriveStatsForIndexGet(IMemoryPool *mp,
 										 CExpressionHandle &expr_handle,
-										 StatsArray *stats_contexts)
+										 IStatsArray *stats_contexts)
 {
 	COperator::EOperatorId operator_id = expr_handle.Pop()->Eopid();
 	GPOS_ASSERT(CLogical::EopLogicalIndexGet == operator_id ||
@@ -1182,7 +1182,7 @@ CStatisticsUtils::DeriveStatsForIndexGet(IMemoryPool *mp,
 IStatistics *
 CStatisticsUtils::DeriveStatsForBitmapTableGet(IMemoryPool *mp,
 											   CExpressionHandle &expr_handle,
-											   StatsArray *stats_contexts)
+											   IStatsArray *stats_contexts)
 {
 	GPOS_ASSERT(CLogical::EopLogicalBitmapTableGet == expr_handle.Pop()->Eopid() ||
 				CLogical::EopLogicalDynamicBitmapTableGet == expr_handle.Pop()->Eopid());
@@ -1670,7 +1670,7 @@ CStatisticsUtils::MakeGroupByColsForStats(IMemoryPool *mp,
 //
 //---------------------------------------------------------------------------
 CDouble
-CStatisticsUtils::GetNumDistinct(const BucketArray *histogram_buckets)
+CStatisticsUtils::GetNumDistinct(const CBucketArray *histogram_buckets)
 {
 	GPOS_ASSERT(NULL != histogram_buckets);
 
@@ -1695,7 +1695,7 @@ CStatisticsUtils::GetNumDistinct(const BucketArray *histogram_buckets)
 //
 //---------------------------------------------------------------------------
 CDouble
-CStatisticsUtils::GetFrequency(const BucketArray *histogram_buckets)
+CStatisticsUtils::GetFrequency(const CBucketArray *histogram_buckets)
 {
 	GPOS_ASSERT(NULL != histogram_buckets);
 
@@ -1809,7 +1809,7 @@ CStatisticsUtils::ComputeCardUpperBounds(
 	GPOS_ASSERT(NULL != output_stats);
 	GPOS_ASSERT(CStatistics::EcbmSentinel != card_bounding_method);
 
-	const UpperBoundNDVPtrArray *input_stats_ndv_upper_bound = input_stats->GetUpperBoundNDVs();
+	const CUpperBoundNDVPtrArray *input_stats_ndv_upper_bound = input_stats->GetUpperBoundNDVs();
 	ULONG length = input_stats_ndv_upper_bound->Size();
 	for (ULONG i = 0; i < length; i++)
 	{

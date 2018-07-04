@@ -105,7 +105,7 @@ CStatisticsConfig::AddMissingStatsColumn
 void
 CStatisticsConfig::CollectMissingStatsColumns
 	(
-	MdidPtrArray *pdrgmdid
+	IMdIdArray *pdrgmdid
     )
 {
 	GPOS_ASSERT(NULL != pdrgmdid);

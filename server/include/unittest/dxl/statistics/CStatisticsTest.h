@@ -55,11 +55,11 @@ namespace gpnaucrates
 
 			// create filter on int4 types
 			static
-			void StatsFilterInt4(IMemoryPool *mp, ULONG colid, INT iLower, INT iUpper, StatsPredPtrArry *pgrgpstatspred);
+			void StatsFilterInt4(IMemoryPool *mp, ULONG colid, INT iLower, INT iUpper, CStatsPredPtrArry *pgrgpstatspred);
 
 			// create filter on boolean types
 			static
-			void StatsFilterBool(IMemoryPool *mp, ULONG colid, BOOL fValue, StatsPredPtrArry *pgrgpstatspred);
+			void StatsFilterBool(IMemoryPool *mp, ULONG colid, BOOL fValue, CStatsPredPtrArry *pgrgpstatspred);
 
 			// create filter on numeric types
 			static
@@ -72,7 +72,7 @@ namespace gpnaucrates
 				CWStringDynamic *pstrUpperEncoded,
 				CDouble dValLower,
 				CDouble dValUpper,
-				StatsPredPtrArry *pdrgpstatspred
+				CStatsPredPtrArry *pdrgpstatspred
 				);
 
 			// create filter on generic types
@@ -86,7 +86,7 @@ namespace gpnaucrates
 				CWStringDynamic *pstrUpperEncoded,
 				LINT lValLower,
 				LINT lValUpper,
-				StatsPredPtrArry *pgrgpstatspred
+				CStatsPredPtrArry *pgrgpstatspred
 				);
 
 			static
@@ -126,10 +126,10 @@ namespace gpnaucrates
 
 			// example filter
 			static
-			StatsPredPtrArry *Pdrgpstatspred1(IMemoryPool *mp);
+			CStatsPredPtrArry *Pdrgpstatspred1(IMemoryPool *mp);
 
 			static
-			StatsPredPtrArry *Pdrgpstatspred2(IMemoryPool *mp);
+			CStatsPredPtrArry *Pdrgpstatspred2(IMemoryPool *mp);
 
 			// unittests
 			static

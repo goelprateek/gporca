@@ -15,10 +15,10 @@ namespace gpopt
 	{
 		private:
 			// array of child hashed distributions -- used locally for distribution derivation
-			DrgPds *const m_pdrgpds;
+			CDistributionSpecArray *const m_pdrgpds;
 
 		public:
-			CPhysicalParallelUnionAll(IMemoryPool *mp, ColRefArray *pdrgpcrOutput, ColRefArrays *pdrgpdrgpcrInput,
+			CPhysicalParallelUnionAll(IMemoryPool *mp, CColRefArray *pdrgpcrOutput, ColRefArrays *pdrgpdrgpcrInput,
 									  ULONG ulScanIdPartialIndex);
 
 			virtual EOperatorId Eopid() const;
@@ -27,14 +27,14 @@ namespace gpopt
 
 			virtual CDistributionSpec *
 			PdsRequired(IMemoryPool *mp, CExpressionHandle &exprhdl, CDistributionSpec *pdsRequired,
-						ULONG child_index, DrgPdp *pdrgpdpCtxt, ULONG ulOptReq) const;
+						ULONG child_index, CDrvdPropArrays *pdrgpdpCtxt, ULONG ulOptReq) const;
 
 			virtual
 			CEnfdDistribution::EDistributionMatching Edm
 				(
 				CReqdPropPlan *, // prppInput
 				ULONG,  // child_index
-				DrgPdp *, //pdrgpdpCtxt
+				CDrvdPropArrays *, //pdrgpdpCtxt
 				ULONG // ulOptReq
 				);
 

@@ -55,7 +55,7 @@ CLogicalCTEConsumer::CLogicalCTEConsumer
 	(
 	IMemoryPool *mp,
 	ULONG id,
-	ColRefArray *colref_array
+	CColRefArray *colref_array
 	)
 	:
 	CLogical(mp),
@@ -331,7 +331,7 @@ CLogicalCTEConsumer::PopCopyWithRemappedColumns
 	BOOL must_exist
 	)
 {
-	ColRefArray *colref_array = NULL;
+	CColRefArray *colref_array = NULL;
 	if (must_exist)
 	{
 		colref_array = CUtils::PdrgpcrRemapAndCreate(mp, m_pdrgpcr, colref_mapping);
@@ -383,11 +383,11 @@ CLogicalCTEConsumer::PpcDeriveConstraint
 	CExpression *pexprProducer = COptCtxt::PoctxtFromTLS()->Pcteinfo()->PexprCTEProducer(m_id);
 	GPOS_ASSERT(NULL != pexprProducer);
 	CPropConstraint *ppc = CDrvdPropRelational::GetRelationalProperties(pexprProducer->PdpDerive())->Ppc();
-	ColRefSetArray *pdrgpcrs = ppc->PdrgpcrsEquivClasses();
+	CColRefSetArray *pdrgpcrs = ppc->PdrgpcrsEquivClasses();
 	CConstraint *pcnstr = ppc->Pcnstr();
 
 	// remap producer columns to consumer columns
-	ColRefSetArray *pdrgpcrsMapped = GPOS_NEW(mp) ColRefSetArray(mp);
+	CColRefSetArray *pdrgpcrsMapped = GPOS_NEW(mp) CColRefSetArray(mp);
 	const ULONG length = pdrgpcrs->Size();
 	for (ULONG ul = 0; ul < length; ul++)
 	{
@@ -418,7 +418,7 @@ CLogicalCTEConsumer::PstatsDerive
 	(
 	IMemoryPool *mp,
 	CExpressionHandle &, //exprhdl,
-	StatsArray * // statistics_array
+	IStatsArray * // statistics_array
 	)
 	const
 {

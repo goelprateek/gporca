@@ -169,7 +169,7 @@ namespace gpopt
 				CExpressionHandle &exprhdl,
 				CDistributionSpec *pdsRequired,
 				ULONG child_index,
-				DrgPdp *pdrgpdpCtxt,
+				CDrvdPropArrays *pdrgpdpCtxt,
 				ULONG  ulOptReq
 				)
 				const;
@@ -181,7 +181,7 @@ namespace gpopt
 				CExpressionHandle &exprhdl,
 				CRewindabilitySpec *prsRequired,
 				ULONG child_index,
-				DrgPdp *pdrgpdpCtxt,
+				CDrvdPropArrays *pdrgpdpCtxt,
 				ULONG ulOptReq
 				)
 				const;
@@ -213,7 +213,7 @@ namespace gpopt
 				CExpressionHandle &exprhdl,
 				CPartitionPropagationSpec *pppsRequired,
 				ULONG child_index,
-				DrgPdp *pdrgpdpCtxt,
+				CDrvdPropArrays *pdrgpdpCtxt,
 				BOOL fNLJoin
 				);
 
@@ -237,8 +237,8 @@ namespace gpopt
 				CExpression *pexprPred,
 				CExpression *pexprOuter,
 				CExpression *pexprInner,
-				ExpressionArray *pdrgpexprOuter,
-				ExpressionArray *pdrgpexprInner
+				CExpressionArray *pdrgpexprOuter,
+				CExpressionArray *pdrgpexprInner
 				);
 			
 			// helper to add filter on part key
@@ -296,7 +296,7 @@ namespace gpopt
 				CExpressionHandle &exprhdl,
 				CColRefSet *pcrsRequired,
 				ULONG child_index,
-				DrgPdp *pdrgpdpCtxt,
+				CDrvdPropArrays *pdrgpdpCtxt,
 				ULONG ulOptReq
 				);
 
@@ -308,7 +308,7 @@ namespace gpopt
 				CExpressionHandle &exprhdl,
 				CCTEReq *pcter,
 				ULONG child_index,
-				DrgPdp *pdrgpdpCtxt,
+				CDrvdPropArrays *pdrgpdpCtxt,
 				ULONG ulOptReq
 				)
 				const;
@@ -321,7 +321,7 @@ namespace gpopt
 				CExpressionHandle &exprhdl,
 				CDistributionSpec *pdsRequired,
 				ULONG child_index,
-				DrgPdp *pdrgpdpCtxt,
+				CDrvdPropArrays *pdrgpdpCtxt,
 				ULONG ulOptReq
 				)
 				const;
@@ -334,7 +334,7 @@ namespace gpopt
 				CExpressionHandle &exprhdl,
 				CPartitionPropagationSpec *pppsRequired,
 				ULONG child_index,
-				DrgPdp *pdrgpdpCtxt,
+				CDrvdPropArrays *pdrgpdpCtxt,
 				ULONG ulOptReq
 				);
 
@@ -348,7 +348,7 @@ namespace gpopt
 				(
 				CReqdPropPlan *prppInput,
 				ULONG child_index,
-				DrgPdp *pdrgpdpCtxt,
+				CDrvdPropArrays *pdrgpdpCtxt,
 				ULONG ulOptReq
 				);
 			
@@ -442,8 +442,8 @@ namespace gpopt
 				(
 				IMemoryPool *mp,
 				CExpression *pexpr,
-				ExpressionArray *pdrgpexprOuter,
-				ExpressionArray *pdrgpexprInner,
+				CExpressionArray *pdrgpexprOuter,
+				CExpressionArray *pdrgpexprInner,
 				CExpression **ppexprResult // output: join expression to be tarnsformed to hash join
 				);
 

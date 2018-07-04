@@ -94,7 +94,7 @@ namespace gpopt
 					IMDId *m_mdid;
 
 					// partition keys
-					PartKeysArray *m_pdrgppartkeys;
+					CPartKeysArray *m_pdrgppartkeys;
 
 					// part constraint of the relation
 					CPartConstraint *m_ppartcnstrRel;
@@ -126,7 +126,7 @@ namespace gpopt
 						UlongToPartConstraintMap *ppartcnstrmap,
 						EPartIndexManipulator epim,
 						IMDId *mdid,
-						PartKeysArray *pdrgppartkeys,
+						CPartKeysArray *pdrgppartkeys,
 						CPartConstraint *ppartcnstrRel,
 						ULONG ulPropagators
 						);
@@ -189,7 +189,7 @@ namespace gpopt
 
 					// partition keys of partition table
 					virtual
-					PartKeysArray *Pdrgppartkeys() const
+					CPartKeysArray *Pdrgppartkeys() const
 					{
 						return m_pdrgppartkeys;
 					}
@@ -277,7 +277,7 @@ namespace gpopt
 				EPartIndexManipulator epim,
 				ULONG ulExpectedPropagators,
 				IMDId *mdid, 
-				PartKeysArray *pdrgppartkeys,
+				CPartKeysArray *pdrgppartkeys,
 				CPartConstraint *ppartcnstrRel
 				);
 
@@ -324,7 +324,7 @@ namespace gpopt
 			BOOL FContainsRedundantPartitionSelectors(CPartIndexMap *ppimReqd) const;
 
 			// part keys of the entry with the given scan id
-			PartKeysArray *Pdrgppartkeys(ULONG scan_id) const;
+			CPartKeysArray *Pdrgppartkeys(ULONG scan_id) const;
 
 			// relation mdid of the entry with the given scan id
 			IMDId *GetRelMdId(ULONG scan_id) const;
@@ -349,7 +349,7 @@ namespace gpopt
 
 			// get part consumer with given scanId from the given map, and add it to the
 			// current map with the given array of keys
-			void AddRequiredPartPropagation(CPartIndexMap *ppimSource, ULONG scan_id, EPartPropagationRequestAction eppra, PartKeysArray *pdrgppartkeys = NULL);
+			void AddRequiredPartPropagation(CPartIndexMap *ppimSource, ULONG scan_id, EPartPropagationRequestAction eppra, CPartKeysArray *pdrgppartkeys = NULL);
 
 			// return a new part index map for a partition selector with the given
 			// scan id, and the given number of expected selectors above it

@@ -95,7 +95,7 @@ CCostModelGPDBLegacy::CCostModelGPDBLegacy
 	(
 	IMemoryPool *mp,
 	ULONG ulSegments,
-	CostModelParamsArray *pdrgpcp
+	ICostModelParamsArray *pdrgpcp
 	)
 	:
 	m_mp(mp),
@@ -904,7 +904,7 @@ CCostModelGPDBLegacy::CostSequenceProject
 	DOUBLE dWidthOuter = pci->GetWidth()[0];
 
 	ULONG ulSortCols = 0;
-	OrderSpecArray *pdrgpos = CPhysicalSequenceProject::PopConvert(exprhdl.Pop())->Pdrgpos();
+	COrderSpecArray *pdrgpos = CPhysicalSequenceProject::PopConvert(exprhdl.Pop())->Pdrgpos();
 	const ULONG ulOrderSpecs = pdrgpos->Size();
 	for (ULONG ul = 0; ul < ulOrderSpecs; ul++)
 	{

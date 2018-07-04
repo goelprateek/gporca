@@ -122,7 +122,7 @@ CXformSelect2PartialDynamicIndexGet::Transform
 	}
 
 	// array of expressions in the scalar expression
-	ExpressionArray *pdrgpexpr = CPredicateUtils::PdrgpexprConjuncts(mp, pexprScalar);
+	CExpressionArray *pdrgpexpr = CPredicateUtils::PdrgpexprConjuncts(mp, pexprScalar);
 	GPOS_ASSERT(0 < pdrgpexpr->Size());
 
 	// derive the scalar and relational properties to build set of required columns
@@ -155,7 +155,7 @@ CXformSelect2PartialDynamicIndexGet::Transform
 	const ULONG ulCandidates = pdrgpdrgppartdig->Size();
 	for (ULONG ul = 0; ul < ulCandidates; ul++)
 	{
-		PartDynamicIndexGetInfoArray *pdrgppartdig = (*pdrgpdrgppartdig)[ul];
+		SPartDynamicIndexGetInfoArray *pdrgppartdig = (*pdrgpdrgppartdig)[ul];
 		CreatePartialIndexGetPlan(mp, pexpr, pdrgppartdig, pmdrel, pxfres);
 	}
 
@@ -179,7 +179,7 @@ CXformSelect2PartialDynamicIndexGet::CreatePartialIndexGetPlan
 	(
 	IMemoryPool *mp,
 	CExpression *pexpr,
-	PartDynamicIndexGetInfoArray *pdrgppartdig,
+	SPartDynamicIndexGetInfoArray *pdrgppartdig,
 	const IMDRelation *pmdrel,
 	CXformResult *pxfres
 	)
@@ -189,22 +189,22 @@ CXformSelect2PartialDynamicIndexGet::CreatePartialIndexGetPlan
 	CExpression *pexprScalar = (*pexpr)[1];
 
 	CLogicalDynamicGet *popGet = CLogicalDynamicGet::PopConvert(pexprRelational->Pop());
-	ColRefArray *pdrgpcrGet = popGet->PdrgpcrOutput();
+	CColRefArray *pdrgpcrGet = popGet->PdrgpcrOutput();
 	
 	const ULONG ulPartialIndexes = pdrgppartdig->Size();
 	
 	ColRefArrays *pdrgpdrgpcrInput = GPOS_NEW(mp) ColRefArrays(mp);
-	ExpressionArray *pdrgpexprInput = GPOS_NEW(mp) ExpressionArray(mp);
+	CExpressionArray *pdrgpexprInput = GPOS_NEW(mp) CExpressionArray(mp);
 	for (ULONG ul = 0; ul < ulPartialIndexes; ul++)
 	{
 		SPartDynamicIndexGetInfo *ppartdig = (*pdrgppartdig)[ul];
 
 		const IMDIndex *pmdindex = ppartdig->m_pmdindex;
 		CPartConstraint *ppartcnstr = ppartdig->m_part_constraint;
-		ExpressionArray *pdrgpexprIndex = ppartdig->m_pdrgpexprIndex;
-		ExpressionArray *pdrgpexprResidual = ppartdig->m_pdrgpexprResidual;
+		CExpressionArray *pdrgpexprIndex = ppartdig->m_pdrgpexprIndex;
+		CExpressionArray *pdrgpexprResidual = ppartdig->m_pdrgpexprResidual;
 		
-		ColRefArray *pdrgpcrNew = pdrgpcrGet;
+		CColRefArray *pdrgpcrNew = pdrgpcrGet;
 
 		if (0 < ul)
 		{
@@ -258,7 +258,7 @@ CXformSelect2PartialDynamicIndexGet::CreatePartialIndexGetPlan
 		if (1 < ulInput)
 		{
 			pdrgpcrGet->AddRef();
-			ColRefArray *pdrgpcrOuter = pdrgpcrGet;
+			CColRefArray *pdrgpcrOuter = pdrgpcrGet;
 
 			// construct a new union all operator
 			pexprResult = GPOS_NEW(mp) CExpression
@@ -319,7 +319,7 @@ CXformSelect2PartialDynamicIndexGet::PexprSelectOverDynamicGet
 	IMemoryPool *mp,
 	CLogicalDynamicGet *popGet,
 	CExpression *pexprScalar,
-	ColRefArray *pdrgpcrDGet,
+	CColRefArray *pdrgpcrDGet,
 	CPartConstraint *ppartcnstr
 	)
 {

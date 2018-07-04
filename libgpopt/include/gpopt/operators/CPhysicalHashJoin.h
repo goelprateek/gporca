@@ -37,14 +37,14 @@ namespace gpopt
 
 			// the array of expressions from the outer relation
 			// that are extracted from the hashing condition
-			ExpressionArray *m_pdrgpexprOuterKeys;
+			CExpressionArray *m_pdrgpexprOuterKeys;
 
 			// the array of expressions from the inner relation
 			// that are extracted from the hashing condition
-			ExpressionArray *m_pdrgpexprInnerKeys;
+			CExpressionArray *m_pdrgpexprInnerKeys;
 
 			// array redistribute request sent to the first hash join child
-			DrgPds *m_pdrgpdsRedistributeRequests;
+			CDistributionSpecArray *m_pdrgpdsRedistributeRequests;
 
 			// private copy ctor
 			CPhysicalHashJoin(const CPhysicalHashJoin &);
@@ -65,7 +65,7 @@ namespace gpopt
 				CExpressionHandle &exprhdl,
 				CDistributionSpec *pdsInput,
 				ULONG  child_index,
-				DrgPdp *pdrgpdpCtxt,
+				CDrvdPropArrays *pdrgpdpCtxt,
 				ULONG ulOptReq
 				)
 				const;
@@ -77,7 +77,7 @@ namespace gpopt
 				CExpressionHandle &exprhdl,
 				CDistributionSpec *pdsInput,
 				ULONG  child_index,
-				DrgPdp *pdrgpdpCtxt,
+				CDrvdPropArrays *pdrgpdpCtxt,
 				ULONG ulOptReq
 				)
 				const;
@@ -89,7 +89,7 @@ namespace gpopt
 				CExpressionHandle &exprhdl,
 				CDistributionSpec *pdsInput,
 				ULONG  child_index,
-				DrgPdp *pdrgpdpCtxt
+				CDrvdPropArrays *pdrgpdpCtxt
 				)
 				const;
 
@@ -101,7 +101,7 @@ namespace gpopt
 				CExpressionHandle  &exprhdl,
 				CDistributionSpecHashed *pdshashedInput,
 				ULONG  child_index,
-				DrgPdp *pdrgpdpCtxt,
+				CDrvdPropArrays *pdrgpdpCtxt,
 				ULONG ulOptReq
 				)
 				const;
@@ -123,8 +123,8 @@ namespace gpopt
 			CPhysicalHashJoin
 				(
 				IMemoryPool *mp,
-				ExpressionArray *pdrgpexprOuterKeys,
-				ExpressionArray *pdrgpexprInnerKeys
+				CExpressionArray *pdrgpexprOuterKeys,
+				CExpressionArray *pdrgpexprInnerKeys
 				);
 
 			// dtor
@@ -132,13 +132,13 @@ namespace gpopt
 			~CPhysicalHashJoin();
 
 			// inner keys
-			const ExpressionArray *PdrgpexprInnerKeys() const
+			const CExpressionArray *PdrgpexprInnerKeys() const
 			{
 				return m_pdrgpexprInnerKeys;
 			}
 
 			// outer keys
-			const ExpressionArray *PdrgpexprOuterKeys() const
+			const CExpressionArray *PdrgpexprOuterKeys() const
 			{
 				return m_pdrgpexprOuterKeys;
 			}
@@ -155,7 +155,7 @@ namespace gpopt
 				CExpressionHandle &exprhdl,
 				COrderSpec *posInput,
 				ULONG child_index,
-				DrgPdp *pdrgpdpCtxt,
+				CDrvdPropArrays *pdrgpdpCtxt,
 				ULONG ulOptReq
 				)
 				const;
@@ -168,7 +168,7 @@ namespace gpopt
 				CExpressionHandle &exprhdl,
 				CRewindabilitySpec *prsRequired,
 				ULONG child_index,
-				DrgPdp *pdrgpdpCtxt,
+				CDrvdPropArrays *pdrgpdpCtxt,
 				ULONG ulOptReq
 				)
 				const;
@@ -181,7 +181,7 @@ namespace gpopt
 				CExpressionHandle &exprhdl,
 				CDistributionSpec *pdsRequired,
 				ULONG child_index,
-				DrgPdp *pdrgpdpCtxt,
+				CDrvdPropArrays *pdrgpdpCtxt,
 				ULONG ulOptReq
 				)
 				const;

@@ -199,7 +199,7 @@ CParseHandlerMDIndex::EndElement(const XMLCh *const,  // element_uri,
 
 	CParseHandlerMetadataIdList *pphMdidOpClasses =
 		dynamic_cast<CParseHandlerMetadataIdList *>((*this)[0]);
-	MdidPtrArray *mdid_op_classes_array = pphMdidOpClasses->GetMdIdArray();
+	IMdIdArray *mdid_op_classes_array = pphMdidOpClasses->GetMdIdArray();
 	mdid_op_classes_array->AddRef();
 
 	m_imd_obj = GPOS_NEW(m_mp) CMDIndexGPDB(m_mp,

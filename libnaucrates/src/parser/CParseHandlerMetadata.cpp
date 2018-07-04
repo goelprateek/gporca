@@ -81,7 +81,7 @@ CParseHandlerMetadata::GetParseHandlerType() const
 //		Returns the list of metadata objects constructed by the parser
 //
 //---------------------------------------------------------------------------
-IMDCachePtrArray *
+IMDCacheObjectArray *
 CParseHandlerMetadata::GetMdIdCachedObjArray()
 {
 	return m_mdid_cached_obj_array;
@@ -95,7 +95,7 @@ CParseHandlerMetadata::GetMdIdCachedObjArray()
 //		Returns the list of metadata ids constructed by the parser
 //
 //---------------------------------------------------------------------------
-MdidPtrArray *
+IMdIdArray *
 CParseHandlerMetadata::GetMdIdArray()
 {
 	return m_mdid_array;
@@ -109,7 +109,7 @@ CParseHandlerMetadata::GetMdIdArray()
 //		Returns the list of metadata source system ids constructed by the parser
 //
 //---------------------------------------------------------------------------
-SysidPtrArray *
+CSystemIdArray *
 CParseHandlerMetadata::GetSysidPtrArray()
 {
 	return m_system_id_array;
@@ -135,8 +135,8 @@ CParseHandlerMetadata::StartElement(const XMLCh *const element_uri,
 		// start of the metadata section in the DXL document
 		GPOS_ASSERT(NULL == m_mdid_cached_obj_array);
 
-		m_mdid_cached_obj_array = GPOS_NEW(m_mp) IMDCachePtrArray(m_mp);
-		m_mdid_array = GPOS_NEW(m_mp) MdidPtrArray(m_mp);
+		m_mdid_cached_obj_array = GPOS_NEW(m_mp) IMDCacheObjectArray(m_mp);
+		m_mdid_array = GPOS_NEW(m_mp) IMdIdArray(m_mp);
 
 		m_system_id_array = GetSrcSysIdArray(attrs, EdxltokenSysids, EdxltokenMetadata);
 	}
@@ -216,7 +216,7 @@ CParseHandlerMetadata::EndElement(const XMLCh *const,  // element_uri,
 //		Parse a list of source system ids
 //
 //---------------------------------------------------------------------------
-SysidPtrArray *
+CSystemIdArray *
 CParseHandlerMetadata::GetSrcSysIdArray(const Attributes &attrs,
 										Edxltoken dxl_token_attr,
 										Edxltoken dxl_token_element)
@@ -231,7 +231,7 @@ CParseHandlerMetadata::GetSrcSysIdArray(const Attributes &attrs,
 		return NULL;
 	}
 
-	SysidPtrArray *src_sys_id_array = GPOS_NEW(m_mp) SysidPtrArray(m_mp);
+	CSystemIdArray *src_sys_id_array = GPOS_NEW(m_mp) CSystemIdArray(m_mp);
 
 	// extract separate system ids
 	XMLStringTokenizer xml_str_tokenizer(xml_str_val, CDXLTokens::XmlstrToken(EdxltokenComma));

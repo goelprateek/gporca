@@ -34,7 +34,7 @@ CPhysicalIndexScan::CPhysicalIndexScan
 	CTableDescriptor *ptabdesc,
 	ULONG ulOriginOpId,
 	const CName *pnameAlias,
-	ColRefArray *pdrgpcrOutput,
+	CColRefArray *pdrgpcrOutput,
 	COrderSpec *pos
 	)
 	:

@@ -34,7 +34,7 @@ CPhysicalMotion::FValidContext
 	(
 	IMemoryPool *,
 	COptimizationContext *poc,
-	OptimizationContextArray *pdrgpocChild
+	COptimizationContextArray *pdrgpocChild
 	)
 	const
 {
@@ -82,7 +82,7 @@ CPhysicalMotion::PdsRequired
 	child_index
 #endif // GPOS_DEBUG
 	,
-	DrgPdp *, // pdrgpdpCtxt
+	CDrvdPropArrays *, // pdrgpdpCtxt
 	ULONG // ulOptReq
 	)
 	const
@@ -114,7 +114,7 @@ CPhysicalMotion::PrsRequired
 	child_index
 #endif // GPOS_DEBUG
 	,
-	DrgPdp *, // pdrgpdpCtxt
+	CDrvdPropArrays *, // pdrgpdpCtxt
 	ULONG // ulOptReq
 	)
 	const
@@ -145,7 +145,7 @@ CPhysicalMotion::PppsRequired
 	child_index
 #endif // GPOS_DEBUG
 	,
-	DrgPdp *, //pdrgpdpCtxt,
+	CDrvdPropArrays *, //pdrgpdpCtxt,
 	ULONG //ulOptReq
 	)
 {
@@ -204,7 +204,7 @@ CPhysicalMotion::PcteRequired
 	child_index
 #endif
 	,
-	DrgPdp *, //pdrgpdpCtxt,
+	CDrvdPropArrays *, //pdrgpdpCtxt,
 	ULONG //ulOptReq
 	)
 	const

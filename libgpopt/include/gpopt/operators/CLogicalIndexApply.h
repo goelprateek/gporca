@@ -27,7 +27,7 @@ namespace gpopt
 		protected:
 
 			// columns used from Apply's outer child used by index in Apply's inner child
-			ColRefArray *m_pdrgpcrOuterRefs;
+			CColRefArray *m_pdrgpcrOuterRefs;
 
 			// is this an outer join?
 			BOOL m_fOuterJoin;
@@ -35,7 +35,7 @@ namespace gpopt
 		public:
 
 			// ctor
-			CLogicalIndexApply(IMemoryPool *mp,  ColRefArray *pdrgpcrOuterRefs, BOOL fOuterJoin);
+			CLogicalIndexApply(IMemoryPool *mp,  CColRefArray *pdrgpcrOuterRefs, BOOL fOuterJoin);
 
 			// ctor for patterns
 			explicit
@@ -60,7 +60,7 @@ namespace gpopt
 			}
 
 			// outer column references accessor
-			ColRefArray *PdrgPcrOuterRefs() const
+			CColRefArray *PdrgPcrOuterRefs() const
 			{
 				return m_pdrgpcrOuterRefs;
 			}
@@ -130,7 +130,7 @@ namespace gpopt
 
 			// derive statistics
 			virtual
-			IStatistics *PstatsDerive(IMemoryPool *mp, CExpressionHandle &exprhdl, StatsArray *stats_ctxt) const;
+			IStatistics *PstatsDerive(IMemoryPool *mp, CExpressionHandle &exprhdl, IStatsArray *stats_ctxt) const;
 
 			// stat promise
 			virtual

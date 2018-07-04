@@ -26,7 +26,7 @@ using namespace gpmd;
 //
 //---------------------------------------------------------------------------
 CDXLStatsDerivedRelation::CDXLStatsDerivedRelation(
-	CDouble rows, BOOL is_empty, DXLStatsDerivedColArray *dxl_stats_derived_col_array)
+	CDouble rows, BOOL is_empty, CDXLStatsDerivedColumnArray *dxl_stats_derived_col_array)
 	: m_rows(rows), m_empty(is_empty), m_dxl_stats_derived_col_array(dxl_stats_derived_col_array)
 {
 	GPOS_ASSERT(NULL != dxl_stats_derived_col_array);
@@ -53,7 +53,7 @@ CDXLStatsDerivedRelation::~CDXLStatsDerivedRelation()
 //		Returns the array of derived columns stats
 //
 //---------------------------------------------------------------------------
-const DXLStatsDerivedColArray *
+const CDXLStatsDerivedColumnArray *
 CDXLStatsDerivedRelation::GetDXLStatsDerivedColArray() const
 {
 	return m_dxl_stats_derived_col_array;

@@ -91,7 +91,7 @@ CXformInsert2DML::Transform
 	CTableDescriptor *ptabdesc = popInsert->Ptabdesc();
 	ptabdesc->AddRef();
 
-	ColRefArray *pdrgpcrSource = popInsert->PdrgpcrSource();
+	CColRefArray *pdrgpcrSource = popInsert->PdrgpcrSource();
 	pdrgpcrSource->AddRef();
 
 	// child of insert operator

@@ -96,7 +96,7 @@ namespace gpopt
 				)
 				const
 			{
-				return GPOS_NEW(mp) CPropConstraint(mp, GPOS_NEW(mp) ColRefSetArray(mp), NULL /*pcnstr*/);
+				return GPOS_NEW(mp) CPropConstraint(mp, GPOS_NEW(mp) CColRefSetArray(mp), NULL /*pcnstr*/);
 			}
 
 			// promise level for stat derivation

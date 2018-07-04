@@ -78,7 +78,7 @@ CXformImplementDynamicBitmapTableGet::Transform
 
 	CName *pname = GPOS_NEW(mp) CName(mp, popLogical->Name());
 
-	ColRefArray *pdrgpcrOutput = popLogical->PdrgpcrOutput();
+	CColRefArray *pdrgpcrOutput = popLogical->PdrgpcrOutput();
 
 	GPOS_ASSERT(NULL != pdrgpcrOutput);
 	pdrgpcrOutput->AddRef();

@@ -89,7 +89,7 @@ CXformImplementCTEProducer::Transform
 	// extract components for alternative
 	ULONG id = popCTEProducer->UlCTEId();
 
-	ColRefArray *colref_array = popCTEProducer->Pdrgpcr();
+	CColRefArray *colref_array = popCTEProducer->Pdrgpcr();
 	colref_array->AddRef();
 
 	// child of CTEProducer operator

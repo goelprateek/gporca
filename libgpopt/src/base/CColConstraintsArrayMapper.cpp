@@ -6,7 +6,7 @@
 
 using namespace gpopt;
 
-ConstraintArray *
+CConstraintArray *
 CColConstraintsArrayMapper::PdrgPcnstrLookup
 	(
 		CColRef *colref
@@ -19,7 +19,7 @@ CColConstraintsArrayMapper::PdrgPcnstrLookup
 CColConstraintsArrayMapper::CColConstraintsArrayMapper
 	(
 		gpos::IMemoryPool *mp,
-		ConstraintArray *pdrgpcnstr
+		CConstraintArray *pdrgpcnstr
 	) :
 	m_mp(mp),
 	m_pdrgpcnstr(pdrgpcnstr)

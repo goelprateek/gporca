@@ -23,7 +23,7 @@ namespace gpnaucrates
 													   const CStatistics *outer_stats,
 													   const CStatistics *inner_side_stats,
 													   CStatistics *inner_join_stats,
-													   StatsPredJoinArray *join_preds_stats,
+													   CStatsPredJoinArray *join_preds_stats,
 													   CDouble num_rows_inner_join,
 													   CDouble *result_rows_LASJ);
 		// helper method to add histograms of the inner side of a LOJ
@@ -38,7 +38,7 @@ namespace gpnaucrates
 		static CStatistics *CalcLOJoinStatsStatic(IMemoryPool *mp,
 												  const IStatistics *outer_stats,
 												  const IStatistics *inner_side_stats,
-												  StatsPredJoinArray *join_preds_stats);
+												  CStatsPredJoinArray *join_preds_stats);
 	};
 }  // namespace gpnaucrates
 

@@ -21,7 +21,7 @@ using namespace gpopt;
 CPhysicalLeftOuterIndexNLJoin::CPhysicalLeftOuterIndexNLJoin
 	(
 	IMemoryPool *mp,
-	ColRefArray *colref_array
+	CColRefArray *colref_array
 	)
 	:
 	CPhysicalLeftOuterNLJoin(mp),
@@ -60,7 +60,7 @@ CPhysicalLeftOuterIndexNLJoin::PdsRequired
 	CExpressionHandle &,//exprhdl,
 	CDistributionSpec *,//pdsRequired,
 	ULONG child_index,
-	DrgPdp *pdrgpdpCtxt,
+	CDrvdPropArrays *pdrgpdpCtxt,
 	ULONG // ulOptReq
 	)
 	const

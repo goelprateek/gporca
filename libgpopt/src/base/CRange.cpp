@@ -470,7 +470,7 @@ CRange::PexprScalar
 								colref
 								);
 
-	ExpressionArray *pdrgpexpr = GPOS_NEW(mp) ExpressionArray(mp);
+	CExpressionArray *pdrgpexpr = GPOS_NEW(mp) CExpressionArray(mp);
 
 	if (NULL != pexprLeft)
 	{

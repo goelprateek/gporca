@@ -67,13 +67,13 @@ CXformImplementConstTableGet::Transform
 	IMemoryPool *mp = pxfctxt->Pmp();
 
 	// create/extract components for alternative
-	ColumnDescrArray *pdrgpcoldesc = popConstTableGet->Pdrgpcoldesc();
+	CColumnDescrArray *pdrgpcoldesc = popConstTableGet->Pdrgpcoldesc();
 	pdrgpcoldesc->AddRef();
 	
 	IDatumArrays *pdrgpdrgpdatum = popConstTableGet->Pdrgpdrgpdatum();
 	pdrgpdrgpdatum->AddRef();
 	
-	ColRefArray *pdrgpcrOutput = popConstTableGet->PdrgpcrOutput();
+	CColRefArray *pdrgpcrOutput = popConstTableGet->PdrgpcrOutput();
 	pdrgpcrOutput->AddRef();
 		
 	// create alternative expression

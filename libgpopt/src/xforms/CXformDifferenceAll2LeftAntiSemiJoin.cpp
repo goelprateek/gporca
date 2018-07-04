@@ -81,10 +81,10 @@ CXformDifferenceAll2LeftAntiSemiJoin::Transform
 	CExpression *pexprRightWindow = CXformUtils::PexprWindowWithRowNumber(mp, pexprRightChild, (*pdrgpdrgpcrInput)[1]);
 
 	ColRefArrays *pdrgpdrgpcrInputNew = GPOS_NEW(mp) ColRefArrays(mp);
-	ColRefArray *pdrgpcrLeftNew = CUtils::PdrgpcrExactCopy(mp, (*pdrgpdrgpcrInput)[0]);
+	CColRefArray *pdrgpcrLeftNew = CUtils::PdrgpcrExactCopy(mp, (*pdrgpdrgpcrInput)[0]);
 	pdrgpcrLeftNew->Append(CXformUtils::PcrProjectElement(pexprLeftWindow, 0 /* row_number window function*/));
 
-	ColRefArray *pdrgpcrRightNew = CUtils::PdrgpcrExactCopy(mp, (*pdrgpdrgpcrInput)[1]);
+	CColRefArray *pdrgpcrRightNew = CUtils::PdrgpcrExactCopy(mp, (*pdrgpdrgpcrInput)[1]);
 	pdrgpcrRightNew->Append(CXformUtils::PcrProjectElement(pexprRightWindow, 0 /* row_number window function*/));
 
 	pdrgpdrgpcrInputNew->Append(pdrgpcrLeftNew);

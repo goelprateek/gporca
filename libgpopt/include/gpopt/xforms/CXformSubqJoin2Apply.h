@@ -47,7 +47,7 @@ namespace gpopt
 				(
 				IMemoryPool *mp,
 				CExpression *pexpr,
-				ColRefSetArray *pdrgpcrs,
+				CColRefSetArray *pdrgpcrs,
 				ExpressionArrays *pdrgpdrgpexprSubqs
 				);
 

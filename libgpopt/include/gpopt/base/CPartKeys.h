@@ -23,7 +23,7 @@ namespace gpopt
 	class CPartKeys;
 
 	// array of part keys
-	typedef CDynamicPtrArray<CPartKeys, CleanupRelease> PartKeysArray;
+	typedef CDynamicPtrArray<CPartKeys, CleanupRelease> CPartKeysArray;
 
 	//---------------------------------------------------------------------------
 	//	@class:
@@ -85,7 +85,7 @@ namespace gpopt
 
 			// copy array of part keys into given memory pool
 			static
-			PartKeysArray *PdrgppartkeysCopy(IMemoryPool *mp, const PartKeysArray *pdrgppartkeys);
+			CPartKeysArray *PdrgppartkeysCopy(IMemoryPool *mp, const CPartKeysArray *pdrgppartkeys);
 
 #ifdef GPOS_DEBUG
 			// debug print for interactive debugging sessions only

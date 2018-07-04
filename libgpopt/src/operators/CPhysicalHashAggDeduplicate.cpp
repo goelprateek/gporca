@@ -31,10 +31,10 @@ using namespace gpopt;
 CPhysicalHashAggDeduplicate::CPhysicalHashAggDeduplicate
 	(
 	IMemoryPool *mp,
-	ColRefArray *colref_array,
-	ColRefArray *pdrgpcrMinimal,
+	CColRefArray *colref_array,
+	CColRefArray *pdrgpcrMinimal,
 	COperator::EGbAggType egbaggtype,
-	ColRefArray *pdrgpcrKeys,
+	CColRefArray *pdrgpcrKeys,
 	BOOL fGeneratesDuplicates,
 	BOOL fMultiStage
 	)

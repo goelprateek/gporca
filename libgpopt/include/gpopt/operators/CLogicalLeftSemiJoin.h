@@ -120,7 +120,7 @@ namespace gpopt
 						(
 						IMemoryPool *mp,
 						CExpressionHandle &exprhdl,
-						StatsArray *stats_ctxt
+						IStatsArray *stats_ctxt
 						)
 						const;
 
@@ -158,7 +158,7 @@ namespace gpopt
 			IStatistics *PstatsDerive
 				(
 				IMemoryPool *mp,
-				StatsPredJoinArray *join_preds_stats,
+				CStatsPredJoinArray *join_preds_stats,
 				IStatistics *outer_stats,
 				IStatistics *inner_side_stats
 				);

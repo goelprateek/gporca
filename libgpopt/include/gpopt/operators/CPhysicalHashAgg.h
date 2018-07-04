@@ -40,11 +40,11 @@ namespace gpopt
 			CPhysicalHashAgg
 				(
 				IMemoryPool *mp,
-				ColRefArray *colref_array,
-				ColRefArray *pdrgpcrMinimal,
+				CColRefArray *colref_array,
+				CColRefArray *pdrgpcrMinimal,
 				COperator::EGbAggType egbaggtype,
 				BOOL fGeneratesDuplicates,
-				ColRefArray *pdrgpcrArgDQA,
+				CColRefArray *pdrgpcrArgDQA,
 				BOOL fMultiStage
 				);
 
@@ -79,7 +79,7 @@ namespace gpopt
 				CExpressionHandle &exprhdl,
 				COrderSpec *posRequired,
 				ULONG child_index,
-				DrgPdp *pdrgpdpCtxt,
+				CDrvdPropArrays *pdrgpdpCtxt,
 				ULONG ulOptReq
 				)
 				const;

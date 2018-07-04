@@ -327,8 +327,8 @@ CMDAccessor::CMDAccessor
 	(
 	IMemoryPool *mp,
 	MDCache *pcache,
-	const SysidPtrArray *pdrgpsysid,
-	const MDProviderPtrArray *pdrgpmdp
+	const CSystemIdArray *pdrgpsysid,
+	const CMDProviderArray *pdrgpmdp
 	)
 	:
 	m_mp(mp),
@@ -489,8 +489,8 @@ CMDAccessor::RegisterProvider
 void
 CMDAccessor::RegisterProviders
 	(
-	const SysidPtrArray *pdrgpsysid,
-	const MDProviderPtrArray *pdrgpmdp
+	const CSystemIdArray *pdrgpsysid,
+	const CMDProviderArray *pdrgpmdp
 	)
 {
 	GPOS_ASSERT(NULL != pdrgpmdp);
@@ -1289,7 +1289,7 @@ CMDAccessor::GetHistogram
 		return CHistogram::MakeDefaultBoolHistogram(mp);
 	}
 
-	BucketArray *buckets = GPOS_NEW(mp) BucketArray(mp);
+	CBucketArray *buckets = GPOS_NEW(mp) CBucketArray(mp);
 	for (ULONG ul = 0; ul < num_of_buckets; ul++)
 	{
 		const CDXLBucket *dxl_bucket = pmdcolstats->GetDXLBucketAt(ul);

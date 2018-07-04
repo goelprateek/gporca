@@ -70,17 +70,17 @@ namespace gpopt
 			CColRefSet *m_pcrsLocalUsed;
 
 			// output column generation given a list of column descriptors
-			ColRefArray *PdrgpcrCreateMapping
+			CColRefArray *PdrgpcrCreateMapping
 					(
 					IMemoryPool *mp,
-					const ColumnDescrArray *pdrgpcoldesc,
+					const CColumnDescrArray *pdrgpcoldesc,
 					ULONG ulOpSourceId
 					)
 					const;
 
 			// initialize the array of partition columns
 			ColRefArrays *
-			PdrgpdrgpcrCreatePartCols(IMemoryPool *mp, ColRefArray *colref_array, const ULongPtrArray *pdrgpulPart);
+			PdrgpdrgpcrCreatePartCols(IMemoryPool *mp, CColRefArray *colref_array, const ULongPtrArray *pdrgpulPart);
 
 			// derive dummy statistics
 			IStatistics *PstatsDeriveDummy(IMemoryPool *mp, CExpressionHandle &exprhdl, CDouble rows) const;
@@ -130,7 +130,7 @@ namespace gpopt
 				
 			// helper function for computing the keys in a base relation
 			static
-			CKeyCollection *PkcKeysBaseTable(IMemoryPool *mp, const BitSetArray *pdrgpbsKeys, const ColRefArray *pdrgpcrOutput);
+			CKeyCollection *PkcKeysBaseTable(IMemoryPool *mp, const CBitSetArray *pdrgpbsKeys, const CColRefArray *pdrgpcrOutput);
 			
 			// helper for the common case of passing through partition consumer info
 			static
@@ -142,7 +142,7 @@ namespace gpopt
 
 			// derive constraint property from a table/index get
 			static
-			CPropConstraint *PpcDeriveConstraintFromTable(IMemoryPool *mp, const CTableDescriptor *ptabdesc, const ColRefArray *pdrgpcrOutput);
+			CPropConstraint *PpcDeriveConstraintFromTable(IMemoryPool *mp, const CTableDescriptor *ptabdesc, const CColRefArray *pdrgpcrOutput);
 
 			// derive constraint property from a table/index get with predicates
 			static
@@ -151,7 +151,7 @@ namespace gpopt
 							IMemoryPool *mp,
 							CExpressionHandle &exprhdl,
 							const CTableDescriptor *ptabdesc,
-							const ColRefArray *pdrgpcrOutput
+							const CColRefArray *pdrgpcrOutput
 							);
 
 			// shorthand to addref and pass through constraint from a given child
@@ -176,7 +176,7 @@ namespace gpopt
 				(
 				IMemoryPool *mp,
 				const IMDIndex *pmdindex,
-				ColRefArray *colref_array,
+				CColRefArray *colref_array,
 				const CTableDescriptor *ptabdesc
 				);
 
@@ -286,7 +286,7 @@ namespace gpopt
 
 			// derive statistics
 			virtual
-			IStatistics *PstatsDerive(IMemoryPool *mp, CExpressionHandle &exprhdl, StatsArray *stats_ctxt) const = 0;
+			IStatistics *PstatsDerive(IMemoryPool *mp, CExpressionHandle &exprhdl, IStatsArray *stats_ctxt) const = 0;
 
 			// promise level for stat derivation
 			virtual
@@ -367,7 +367,7 @@ namespace gpopt
 			
 			// extract the output columns descriptor from a logical get or dynamic get operator
 			static
-			ColRefArray *PdrgpcrOutputFromLogicalGet(CLogical *pop);
+			CColRefArray *PdrgpcrOutputFromLogicalGet(CLogical *pop);
 			
 			// extract the table name from a logical get or dynamic get operator
 			static
@@ -375,7 +375,7 @@ namespace gpopt
 
 			// return the set of distribution columns
 			static
-			CColRefSet *PcrsDist(IMemoryPool *mp, const CTableDescriptor *ptabdesc, const ColRefArray *colref_array);
+			CColRefSet *PcrsDist(IMemoryPool *mp, const CTableDescriptor *ptabdesc, const CColRefArray *colref_array);
 
 			// derive constraint property when expression has relational children and predicates
 			static

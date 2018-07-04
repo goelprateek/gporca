@@ -55,7 +55,7 @@ namespace gpopt
 		public:
 
 			// type definition of optimizer test function
-			typedef void (FnOptimize)(IMemoryPool*, CExpression *, SearchStageArray *);
+			typedef void (FnOptimize)(IMemoryPool*, CExpression *, CSearchStageArray *);
 
 			// main driver
 			static
@@ -80,7 +80,7 @@ namespace gpopt
 
 			// build memo by recursive optimization
 			static
-			void BuildMemoRecursive(IMemoryPool *mp, CExpression *pexprInput, SearchStageArray *search_stage_array);
+			void BuildMemoRecursive(IMemoryPool *mp, CExpression *pexprInput, CSearchStageArray *search_stage_array);
 
 			// test of recursive memo building
 			static

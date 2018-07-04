@@ -47,7 +47,7 @@ namespace gpopt
 			CLogicalGbAggDeduplicate(const CLogicalGbAggDeduplicate &);
 
 			// array of keys from the join's child
-			ColRefArray *m_pdrgpcrKeys;
+			CColRefArray *m_pdrgpcrKeys;
 
 		public:
 
@@ -59,19 +59,19 @@ namespace gpopt
 			CLogicalGbAggDeduplicate
 				(
 				IMemoryPool *mp,
-				ColRefArray *colref_array,
+				CColRefArray *colref_array,
 				COperator::EGbAggType egbaggtype,
-				ColRefArray *pdrgpcrKeys = NULL
+				CColRefArray *pdrgpcrKeys = NULL
 				);
 
 			// ctor
 			CLogicalGbAggDeduplicate
 				(
 				IMemoryPool *mp,
-				ColRefArray *colref_array,
-				ColRefArray *pdrgpcrMinimal,
+				CColRefArray *colref_array,
+				CColRefArray *pdrgpcrMinimal,
 				COperator::EGbAggType egbaggtype,
-				ColRefArray *pdrgpcrKeys = NULL
+				CColRefArray *pdrgpcrKeys = NULL
 				);
 
 			// dtor
@@ -93,7 +93,7 @@ namespace gpopt
 			}
 
 			// array of keys from the join's child that needs to be deduped
-			ColRefArray *PdrgpcrKeys() const
+			CColRefArray *PdrgpcrKeys() const
 			{
 				return m_pdrgpcrKeys;
 			}
@@ -148,7 +148,7 @@ namespace gpopt
 						(
 						IMemoryPool *mp,
 						CExpressionHandle &exprhdl,
-						StatsArray *stats_ctxt
+						IStatsArray *stats_ctxt
 						)
 						const;
 

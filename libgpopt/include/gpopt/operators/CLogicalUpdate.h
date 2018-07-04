@@ -37,10 +37,10 @@ namespace gpopt
 			CTableDescriptor *m_ptabdesc;
 
 			// columns to delete
-			ColRefArray *m_pdrgpcrDelete;
+			CColRefArray *m_pdrgpcrDelete;
 
 			// columns to insert
-			ColRefArray *m_pdrgpcrInsert;
+			CColRefArray *m_pdrgpcrInsert;
 
 			// ctid column
 			CColRef *m_pcrCtid;
@@ -65,8 +65,8 @@ namespace gpopt
 				(
 				IMemoryPool *mp,
 				CTableDescriptor *ptabdesc,
-				ColRefArray *pdrgpcrDelete,
-				ColRefArray *pdrgpcrInsert,
+				CColRefArray *pdrgpcrDelete,
+				CColRefArray *pdrgpcrInsert,
 				CColRef *pcrCtid,
 				CColRef *pcrSegmentId,
 				CColRef *pcrTupleOid
@@ -91,13 +91,13 @@ namespace gpopt
 			}
 
 			// columns to delete
-			ColRefArray *PdrgpcrDelete() const
+			CColRefArray *PdrgpcrDelete() const
 			{
 				return m_pdrgpcrDelete;
 			}
 
 			// columns to insert
-			ColRefArray *PdrgpcrInsert() const
+			CColRefArray *PdrgpcrInsert() const
 			{
 				return m_pdrgpcrInsert;
 			}
@@ -214,7 +214,7 @@ namespace gpopt
 						(
 						IMemoryPool *mp,
 						CExpressionHandle &exprhdl,
-						StatsArray *stats_ctxt
+						IStatsArray *stats_ctxt
 						)
 						const;
 

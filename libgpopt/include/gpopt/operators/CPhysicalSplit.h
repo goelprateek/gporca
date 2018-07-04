@@ -33,10 +33,10 @@ namespace gpopt
 		private:
 
 			// deletion columns
-			ColRefArray *m_pdrgpcrDelete;
+			CColRefArray *m_pdrgpcrDelete;
 
 			// insertion columns
-			ColRefArray *m_pdrgpcrInsert;
+			CColRefArray *m_pdrgpcrInsert;
 
 			// ctid column
 			CColRef *m_pcrCtid;
@@ -62,8 +62,8 @@ namespace gpopt
 			CPhysicalSplit
 				(
 				IMemoryPool *mp,
-				ColRefArray *pdrgpcrDelete,
-				ColRefArray *pdrgpcrInsert,
+				CColRefArray *pdrgpcrDelete,
+				CColRefArray *pdrgpcrInsert,
 				CColRef *pcrCtid,
 				CColRef *pcrSegmentId,
 				CColRef *pcrAction,
@@ -107,13 +107,13 @@ namespace gpopt
 			}
 
 			// deletion columns
-			ColRefArray *PdrgpcrDelete() const
+			CColRefArray *PdrgpcrDelete() const
 			{
 				return m_pdrgpcrDelete;
 			}
 
 			// insertion columns
-			ColRefArray *PdrgpcrInsert() const
+			CColRefArray *PdrgpcrInsert() const
 			{
 				return m_pdrgpcrInsert;
 			}
@@ -151,7 +151,7 @@ namespace gpopt
 				CExpressionHandle &exprhdl,
 				COrderSpec *posRequired,
 				ULONG child_index,
-				DrgPdp *pdrgpdpCtxt,
+				CDrvdPropArrays *pdrgpdpCtxt,
 				ULONG ulOptReq
 				)
 				const;
@@ -185,7 +185,7 @@ namespace gpopt
 				CExpressionHandle &exprhdl,
 				CColRefSet *pcrsRequired,
 				ULONG child_index,
-				DrgPdp *pdrgpdpCtxt,
+				CDrvdPropArrays *pdrgpdpCtxt,
 				ULONG ulOptReq
 				);
 
@@ -197,7 +197,7 @@ namespace gpopt
 				CExpressionHandle &exprhdl,
 				CCTEReq *pcter,
 				ULONG child_index,
-				DrgPdp *pdrgpdpCtxt,
+				CDrvdPropArrays *pdrgpdpCtxt,
 				ULONG ulOptReq
 				)
 				const;
@@ -210,7 +210,7 @@ namespace gpopt
 				CExpressionHandle &exprhdl,
 				CDistributionSpec *pdsRequired,
 				ULONG child_index,
-				DrgPdp *pdrgpdpCtxt,
+				CDrvdPropArrays *pdrgpdpCtxt,
 				ULONG ulOptReq
 				)
 				const;
@@ -223,7 +223,7 @@ namespace gpopt
 				CExpressionHandle &exprhdl,
 				CRewindabilitySpec *prsRequired,
 				ULONG child_index,
-				DrgPdp *pdrgpdpCtxt,
+				CDrvdPropArrays *pdrgpdpCtxt,
 				ULONG ulOptReq
 				)
 				const;
@@ -241,7 +241,7 @@ namespace gpopt
 				CExpressionHandle &exprhdl,
 				CPartitionPropagationSpec *pppsRequired,
 				ULONG child_index,
-				DrgPdp *pdrgpdpCtxt,
+				CDrvdPropArrays *pdrgpdpCtxt,
 				ULONG ulOptReq
 				);
 

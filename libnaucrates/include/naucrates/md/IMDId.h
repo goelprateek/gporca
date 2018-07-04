@@ -195,7 +195,7 @@ namespace gpmd
 	};
 
 	// common structures over metadata id elements
-	typedef CDynamicPtrArray<IMDId, CleanupRelease> MdidPtrArray;
+	typedef CDynamicPtrArray<IMDId, CleanupRelease> IMdIdArray;
 
 	// hash set for mdid
 	typedef CHashSet<IMDId, IMDId::MDIdHash, IMDId::MDIdCompare, CleanupRelease<IMDId> >

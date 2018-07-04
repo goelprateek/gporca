@@ -67,10 +67,10 @@ CXformUnion2UnionAll::Transform
 
 	// extract components
 	CLogicalUnion *popUnion = CLogicalUnion::PopConvert(pexpr->Pop());
-	ColRefArray *pdrgpcrOutput = popUnion->PdrgpcrOutput();
+	CColRefArray *pdrgpcrOutput = popUnion->PdrgpcrOutput();
 	ColRefArrays *pdrgpdrgpcrInput = popUnion->PdrgpdrgpcrInput();
 
-	ExpressionArray *pdrgpexpr = GPOS_NEW(mp) ExpressionArray(mp);
+	CExpressionArray *pdrgpexpr = GPOS_NEW(mp) CExpressionArray(mp);
 	const ULONG arity = pexpr->Arity();
 
 	for (ULONG ul = 0; ul < arity; ul++)
@@ -93,7 +93,7 @@ CXformUnion2UnionAll::Transform
 
 	pdrgpcrOutput->AddRef();
 
-	CExpression *pexprProjList = GPOS_NEW(mp) CExpression(mp, GPOS_NEW(mp) CScalarProjectList(mp), GPOS_NEW(mp) ExpressionArray(mp));
+	CExpression *pexprProjList = GPOS_NEW(mp) CExpression(mp, GPOS_NEW(mp) CScalarProjectList(mp), GPOS_NEW(mp) CExpressionArray(mp));
 
 	CExpression *pexprAgg = GPOS_NEW(mp) CExpression
 										(

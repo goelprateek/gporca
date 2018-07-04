@@ -23,7 +23,7 @@ using namespace gpopt;
 //		Ctor
 //
 //---------------------------------------------------------------------------
-CStatsPredConj::CStatsPredConj(StatsPredPtrArry *conj_pred_stats_array)
+CStatsPredConj::CStatsPredConj(CStatsPredPtrArry *conj_pred_stats_array)
 	: CStatsPred(gpos::ulong_max), m_conj_pred_stats_array(conj_pred_stats_array)
 {
 	GPOS_ASSERT(NULL != conj_pred_stats_array);

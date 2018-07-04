@@ -41,7 +41,7 @@ namespace gpopt
 			CTableDescriptor *m_ptabdesc;
 			
 			// array of source columns
-			ColRefArray *m_pdrgpcrSource;
+			CColRefArray *m_pdrgpcrSource;
 			
 			// set of modified columns from the target table
 			CBitSet *m_pbsModified;
@@ -100,7 +100,7 @@ namespace gpopt
 				IMemoryPool *mp,
 				CLogicalDML::EDMLOperator edmlop,
 				CTableDescriptor *ptabdesc,
-				ColRefArray *pdrgpcrSource,
+				CColRefArray *pdrgpcrSource,
 				CBitSet *pbsModified,
 				CColRef *pcrAction,
 				CColRef *pcrTableOid,
@@ -171,7 +171,7 @@ namespace gpopt
 			
 			// source columns
 			virtual
-			ColRefArray *PdrgpcrSource() const
+			CColRefArray *PdrgpcrSource() const
 			{
 				return m_pdrgpcrSource;
 			}
@@ -210,7 +210,7 @@ namespace gpopt
 				CExpressionHandle &exprhdl,
 				COrderSpec *posRequired,
 				ULONG child_index,
-				DrgPdp *pdrgpdpCtxt,
+				CDrvdPropArrays *pdrgpdpCtxt,
 				ULONG ulOptReq
 				)
 				const;
@@ -244,7 +244,7 @@ namespace gpopt
 				CExpressionHandle &exprhdl,
 				CColRefSet *pcrsRequired,
 				ULONG child_index,
-				DrgPdp *pdrgpdpCtxt,
+				CDrvdPropArrays *pdrgpdpCtxt,
 				ULONG ulOptReq
 				);
 
@@ -256,7 +256,7 @@ namespace gpopt
 				CExpressionHandle &exprhdl,
 				CCTEReq *pcter,
 				ULONG child_index,
-				DrgPdp *pdrgpdpCtxt,
+				CDrvdPropArrays *pdrgpdpCtxt,
 				ULONG ulOptReq
 				)
 				const;
@@ -269,7 +269,7 @@ namespace gpopt
 				CExpressionHandle &exprhdl,
 				CDistributionSpec *pdsRequired,
 				ULONG child_index,
-				DrgPdp *pdrgpdpCtxt,
+				CDrvdPropArrays *pdrgpdpCtxt,
 				ULONG ulOptReq
 				)
 				const;
@@ -282,7 +282,7 @@ namespace gpopt
 				CExpressionHandle &exprhdl,
 				CRewindabilitySpec *prsRequired,
 				ULONG child_index,
-				DrgPdp *pdrgpdpCtxt,
+				CDrvdPropArrays *pdrgpdpCtxt,
 				ULONG ulOptReq
 				)
 				const;
@@ -298,7 +298,7 @@ namespace gpopt
 				(
 				CReqdPropPlan *, // prppInput
 				ULONG,  // child_index
-				DrgPdp *, //pdrgpdpCtxt
+				CDrvdPropArrays *, //pdrgpdpCtxt
 				ULONG // ulOptReq
 				)
 			{
@@ -320,7 +320,7 @@ namespace gpopt
 				CExpressionHandle &exprhdl,
 				CPartitionPropagationSpec *pppsRequired,
 				ULONG child_index,
-				DrgPdp *pdrgpdpCtxt,
+				CDrvdPropArrays *pdrgpdpCtxt,
 				ULONG ulOptReq
 				);
 			

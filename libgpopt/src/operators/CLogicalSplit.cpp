@@ -56,8 +56,8 @@ CLogicalSplit::CLogicalSplit
 CLogicalSplit::CLogicalSplit
 	(
 	IMemoryPool *mp,
-	ColRefArray *pdrgpcrDelete,
-	ColRefArray *pdrgpcrInsert,
+	CColRefArray *pdrgpcrDelete,
+	CColRefArray *pdrgpcrInsert,
 	CColRef *pcrCtid,
 	CColRef *pcrSegmentId,
 	CColRef *pcrAction,
@@ -166,8 +166,8 @@ CLogicalSplit::PopCopyWithRemappedColumns
 	BOOL must_exist
 	)
 {
-	ColRefArray *pdrgpcrDelete = CUtils::PdrgpcrRemap(mp, m_pdrgpcrDelete, colref_mapping, must_exist);
-	ColRefArray *pdrgpcrInsert = CUtils::PdrgpcrRemap(mp, m_pdrgpcrInsert, colref_mapping, must_exist);
+	CColRefArray *pdrgpcrDelete = CUtils::PdrgpcrRemap(mp, m_pdrgpcrDelete, colref_mapping, must_exist);
+	CColRefArray *pdrgpcrInsert = CUtils::PdrgpcrRemap(mp, m_pdrgpcrInsert, colref_mapping, must_exist);
 	CColRef *pcrCtid = CUtils::PcrRemap(m_pcrCtid, colref_mapping, must_exist);
 	CColRef *pcrSegmentId = CUtils::PcrRemap(m_pcrSegmentId, colref_mapping, must_exist);
 	CColRef *pcrAction = CUtils::PcrRemap(m_pcrAction, colref_mapping, must_exist);
@@ -284,7 +284,7 @@ CLogicalSplit::PstatsDerive
 	(
 	IMemoryPool *mp,
 	CExpressionHandle &exprhdl,
-	StatsArray * // not used
+	IStatsArray * // not used
 	)
 	const
 {

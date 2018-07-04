@@ -31,14 +31,14 @@ namespace gpdxl
 	{
 	private:
 		// array of window specifications
-		DXLWindowSpecArray *m_window_spec_array;
+		CDXLWindowSpecArray *m_window_spec_array;
 
 		// private copy ctor
 		CDXLLogicalWindow(CDXLLogicalWindow &);
 
 	public:
 		//ctor
-		CDXLLogicalWindow(IMemoryPool *mp, DXLWindowSpecArray *pdrgpdxlwinspec);
+		CDXLLogicalWindow(IMemoryPool *mp, CDXLWindowSpecArray *pdrgpdxlwinspec);
 
 		//dtor
 		virtual ~CDXLLogicalWindow();

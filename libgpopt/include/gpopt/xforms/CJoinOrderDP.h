@@ -116,7 +116,7 @@ namespace gpopt
 			ExpressionToCostMap *m_phmexprcost;
 
 			// array of top-k join expression
-			ExpressionArray *m_pdrgpexprTopKOrders;
+			CExpressionArray *m_pdrgpexprTopKOrders;
 
 			// dummy expression to used for non-joinable components
 			CExpression *m_pexprDummy;
@@ -166,11 +166,11 @@ namespace gpopt
 
 			// generate all subsets of the given array of elements
 			static
-			void GenerateSubsets(IMemoryPool *mp, CBitSet *pbsCurrent, ULONG *pulElems, ULONG size, ULONG ulIndex, BitSetArray *pdrgpbsSubsets);
+			void GenerateSubsets(IMemoryPool *mp, CBitSet *pbsCurrent, ULONG *pulElems, ULONG size, ULONG ulIndex, CBitSetArray *pdrgpbsSubsets);
 
 			// driver of subset generation
 			static
-			BitSetArray *PdrgpbsSubsets(IMemoryPool *mp, CBitSet *pbs);
+			CBitSetArray *PdrgpbsSubsets(IMemoryPool *mp, CBitSet *pbs);
 
 		public:
 
@@ -178,8 +178,8 @@ namespace gpopt
 			CJoinOrderDP
 				(
 				IMemoryPool *mp,
-				ExpressionArray *pdrgpexprComponents,
-				ExpressionArray *pdrgpexprConjuncts
+				CExpressionArray *pdrgpexprComponents,
+				CExpressionArray *pdrgpexprConjuncts
 				);
 
 			// dtor
@@ -191,7 +191,7 @@ namespace gpopt
 			CExpression *PexprExpand();
 
 			// best join orders
-			ExpressionArray *PdrgpexprTopK() const
+			CExpressionArray *PdrgpexprTopK() const
 			{
 				return m_pdrgpexprTopKOrders;
 			}

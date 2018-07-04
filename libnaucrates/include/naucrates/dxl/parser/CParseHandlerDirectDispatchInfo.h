@@ -36,7 +36,7 @@ namespace gpdxl
 	{
 	private:
 		// current array of datums being parsed
-		DXLDatumArray *m_dxl_datum_array;
+		CDXLDatumArray *m_dxl_datum_array;
 
 		// array of datum combinations
 		DXLDatumArrays *m_datum_array_combination;

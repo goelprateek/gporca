@@ -28,10 +28,10 @@ namespace gpopt
 	using namespace gpmd;
 	
 	// dynamic array of columns -- array owns columns
-	typedef CDynamicPtrArray<CColumnDescriptor, CleanupRelease> ColumnDescrArray;
+	typedef CDynamicPtrArray<CColumnDescriptor, CleanupRelease> CColumnDescrArray;
 	
 	// dynamic array of bitsets
-	typedef CDynamicPtrArray<CBitSet, CleanupRelease> BitSetArray;
+	typedef CDynamicPtrArray<CBitSet, CleanupRelease> CBitSetArray;
 	
 	//---------------------------------------------------------------------------
 	//	@class:
@@ -55,7 +55,7 @@ namespace gpopt
 			CName m_name;
 			
 			// array of columns
-			ColumnDescrArray *m_pdrgpcoldesc;
+			CColumnDescrArray *m_pdrgpcoldesc;
 			
 			// distribution policy
 			IMDRelation::Ereldistrpolicy m_rel_distr_policy;
@@ -64,7 +64,7 @@ namespace gpopt
 			IMDRelation::Erelstoragetype m_erelstoragetype;
 
 			// distribution columns for hash distribution
-			ColumnDescrArray *m_pdrgpcoldescDist;
+			CColumnDescrArray *m_pdrgpcoldescDist;
 						
 			// if true, we need to consider a hash distributed table as random
 			// there are two possible scenarios:
@@ -77,7 +77,7 @@ namespace gpopt
 			ULongPtrArray *m_pdrgpulPart;
 			
 			// key sets
-			BitSetArray *m_pdrgpbsKeys;
+			CBitSetArray *m_pdrgpbsKeys;
 			
 			// number of leaf partitions
 			ULONG m_num_of_partitions;
@@ -150,13 +150,13 @@ namespace gpopt
 			ULONG GetAttributePosition(INT attno) const;
 
 			// column descriptor accessor
-			ColumnDescrArray *Pdrgpcoldesc() const
+			CColumnDescrArray *Pdrgpcoldesc() const
 			{
 				return m_pdrgpcoldesc;
 			}
 			
 			// distribution column descriptors accessor
-			const ColumnDescrArray *PdrgpcoldescDist() const
+			const CColumnDescrArray *PdrgpcoldescDist() const
 			{
 				return m_pdrgpcoldescDist;
 			}
@@ -168,7 +168,7 @@ namespace gpopt
 			}
 			
 			// array of key sets
-			const BitSetArray *PdrgpbsKeys() const
+			const CBitSetArray *PdrgpbsKeys() const
 			{
 				return m_pdrgpbsKeys;
 			}
@@ -201,7 +201,7 @@ namespace gpopt
 			
 			// helper function for finding the index of a column descriptor in
 			// an array of column descriptors
-			ULONG UlPos(const CColumnDescriptor *, const ColumnDescrArray *) const;
+			ULONG UlPos(const CColumnDescriptor *, const CColumnDescrArray *) const;
 			
 #ifdef GPOS_DEBUG
 			IOstream &OsPrint(IOstream &) const;

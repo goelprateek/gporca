@@ -50,7 +50,7 @@ CLogicalUnion::CLogicalUnion
 CLogicalUnion::CLogicalUnion
 	(
 	IMemoryPool *mp,
-	ColRefArray *pdrgpcrOutput,
+	CColRefArray *pdrgpcrOutput,
 	ColRefArrays *pdrgpdrgpcrInput
 	)
 	:
@@ -58,7 +58,7 @@ CLogicalUnion::CLogicalUnion
 {
 
 #ifdef GPOS_DEBUG
-	ColRefArray *pdrgpcrInput = (*pdrgpdrgpcrInput)[0];
+	CColRefArray *pdrgpcrInput = (*pdrgpdrgpcrInput)[0];
 	const ULONG num_cols = pdrgpcrOutput->Size();
 	GPOS_ASSERT(num_cols == pdrgpcrInput->Size());
 
@@ -100,7 +100,7 @@ CLogicalUnion::PopCopyWithRemappedColumns
 	BOOL must_exist
 	)
 {
-	ColRefArray *pdrgpcrOutput = CUtils::PdrgpcrRemap(mp, m_pdrgpcrOutput, colref_mapping, must_exist);
+	CColRefArray *pdrgpcrOutput = CUtils::PdrgpcrRemap(mp, m_pdrgpcrOutput, colref_mapping, must_exist);
 	ColRefArrays *pdrgpdrgpcrInput = CUtils::PdrgpdrgpcrRemap(mp, m_pdrgpdrgpcrInput, colref_mapping, must_exist);
 
 	return GPOS_NEW(mp) CLogicalUnion(mp, pdrgpcrOutput, pdrgpdrgpcrInput);
@@ -166,7 +166,7 @@ CLogicalUnion::PstatsDerive
 	(
 	IMemoryPool *mp,
 	CExpressionHandle &exprhdl,
-	StatsArray * // not used
+	IStatsArray * // not used
 	)
 	const
 {

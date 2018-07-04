@@ -73,7 +73,7 @@ CPhysicalFilter::PcrsRequired
 	CExpressionHandle &exprhdl,
 	CColRefSet *pcrsRequired,
 	ULONG child_index,
-	DrgPdp *, // pdrgpdpCtxt
+	CDrvdPropArrays *, // pdrgpdpCtxt
 	ULONG // ulOptReq
 	)
 {
@@ -98,7 +98,7 @@ CPhysicalFilter::PosRequired
 	CExpressionHandle &exprhdl,
 	COrderSpec *posRequired,
 	ULONG child_index,
-	DrgPdp *, // pdrgpdpCtxt
+	CDrvdPropArrays *, // pdrgpdpCtxt
 	ULONG // ulOptReq
 	)
 	const
@@ -124,7 +124,7 @@ CPhysicalFilter::PdsRequired
 	CExpressionHandle &exprhdl,
 	CDistributionSpec *pdsRequired,
 	ULONG child_index,
-	DrgPdp *, // pdrgpdpCtxt
+	CDrvdPropArrays *, // pdrgpdpCtxt
 	ULONG ulOptReq
 	)
 	const
@@ -159,7 +159,7 @@ CPhysicalFilter::PrsRequired
 	CExpressionHandle &exprhdl,
 	CRewindabilitySpec *prsRequired,
 	ULONG child_index,
-	DrgPdp *, // pdrgpdpCtxt
+	CDrvdPropArrays *, // pdrgpdpCtxt
 	ULONG // ulOptReq
 	)
 	const
@@ -199,7 +199,7 @@ CPhysicalFilter::PppsRequired
 	child_index
 #endif
 	,
-	DrgPdp *, //pdrgpdpCtxt,
+	CDrvdPropArrays *, //pdrgpdpCtxt,
 	ULONG // ulOptReq
 	)
 {
@@ -237,7 +237,7 @@ CPhysicalFilter::PppsRequired
 		CExpression *pexprScalar = exprhdl.PexprScalarChild(1 /*child_index*/);
 
 		CExpression *pexprCmp = NULL;
-		PartKeysArray *pdrgppartkeys = ppimReqd->Pdrgppartkeys(part_idx_id);
+		CPartKeysArray *pdrgppartkeys = ppimReqd->Pdrgppartkeys(part_idx_id);
 		const ULONG ulKeysets = pdrgppartkeys->Size();
 		for (ULONG ulKey = 0; NULL == pexprCmp && ulKey < ulKeysets; ulKey++)
 		{
@@ -300,7 +300,7 @@ CPhysicalFilter::PcteRequired
 	child_index
 #endif
 	,
-	DrgPdp *, //pdrgpdpCtxt,
+	CDrvdPropArrays *, //pdrgpdpCtxt,
 	ULONG //ulOptReq
 	)
 	const

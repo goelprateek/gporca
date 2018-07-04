@@ -51,7 +51,7 @@ namespace gpopt
 			CLogicalLeftSemiApplyIn
 				(
 				IMemoryPool *mp,
-				ColRefArray *pdrgpcrInner,
+				CColRefArray *pdrgpcrInner,
 				EOperatorId eopidOriginSubq
 				)
 				:

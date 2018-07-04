@@ -115,7 +115,7 @@ namespace gpmd
 	};
 
 	// array of dxl buckets
-	typedef CDynamicPtrArray<CDXLBucket, CleanupRelease> DXLBucketPtrArray;
+	typedef CDynamicPtrArray<CDXLBucket, CleanupRelease> CDXLBucketArray;
 }  // namespace gpmd
 
 #endif  // !GPMD_CDXLBucket_H

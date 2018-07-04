@@ -28,7 +28,7 @@ namespace gpnaucrates
 	class CBucket;
 
 	// dynamic array of buckets
-	typedef CDynamicPtrArray<CBucket, CleanupDelete> BucketArray;
+	typedef CDynamicPtrArray<CBucket, CleanupDelete> CBucketArray;
 
 	//---------------------------------------------------------------------------
 	//	@class:

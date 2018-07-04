@@ -103,7 +103,7 @@ CXformSimplifySubquery::FSimplifyQuantified
 	CXformUtils::QuantifiedToAgg(mp, pexprScalar, &pexprNewSubquery, &pexprCmp);
 
 	// create a comparison predicate involving subquery expression
-	ExpressionArray *pdrgpexpr = GPOS_NEW(mp) ExpressionArray(mp);
+	CExpressionArray *pdrgpexpr = GPOS_NEW(mp) CExpressionArray(mp);
 	(*pexprCmp)[1]->AddRef();
 	pdrgpexpr->Append(pexprNewSubquery);
 	pdrgpexpr->Append((*pexprCmp)[1]);
@@ -141,7 +141,7 @@ CXformSimplifySubquery::FSimplifyExistential
 	CXformUtils::ExistentialToAgg(mp, pexprScalar, &pexprNewSubquery, &pexprCmp);
 
 	// create a comparison predicate involving subquery expression
-	ExpressionArray *pdrgpexpr = GPOS_NEW(mp) ExpressionArray(mp);
+	CExpressionArray *pdrgpexpr = GPOS_NEW(mp) CExpressionArray(mp);
 	(*pexprCmp)[1]->AddRef();
 	pdrgpexpr->Append(pexprNewSubquery);
 	pdrgpexpr->Append((*pexprCmp)[1]);
@@ -196,7 +196,7 @@ CXformSimplifySubquery::FSimplify
 
 	// otherwise, recursively process children
 	const ULONG arity = pexprScalar->Arity();
-	ExpressionArray *pdrgpexprChildren = GPOS_NEW(mp) ExpressionArray(mp);
+	CExpressionArray *pdrgpexprChildren = GPOS_NEW(mp) CExpressionArray(mp);
 	BOOL fSuccess = true;
 	for (ULONG ul = 0; fSuccess && ul < arity; ul++)
 	{

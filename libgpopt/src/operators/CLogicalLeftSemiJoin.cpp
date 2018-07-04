@@ -142,7 +142,7 @@ IStatistics *
 CLogicalLeftSemiJoin::PstatsDerive
 	(
 	IMemoryPool *mp,
-	StatsPredJoinArray *join_preds_stats,
+	CStatsPredJoinArray *join_preds_stats,
 	IStatistics *outer_stats,
 	IStatistics *inner_side_stats
 	)
@@ -164,14 +164,14 @@ CLogicalLeftSemiJoin::PstatsDerive
 	(
 	IMemoryPool *mp,
 	CExpressionHandle &exprhdl,
-	StatsArray * // not used
+	IStatsArray * // not used
 	)
 	const
 {
 	GPOS_ASSERT(Esp(exprhdl) > EspNone);
 	IStatistics *outer_stats = exprhdl.Pstats(0);
 	IStatistics *inner_side_stats = exprhdl.Pstats(1);
-	StatsPredJoinArray *join_preds_stats = CStatsPredUtils::ExtractJoinStatsFromExprHandle(mp, exprhdl);
+	CStatsPredJoinArray *join_preds_stats = CStatsPredUtils::ExtractJoinStatsFromExprHandle(mp, exprhdl);
 	IStatistics *pstatsSemiJoin = PstatsDerive(mp, join_preds_stats, outer_stats, inner_side_stats);
 
 	join_preds_stats->Release();

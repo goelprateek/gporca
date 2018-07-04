@@ -24,7 +24,7 @@ namespace gpnaucrates
 	class CUpperBoundNDVs;
 
 	// dynamic array of upper bound ndvs
-	typedef CDynamicPtrArray<CUpperBoundNDVs, CleanupDelete> UpperBoundNDVPtrArray;
+	typedef CDynamicPtrArray<CUpperBoundNDVs, CleanupDelete> CUpperBoundNDVPtrArray;
 
 	//---------------------------------------------------------------------------
 	//      @class:

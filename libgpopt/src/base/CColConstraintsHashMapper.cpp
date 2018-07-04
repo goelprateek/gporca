@@ -6,13 +6,13 @@
 
 using namespace gpopt;
 
-ConstraintArray *
+CConstraintArray *
 CColConstraintsHashMapper::PdrgPcnstrLookup
 	(
 		CColRef *colref
 	)
 {
-	ConstraintArray *pdrgpcnstrCol = m_phmColConstr->Find(colref);
+	CConstraintArray *pdrgpcnstrCol = m_phmColConstr->Find(colref);
 	pdrgpcnstrCol->AddRef();
 	return pdrgpcnstrCol;
 }
@@ -23,10 +23,10 @@ ColRefToConstraintArrayMap *
 PhmcolconstrSingleColConstr
 	(
 		IMemoryPool *mp,
-		ConstraintArray *drgPcnstr
+		CConstraintArray *drgPcnstr
 	)
 {
-	CAutoRef<ConstraintArray> arpdrgpcnstr(drgPcnstr);
+	CAutoRef<CConstraintArray> arpdrgpcnstr(drgPcnstr);
 	ColRefToConstraintArrayMap *phmcolconstr = GPOS_NEW(mp) ColRefToConstraintArrayMap(mp);
 
 	const ULONG length = arpdrgpcnstr->Size();
@@ -39,10 +39,10 @@ PhmcolconstrSingleColConstr
 		if (1 == pcrs->Size())
 		{
 			CColRef *colref = pcrs->PcrFirst();
-			ConstraintArray *pcnstrMapped = phmcolconstr->Find(colref);
+			CConstraintArray *pcnstrMapped = phmcolconstr->Find(colref);
 			if (NULL == pcnstrMapped)
 			{
-				pcnstrMapped = GPOS_NEW(mp) ConstraintArray(mp);
+				pcnstrMapped = GPOS_NEW(mp) CConstraintArray(mp);
 				phmcolconstr->Insert(colref, pcnstrMapped);
 			}
 			pcnstrChild->AddRef();
@@ -56,7 +56,7 @@ PhmcolconstrSingleColConstr
 CColConstraintsHashMapper::CColConstraintsHashMapper
 	(
 		IMemoryPool *mp,
-		ConstraintArray *pdrgpcnstr
+		CConstraintArray *pdrgpcnstr
 	) :
 	m_phmColConstr(PhmcolconstrSingleColConstr(mp, pdrgpcnstr))
 {

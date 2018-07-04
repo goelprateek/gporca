@@ -74,7 +74,7 @@ CDistributionSpecExternal::AppendEnforcers
 	IMemoryPool *,
 	CExpressionHandle &,
 	CReqdPropPlan *,
-	ExpressionArray *,
+	CExpressionArray *,
 	CExpression *
 	)
 {

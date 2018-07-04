@@ -43,7 +43,7 @@ namespace gpmd
 		struct SMDFuncRequest;
 
 		// array of type requests
-		typedef CDynamicPtrArray<SMDTypeRequest, CleanupDelete> MDTypeRequestPtrArray;
+		typedef CDynamicPtrArray<SMDTypeRequest, CleanupDelete> SMDTypeRequestArray;
 
 		//---------------------------------------------------------------------------
 		//	@class:
@@ -73,10 +73,10 @@ namespace gpmd
 		IMemoryPool *m_mp;
 
 		// array of mdids
-		MdidPtrArray *m_mdid_array;
+		IMdIdArray *m_mdid_array;
 
 		// type info requests
-		MDTypeRequestPtrArray *m_mdtype_request_array;
+		SMDTypeRequestArray *m_mdtype_request_array;
 
 		// serialize system id
 		CWStringDynamic *GetStrRepr(CSystemId sysid);
@@ -87,8 +87,8 @@ namespace gpmd
 	public:
 		// ctor
 		CMDRequest(IMemoryPool *mp,
-				   MdidPtrArray *mdid_array,
-				   MDTypeRequestPtrArray *mdtype_request_array);
+				   IMdIdArray *mdid_array,
+				   SMDTypeRequestArray *mdtype_request_array);
 
 		// ctor: type request only
 		CMDRequest(IMemoryPool *mp, SMDTypeRequest *md_type_request);
@@ -99,14 +99,14 @@ namespace gpmd
 		// accessors
 
 		// array of mdids
-		MdidPtrArray *
+		IMdIdArray *
 		GetMdIdArray() const
 		{
 			return m_mdid_array;
 		}
 
 		// array of type info requests
-		MDTypeRequestPtrArray *
+		SMDTypeRequestArray *
 		GetMDTypeRequestArray() const
 		{
 			return m_mdtype_request_array;

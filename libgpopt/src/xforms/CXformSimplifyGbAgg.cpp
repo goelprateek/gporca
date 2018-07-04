@@ -116,7 +116,7 @@ CXformSimplifyGbAgg::FDropGbAgg
 	BOOL fDrop = false;
 	for (ULONG ul = 0; !fDrop && ul < ulKeys; ul++)
 	{
-		ColRefArray *pdrgpcrKey = pkc->PdrgpcrKey(mp, ul);
+		CColRefArray *pdrgpcrKey = pkc->PdrgpcrKey(mp, ul);
 		CColRefSet *pcrs = GPOS_NEW(mp) CColRefSet(mp, pdrgpcrKey);
 		pdrgpcrKey->Release();
 
@@ -176,13 +176,13 @@ CXformSimplifyGbAgg::Transform
 	CExpression *pexprRelational = (*pexpr)[0];
 	CExpression *pexprProjectList = (*pexpr)[1];
 
-	ColRefArray *colref_array = popAgg->Pdrgpcr();
+	CColRefArray *colref_array = popAgg->Pdrgpcr();
 	CColRefSet *pcrsGrpCols = GPOS_NEW(mp) CColRefSet(mp);
 	pcrsGrpCols->Include(colref_array);
 
 	CColRefSet *pcrsCovered = GPOS_NEW(mp) CColRefSet(mp);	// set of grouping columns covered by FD's
 	CColRefSet *pcrsMinimal = GPOS_NEW(mp) CColRefSet(mp); // a set of minimal grouping columns based on FD's
-	FunctionalDependencyArray *pdrgpfd = CDrvdPropRelational::GetRelationalProperties(pexpr->PdpDerive())->Pdrgpfd();
+	CFunctionalDependencyArray *pdrgpfd = CDrvdPropRelational::GetRelationalProperties(pexpr->PdpDerive())->Pdrgpfd();
 
 	// collect grouping columns FD's
 	const ULONG size = (pdrgpfd == NULL) ? 0 : pdrgpfd->Size();

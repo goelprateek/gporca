@@ -79,7 +79,7 @@ namespace gpopt
 			CCTEInfo *m_pcteinfo;
 
 			// system columns required in query output
-			ColRefArray *m_pdrgpcrSystemCols;
+			CColRefArray *m_pdrgpcrSystemCols;
 
 			// optimizer configurations
 			COptimizerConfig *m_optimizer_config;
@@ -177,7 +177,7 @@ namespace gpopt
 			}
 			
 			// required system columns
-			ColRefArray *PdrgpcrSystemCols() const
+			CColRefArray *PdrgpcrSystemCols() const
 			{
 				return m_pdrgpcrSystemCols;
 			}
@@ -185,7 +185,7 @@ namespace gpopt
 			// set required system columns
 			void SetReqdSystemCols
 				(
-				ColRefArray *pdrgpcrSystemCols
+				CColRefArray *pdrgpcrSystemCols
 				)
 			{
 				GPOS_ASSERT(NULL != pdrgpcrSystemCols);

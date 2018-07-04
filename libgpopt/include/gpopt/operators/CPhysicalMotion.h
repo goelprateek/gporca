@@ -62,7 +62,7 @@ namespace gpopt
 
 			// check if optimization contexts is valid
 			virtual
-			BOOL FValidContext(IMemoryPool *mp, COptimizationContext *poc, OptimizationContextArray *pdrgpocChild) const;
+			BOOL FValidContext(IMemoryPool *mp, COptimizationContext *poc, COptimizationContextArray *pdrgpocChild) const;
 
 			//-------------------------------------------------------------------------------------
 			// Required Plan Properties
@@ -76,7 +76,7 @@ namespace gpopt
 				CExpressionHandle &exprhdl,
 				CCTEReq *pcter,
 				ULONG child_index,
-				DrgPdp *pdrgpdpCtxt,
+				CDrvdPropArrays *pdrgpdpCtxt,
 				ULONG ulOptReq
 				)
 				const;
@@ -89,7 +89,7 @@ namespace gpopt
 				CExpressionHandle &exprhdl,
 				CDistributionSpec *pdsRequired,
 				ULONG child_index,
-				DrgPdp *pdrgpdpCtxt,
+				CDrvdPropArrays *pdrgpdpCtxt,
 				ULONG ulOptReq
 				)
 				const;
@@ -102,7 +102,7 @@ namespace gpopt
 				CExpressionHandle &, // exprhdl
 				CRewindabilitySpec *, // prsRequired
 				ULONG, // child_index
-				DrgPdp *pdrgpdpCtxt,
+				CDrvdPropArrays *pdrgpdpCtxt,
 				ULONG ulOptReq
 				)
 				const;
@@ -115,7 +115,7 @@ namespace gpopt
 				CExpressionHandle &exprhdl,
 				CPartitionPropagationSpec *pppsRequired,
 				ULONG child_index,
-				DrgPdp *pdrgpdpCtxt,
+				CDrvdPropArrays *pdrgpdpCtxt,
 				ULONG ulOptReq
 				);
 			

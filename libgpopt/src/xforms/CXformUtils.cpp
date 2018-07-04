@@ -196,7 +196,7 @@ CColRefSet *
 CXformUtils::PcrsFKey
 	(
 	IMemoryPool *mp,
-	ExpressionArray *pdrgpexpr, // array of scalar conjuncts
+	CExpressionArray *pdrgpexpr, // array of scalar conjuncts
 	CColRefSet *prcsOutput, // output columns of outer expression
 	CColRefSet *pcrsKey // a primary key of a inner expression
 	)
@@ -275,13 +275,13 @@ CXformUtils::PcrsFKey
 	// get outer expression output columns
 	CColRefSet *prcsOutput = CDrvdPropRelational::GetRelationalProperties(pexprOuter->PdpDerive())->PcrsOutput();
 
-	ExpressionArray *pdrgpexpr = CPredicateUtils::PdrgpexprConjuncts(mp, pexprScalar);
+	CExpressionArray *pdrgpexpr = CPredicateUtils::PdrgpexprConjuncts(mp, pexprScalar);
 	CColRefSet *pcrsFKey = NULL;
 
 	const ULONG ulKeys = pkc->Keys();
 	for (ULONG ulKey = 0; ulKey < ulKeys; ulKey++)
 	{
-		ColRefArray *pdrgpcrKey = pkc->PdrgpcrKey(mp, ulKey);
+		CColRefArray *pdrgpcrKey = pkc->PdrgpcrKey(mp, ulKey);
 
 		CColRefSet *pcrsKey = GPOS_NEW(mp) CColRefSet(mp);
 		pcrsKey->Include(pdrgpcrKey);
@@ -520,7 +520,7 @@ CXformUtils::PexprPushGbBelowJoin
 	
 	// use minimal grouping columns if they exist, otherwise use all grouping columns
 	CColRefSet *pcrsGrpCols = GPOS_NEW(mp) CColRefSet(mp);
-	ColRefArray *colref_array = popGbAgg->PdrgpcrMinimal();
+	CColRefArray *colref_array = popGbAgg->PdrgpcrMinimal();
 	if (NULL == colref_array)
 	{
 		colref_array = popGbAgg->Pdrgpcr();
@@ -603,7 +603,7 @@ CXformUtils::PopGbAggPushableBelowJoin
 		pcrsGrpColsNew->Intersection(pcrsOutputOuter);
 		if (COperator::EopLogicalGbAggDeduplicate == popGbAggOld->Eopid())
 		{
-			ColRefArray *pdrgpcrKeys = CLogicalGbAggDeduplicate::PopConvert(popGbAggOld)->PdrgpcrKeys();
+			CColRefArray *pdrgpcrKeys = CLogicalGbAggDeduplicate::PopConvert(popGbAggOld)->PdrgpcrKeys();
 			pdrgpcrKeys->AddRef();
 			popGbAggNew = GPOS_NEW(mp) CLogicalGbAggDeduplicate(mp, pcrsGrpColsNew->Pdrgpcr(mp), popGbAggOld->Egbaggtype(), pdrgpcrKeys);
 		}
@@ -673,7 +673,7 @@ CXformUtils::FSameDatatype
 {
 	GPOS_ASSERT(1 < pdrgpdrgpcrInput->Size());
 
-	ColRefArray *pdrgpcrOuter = (*pdrgpdrgpcrInput)[0];
+	CColRefArray *pdrgpcrOuter = (*pdrgpdrgpcrInput)[0];
 
 	ULONG ulColIndex = pdrgpcrOuter->Size();
 	ULONG child_index = pdrgpdrgpcrInput->Size();
@@ -683,7 +683,7 @@ CXformUtils::FSameDatatype
 
 		for (ULONG ulChildCounter = 1; ulChildCounter < child_index; ulChildCounter++)
 		{
-			ColRefArray *pdrgpcrInnner = (*pdrgpdrgpcrInput)[ulChildCounter];
+			CColRefArray *pdrgpcrInnner = (*pdrgpdrgpcrInput)[ulChildCounter];
 			CColRef *pcrInner = (*pdrgpcrInnner)[ulColCounter];
 
 			GPOS_ASSERT(pcrOuter != pcrInner);
@@ -845,7 +845,7 @@ CXformUtils::SubqueryAnyToAgg
 		pexprResult = pexprPrj;
 
 		// add disjunction with is not null check
-		ExpressionArray *pdrgpexpr = GPOS_NEW(mp) ExpressionArray(mp);
+		CExpressionArray *pdrgpexpr = GPOS_NEW(mp) CExpressionArray(mp);
 		pdrgpexpr->Append(pexprSubqPred);
 		pdrgpexpr->Append(CUtils::PexprIsNull(mp, CUtils::PexprScalarIdent(mp, pcrSubq)));
 
@@ -962,7 +962,7 @@ CXformUtils::SubqueryAllToAgg
 				CUtils::PexprScalarConstInt4(mp, 0 /*val*/)
 				);
 
-	ExpressionArray *pdrgpexpr = GPOS_NEW(mp) ExpressionArray(mp);
+	CExpressionArray *pdrgpexpr = GPOS_NEW(mp) CExpressionArray(mp);
 	pdrgpexpr->Append(pexprSubqTest);
 
 	// generate null indicator for inner expression
@@ -976,7 +976,7 @@ CXformUtils::SubqueryAllToAgg
 	pdrgpexpr->Release();
 
 	// generate a group by expression with sum(subquery-test) and sum(inner null indicator) aggreagtes
-	ColRefArray *colref_array = GPOS_NEW(mp) ColRefArray(mp);
+	CColRefArray *colref_array = GPOS_NEW(mp) CColRefArray(mp);
 	CColRef *pcrSubqTest = const_cast<CColRef*>(CScalarProjectElement::PopConvert((*(*pexprPrj)[1])[0]->Pop())->Pcr());
 	CColRef *pcrInnerNullTest = const_cast<CColRef *>(CScalarProjectElement::PopConvert((*(*pexprPrj)[1])[1]->Pop())->Pcr());
 	colref_array->Append(pcrSubqTest);
@@ -1067,9 +1067,9 @@ CXformUtils::PexprSeparateSubqueryPreds
 	// subqueries
 	const ULONG arity = pexpr->Arity();
 	CExpression *pexprScalar = (*pexpr)[arity - 1];
-	ExpressionArray *pdrgpexprConjuncts = CPredicateUtils::PdrgpexprConjuncts(mp, pexprScalar);
-	ExpressionArray *pdrgpexprSQ = GPOS_NEW(mp) ExpressionArray(mp);
-	ExpressionArray *pdrgpexprNonSQ = GPOS_NEW(mp) ExpressionArray(mp);
+	CExpressionArray *pdrgpexprConjuncts = CPredicateUtils::PdrgpexprConjuncts(mp, pexprScalar);
+	CExpressionArray *pdrgpexprSQ = GPOS_NEW(mp) CExpressionArray(mp);
+	CExpressionArray *pdrgpexprNonSQ = GPOS_NEW(mp) CExpressionArray(mp);
 
 	const ULONG ulConjuncts = pdrgpexprConjuncts->Size();
 	for (ULONG ul = 0; ul < ulConjuncts; ul++)
@@ -1092,7 +1092,7 @@ CXformUtils::PexprSeparateSubqueryPreds
 
 	// build children array from logical children and a conjunction of
 	// non-subquery predicates
-	ExpressionArray *pdrgpexpr = GPOS_NEW(mp) ExpressionArray(mp);
+	CExpressionArray *pdrgpexpr = GPOS_NEW(mp) CExpressionArray(mp);
 	for (ULONG ul = 0; ul < arity - 1; ul++)
 	{
 		CExpression *pexprChild = (*pexpr)[ul];
@@ -1201,7 +1201,7 @@ CXformUtils::PexprLogicalPartitionSelector
 	(
 	IMemoryPool *mp,
 	CTableDescriptor *ptabdesc,
-	ColRefArray *colref_array,
+	CColRefArray *colref_array,
 	CExpression *pexprChild
 	)
 {
@@ -1213,7 +1213,7 @@ CXformUtils::PexprLogicalPartitionSelector
 	CMDAccessor *md_accessor = COptCtxt::PoctxtFromTLS()->Pmda();
 	const IMDTypeOid *pmdtype = md_accessor->PtMDType<IMDTypeOid>();
 	CColRef *pcrOid = col_factory->PcrCreate(pmdtype, default_type_modifier);
-	ExpressionArray *pdrgpexprFilters = PdrgpexprPartEqFilters(mp, ptabdesc, colref_array);
+	CExpressionArray *pdrgpexprFilters = PdrgpexprPartEqFilters(mp, ptabdesc, colref_array);
 
 	CLogicalPartitionSelector *popSelector = GPOS_NEW(mp) CLogicalPartitionSelector(mp, rel_mdid, pdrgpexprFilters, pcrOid);
 
@@ -1235,7 +1235,7 @@ CXformUtils::PexprLogicalDMLOverProject
 	CExpression *pexprChild,
 	CLogicalDML::EDMLOperator edmlop,
 	CTableDescriptor *ptabdesc,
-	ColRefArray *colref_array,
+	CColRefArray *colref_array,
 	CColRef *pcrCtid,
 	CColRef *pcrSegmentId
 	)
@@ -1268,7 +1268,7 @@ CXformUtils::PexprLogicalDMLOverProject
 	}
 	else
 	{
-		ExpressionArray *pdrgpexprProjected = GPOS_NEW(mp) ExpressionArray(mp);
+		CExpressionArray *pdrgpexprProjected = GPOS_NEW(mp) CExpressionArray(mp);
 		// generate one project node with two new columns: action, oid (based on the traceflag)
 		pdrgpexprProjected->Append(CUtils::PexprScalarConstInt4(mp, val));
 
@@ -1402,7 +1402,7 @@ CXformUtils::PexprRowTrigger
 	CLogicalDML::EDMLOperator edmlop,
 	IMDId *rel_mdid,
 	BOOL fBefore,
-	ColRefArray *colref_array
+	CColRefArray *colref_array
 	)
 {
 	GPOS_ASSERT(CLogicalDML::EdmlInsert == edmlop || CLogicalDML::EdmlDelete == edmlop);
@@ -1430,15 +1430,15 @@ CXformUtils::PexprAssertNotNull
 	IMemoryPool *mp,
 	CExpression *pexprChild,
 	CTableDescriptor *ptabdesc,
-	ColRefArray *colref_array
+	CColRefArray *colref_array
 	)
 {	
-	ColumnDescrArray *pdrgpcoldesc = ptabdesc->Pdrgpcoldesc();
+	CColumnDescrArray *pdrgpcoldesc = ptabdesc->Pdrgpcoldesc();
 	
 	const ULONG num_cols = pdrgpcoldesc->Size();
 	CColRefSet *pcrsNotNull = CDrvdPropRelational::GetRelationalProperties(pexprChild->PdpDerive())->PcrsNotNull();
 	
-	ExpressionArray *pdrgpexprAssertConstraints = GPOS_NEW(mp) ExpressionArray(mp);
+	CExpressionArray *pdrgpexprAssertConstraints = GPOS_NEW(mp) CExpressionArray(mp);
 	
 	for (ULONG ul = 0; ul < num_cols; ul++)
 	{
@@ -1519,8 +1519,8 @@ CXformUtils::PexprRowTrigger
 	CLogicalDML::EDMLOperator edmlop,
 	IMDId *rel_mdid,
 	BOOL fBefore,
-	ColRefArray *pdrgpcrOld,
-	ColRefArray *pdrgpcrNew
+	CColRefArray *pdrgpcrOld,
+	CColRefArray *pdrgpcrNew
 	)
 {
 	INT type = GPMD_TRIGGER_ROW;
@@ -1561,12 +1561,12 @@ CXformUtils::PexprRowTrigger
 //		descriptor and the column references seen by this DML
 //
 //---------------------------------------------------------------------------
-ExpressionArray *
+CExpressionArray *
 CXformUtils::PdrgpexprPartEqFilters
 	(
 	IMemoryPool *mp,
 	CTableDescriptor *ptabdesc,
-	ColRefArray *pdrgpcrSource
+	CColRefArray *pdrgpcrSource
 	)
 {
 	GPOS_ASSERT(NULL != ptabdesc);
@@ -1574,7 +1574,7 @@ CXformUtils::PdrgpexprPartEqFilters
 
 	const ULongPtrArray *pdrgpulPart = ptabdesc->PdrgpulPart();
 
-	ExpressionArray *pdrgpexpr = GPOS_NEW(mp) ExpressionArray(mp);
+	CExpressionArray *pdrgpexpr = GPOS_NEW(mp) CExpressionArray(mp);
 
 	const ULONG ulPartKeys = pdrgpulPart->Size();
 	GPOS_ASSERT(0 < ulPartKeys);
@@ -1604,7 +1604,7 @@ CXformUtils::PexprAssertConstraints
 	IMemoryPool *mp,
 	CExpression *pexprChild,
 	CTableDescriptor *ptabdesc,
-	ColRefArray *colref_array
+	CColRefArray *colref_array
 	)
 {
 	CExpression *pexprAssertNotNull = PexprAssertNotNull(mp, pexprChild, ptabdesc, colref_array);
@@ -1626,7 +1626,7 @@ CXformUtils::PexprAssertCheckConstraints
 	IMemoryPool *mp,
 	CExpression *pexprChild,
 	CTableDescriptor *ptabdesc,
-	ColRefArray *colref_array
+	CColRefArray *colref_array
 	)
 {
 	CMDAccessor *md_accessor = COptCtxt::PoctxtFromTLS()->Pmda();
@@ -1635,7 +1635,7 @@ CXformUtils::PexprAssertCheckConstraints
 	const ULONG ulCheckConstraint = pmdrel->CheckConstraintCount();
 	if (0 < ulCheckConstraint)
 	{
-	 	ExpressionArray *pdrgpexprAssertConstraints = GPOS_NEW(mp) ExpressionArray(mp);
+	 	CExpressionArray *pdrgpexprAssertConstraints = GPOS_NEW(mp) CExpressionArray(mp);
 	 	
 		for (ULONG ul = 0; ul < ulCheckConstraint; ul++)
 		{
@@ -1751,7 +1751,7 @@ CXformUtils::PexprAssertUpdateCardinality
 									GPOS_NEW(mp) CScalarProjectElement(mp, pcrProjElem),
 									pexprCountStar
 									);
-	ExpressionArray *pdrgpexprProjElemsCountDistinct = GPOS_NEW(mp) ExpressionArray(mp);
+	CExpressionArray *pdrgpexprProjElemsCountDistinct = GPOS_NEW(mp) CExpressionArray(mp);
 	pdrgpexprProjElemsCountDistinct->Append(pexprProjElem);
 	CExpression *pexprProjList = GPOS_NEW(mp) CExpression
 								(
@@ -1760,7 +1760,7 @@ CXformUtils::PexprAssertUpdateCardinality
 								pdrgpexprProjElemsCountDistinct
 								);
 								
-	ColRefArray *pdrgpcrGbCols = GPOS_NEW(mp) ColRefArray(mp);
+	CColRefArray *pdrgpcrGbCols = GPOS_NEW(mp) CColRefArray(mp);
 	pdrgpcrGbCols->Append(pcrCtid);
 	pdrgpcrGbCols->Append(pcrSegmentId);
 	
@@ -1810,7 +1810,7 @@ CXformUtils::PexprAssertUpdateCardinality
 BOOL
 CXformUtils::FSupportsMinAgg
 	(
-	ColRefArray *colref_array
+	CColRefArray *colref_array
 	)
 {
 	const ULONG num_cols = colref_array->Size();
@@ -1907,10 +1907,10 @@ CXformUtils::AddMinAggs
 	IMemoryPool *mp,
 	CMDAccessor *md_accessor,
 	CColumnFactory *col_factory,
-	ColRefArray *colref_array,
+	CColRefArray *colref_array,
 	ColRefToColRefMap *phmcrcr,
-	ExpressionArray *pdrgpexpr,
-	ColRefArray **ppdrgpcrNew
+	CExpressionArray *pdrgpexpr,
+	CColRefArray **ppdrgpcrNew
 	)
 {
 	GPOS_ASSERT(NULL != colref_array);
@@ -2164,11 +2164,11 @@ CXformUtils::PstrErrorMessage
 //		in the index key columns
 //
 //---------------------------------------------------------------------------
-ColRefArray *
+CColRefArray *
 CXformUtils::PdrgpcrIndexKeys
 	(
 	IMemoryPool *mp,
-	ColRefArray *colref_array,
+	CColRefArray *colref_array,
 	const IMDIndex *pmdindex,
 	const IMDRelation *pmdrel
 	)
@@ -2189,7 +2189,7 @@ CColRefSet *
 CXformUtils::PcrsIndexKeys
 	(
 	IMemoryPool *mp,
-	ColRefArray *colref_array,
+	CColRefArray *colref_array,
 	const IMDIndex *pmdindex,
 	const IMDRelation *pmdrel
 	)
@@ -2210,7 +2210,7 @@ CColRefSet *
 CXformUtils::PcrsIndexIncludedCols
 	(
 	IMemoryPool *mp,
-	ColRefArray *colref_array,
+	CColRefArray *colref_array,
 	const IMDIndex *pmdindex,
 	const IMDRelation *pmdrel
 	)
@@ -2231,14 +2231,14 @@ CColRefSet *
 CXformUtils::PcrsIndexColumns
 	(
 	IMemoryPool *mp,
-	ColRefArray *colref_array,
+	CColRefArray *colref_array,
 	const IMDIndex *pmdindex,
 	const IMDRelation *pmdrel,
 	EIndexCols eic
 	)
 {
 	GPOS_ASSERT(EicKey == eic || EicIncluded == eic);
-	ColRefArray *pdrgpcrIndexColumns = PdrgpcrIndexColumns(mp, colref_array, pmdindex, pmdrel, eic);
+	CColRefArray *pdrgpcrIndexColumns = PdrgpcrIndexColumns(mp, colref_array, pmdindex, pmdrel, eic);
 	CColRefSet *pcrsCols = GPOS_NEW(mp) CColRefSet(mp, pdrgpcrIndexColumns);
 
 	pdrgpcrIndexColumns->Release();
@@ -2255,11 +2255,11 @@ CXformUtils::PcrsIndexColumns
 //		appear in the index columns of the specified type (included / key)
 //
 //---------------------------------------------------------------------------
-ColRefArray *
+CColRefArray *
 CXformUtils::PdrgpcrIndexColumns
 	(
 	IMemoryPool *mp,
-	ColRefArray *colref_array,
+	CColRefArray *colref_array,
 	const IMDIndex *pmdindex,
 	const IMDRelation *pmdrel,
 	EIndexCols eic
@@ -2267,7 +2267,7 @@ CXformUtils::PdrgpcrIndexColumns
 {
 	GPOS_ASSERT(EicKey == eic || EicIncluded == eic);
 	
-	ColRefArray *pdrgpcrIndex = GPOS_NEW(mp) ColRefArray(mp);
+	CColRefArray *pdrgpcrIndex = GPOS_NEW(mp) CColRefArray(mp);
 
 	ULONG length = pmdindex->Keys();
 	if (EicIncluded == eic)
@@ -2313,7 +2313,7 @@ CXformUtils::FIndexApplicable
 	IMemoryPool *mp,
 	const IMDIndex *pmdindex,
 	const IMDRelation *pmdrel,
-	ColRefArray *pdrgpcrOutput,
+	CColRefArray *pdrgpcrOutput,
 	CColRefSet *pcrsReqd,
 	CColRefSet *pcrsScalar,
 	IMDIndex::EmdindexType emdindtype
@@ -2389,14 +2389,14 @@ CXformUtils::PexprWindowWithRowNumber
 	(
 	IMemoryPool *mp,
 	CExpression *pexprWindowChild,
-	ColRefArray *pdrgpcrInput
+	CColRefArray *pdrgpcrInput
 	)
 {
 	// partitioning information
 	CDistributionSpec *pds = NULL;
 	if (NULL != pdrgpcrInput)
 	{
-		ExpressionArray *pdrgpexprInput = CUtils::PdrgpexprScalarIdents(mp, pdrgpcrInput);
+		CExpressionArray *pdrgpexprInput = CUtils::PdrgpexprScalarIdents(mp, pdrgpcrInput);
 		pds = GPOS_NEW(mp) CDistributionSpecHashed(pdrgpexprInput, true /* fNullsCollocated */);
 	}
 	else
@@ -2405,10 +2405,10 @@ CXformUtils::PexprWindowWithRowNumber
 	}
 
 	// window frames
-	WindowFrameArray *pdrgpwf = GPOS_NEW(mp) WindowFrameArray(mp);
+	CWindowFrameArray *pdrgpwf = GPOS_NEW(mp) CWindowFrameArray(mp);
 
 	// ordering information
-	OrderSpecArray *pdrgpos = GPOS_NEW(mp) OrderSpecArray(mp);
+	COrderSpecArray *pdrgpos = GPOS_NEW(mp) COrderSpecArray(mp);
 
 	// row_number window function project list
 	CExpression *pexprScWindowFunc = PexprRowNumber(mp);
@@ -2517,8 +2517,8 @@ CXformUtils::LookupHashJoinKeys
 	(
 	IMemoryPool *mp,
 	CExpression *pexpr,
-	ExpressionArray **ppdrgpexprOuter,
-	ExpressionArray **ppdrgpexprInner
+	CExpressionArray **ppdrgpexprOuter,
+	CExpressionArray **ppdrgpexprInner
 	)
 {
 	GPOS_ASSERT(NULL != ppdrgpexprOuter);
@@ -2593,8 +2593,8 @@ void
 CXformUtils::CacheHashJoinKeys
 	(
 	CExpression *pexpr,
-	ExpressionArray *pdrgpexprOuter,
-	ExpressionArray *pdrgpexprInner
+	CExpressionArray *pdrgpexprOuter,
+	CExpressionArray *pdrgpexprInner
 	)
 {
 	GPOS_ASSERT(NULL != pdrgpexprOuter);
@@ -2628,11 +2628,11 @@ CXformUtils::PexprAddCTEProducer
 	(
 	IMemoryPool *mp,
 	ULONG ulCTEId,
-	ColRefArray *colref_array,
+	CColRefArray *colref_array,
 	CExpression *pexpr
 	)
 {
-	ColRefArray *pdrgpcrProd = CUtils::PdrgpcrCopy(mp, colref_array);
+	CColRefArray *pdrgpcrProd = CUtils::PdrgpcrCopy(mp, colref_array);
 	UlongToColRefMap *colref_mapping = CUtils::PhmulcrMapping(mp, colref_array, pdrgpcrProd);
 	CExpression *pexprRemapped = pexpr->PexprCopyWithRemappedColumns(mp, colref_mapping, true /*must_exist*/);
 	colref_mapping->Release();
@@ -2731,8 +2731,8 @@ CXformUtils::FProcessGPDBAntiSemiHashJoin
 	CExpression *pexprInner = (*pexpr)[1];
 	CExpression *pexprScalar = (*pexpr)[2];
 
-	ExpressionArray *pdrgpexpr = CPredicateUtils::PdrgpexprConjuncts(mp, pexprScalar);
-	ExpressionArray *pdrgpexprNew = GPOS_NEW(mp) ExpressionArray(mp);
+	CExpressionArray *pdrgpexpr = CPredicateUtils::PdrgpexprConjuncts(mp, pexprScalar);
+	CExpressionArray *pdrgpexprNew = GPOS_NEW(mp) CExpressionArray(mp);
 	const ULONG ulPreds = pdrgpexpr->Size();
 	BOOL fSimplifiedPredicate = false;
 	for (ULONG ul = 0; ul < ulPreds; ul++)
@@ -2795,7 +2795,7 @@ CXformUtils::PexprBuildIndexPlan
 	CMDAccessor *md_accessor,
 	CExpression *pexprGet,
 	ULONG ulOriginOpId,
-	ExpressionArray *pdrgpexprConds,
+	CExpressionArray *pdrgpexprConds,
 	CColRefSet *pcrsReqd,
 	CColRefSet *pcrsScalarExpr,
 	CColRefSet *outer_refs,
@@ -2823,7 +2823,7 @@ CXformUtils::PexprBuildIndexPlan
 	GPOS_ASSERT_IMP(!fDynamicGet, NULL == ppartcnstrIndex);
 
 	CTableDescriptor *ptabdesc = NULL;
-	ColRefArray *pdrgpcrOutput = NULL;
+	CColRefArray *pdrgpcrOutput = NULL;
 	CWStringConst *alias = NULL;
 	ULONG ulPartIndex = gpos::ulong_max;
 	ColRefArrays *pdrgpdrgpcrPart = NULL;
@@ -2869,9 +2869,9 @@ CXformUtils::PexprBuildIndexPlan
 		return NULL;
 	}
 
-	ColRefArray *pdrgppcrIndexCols = PdrgpcrIndexKeys(mp, pdrgpcrOutput, pmdindex, pmdrel);
-	ExpressionArray *pdrgpexprIndex = GPOS_NEW(mp) ExpressionArray(mp);
-	ExpressionArray *pdrgpexprResidual = GPOS_NEW(mp) ExpressionArray(mp);
+	CColRefArray *pdrgppcrIndexCols = PdrgpcrIndexKeys(mp, pdrgpcrOutput, pmdindex, pmdrel);
+	CExpressionArray *pdrgpexprIndex = GPOS_NEW(mp) CExpressionArray(mp);
+	CExpressionArray *pdrgpexprResidual = GPOS_NEW(mp) CExpressionArray(mp);
 	CPredicateUtils::ExtractIndexPredicates(mp, md_accessor, pdrgpexprConds, pmdindex, pdrgppcrIndexCols, pdrgpexprIndex, pdrgpexprResidual, outer_refs);
 
 	if (0 == pdrgpexprIndex->Size())
@@ -2948,10 +2948,10 @@ CXformUtils::PexprScalarBitmapBoolOp
 	IMemoryPool *mp,
 	CMDAccessor *md_accessor,
 	CExpression *pexprOriginalPred,
-	ExpressionArray *pdrgpexpr,
+	CExpressionArray *pdrgpexpr,
 	CTableDescriptor *ptabdesc,
 	const IMDRelation *pmdrel,
-	ColRefArray *pdrgpcrOutput,
+	CColRefArray *pdrgpcrOutput,
 	CColRefSet *outer_refs,
 	CColRefSet *pcrsReqd,
 	BOOL fConjunction,
@@ -2984,13 +2984,13 @@ CXformUtils::PexprScalarBitmapBoolOp
 	}
 	
 	// array of recheck predicates
-	ExpressionArray *pdrgpexprRecheckNew = GPOS_NEW(mp) ExpressionArray(mp);
+	CExpressionArray *pdrgpexprRecheckNew = GPOS_NEW(mp) CExpressionArray(mp);
 	
 	// array of residual predicates
-	ExpressionArray *pdrgpexprResidualNew = GPOS_NEW(mp) ExpressionArray(mp);
+	CExpressionArray *pdrgpexprResidualNew = GPOS_NEW(mp) CExpressionArray(mp);
 			
 	// array of bitmap index probe/bitmap bool op expressions
-	ExpressionArray *pdrgpexprBitmap = GPOS_NEW(mp) ExpressionArray(mp);
+	CExpressionArray *pdrgpexprBitmap = GPOS_NEW(mp) CExpressionArray(mp);
 	
 	CreateBitmapIndexProbeOps
 		(
@@ -3081,7 +3081,7 @@ CXformUtils::ComputeBitmapTableScanResidualPredicate
 	BOOL fConjunction,
 	CExpression *pexprOriginalPred,
 	CExpression **ppexprResidual, // input-output argument: the residual predicate computed so-far, and resulting predicate
-	ExpressionArray *pdrgpexprResidualNew
+	CExpressionArray *pdrgpexprResidualNew
 	)
 {
 	GPOS_ASSERT(NULL != pexprOriginalPred);
@@ -3208,7 +3208,7 @@ CXformUtils::PexprBitmapFromChildren
 	CExpression *pexprPred,
 	CTableDescriptor *ptabdesc,
 	const IMDRelation *pmdrel,
-	ColRefArray *pdrgpcrOutput,
+	CColRefArray *pdrgpcrOutput,
 	CColRefSet *outer_refs,
 	CColRefSet *pcrsReqd,
 	BOOL fConjunction,
@@ -3216,7 +3216,7 @@ CXformUtils::PexprBitmapFromChildren
 	CExpression **ppexprResidual
 	)
 {
-	ExpressionArray *pdrgpexpr = NULL;
+	CExpressionArray *pdrgpexpr = NULL;
 
 	if (fConjunction)
 	{
@@ -3307,7 +3307,7 @@ CXformUtils::PexprBitmap
 	CExpression *pexprPred, 
 	CTableDescriptor *ptabdesc,
 	const IMDRelation *pmdrel,
-	ColRefArray *pdrgpcrOutput,
+	CColRefArray *pdrgpcrOutput,
 	CColRefSet *outer_refs,
 	CColRefSet *pcrsReqd,
 	BOOL fConjunction,
@@ -3399,7 +3399,7 @@ CXformUtils::PexprBitmapForSelectCondition
 	CExpression *pexprPred,
 	CTableDescriptor *ptabdesc,
 	const IMDRelation *pmdrel,
-	ColRefArray *pdrgpcrOutput,
+	CColRefArray *pdrgpcrOutput,
 	CColRefSet *pcrsReqd,
 	CExpression **ppexprRecheck,
 	BOOL fBoolColumn,
@@ -3434,10 +3434,10 @@ CXformUtils::PexprBitmapForSelectCondition
 										fNegatedBoolColumn,
 										pcrsScalar
 										);
-			ExpressionArray *pdrgpexprScalar = CPredicateUtils::PdrgpexprConjuncts(mp, pexprCondToUse);
-			ColRefArray *pdrgpcrIndexCols = PdrgpcrIndexKeys(mp, pdrgpcrOutput, pmdindex, pmdrel);
-			ExpressionArray *pdrgpexprIndex = GPOS_NEW(mp) ExpressionArray(mp);
-			ExpressionArray *pdrgpexprResidual = GPOS_NEW(mp) ExpressionArray(mp);
+			CExpressionArray *pdrgpexprScalar = CPredicateUtils::PdrgpexprConjuncts(mp, pexprCondToUse);
+			CColRefArray *pdrgpcrIndexCols = PdrgpcrIndexKeys(mp, pdrgpcrOutput, pmdindex, pmdrel);
+			CExpressionArray *pdrgpexprIndex = GPOS_NEW(mp) CExpressionArray(mp);
+			CExpressionArray *pdrgpexprResidual = GPOS_NEW(mp) CExpressionArray(mp);
 
 			CPredicateUtils::ExtractIndexPredicates
 				(
@@ -3505,7 +3505,7 @@ CXformUtils::PexprBitmapForIndexLookup
 	CExpression *pexprPred,
 	CTableDescriptor *ptabdesc,
 	const IMDRelation *pmdrel,
-	ColRefArray *pdrgpcrOutput,
+	CColRefArray *pdrgpcrOutput,
 	CColRefSet *outer_refs,
 	CColRefSet *pcrsReqd,
 	CExpression **ppexprRecheck
@@ -3537,7 +3537,7 @@ CXformUtils::PexprBitmapForIndexLookup
 			// skip heterogeneous indexes and indexes that do not match the predicate
 			continue;
 		}
-		ColRefArray *pdrgpcrIndexCols = PdrgpcrIndexKeys(mp, pdrgpcrOutput, pmdindex, pmdrel);
+		CColRefArray *pdrgpcrIndexCols = PdrgpcrIndexKeys(mp, pdrgpcrOutput, pmdindex, pmdrel);
 		// attempt building index lookup predicate
 		CExpression *pexprLookupPred = CPredicateUtils::PexprIndexLookup
 										(
@@ -3586,16 +3586,16 @@ CXformUtils::CreateBitmapIndexProbeOps
 	IMemoryPool *mp,
 	CMDAccessor *md_accessor,
 	CExpression *pexprOriginalPred,
-	ExpressionArray *pdrgpexpr, 
+	CExpressionArray *pdrgpexpr, 
 	CTableDescriptor *ptabdesc,
 	const IMDRelation *pmdrel,
-	ColRefArray *pdrgpcrOutput,
+	CColRefArray *pdrgpcrOutput,
 	CColRefSet *outer_refs,
 	CColRefSet *pcrsReqd,
 	BOOL fConjunction,
-	ExpressionArray *pdrgpexprBitmap,
-	ExpressionArray *pdrgpexprRecheck,
-	ExpressionArray *pdrgpexprResidual
+	CExpressionArray *pdrgpexprBitmap,
+	CExpressionArray *pdrgpexprRecheck,
+	CExpressionArray *pdrgpexprResidual
 	)
 {
 	GPOS_ASSERT(NULL != pdrgpexpr);
@@ -3796,7 +3796,7 @@ CXformUtils::PexprBitmapTableGet
 	BOOL fDynamicGet = (COperator::EopLogicalDynamicGet == popGet->Eopid());
 	
 	// array of expressions in the scalar expression
-	ExpressionArray *pdrgpexpr = CPredicateUtils::PdrgpexprConjuncts(mp, pexprScalar);
+	CExpressionArray *pdrgpexpr = CPredicateUtils::PdrgpexprConjuncts(mp, pexprScalar);
 	GPOS_ASSERT(0 < pdrgpexpr->Size());
 
 	// find the indexes whose included columns meet the required columns
@@ -3805,7 +3805,7 @@ CXformUtils::PexprBitmapTableGet
 
 	GPOS_ASSERT(0 < pdrgpexpr->Size());
 	
-	ColRefArray *pdrgpcrOutput = CLogical::PdrgpcrOutputFromLogicalGet(popGet);
+	CColRefArray *pdrgpcrOutput = CLogical::PdrgpcrOutputFromLogicalGet(popGet);
 	GPOS_ASSERT(NULL != pdrgpcrOutput);
 	
 	CExpression *pexprRecheck = NULL;
@@ -3904,11 +3904,11 @@ CXformUtils::PdrgpdrgppartdigCandidates
 	(
 	IMemoryPool *mp,
 	CMDAccessor *md_accessor,
-	ExpressionArray *pdrgpexprScalar,
+	CExpressionArray *pdrgpexprScalar,
 	ColRefArrays *pdrgpdrgpcrPartKey,
 	const IMDRelation *pmdrel,
 	CPartConstraint *ppartcnstrRel,
-	ColRefArray *pdrgpcrOutput,
+	CColRefArray *pdrgpcrOutput,
 	CColRefSet *pcrsReqd,
 	CColRefSet *pcrsScalarExpr,
 	CColRefSet *pcrsAcceptedOuterRefs
@@ -3919,7 +3919,7 @@ CXformUtils::PdrgpdrgppartdigCandidates
 
 	// currently covered parts
 	CPartConstraint *ppartcnstrCovered = NULL;
-	PartDynamicIndexGetInfoArray *pdrgppartdig = GPOS_NEW(mp) PartDynamicIndexGetInfoArray(mp);
+	SPartDynamicIndexGetInfoArray *pdrgppartdig = GPOS_NEW(mp) SPartDynamicIndexGetInfoArray(mp);
 
 	for (ULONG ul = 0; ul < ulIndexes; ul++)
 	{
@@ -3933,8 +3933,8 @@ CXformUtils::PdrgpdrgppartdigCandidates
 		}
 		
 		CPartConstraint *ppartcnstr = CUtils::PpartcnstrFromMDPartCnstr(mp, md_accessor, pdrgpdrgpcrPartKey, pmdindex->MDPartConstraint(), pdrgpcrOutput);
-		ExpressionArray *pdrgpexprIndex = GPOS_NEW(mp) ExpressionArray(mp);
-		ExpressionArray *pdrgpexprResidual = GPOS_NEW(mp) ExpressionArray(mp);
+		CExpressionArray *pdrgpexprIndex = GPOS_NEW(mp) CExpressionArray(mp);
+		CExpressionArray *pdrgpexprResidual = GPOS_NEW(mp) CExpressionArray(mp);
 		CPartConstraint *ppartcnstrNewlyCovered = PpartcnstrUpdateCovered
 														(
 														mp,
@@ -3998,12 +3998,12 @@ CXformUtils::PpartcnstrUpdateCovered
 	(
 	IMemoryPool *mp,
 	CMDAccessor *md_accessor,
-	ExpressionArray *pdrgpexprScalar,
+	CExpressionArray *pdrgpexprScalar,
 	CPartConstraint *ppartcnstrCovered,
 	CPartConstraint *ppartcnstr,
-	ColRefArray *pdrgpcrOutput,
-	ExpressionArray *pdrgpexprIndex,
-	ExpressionArray *pdrgpexprResidual,
+	CColRefArray *pdrgpcrOutput,
+	CExpressionArray *pdrgpexprIndex,
+	CExpressionArray *pdrgpexprResidual,
 	const IMDRelation *pmdrel,
 	const IMDIndex *pmdindex,
 	CColRefSet *pcrsAcceptedOuterRefs
@@ -4021,7 +4021,7 @@ CXformUtils::PpartcnstrUpdateCovered
 		return NULL;
 	}
 
-	ColRefArray *pdrgpcrIndexCols = PdrgpcrIndexKeys(mp, pdrgpcrOutput, pmdindex, pmdrel);
+	CColRefArray *pdrgpcrIndexCols = PdrgpcrIndexKeys(mp, pdrgpcrOutput, pmdindex, pmdrel);
 	CPredicateUtils::ExtractIndexPredicates
 						(
 						mp,
@@ -4084,7 +4084,7 @@ SPartDynamicIndexGetInfo *
 CXformUtils::PpartdigDynamicGet
 	(
 	IMemoryPool *mp,
-	ExpressionArray *pdrgpexprScalar,
+	CExpressionArray *pdrgpexprScalar,
 	CPartConstraint *ppartcnstrCovered,
 	CPartConstraint *ppartcnstrRel
 	)
@@ -4112,10 +4112,10 @@ CXformUtils::PexprRemapColumns
 	(
 	IMemoryPool *mp,
 	CExpression *pexpr,
-	ColRefArray *pdrgpcrA,
-	ColRefArray *pdrgpcrRemappedA,
-	ColRefArray *pdrgpcrB,
-	ColRefArray *pdrgpcrRemappedB
+	CColRefArray *pdrgpcrA,
+	CColRefArray *pdrgpcrRemappedA,
+	CColRefArray *pdrgpcrB,
+	CColRefArray *pdrgpcrRemappedB
 	)
 {
 	UlongToColRefMap *colref_mapping = CUtils::PhmulcrMapping(mp, pdrgpcrA, pdrgpcrRemappedA);
@@ -4144,15 +4144,15 @@ CXformUtils::PexprPartialDynamicIndexGet
 	IMemoryPool *mp,
 	CLogicalDynamicGet *popGet,
 	ULONG ulOriginOpId,
-	ExpressionArray *pdrgpexprIndex,
-	ExpressionArray *pdrgpexprResidual,
-	ColRefArray *pdrgpcrDIG,
+	CExpressionArray *pdrgpexprIndex,
+	CExpressionArray *pdrgpexprResidual,
+	CColRefArray *pdrgpcrDIG,
 	const IMDIndex *pmdindex,
 	const IMDRelation *pmdrel,
 	CPartConstraint *ppartcnstr,
 	CColRefSet *pcrsAcceptedOuterRefs,
-	ColRefArray *pdrgpcrOuter,
-	ColRefArray *pdrgpcrNewOuter
+	CColRefArray *pdrgpcrOuter,
+	CColRefArray *pdrgpcrNewOuter
 	)
 {
 	GPOS_ASSERT_IMP(NULL == pdrgpcrOuter, NULL == pcrsAcceptedOuterRefs);
@@ -4160,7 +4160,7 @@ CXformUtils::PexprPartialDynamicIndexGet
 	GPOS_ASSERT(NULL != pmdindex);
 	GPOS_ASSERT(pmdrel->IsPartialIndex(pmdindex->MDId()));
 
-	ColRefArray *pdrgpcrIndexCols = PdrgpcrIndexKeys(mp, popGet->PdrgpcrOutput(), pmdindex, pmdrel);
+	CColRefArray *pdrgpcrIndexCols = PdrgpcrIndexKeys(mp, popGet->PdrgpcrOutput(), pmdindex, pmdrel);
 
 	UlongToColRefMap *colref_mapping = NULL;
 
@@ -4177,8 +4177,8 @@ CXformUtils::PexprPartialDynamicIndexGet
 
 	ColRefArrays *pdrgpdrgpcrPart = NULL;
 	CPartConstraint *ppartcnstrDIG = NULL;
-	ExpressionArray *pdrgpexprIndexRemapped = NULL;
-	ExpressionArray *pdrgpexprResidualRemapped = NULL;
+	CExpressionArray *pdrgpexprIndexRemapped = NULL;
+	CExpressionArray *pdrgpexprResidualRemapped = NULL;
 	CPartConstraint *ppartcnstrRel = NULL;
 
 	if (NULL != colref_mapping)
@@ -4278,7 +4278,7 @@ CXformUtils::FJoinPredOnSingleChild
 	}
 
 	// construct array of children output columns
-	ColRefSetArray *pdrgpcrs = GPOS_NEW(mp) ColRefSetArray(mp);
+	CColRefSetArray *pdrgpcrs = GPOS_NEW(mp) CColRefSetArray(mp);
 	for (ULONG ul = 0; ul < arity - 1; ul++)
 	{
 		CColRefSet *pcrsOutput = exprhdl.GetRelationalProperties(ul)->PcrsOutput();
@@ -4286,7 +4286,7 @@ CXformUtils::FJoinPredOnSingleChild
 		pdrgpcrs->Append(pcrsOutput);
 	}
 
-	ExpressionArray *pdrgpexprPreds = CPredicateUtils::PdrgpexprConjuncts(mp, exprhdl.PexprScalarChild(arity- 1));
+	CExpressionArray *pdrgpexprPreds = CPredicateUtils::PdrgpexprConjuncts(mp, exprhdl.PexprScalarChild(arity- 1));
 	const ULONG ulPreds = pdrgpexprPreds->Size();
 	BOOL fPredUsesSingleChild = false;
 	for (ULONG ulPred = 0; !fPredUsesSingleChild && ulPred < ulPreds; ulPred++)
@@ -4318,7 +4318,7 @@ CXformUtils::PexprCTEConsumer
 	(
 	IMemoryPool *mp,
 	ULONG ulCTEId,
-	ColRefArray *colref_array
+	CColRefArray *colref_array
 	)
 {
 	CLogicalCTEConsumer *popConsumer = GPOS_NEW(mp) CLogicalCTEConsumer(mp, ulCTEId, colref_array);
@@ -4337,11 +4337,11 @@ CXformUtils::PexprCTEConsumer
 //		at the positions indicated by the given ULONG array 'pdrgpulIndexesOfRefs'
 //
 //---------------------------------------------------------------------------
-ColRefArray *
+CColRefArray *
 CXformUtils::PdrgpcrReorderedSubsequence
 	(
 	IMemoryPool *mp,
-	ColRefArray *colref_array,
+	CColRefArray *colref_array,
 	ULongPtrArray *pdrgpulIndexesOfRefs
 	)
 {
@@ -4351,7 +4351,7 @@ CXformUtils::PdrgpcrReorderedSubsequence
 	const ULONG length = pdrgpulIndexesOfRefs->Size();
 	GPOS_ASSERT(length <= colref_array->Size());
 
-	ColRefArray *pdrgpcrNewSubsequence = GPOS_NEW(mp) ColRefArray(mp);
+	CColRefArray *pdrgpcrNewSubsequence = GPOS_NEW(mp) CColRefArray(mp);
 	for (ULONG ul = 0; ul < length; ul++)
 	{
 		ULONG ulPos = *(*pdrgpulIndexesOfRefs)[ul];
@@ -4379,8 +4379,8 @@ CXformUtils::FMergeWithPreviousBitmapIndexProbe
 	IMemoryPool *mp,
 	CExpression *pexprBitmap,
 	CExpression *pexprRecheck,
-	ExpressionArray *pdrgpexprBitmap,
-	ExpressionArray *pdrgpexprRecheck
+	CExpressionArray *pdrgpexprBitmap,
+	CExpressionArray *pdrgpexprRecheck
 	)
 {
 	if (COperator::EopScalarBitmapIndexProbe != pexprBitmap->Pop()->Eopid())
@@ -4441,7 +4441,7 @@ CXformUtils::PexprWinFuncAgg2ScalarAgg
 	GPOS_ASSERT(NULL != pexprWinFunc);
 	GPOS_ASSERT(COperator::EopScalarWindowFunc == pexprWinFunc->Pop()->Eopid());
 
-	ExpressionArray *pdrgpexprWinFuncArgs = GPOS_NEW(mp) ExpressionArray(mp);
+	CExpressionArray *pdrgpexprWinFuncArgs = GPOS_NEW(mp) CExpressionArray(mp);
 	const ULONG ulArgs = pexprWinFunc->Arity();
 	for (ULONG ul = 0; ul < ulArgs; ul++)
 	{
@@ -4544,12 +4544,12 @@ CXformUtils::MapPrjElemsWithDistinctAggs
 			pexprKey = pexprTrue;
 		}
 
-		ExpressionArray *pdrgpexpr = const_cast<ExpressionArray *>(phmexprdrgpexpr->Find(pexprKey));
+		CExpressionArray *pdrgpexpr = const_cast<CExpressionArray *>(phmexprdrgpexpr->Find(pexprKey));
 		BOOL fExists = (NULL != pdrgpexpr);
 		if (!fExists)
 		{
 			// first occurrence, create a new expression array
-			pdrgpexpr = GPOS_NEW(mp) ExpressionArray(mp);
+			pdrgpexpr = GPOS_NEW(mp) CExpressionArray(mp);
 		}
 		pexprPrjEl->AddRef();
 		pdrgpexpr->Append(pexprPrjEl);
@@ -4597,8 +4597,8 @@ CXformUtils::ICmpPrjElemsArr
 	GPOS_ASSERT(NULL != pvFst);
 	GPOS_ASSERT(NULL != pvSnd);
 
-	const ExpressionArray *pdrgpexprFst = *(const ExpressionArray **) (pvFst);
-	const ExpressionArray *pdrgpexprSnd = *(const ExpressionArray **) (pvSnd);
+	const CExpressionArray *pdrgpexprFst = *(const CExpressionArray **) (pvFst);
+	const CExpressionArray *pdrgpexprSnd = *(const CExpressionArray **) (pvSnd);
 
 	CExpression *pexprPrjElemFst = (*pdrgpexprFst)[0];
 	CExpression *pexprPrjElemSnd = (*pdrgpexprSnd)[0];
@@ -4641,7 +4641,7 @@ CXformUtils::PdrgpdrgpexprSortedPrjElemsArray
 	ExprToExprArrayMapIter hmexprdrgpexpriter(phmexprdrgpexpr);
 	while (hmexprdrgpexpriter.Advance())
 	{
-		ExpressionArray *pdrgpexprPrjElems = const_cast<ExpressionArray *>(hmexprdrgpexpriter.Value());
+		CExpressionArray *pdrgpexprPrjElems = const_cast<CExpressionArray *>(hmexprdrgpexpriter.Value());
 		pdrgpexprPrjElems->AddRef();
 		pdrgpdrgpexprPrjElems->Append(pdrgpexprPrjElems);
 	}
@@ -4688,7 +4688,7 @@ CXformUtils::PexprGbAggOnCTEConsumer2Join
 	GPOS_ASSERT(COperator::EopLogicalGbAgg == pexprGbAgg->Pop()->Eopid());
 
 	CLogicalGbAgg *popGbAgg = CLogicalGbAgg::PopConvert(pexprGbAgg->Pop());
-	ColRefArray *pdrgpcrGrpCols = popGbAgg->Pdrgpcr();
+	CColRefArray *pdrgpcrGrpCols = popGbAgg->Pdrgpcr();
 
 	GPOS_ASSERT(popGbAgg->FGlobal());
 
@@ -4724,11 +4724,11 @@ CXformUtils::PexprGbAggOnCTEConsumer2Join
 	CExpression *pexprCTEConsumer = (*pexprGbAgg)[0];
 	CLogicalCTEConsumer *popConsumer = CLogicalCTEConsumer::PopConvert(pexprCTEConsumer->Pop());
 	const ULONG ulCTEId = popConsumer->UlCTEId();
-	ColRefArray *pdrgpcrConsumerOutput = popConsumer->Pdrgpcr();
+	CColRefArray *pdrgpcrConsumerOutput = popConsumer->Pdrgpcr();
 	CCTEInfo *pcteinfo = COptCtxt::PoctxtFromTLS()->Pcteinfo();
 
 	CExpression *pexprLastGbAgg = NULL;
-	ColRefArray *pdrgpcrLastGrpCols = NULL;
+	CColRefArray *pdrgpcrLastGrpCols = NULL;
 	CExpression *pexprJoin = NULL;
 	CExpression *pexprTrue = CUtils::PexprScalarConstBool(mp, true /*m_bytearray_value*/);
 
@@ -4744,7 +4744,7 @@ CXformUtils::PexprGbAggOnCTEConsumer2Join
 	const ULONG size = pdrgpdrgpexprPrjElems->Size();
 	for (ULONG ulPrjElemsArr = 0; ulPrjElemsArr < size; ulPrjElemsArr++)
 	{
-		ExpressionArray *pdrgpexprPrjElems = (*pdrgpdrgpexprPrjElems)[ulPrjElemsArr];
+		CExpressionArray *pdrgpexprPrjElems = (*pdrgpdrgpexprPrjElems)[ulPrjElemsArr];
 
 		CExpression *pexprNewGbAgg = NULL;
 		if (0 == ulConsumers)
@@ -4765,14 +4765,14 @@ CXformUtils::PexprGbAggOnCTEConsumer2Join
 		else
 		{
 			// create a new consumer
-			ColRefArray *pdrgpcrNewConsumerOutput = CUtils::PdrgpcrCopy(mp, pdrgpcrConsumerOutput);
+			CColRefArray *pdrgpcrNewConsumerOutput = CUtils::PdrgpcrCopy(mp, pdrgpcrConsumerOutput);
 			CExpression *pexprNewConsumer =
 				GPOS_NEW(mp) CExpression(mp, GPOS_NEW(mp) CLogicalCTEConsumer(mp, ulCTEId, pdrgpcrNewConsumerOutput));
 			pcteinfo->IncrementConsumers(ulCTEId);
 
 			// fix Aggs arguments to use new consumer output column
 			UlongToColRefMap *colref_mapping = CUtils::PhmulcrMapping(mp, pdrgpcrConsumerOutput, pdrgpcrNewConsumerOutput);
-			ExpressionArray *pdrgpexprNewPrjElems = GPOS_NEW(mp) ExpressionArray(mp);
+			CExpressionArray *pdrgpexprNewPrjElems = GPOS_NEW(mp) CExpressionArray(mp);
 			const ULONG ulPrjElems = pdrgpexprPrjElems->Size();
 			for (ULONG ul = 0; ul < ulPrjElems; ul++)
 			{
@@ -4786,7 +4786,7 @@ CXformUtils::PexprGbAggOnCTEConsumer2Join
 			}
 
 			// re-map grouping columns
-			ColRefArray *pdrgpcrNewGrpCols = CUtils::PdrgpcrRemap(mp, pdrgpcrGrpCols, colref_mapping, true /*must_exist*/);
+			CColRefArray *pdrgpcrNewGrpCols = CUtils::PdrgpcrRemap(mp, pdrgpcrGrpCols, colref_mapping, true /*must_exist*/);
 
 			// create new GbAgg expression
 			pexprNewGbAgg =
@@ -4803,7 +4803,7 @@ CXformUtils::PexprGbAggOnCTEConsumer2Join
 
 		ulConsumers++;
 
-		ColRefArray *pdrgpcrNewGrpCols  = CLogicalGbAgg::PopConvert(pexprNewGbAgg->Pop())->Pdrgpcr();
+		CColRefArray *pdrgpcrNewGrpCols  = CLogicalGbAgg::PopConvert(pexprNewGbAgg->Pop())->Pdrgpcr();
 		if (NULL != pexprLastGbAgg)
 		{
 			CExpression *pexprJoinCondition = NULL;

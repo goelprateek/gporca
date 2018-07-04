@@ -29,7 +29,7 @@ namespace gpopt
 		private:
 
 			// array of keys from the join's child
-			ColRefArray *m_pdrgpcrKeys;
+			CColRefArray *m_pdrgpcrKeys;
 
 			// private copy ctor
 			CPhysicalStreamAggDeduplicate(const CPhysicalStreamAggDeduplicate &);
@@ -40,10 +40,10 @@ namespace gpopt
 			CPhysicalStreamAggDeduplicate
 				(
 				IMemoryPool *mp,
-				ColRefArray *colref_array,
-				ColRefArray *pdrgpcrMinimal,
+				CColRefArray *colref_array,
+				CColRefArray *pdrgpcrMinimal,
 				COperator::EGbAggType egbaggtype,
-				ColRefArray *pdrgpcrKeys,
+				CColRefArray *pdrgpcrKeys,
 				BOOL fGeneratesDuplicates,
 				BOOL fMultiStage
 				);
@@ -67,7 +67,7 @@ namespace gpopt
 			}
 
 			// array of keys from the join's child
-			ColRefArray *PdrgpcrKeys() const
+			CColRefArray *PdrgpcrKeys() const
 			{
 				return m_pdrgpcrKeys;
 			}
@@ -84,7 +84,7 @@ namespace gpopt
 				CExpressionHandle &exprhdl,
 				CColRefSet *pcrsRequired,
 				ULONG child_index,
-				DrgPdp *, //pdrgpdpCtxt,
+				CDrvdPropArrays *, //pdrgpdpCtxt,
 				ULONG //ulOptReq
 				)
 			{
@@ -99,7 +99,7 @@ namespace gpopt
 				CExpressionHandle &exprhdl,
 				COrderSpec *posRequired,
 				ULONG child_index,
-				DrgPdp *, //pdrgpdpCtxt,
+				CDrvdPropArrays *, //pdrgpdpCtxt,
 				ULONG //ulOptReq
 				)
 				const
@@ -115,7 +115,7 @@ namespace gpopt
 				CExpressionHandle &exprhdl,
 				CDistributionSpec *pdsRequired,
 				ULONG child_index,
-				DrgPdp *, //pdrgpdpCtxt,
+				CDrvdPropArrays *, //pdrgpdpCtxt,
 				ULONG ulOptReq
 				)
 				const

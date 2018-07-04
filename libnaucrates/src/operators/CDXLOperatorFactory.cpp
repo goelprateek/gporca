@@ -714,7 +714,7 @@ CDXLOperatorFactory::MakeDXLBooleanTest(CDXLMemoryManager *dxl_memory_manager,
 CDXLScalar *
 CDXLOperatorFactory::MakeDXLSubPlan(CDXLMemoryManager *dxl_memory_manager,
 									IMDId *mdid,
-									DXLColRefArray *dxl_colref_array,
+									CDXLColRefArray *dxl_colref_array,
 									EdxlSubPlanType dxl_subplan_type,
 									CDXLNode *dxlnode_test_expr)
 {
@@ -2798,7 +2798,7 @@ CDXLOperatorFactory::ExtractConvertValuesToArray(CDXLMemoryManager *dxl_memory_m
 //		Will raise an exception if list is not well-formed
 //
 //---------------------------------------------------------------------------
-MdidPtrArray *
+IMdIdArray *
 CDXLOperatorFactory::ExtractConvertMdIdsToArray(CDXLMemoryManager *dxl_memory_manager,
 												const XMLCh *mdid_list_xml,
 												Edxltoken target_attr,
@@ -2807,7 +2807,7 @@ CDXLOperatorFactory::ExtractConvertMdIdsToArray(CDXLMemoryManager *dxl_memory_ma
 	// get the memory pool from the memory manager
 	IMemoryPool *mp = dxl_memory_manager->Pmp();
 
-	MdidPtrArray *mdid_array = GPOS_NEW(mp) MdidPtrArray(mp);
+	IMdIdArray *mdid_array = GPOS_NEW(mp) IMdIdArray(mp);
 
 	XMLStringTokenizer mdid_components(mdid_list_xml, CDXLTokens::XmlstrToken(EdxltokenComma));
 	const ULONG num_tokens = mdid_components.countTokens();

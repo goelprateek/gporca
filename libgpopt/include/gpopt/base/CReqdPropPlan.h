@@ -77,7 +77,7 @@ namespace gpopt
 				CExpressionHandle &exprhdl,
 				CReqdPropPlan *prppInput,
 				ULONG child_index,
-				DrgPdp *pdrgpdpCtxt
+				CDrvdPropArrays *pdrgpdpCtxt
 				);
 
 		public:
@@ -134,7 +134,7 @@ namespace gpopt
 					CExpressionHandle &exprhdl,
 					CReqdProp *prpInput,
 					ULONG child_index,
-					DrgPdp *pdrgpdpCtxt,
+					CDrvdPropArrays *pdrgpdpCtxt,
 					ULONG ulOptReq
 					);
 
@@ -145,7 +145,7 @@ namespace gpopt
 					CExpressionHandle &exprhdl,
 					CReqdProp *prpInput,
 					ULONG child_index,
-					DrgPdp *pdrgpdpCtxt
+					CDrvdPropArrays *pdrgpdpCtxt
 					);
 
 			// required ctes computation function
@@ -155,7 +155,7 @@ namespace gpopt
 					CExpressionHandle &exprhdl,
 					CReqdProp *prpInput,
 					ULONG child_index,
-					DrgPdp *pdrgpdpCtxt
+					CDrvdPropArrays *pdrgpdpCtxt
 					);
 
 			// required columns accessor

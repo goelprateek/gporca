@@ -241,7 +241,7 @@ CConstraintTest::EresUnittest_CConjunction()
 	CConstraintConjunction *pcconj2 = Pcstconjunction(mp, mdid, pcr2);
 	PrintConstraint(mp, pcconj2);
 
-	ConstraintArray *pdrgpcst = GPOS_NEW(mp) ConstraintArray(mp);
+	CConstraintArray *pdrgpcst = GPOS_NEW(mp) CConstraintArray(mp);
 	pcconj1->AddRef();
 	pcconj2->AddRef();
 	pdrgpcst->Append(pcconj1);
@@ -295,7 +295,7 @@ CConstraintTest::Pcstconjunction
 	// second interval
 	CConstraintInterval *pciSecond = PciSecondInterval(mp, mdid, colref);
 
-	ConstraintArray *pdrgpcst = GPOS_NEW(mp) ConstraintArray(mp);
+	CConstraintArray *pdrgpcst = GPOS_NEW(mp) CConstraintArray(mp);
 	pdrgpcst->Append(pciFirst);
 	pdrgpcst->Append(pciSecond);
 
@@ -324,7 +324,7 @@ CConstraintTest::Pcstdisjunction
 	// second interval
 	CConstraintInterval *pciSecond = PciSecondInterval(mp, mdid, colref);
 
-	ConstraintArray *pdrgpcst = GPOS_NEW(mp) ConstraintArray(mp);
+	CConstraintArray *pdrgpcst = GPOS_NEW(mp) CConstraintArray(mp);
 	pdrgpcst->Append(pciFirst);
 	pdrgpcst->Append(pciSecond);
 
@@ -375,7 +375,7 @@ CConstraintTest::EresUnittest_CDisjunction()
 	CConstraintDisjunction *pcdisj2 = Pcstdisjunction(mp, mdid, pcr2);
 	PrintConstraint(mp, pcdisj2);
 
-	ConstraintArray *pdrgpcst = GPOS_NEW(mp) ConstraintArray(mp);
+	CConstraintArray *pdrgpcst = GPOS_NEW(mp) CConstraintArray(mp);
 	pcdisj1->AddRef();
 	pcdisj2->AddRef();
 	pdrgpcst->Append(pcdisj1);
@@ -551,7 +551,7 @@ CConstraintTest::EresUnittest_CConstraintFromScalarExpr()
 	CColRefSet *pcrs2 = CDrvdPropRelational::GetRelationalProperties(pexprGet2->PdpDerive())->PcrsOutput();
 	CColRef *pcr2 =  pcrs2->PcrAny();
 
-	ColRefSetArray *pdrgpcrs = NULL;
+	CColRefSetArray *pdrgpcrs = NULL;
 
 	// expression with 1 column
 	CExpression *pexpr = PexprScalarCmp(mp, &mda, pcr1, IMDType::EcmptG, 15);
@@ -564,7 +564,7 @@ CConstraintTest::EresUnittest_CConstraintFromScalarExpr()
 	pexpr->Release();
 
 	// expression with 2 columns
-	ExpressionArray *pdrgpexpr = GPOS_NEW(mp) ExpressionArray(mp);
+	CExpressionArray *pdrgpexpr = GPOS_NEW(mp) CExpressionArray(mp);
 	pdrgpexpr->Append(PexprScalarCmp(mp, &mda, pcr1, IMDType::EcmptG, 15));
 	pdrgpexpr->Append(PexprScalarCmp(mp, &mda, pcr2, IMDType::EcmptL, 20));
 
@@ -643,7 +643,7 @@ CConstraintTest::EresUnittest_CConstraintIntervalConvertsTo()
 	CColRef *colref =  pcrs->PcrAny();
 
 	// create constraint
-	RangeArray *pdrgprng = Pdrgprng(mp, mdid, rgRangeInfoIn, GPOS_ARRAY_SIZE(rgRangeInfoIn));
+	CRangeArray *pdrgprng = Pdrgprng(mp, mdid, rgRangeInfoIn, GPOS_ARRAY_SIZE(rgRangeInfoIn));
 	CConstraintInterval *pcnstin = GPOS_NEW(mp) CConstraintInterval(mp, colref, pdrgprng, true);
 
 	PrintConstraint(mp, pcnstin);
@@ -711,7 +711,7 @@ CConstraintTest::EresUnittest_CConstraintIntervalPexpr()
 	CColRefSet *pcrs = CDrvdPropRelational::GetRelationalProperties(pexprGet->PdpDerive())->PcrsOutput();
 	CColRef *colref =  pcrs->PcrAny();
 
-	RangeArray *pdrgprng = NULL;
+	CRangeArray *pdrgprng = NULL;
 	CConstraintInterval *pcnstin = NULL;
 	CExpression *pexpr = NULL;
 	CConstraintInterval *pcnstNotIn = NULL;
@@ -1002,7 +1002,7 @@ CConstraintTest::EresUnittest_CIntervalFromScalarBoolOp
 	)
 {
 	// AND
-	ExpressionArray *pdrgpexpr = GPOS_NEW(mp) ExpressionArray(mp);
+	CExpressionArray *pdrgpexpr = GPOS_NEW(mp) CExpressionArray(mp);
 	pdrgpexpr->Append(PexprScalarCmp(mp, md_accessor, colref, IMDType::EcmptL, 5));
 	pdrgpexpr->Append(PexprScalarCmp(mp, md_accessor, colref, IMDType::EcmptGEq, 0));
 
@@ -1016,7 +1016,7 @@ CConstraintTest::EresUnittest_CIntervalFromScalarBoolOp
 	(void) pexpr->Release();
 
 	// OR
-	pdrgpexpr = GPOS_NEW(mp) ExpressionArray(mp);
+	pdrgpexpr = GPOS_NEW(mp) CExpressionArray(mp);
 	pdrgpexpr->Append(PexprScalarCmp(mp, md_accessor, colref, IMDType::EcmptL, 5));
 	pdrgpexpr->Append(PexprScalarCmp(mp, md_accessor, colref, IMDType::EcmptGEq, 10));
 
@@ -1030,7 +1030,7 @@ CConstraintTest::EresUnittest_CIntervalFromScalarBoolOp
 	pexpr->Release();
 
 	// NOT
-	pdrgpexpr = GPOS_NEW(mp) ExpressionArray(mp);
+	pdrgpexpr = GPOS_NEW(mp) CExpressionArray(mp);
 	pdrgpexpr->Append(CUtils::PexprIsNull(mp, CUtils::PexprScalarIdent(mp, colref)));
 
 	pexpr = CUtils::PexprScalarBoolOp(mp, CScalarBoolOp::EboolopNot, pdrgpexpr);
@@ -1103,7 +1103,7 @@ CConstraintTest::PciFirstInterval
 				{CRange::EriExcluded, 20, CRange::EriExcluded, 1000},
 			};
 
-	RangeArray *pdrgprng = Pdrgprng(mp, mdid, rgRangeInfo, GPOS_ARRAY_SIZE(rgRangeInfo));
+	CRangeArray *pdrgprng = Pdrgprng(mp, mdid, rgRangeInfo, GPOS_ARRAY_SIZE(rgRangeInfo));
 
 	return GPOS_NEW(mp) CConstraintInterval(mp, colref, pdrgprng, true /*is_null*/);
 }
@@ -1131,7 +1131,7 @@ CConstraintTest::PciSecondInterval
 				{CRange::EriExcluded, 10, CRange::EriExcluded, 25},
 			};
 
-	RangeArray *pdrgprng = Pdrgprng(mp, mdid, rgRangeInfo, GPOS_ARRAY_SIZE(rgRangeInfo));
+	CRangeArray *pdrgprng = Pdrgprng(mp, mdid, rgRangeInfo, GPOS_ARRAY_SIZE(rgRangeInfo));
 
 	return GPOS_NEW(mp) CConstraintInterval(mp, colref, pdrgprng, false /*is_null*/);
 }
@@ -1144,7 +1144,7 @@ CConstraintTest::PciSecondInterval
 //		Construct an array of ranges to be used to create an interval
 //
 //---------------------------------------------------------------------------
-RangeArray *
+CRangeArray *
 CConstraintTest::Pdrgprng
 	(
 	IMemoryPool *mp,
@@ -1153,7 +1153,7 @@ CConstraintTest::Pdrgprng
 	ULONG ulRanges
 	)
 {
-	RangeArray *pdrgprng = GPOS_NEW(mp) RangeArray(mp);
+	CRangeArray *pdrgprng = GPOS_NEW(mp) CRangeArray(mp);
 
 	for (ULONG ul = 0; ul < ulRanges; ul++)
 	{
@@ -1210,7 +1210,7 @@ void
 CConstraintTest::PrintEquivClasses
 	(
 	IMemoryPool *mp,
-	ColRefSetArray *pdrgpcrs,
+	CColRefSetArray *pdrgpcrs,
 	BOOL fExpected
 	)
 {

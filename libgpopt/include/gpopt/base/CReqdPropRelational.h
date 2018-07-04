@@ -91,7 +91,7 @@ namespace gpopt
 				CExpressionHandle &exprhdl,
 				CReqdProp *prpInput,
 				ULONG child_index,
-				DrgPdp *pdrgpdpCtxt,
+				CDrvdPropArrays *pdrgpdpCtxt,
 				ULONG ulOptReq
 				);
 

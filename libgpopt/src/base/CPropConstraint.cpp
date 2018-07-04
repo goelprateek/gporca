@@ -29,7 +29,7 @@ using namespace gpopt;
 CPropConstraint::CPropConstraint
 	(
 	IMemoryPool *mp,
-	ColRefSetArray *pdrgpcrs,
+	CColRefSetArray *pdrgpcrs,
 	CConstraint *pcnstr
 	)
 	:

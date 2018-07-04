@@ -68,7 +68,7 @@ namespace gpopt
 			CKeyCollection *m_pkc;
 			
 			// functional dependencies
-			FunctionalDependencyArray *m_pdrgpfd;
+			CFunctionalDependencyArray *m_pdrgpfd;
 			
 			// max card
 			CMaxCard m_maxcard;
@@ -94,15 +94,15 @@ namespace gpopt
 
 			// helper for getting applicable FDs from child
 			static
-			FunctionalDependencyArray *PdrgpfdChild(IMemoryPool *mp, ULONG child_index, CExpressionHandle &exprhdl);
+			CFunctionalDependencyArray *PdrgpfdChild(IMemoryPool *mp, ULONG child_index, CExpressionHandle &exprhdl);
 
 			// helper for creating local FDs
 			static
-			FunctionalDependencyArray *PdrgpfdLocal(IMemoryPool *mp, CExpressionHandle &exprhdl);
+			CFunctionalDependencyArray *PdrgpfdLocal(IMemoryPool *mp, CExpressionHandle &exprhdl);
 
 			// helper for deriving FD's
 			static
-			FunctionalDependencyArray *Pdrgpfd(IMemoryPool *mp, CExpressionHandle &exprhdl);
+			CFunctionalDependencyArray *Pdrgpfd(IMemoryPool *mp, CExpressionHandle &exprhdl);
 
 		public:
 
@@ -154,7 +154,7 @@ namespace gpopt
 			}
 		
 			// functional dependencies
-			FunctionalDependencyArray *Pdrgpfd() const
+			CFunctionalDependencyArray *Pdrgpfd() const
 			{
 				return m_pdrgpfd;
 			}

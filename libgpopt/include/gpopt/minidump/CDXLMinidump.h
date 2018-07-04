@@ -53,19 +53,19 @@ namespace gpopt
 			CDXLNode *m_query_dxl_root;
 			
 			// Array of DXL nodes that represent the query output
-			DXLNodeArray *m_query_output;
+			CDXLNodeArray *m_query_output;
 			
 			// Array of DXL nodes that represent the CTE producers
-			DXLNodeArray *m_cte_producers;
+			CDXLNodeArray *m_cte_producers;
 
 			// DXL plan
 			CDXLNode *m_plan_dxl_root;
 
 			// metadata objects
-			IMDCachePtrArray *m_mdid_cached_obj_array;
+			IMDCacheObjectArray *m_mdid_cached_obj_array;
 			
 			// source system ids
-			SysidPtrArray *m_system_id_array;
+			CSystemIdArray *m_system_id_array;
 			
 			// plan Id
 			ULLONG m_plan_id;
@@ -84,11 +84,11 @@ namespace gpopt
 				CBitSet *pbs, 
 				COptimizerConfig *optimizer_config,
 				CDXLNode *query, 
-				DXLNodeArray *query_output_dxlnode_array,
-				DXLNodeArray *cte_producers,
+				CDXLNodeArray *query_output_dxlnode_array,
+				CDXLNodeArray *cte_producers,
 				CDXLNode *pdxlnPlan, 
-				IMDCachePtrArray *mdcache_obj_array,
-				SysidPtrArray *pdrgpsysid,
+				IMDCacheObjectArray *mdcache_obj_array,
+				CSystemIdArray *pdrgpsysid,
 				ULLONG plan_id,
 				ULLONG plan_space_size
 				);
@@ -109,19 +109,19 @@ namespace gpopt
 			const CDXLNode *GetQueryDXLRoot() const;
 			
 			// query output columns
-			const DXLNodeArray *PdrgpdxlnQueryOutput() const;
+			const CDXLNodeArray *PdrgpdxlnQueryOutput() const;
 			
 			// CTE list
-			const DXLNodeArray *GetCTEProducerDXLArray() const;
+			const CDXLNodeArray *GetCTEProducerDXLArray() const;
 
 			// plan
 			const CDXLNode *PdxlnPlan() const;
 
 			// metadata objects
-			const IMDCachePtrArray *GetMdIdCachedObjArray() const;
+			const IMDCacheObjectArray *GetMdIdCachedObjArray() const;
 			
 			// source system ids
-			const SysidPtrArray *GetSysidPtrArray() const;
+			const CSystemIdArray *GetSysidPtrArray() const;
 			
 			// return plan id
 			ULLONG GetPlanId() const;

@@ -93,7 +93,7 @@ CXformImplementDML::Transform
 	CTableDescriptor *ptabdesc = popDML->Ptabdesc();
 	ptabdesc->AddRef();
 	
-	ColRefArray *pdrgpcrSource = popDML->PdrgpcrSource();
+	CColRefArray *pdrgpcrSource = popDML->PdrgpcrSource();
 	pdrgpcrSource->AddRef();
 	CBitSet *pbsModified = popDML->PbsModified();
 	pbsModified->AddRef();

@@ -83,7 +83,7 @@ CParseHandlerDirectDispatchInfo::StartElement(const XMLCh *const,  //element_uri
 										   element_local_name))
 	{
 		CRefCount::SafeRelease(m_dxl_datum_array);
-		m_dxl_datum_array = GPOS_NEW(m_mp) DXLDatumArray(m_mp);
+		m_dxl_datum_array = GPOS_NEW(m_mp) CDXLDatumArray(m_mp);
 	}
 	else if (0 ==
 			 XMLString::compareString(CDXLTokens::XmlstrToken(EdxltokenDatum), element_local_name))

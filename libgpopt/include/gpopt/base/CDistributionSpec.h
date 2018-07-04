@@ -166,7 +166,7 @@ namespace gpopt
 	}; // class CDistributionSpec
 
 	// arrays of distribution spec
-	typedef CDynamicPtrArray<CDistributionSpec, CleanupRelease> DrgPds;
+	typedef CDynamicPtrArray<CDistributionSpec, CleanupRelease> CDistributionSpecArray;
 }
 
 #endif // !GPOPT_IDistributionSpec_H

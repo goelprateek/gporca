@@ -83,14 +83,14 @@ CEquivalenceClassesTest::EresUnittest_NotDisjointEquivalanceClasses()
 	pcrsThree->Include(pcrThree);
 	GPOS_ASSERT(pcrsThree->Size() == 1);
 
-	ColRefSetArray *pdrgpcrs = GPOS_NEW(mp) ColRefSetArray(mp);
+	CColRefSetArray *pdrgpcrs = GPOS_NEW(mp) CColRefSetArray(mp);
 	pcrs->AddRef();
 	pcrsTwo->AddRef();
 	pdrgpcrs->Append(pcrs);
 	pdrgpcrs->Append(pcrsTwo);
 	GPOS_ASSERT(!CUtils::FEquivalanceClassesDisjoint(mp,pdrgpcrs));
 	
-	ColRefSetArray *pdrgpcrsTwo = GPOS_NEW(mp) ColRefSetArray(mp);
+	CColRefSetArray *pdrgpcrsTwo = GPOS_NEW(mp) CColRefSetArray(mp);
 	pcrs->AddRef();
 	pcrsThree->AddRef();
 	pdrgpcrsTwo->Append(pcrs);
@@ -151,15 +151,15 @@ CEquivalenceClassesTest::EresUnittest_IntersectEquivalanceClasses()
 
 	// Generate equivalence classes
 	INT setBoundaryFirst[] = {2,5,7};
-	ColRefSetArray *pdrgpFirst = CTestUtils::createEquivalenceClasses(mp, pcrs, setBoundaryFirst);
+	CColRefSetArray *pdrgpFirst = CTestUtils::createEquivalenceClasses(mp, pcrs, setBoundaryFirst);
 
 	INT setBoundarySecond[] = {1,4,5,6};
-	ColRefSetArray *pdrgpSecond = CTestUtils::createEquivalenceClasses(mp, pcrs, setBoundarySecond);
+	CColRefSetArray *pdrgpSecond = CTestUtils::createEquivalenceClasses(mp, pcrs, setBoundarySecond);
 
 	INT setBoundaryExpected[] = {1,2,4,5,6,7};
-	ColRefSetArray *pdrgpIntersectExpectedOp = CTestUtils::createEquivalenceClasses(mp, pcrs, setBoundaryExpected);
+	CColRefSetArray *pdrgpIntersectExpectedOp = CTestUtils::createEquivalenceClasses(mp, pcrs, setBoundaryExpected);
 
-	ColRefSetArray *pdrgpResult = CUtils::PdrgpcrsIntersectEquivClasses(mp, pdrgpFirst, pdrgpSecond);
+	CColRefSetArray *pdrgpResult = CUtils::PdrgpcrsIntersectEquivClasses(mp, pdrgpFirst, pdrgpSecond);
 	GPOS_ASSERT(CUtils::FEquivalanceClassesDisjoint(mp,pdrgpResult));
 	GPOS_ASSERT(CUtils::FEquivalanceClassesEqual(mp, pdrgpResult, pdrgpIntersectExpectedOp));
 

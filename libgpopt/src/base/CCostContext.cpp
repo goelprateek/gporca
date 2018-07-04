@@ -492,7 +492,7 @@ CCost
 CCostContext::CostCompute
 	(
 	IMemoryPool *mp,
-	CostArray *pdrgpcostChildren
+	CCostArray *pdrgpcostChildren
 	)
 {
 	// derive context stats
@@ -578,7 +578,7 @@ CCostContext::DRowsPerHost() const
 	if (CDistributionSpec::EdtHashed == pds->Edt())
 	{
 		CDistributionSpecHashed *pdshashed = CDistributionSpecHashed::PdsConvert(pds);
-		ExpressionArray *pdrgpexpr = pdshashed->Pdrgpexpr();
+		CExpressionArray *pdrgpexpr = pdshashed->Pdrgpexpr();
 		CColRefSet *pcrsUsed = CUtils::PcrsExtractColumns(m_mp, pdrgpexpr);
 
 		const CColRefSet *pcrsReqdStats = this->Poc()->GetReqdRelationalProps()->PcrsStat();

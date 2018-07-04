@@ -83,7 +83,7 @@ CXformUnnestTVF::Exfp
 //		after mapping to consumer output
 //
 //---------------------------------------------------------------------------
-ColRefArray *
+CColRefArray *
 CXformUnnestTVF::PdrgpcrSubqueries
 	(
 	IMemoryPool *mp,
@@ -94,11 +94,11 @@ CXformUnnestTVF::PdrgpcrSubqueries
 	CExpression *pexprProject = (*pexprCTEProd)[0];
 	GPOS_ASSERT(COperator::EopLogicalProject == pexprProject->Pop()->Eopid());
 
-	ColRefArray *pdrgpcrProdOutput = CDrvdPropRelational::GetRelationalProperties(pexprCTEProd->PdpDerive())->PcrsOutput()->Pdrgpcr(mp);
-	ColRefArray *pdrgpcrConsOutput = CDrvdPropRelational::GetRelationalProperties(pexprCTECons->PdpDerive())->PcrsOutput()->Pdrgpcr(mp);
+	CColRefArray *pdrgpcrProdOutput = CDrvdPropRelational::GetRelationalProperties(pexprCTEProd->PdpDerive())->PcrsOutput()->Pdrgpcr(mp);
+	CColRefArray *pdrgpcrConsOutput = CDrvdPropRelational::GetRelationalProperties(pexprCTECons->PdpDerive())->PcrsOutput()->Pdrgpcr(mp);
 	GPOS_ASSERT(pdrgpcrProdOutput->Size() == pdrgpcrConsOutput->Size());
 
-	ColRefArray *colref_array = GPOS_NEW(mp) ColRefArray(mp);
+	CColRefArray *colref_array = GPOS_NEW(mp) CColRefArray(mp);
 	const ULONG ulPrjElems = (*pexprProject)[1]->Arity();
 	for (ULONG ulOuter = 0; ulOuter < ulPrjElems; ulOuter++)
 	{
@@ -139,7 +139,7 @@ CXformUnnestTVF::PexprProjectSubqueries
 	GPOS_ASSERT(COperator::EopLogicalTVF == pexprTVF->Pop()->Eopid());
 
 	// collect subquery arguments
-	ExpressionArray *pdrgpexprSubqueries = GPOS_NEW(mp) ExpressionArray(mp);
+	CExpressionArray *pdrgpexprSubqueries = GPOS_NEW(mp) CExpressionArray(mp);
 	const ULONG arity = pexprTVF->Arity();
 	for (ULONG ul = 0; ul < arity; ul++)
 	{
@@ -205,7 +205,7 @@ CXformUnnestTVF::Transform
 	const ULONG ulCTEId = pcteinfo->next_id();
 
 	// construct CTE producer output from subquery columns
-	ColRefArray *pdrgpcrOutput = GPOS_NEW(mp) ColRefArray(mp);
+	CColRefArray *pdrgpcrOutput = GPOS_NEW(mp) CColRefArray(mp);
 	const ULONG ulPrjElems = (*pexprProject)[1]->Arity();
 	for (ULONG ulOuter = 0; ulOuter < ulPrjElems; ulOuter++)
 	{
@@ -222,18 +222,18 @@ CXformUnnestTVF::Transform
 	pexprProject->Release();
 
 	// create CTE consumer
-	ColRefArray *pdrgpcrProducerOutput = CDrvdPropRelational::GetRelationalProperties(pexprCTEProd->PdpDerive())->PcrsOutput()->Pdrgpcr(mp);
-	ColRefArray *pdrgpcrConsumerOutput = CUtils::PdrgpcrCopy(mp, pdrgpcrProducerOutput);
+	CColRefArray *pdrgpcrProducerOutput = CDrvdPropRelational::GetRelationalProperties(pexprCTEProd->PdpDerive())->PcrsOutput()->Pdrgpcr(mp);
+	CColRefArray *pdrgpcrConsumerOutput = CUtils::PdrgpcrCopy(mp, pdrgpcrProducerOutput);
 	CLogicalCTEConsumer *popConsumer = GPOS_NEW(mp) CLogicalCTEConsumer(mp, ulCTEId, pdrgpcrConsumerOutput);
 	CExpression *pexprCTECons = GPOS_NEW(mp) CExpression(mp, popConsumer);
 	pcteinfo->IncrementConsumers(ulCTEId);
 	pdrgpcrProducerOutput->Release();
 
 	// find columns corresponding to subqueries in consumer's output
-	ColRefArray *pdrgpcrSubqueries = PdrgpcrSubqueries(mp, pexprCTEProd, pexprCTECons);
+	CColRefArray *pdrgpcrSubqueries = PdrgpcrSubqueries(mp, pexprCTEProd, pexprCTECons);
 
 	// create new function arguments by replacing subqueries with columns in CTE consumer output
-	ExpressionArray *pdrgpexprNewArgs = GPOS_NEW(mp) ExpressionArray(mp);
+	CExpressionArray *pdrgpexprNewArgs = GPOS_NEW(mp) CExpressionArray(mp);
 	ULONG ulIndex = 0;
 	const ULONG arity = pexpr->Arity();
 	for (ULONG ul = 0; ul < arity; ul++)

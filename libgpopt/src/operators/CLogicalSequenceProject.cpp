@@ -35,8 +35,8 @@ CLogicalSequenceProject::CLogicalSequenceProject
 	(
 	IMemoryPool *mp,
 	CDistributionSpec *pds,
-	OrderSpecArray *pdrgpos,
-	WindowFrameArray *pdrgpwf
+	COrderSpecArray *pdrgpos,
+	CWindowFrameArray *pdrgpwf
 	)
 	:
 	CLogicalUnary(mp),
@@ -136,7 +136,7 @@ CLogicalSequenceProject::PopCopyWithRemappedColumns
 {
 	CDistributionSpec *pds = m_pds->PdsCopyWithRemappedColumns(mp, colref_mapping, must_exist);
 
-	OrderSpecArray *pdrgpos = GPOS_NEW(mp) OrderSpecArray(mp);
+	COrderSpecArray *pdrgpos = GPOS_NEW(mp) COrderSpecArray(mp);
 	const ULONG ulOrderSpec = m_pdrgpos->Size();
 	for (ULONG ul = 0; ul < ulOrderSpec; ul++)
 	{
@@ -144,7 +144,7 @@ CLogicalSequenceProject::PopCopyWithRemappedColumns
 		pdrgpos->Append(pos);
 	}
 
-	WindowFrameArray *pdrgpwf = GPOS_NEW(mp) WindowFrameArray(mp);
+	CWindowFrameArray *pdrgpwf = GPOS_NEW(mp) CWindowFrameArray(mp);
 	const ULONG ulWindowFrames = m_pdrgpwf->Size();
 	for (ULONG ul = 0; ul < ulWindowFrames; ul++)
 	{
@@ -418,7 +418,7 @@ CLogicalSequenceProject::PstatsDerive
 	(
 	IMemoryPool *mp,
 	CExpressionHandle &exprhdl,
-	StatsArray * // stats_ctxt
+	IStatsArray * // stats_ctxt
 	)
 	const
 {
@@ -487,7 +487,7 @@ CLogicalSequenceProject::PopRemoveLocalOuterRefs
 		pds->AddRef();
 	}
 
-	OrderSpecArray *pdrgpos = COrderSpec::PdrgposExclude(mp, m_pdrgpos, outer_refs);
+	COrderSpecArray *pdrgpos = COrderSpec::PdrgposExclude(mp, m_pdrgpos, outer_refs);
 
 	// for window frame edges, outer references cannot be removed since this can change
 	// the semantics of frame edge from delayed-bounding to unbounded,

@@ -100,7 +100,7 @@ namespace gpopt
 			}; // struct SSamplePlan
 
 			// array og unsigned long long int
-			typedef CDynamicPtrArray<SSamplePlan, CleanupDelete> SamplePlanArray;
+			typedef CDynamicPtrArray<SSamplePlan, CleanupDelete> SSamplePlanArray;
 
 			// memory pool
 			IMemoryPool *m_mp;
@@ -124,7 +124,7 @@ namespace gpopt
 			CDouble m_dCostThreshold;
 
 			// sampled plans
-			SamplePlanArray *m_pdrgpsp;
+			SSamplePlanArray *m_pdrgpsp;
 
 			// step m_bytearray_value used in fitting cost distribution
 			CDouble m_dStep;

@@ -62,7 +62,7 @@ CLogicalTVF::CLogicalTVF
 	IMDId *mdid_func,
 	IMDId *mdid_return_type,
 	CWStringConst *str,
-	ColumnDescrArray *pdrgpcoldesc
+	CColumnDescrArray *pdrgpcoldesc
 	)
 	:
 	CLogical(mp),
@@ -102,8 +102,8 @@ CLogicalTVF::CLogicalTVF
 	IMDId *mdid_func,
 	IMDId *mdid_return_type,
 	CWStringConst *str,
-	ColumnDescrArray *pdrgpcoldesc,
-	ColRefArray *pdrgpcrOutput
+	CColumnDescrArray *pdrgpcoldesc,
+	CColRefArray *pdrgpcrOutput
 	)
 	:
 	CLogical(mp),
@@ -161,7 +161,7 @@ CLogicalTVF::HashValue() const
 										m_func_mdid->HashValue(),
 										gpos::CombineHashes(
 												m_return_type_mdid->HashValue(),
-												gpos::HashPtr<ColumnDescrArray>(m_pdrgpcoldesc))));
+												gpos::HashPtr<CColumnDescrArray>(m_pdrgpcoldesc))));
 	ulHash = gpos::CombineHashes(ulHash, CUtils::UlHashColArray(m_pdrgpcrOutput));
 	return ulHash;
 }
@@ -210,7 +210,7 @@ CLogicalTVF::PopCopyWithRemappedColumns
 	BOOL must_exist
 	)
 {
-	ColRefArray *pdrgpcrOutput = NULL;
+	CColRefArray *pdrgpcrOutput = NULL;
 	if (must_exist)
 	{
 		pdrgpcrOutput = CUtils::PdrgpcrRemapAndCreate(mp, m_pdrgpcrOutput, colref_mapping);
@@ -345,7 +345,7 @@ CLogicalTVF::PstatsDerive
 	(
 	IMemoryPool *mp,
 	CExpressionHandle &exprhdl,
-	StatsArray * // stats_ctxt
+	IStatsArray * // stats_ctxt
 	)
 	const
 {

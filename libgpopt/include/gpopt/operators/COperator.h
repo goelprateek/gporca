@@ -33,7 +33,7 @@ namespace gpopt
 	class CReqdPropRelational;
 
 	// dynamic array for operators
-	typedef CDynamicPtrArray<COperator, CleanupRelease> OperatorArray;
+	typedef CDynamicPtrArray<COperator, CleanupRelease> COperatorArray;
 
 	// hash map mapping CColRef -> CColRef
 	typedef CHashMap<CColRef, CColRef, CColRef::HashValue, CColRef::Equals,

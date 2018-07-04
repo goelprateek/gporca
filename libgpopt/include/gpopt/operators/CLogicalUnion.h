@@ -44,7 +44,7 @@ namespace gpopt
 			CLogicalUnion
 				(
 				IMemoryPool *mp,
-				ColRefArray *pdrgpcrOutput,
+				CColRefArray *pdrgpcrOutput,
 				ColRefArrays *pdrgpdrgpcrInput
 				);
 
@@ -120,7 +120,7 @@ namespace gpopt
 				(
 				IMemoryPool *mp,
 				CExpressionHandle &exprhdl,
-				StatsArray *stats_ctxt
+				IStatsArray *stats_ctxt
 				)
 				const;
 

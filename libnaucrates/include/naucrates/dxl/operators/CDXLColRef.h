@@ -31,7 +31,7 @@ namespace gpdxl
 	class CDXLColRef;
 
 	// arrays of column references
-	typedef CDynamicPtrArray<CDXLColRef, CleanupRelease> DXLColRefArray;
+	typedef CDynamicPtrArray<CDXLColRef, CleanupRelease> CDXLColRefArray;
 
 	//---------------------------------------------------------------------------
 	//	@class:

@@ -29,7 +29,7 @@ namespace gpdxl
 	class CParseHandlerBase;
 
 	// dynamic arrays of parse handlers
-	typedef CDynamicPtrArray<CParseHandlerBase, CleanupDelete> ParseHandlerBaseArray;
+	typedef CDynamicPtrArray<CParseHandlerBase, CleanupDelete> CParseHandlerBaseArray;
 
 	XERCES_CPP_NAMESPACE_USE
 
@@ -71,7 +71,7 @@ namespace gpdxl
 		CParseHandlerBase(const CParseHandlerBase &);
 
 		// array of parse handlers for child elements
-		ParseHandlerBaseArray *m_parse_handler_base_array;
+		CParseHandlerBaseArray *m_parse_handler_base_array;
 
 	protected:
 		// memory pool to create DXL objects in

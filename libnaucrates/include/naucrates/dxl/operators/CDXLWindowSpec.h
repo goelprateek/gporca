@@ -99,7 +99,7 @@ namespace gpdxl
 		}
 	};
 
-	typedef CDynamicPtrArray<CDXLWindowSpec, CleanupRelease> DXLWindowSpecArray;
+	typedef CDynamicPtrArray<CDXLWindowSpec, CleanupRelease> CDXLWindowSpecArray;
 }  // namespace gpdxl
 #endif  // !GPDXL_CDXLWindowSpec_H
 

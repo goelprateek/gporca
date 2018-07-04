@@ -48,7 +48,7 @@ ICostModel::PcmDefault
 void
 ICostModel::SetParams
 	(
-	CostModelParamsArray *pdrgpcp
+	ICostModelParamsArray *pdrgpcp
 	)
 {
 	if (NULL == pdrgpcp)

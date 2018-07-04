@@ -141,7 +141,7 @@ CParseHandlerDXL::GetQueryDXLRoot() const
 //		Returns the list of query output objects constructed by the parser
 //
 //---------------------------------------------------------------------------
-DXLNodeArray *
+CDXLNodeArray *
 CParseHandlerDXL::GetOutputColumnsDXLArray() const
 {
 	return m_output_colums_dxl_array;
@@ -155,7 +155,7 @@ CParseHandlerDXL::GetOutputColumnsDXLArray() const
 //		Returns the list of CTE producers
 //
 //---------------------------------------------------------------------------
-DXLNodeArray *
+CDXLNodeArray *
 CParseHandlerDXL::GetCTEProducerDXLArray() const
 {
 	return m_cte_producers;
@@ -183,7 +183,7 @@ CParseHandlerDXL::PdxlnPlan() const
 //		Returns the list of metadata objects constructed by the parser
 //
 //---------------------------------------------------------------------------
-IMDCachePtrArray *
+IMDCacheObjectArray *
 CParseHandlerDXL::GetMdIdCachedObjArray() const
 {
 	return m_mdid_cached_obj_array;
@@ -197,7 +197,7 @@ CParseHandlerDXL::GetMdIdCachedObjArray() const
 //		Returns the list of metadata ids constructed by the parser
 //
 //---------------------------------------------------------------------------
-MdidPtrArray *
+IMdIdArray *
 CParseHandlerDXL::GetMdIdArray() const
 {
 	return m_mdid_array;
@@ -240,7 +240,7 @@ CParseHandlerDXL::GetScalarExprDXLRoot() const
 //		Returns the list of source system ids for the metadata
 //
 //---------------------------------------------------------------------------
-SysidPtrArray *
+CSystemIdArray *
 CParseHandlerDXL::GetSysidPtrArray() const
 {
 	return m_system_id_array;
@@ -254,7 +254,7 @@ CParseHandlerDXL::GetSysidPtrArray() const
 //		Returns the list of statistics objects constructed by the parser
 //
 //---------------------------------------------------------------------------
-DXLStatsDerivedRelArray *
+CDXLStatsDerivedRelationArray *
 CParseHandlerDXL::GetStatsDerivedRelDXLArray() const
 {
 	return m_dxl_stats_derived_rel_array;
@@ -269,7 +269,7 @@ CParseHandlerDXL::GetStatsDerivedRelDXLArray() const
 //		Returns search strategy
 //
 //---------------------------------------------------------------------------
-SearchStageArray *
+CSearchStageArray *
 CParseHandlerDXL::GetSearchStageArray() const
 {
 	return m_search_stage_array;
@@ -595,7 +595,7 @@ CParseHandlerDXL::ExtractStats(CParseHandlerBase *parse_handler_base)
 		dynamic_cast<CParseHandlerStatistics *>(parse_handler_base);
 	GPOS_ASSERT(NULL != parse_handler_stats);
 
-	DXLStatsDerivedRelArray *dxl_derived_rel_stats_array =
+	CDXLStatsDerivedRelationArray *dxl_derived_rel_stats_array =
 		parse_handler_stats->GetStatsDerivedRelDXLArray();
 	GPOS_ASSERT(NULL != dxl_derived_rel_stats_array);
 
@@ -646,8 +646,8 @@ CParseHandlerDXL::ExtractMDRequest(CParseHandlerBase *parse_handler_base)
 		dynamic_cast<CParseHandlerMDRequest *>(parse_handler_base);
 	GPOS_ASSERT(NULL != parse_handler_mdrequest && NULL != parse_handler_mdrequest->GetMdIdArray());
 
-	MdidPtrArray *mdid_array = parse_handler_mdrequest->GetMdIdArray();
-	CMDRequest::MDTypeRequestPtrArray *md_type_request_array =
+	IMdIdArray *mdid_array = parse_handler_mdrequest->GetMdIdArray();
+	CMDRequest::SMDTypeRequestArray *md_type_request_array =
 		parse_handler_mdrequest->GetMDTypeRequestArray();
 
 	mdid_array->AddRef();
@@ -674,7 +674,7 @@ CParseHandlerDXL::ExtractSearchStrategy(CParseHandlerBase *parse_handler_base)
 	GPOS_ASSERT(NULL != parse_handler_search_strategy &&
 				NULL != parse_handler_search_strategy->GetSearchStageArray());
 
-	SearchStageArray *search_stage_array = parse_handler_search_strategy->GetSearchStageArray();
+	CSearchStageArray *search_stage_array = parse_handler_search_strategy->GetSearchStageArray();
 
 	search_stage_array->AddRef();
 	m_search_stage_array = search_stage_array;

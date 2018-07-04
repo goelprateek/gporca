@@ -43,7 +43,7 @@ CLogicalLeftOuterCorrelatedApply::CLogicalLeftOuterCorrelatedApply
 CLogicalLeftOuterCorrelatedApply::CLogicalLeftOuterCorrelatedApply
 	(
 	IMemoryPool *mp,
-	ColRefArray *pdrgpcrInner,
+	CColRefArray *pdrgpcrInner,
 	EOperatorId eopidOriginSubq
 	)
 	:
@@ -111,7 +111,7 @@ CLogicalLeftOuterCorrelatedApply::PopCopyWithRemappedColumns
 	BOOL must_exist
 	)
 {
-	ColRefArray *pdrgpcrInner = CUtils::PdrgpcrRemap(mp, m_pdrgpcrInner, colref_mapping, must_exist);
+	CColRefArray *pdrgpcrInner = CUtils::PdrgpcrRemap(mp, m_pdrgpcrInner, colref_mapping, must_exist);
 
 	return GPOS_NEW(mp) CLogicalLeftOuterCorrelatedApply(mp, pdrgpcrInner, m_eopidOriginSubq);
 }

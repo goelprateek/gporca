@@ -61,10 +61,10 @@ CTableDescriptor::CTableDescriptor
 	GPOS_ASSERT(NULL != mp);
 	GPOS_ASSERT(mdid->IsValid());
 	
-	m_pdrgpcoldesc = GPOS_NEW(m_mp) ColumnDescrArray(m_mp);
-	m_pdrgpcoldescDist = GPOS_NEW(m_mp) ColumnDescrArray(m_mp);
+	m_pdrgpcoldesc = GPOS_NEW(m_mp) CColumnDescrArray(m_mp);
+	m_pdrgpcoldescDist = GPOS_NEW(m_mp) CColumnDescrArray(m_mp);
 	m_pdrgpulPart = GPOS_NEW(m_mp) ULongPtrArray(m_mp);
-	m_pdrgpbsKeys = GPOS_NEW(m_mp) BitSetArray(m_mp);
+	m_pdrgpbsKeys = GPOS_NEW(m_mp) CBitSetArray(m_mp);
 }
 
 
@@ -117,7 +117,7 @@ ULONG
 CTableDescriptor::UlPos
 	(
 	const CColumnDescriptor *pcoldesc,
-	const ColumnDescrArray *pdrgpcoldesc
+	const CColumnDescrArray *pdrgpcoldesc
 	)
 	const
 {

@@ -54,7 +54,7 @@ CLogicalLeftAntiSemiApplyNotIn::PopCopyWithRemappedColumns
 	BOOL must_exist
 	)
 {
-	ColRefArray *pdrgpcrInner = CUtils::PdrgpcrRemap(mp, m_pdrgpcrInner, colref_mapping, must_exist);
+	CColRefArray *pdrgpcrInner = CUtils::PdrgpcrRemap(mp, m_pdrgpcrInner, colref_mapping, must_exist);
 
 	return GPOS_NEW(mp) CLogicalLeftAntiSemiApplyNotIn(mp, pdrgpcrInner, m_eopidOriginSubq);
 }

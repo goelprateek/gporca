@@ -165,22 +165,22 @@ namespace gpnaucrates
 		// inner join with another stats structure
 		virtual IStatistics *CalcInnerJoinStats(IMemoryPool *mp,
 												const IStatistics *other_stats,
-												StatsPredJoinArray *join_preds_stats) const = 0;
+												CStatsPredJoinArray *join_preds_stats) const = 0;
 
 		// LOJ with another stats structure
 		virtual IStatistics *CalcLOJoinStats(IMemoryPool *mp,
 											 const IStatistics *other_stats,
-											 StatsPredJoinArray *join_preds_stats) const = 0;
+											 CStatsPredJoinArray *join_preds_stats) const = 0;
 
 		// semi join stats computation
 		virtual IStatistics *CalcLSJoinStats(IMemoryPool *mp,
 											 const IStatistics *inner_side_stats,
-											 StatsPredJoinArray *join_preds_stats) const = 0;
+											 CStatsPredJoinArray *join_preds_stats) const = 0;
 
 		// anti semi join
 		virtual IStatistics *CalcLASJoinStats(IMemoryPool *mp,
 											  const IStatistics *other_stats,
-											  StatsPredJoinArray *join_preds_stats,
+											  CStatsPredJoinArray *join_preds_stats,
 											  BOOL DoIgnoreLASJHistComputation) const = 0;
 
 		// return required props associated with stats object
@@ -239,7 +239,7 @@ namespace gpnaucrates
 	}
 
 	// dynamic array for derived stats
-	typedef CDynamicPtrArray<IStatistics, CleanupStats> StatsArray;
+	typedef CDynamicPtrArray<IStatistics, CleanupStats> IStatsArray;
 }  // namespace gpnaucrates
 
 #endif  // !GPNAUCRATES_IStatistics_H

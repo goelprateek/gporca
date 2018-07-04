@@ -90,7 +90,7 @@ namespace gpopt
 
 			// return a Select expression, if needed, with a scalar condition made of given array of conjuncts
 			static
-			CExpression *PexprSelect(IMemoryPool *mp, CExpression *pexpr, ExpressionArray *pdrgpexpr);
+			CExpression *PexprSelect(IMemoryPool *mp, CExpression *pexpr, CExpressionArray *pdrgpexpr);
 
 			// push scalar expression through an expression with unary operator with scalar child
 			static
@@ -114,11 +114,11 @@ namespace gpopt
 
 			// split the given conjunct into pushable and unpushable predicates
 			static
-			void SplitConjunct(IMemoryPool *mp, CExpression *pexpr, CExpression *pexprConj, ExpressionArray **ppdrgpexprPushable, ExpressionArray **ppdrgpexprUnpushable);
+			void SplitConjunct(IMemoryPool *mp, CExpression *pexpr, CExpression *pexprConj, CExpressionArray **ppdrgpexprPushable, CExpressionArray **ppdrgpexprUnpushable);
 
 			// split the given conjunct into pushable and unpushable predicates for a sequence project expression
 			static
-			void SplitConjunctForSeqPrj(IMemoryPool *mp, CExpression *pexprSeqPrj, CExpression *pexprConj, ExpressionArray **ppdrgpexprPushable, ExpressionArray **ppdrgpexprUnpushable);
+			void SplitConjunctForSeqPrj(IMemoryPool *mp, CExpression *pexprSeqPrj, CExpression *pexprConj, CExpressionArray **ppdrgpexprPushable, CExpressionArray **ppdrgpexprUnpushable);
 
 			// push scalar expression through left outer join children
 			static
@@ -138,9 +138,9 @@ namespace gpopt
 				(
 				IMemoryPool *mp,
 				CExpression *pexprLogical,
-				ExpressionArray *pdrgpexprConjuncts,
+				CExpressionArray *pdrgpexprConjuncts,
 				CExpression **ppexprResult,
-				ExpressionArray **ppdrgpexprRemaining
+				CExpressionArray **ppdrgpexprRemaining
 				);
 
 			// private copy ctor
@@ -160,7 +160,7 @@ namespace gpopt
 				CExpression *pexpr,
 				CColRefSet *pcrsUsed,
 				CColRefSet *pcrsOutput,
-				ExpressionArray **ppdrgpexprPrElPullUp
+				CExpressionArray **ppdrgpexprPrElPullUp
 				);
 
 #ifdef GPOS_DEBUG

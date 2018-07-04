@@ -34,11 +34,11 @@ using namespace gpopt;
 CPhysicalAgg::CPhysicalAgg
 	(
 	IMemoryPool *mp,
-	ColRefArray *colref_array,
-	ColRefArray *pdrgpcrMinimal, // minimal grouping columns based on FD's
+	CColRefArray *colref_array,
+	CColRefArray *pdrgpcrMinimal, // minimal grouping columns based on FD's
 	COperator::EGbAggType egbaggtype,
 	BOOL fGeneratesDuplicates,
-	ColRefArray *pdrgpcrArgDQA,
+	CColRefArray *pdrgpcrArgDQA,
 	BOOL fMultiStage
 	)
 	:
@@ -144,7 +144,7 @@ CPhysicalAgg::PcrsRequired
 	CExpressionHandle &exprhdl,
 	CColRefSet *pcrsRequired,
 	ULONG child_index,
-	DrgPdp *, // pdrgpdpCtxt
+	CDrvdPropArrays *, // pdrgpdpCtxt
 	ULONG // ulOptReq
 	)
 {
@@ -168,7 +168,7 @@ CPhysicalAgg::PcrsRequiredAgg
 	CExpressionHandle &exprhdl,
 	CColRefSet *pcrsRequired,
 	ULONG child_index,
-	ColRefArray *pdrgpcrGrp
+	CColRefArray *pdrgpcrGrp
 	)
 {
 	GPOS_ASSERT(NULL != pdrgpcrGrp);
@@ -203,8 +203,8 @@ CPhysicalAgg::PdsRequiredAgg
 	CDistributionSpec *pdsInput,
 	ULONG child_index,
 	ULONG  ulOptReq,
-	ColRefArray *pdrgpcgGrp,
-	ColRefArray *pdrgpcrGrpMinimal
+	CColRefArray *pdrgpcgGrp,
+	CColRefArray *pdrgpcrGrpMinimal
 	)
 	const
 {
@@ -256,7 +256,7 @@ CDistributionSpec *
 CPhysicalAgg::PdsMaximalHashed
 	(
 	IMemoryPool *mp,
-	ColRefArray *colref_array
+	CColRefArray *colref_array
 	)
 {
 	GPOS_ASSERT(NULL != colref_array);
@@ -293,8 +293,8 @@ CPhysicalAgg::PdsRequiredGlobalAgg
 	CExpressionHandle &exprhdl,
 	CDistributionSpec *pdsInput,
 	ULONG child_index,
-	ColRefArray *pdrgpcrGrp,
-	ColRefArray *pdrgpcrGrpMinimal,
+	CColRefArray *pdrgpcrGrp,
+	CColRefArray *pdrgpcrGrpMinimal,
 	ULONG  ulOptReq
 	)
 	const
@@ -357,7 +357,7 @@ CPhysicalAgg::PdsRequiredIntermediateAgg
 		return PdsMaximalHashed(mp, m_pdrgpcr);
 	}
 
-	ColRefArray *colref_array = GPOS_NEW(mp) ColRefArray(mp);
+	CColRefArray *colref_array = GPOS_NEW(mp) CColRefArray(mp);
 	const ULONG length = m_pdrgpcr->Size() - m_pdrgpcrArgDQA->Size();
 	for (ULONG ul = 0; ul < length; ul++)
 	{
@@ -387,7 +387,7 @@ CPhysicalAgg::PrsRequired
 	CExpressionHandle &exprhdl,
 	CRewindabilitySpec *prsRequired,
 	ULONG child_index,
-	DrgPdp *, // pdrgpdpCtxt
+	CDrvdPropArrays *, // pdrgpdpCtxt
 	ULONG // ulOptReq
 	)
 	const
@@ -423,7 +423,7 @@ CPhysicalAgg::PppsRequired
 	child_index
 #endif
 	,
-	DrgPdp *, //pdrgpdpCtxt,
+	CDrvdPropArrays *, //pdrgpdpCtxt,
 	ULONG //ulOptReq
 	)
 {
@@ -452,7 +452,7 @@ CPhysicalAgg::PcteRequired
 	child_index
 #endif
 	,
-	DrgPdp *, //pdrgpdpCtxt,
+	CDrvdPropArrays *, //pdrgpdpCtxt,
 	ULONG //ulOptReq
 	)
 	const

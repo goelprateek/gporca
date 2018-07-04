@@ -41,7 +41,7 @@ namespace
 				return CTestUtils::m_pmdpf;
 			}
 
-			StatsArray *m_pdrgpstat;
+			IStatsArray *m_pdrgpstat;
 
 		public:
 
@@ -52,19 +52,19 @@ namespace
 					m_amp(),
 					m_mda(m_amp.Pmp(), CMDCache::Pcache(), CTestUtils::m_sysidDefault, Pmdp()),
 					m_aoc(m_amp.Pmp(), &m_mda, NULL /* pceeval */, CTestUtils::GetCostModel(m_amp.Pmp())),
-					m_pdrgpstat(GPOS_NEW(m_amp.Pmp()) StatsArray(m_amp.Pmp()))
+					m_pdrgpstat(GPOS_NEW(m_amp.Pmp()) IStatsArray(m_amp.Pmp()))
 			{
 				CHAR *szDXLInput = CDXLUtils::Read(Pmp(), file_name);
 				GPOS_CHECK_ABORT;
 				// read the stats from the input xml
-				DXLStatsDerivedRelArray *dxl_derived_rel_stats_array = CDXLUtils::ParseDXLToStatsDerivedRelArray(Pmp(), szDXLInput,
+				CDXLStatsDerivedRelationArray *dxl_derived_rel_stats_array = CDXLUtils::ParseDXLToStatsDerivedRelArray(Pmp(), szDXLInput,
 																								 NULL);
 				CStatisticsArray *pdrgpstats = CDXLUtils::ParseDXLToOptimizerStatisticObjArray(Pmp(), &m_mda, dxl_derived_rel_stats_array);
 				GPOS_ASSERT(pdrgpstats != NULL);
 				GPOS_ASSERT(2 == pdrgpstats->Size());
 				// ParseDXLToOptimizerStatisticObjArray returns an array of CStatistics (CStatisticsArray)
-				// and PStatsJoinArray takes an array of IStatistics (StatsArray) as input
-				// So, iterate through CStatisticsArray and append members to a StatsArray
+				// and PStatsJoinArray takes an array of IStatistics (IStatsArray) as input
+				// So, iterate through CStatisticsArray and append members to a IStatsArray
 				ULONG arity = pdrgpstats->Size();
 				for (ULONG ul = 0; ul < arity; ul++)
 				{
@@ -87,7 +87,7 @@ namespace
 				return m_amp.Pmp();
 			}
 
-			StatsArray *PdrgPstat()
+			IStatsArray *PdrgPstat()
 			{
 				return m_pdrgpstat;
 			}
@@ -108,11 +108,11 @@ namespace gpnaucrates
 
 		Fixture f(file_name);
 		IMemoryPool *mp = f.Pmp();
-		StatsArray *statistics_array = f.PdrgPstat();
+		IStatsArray *statistics_array = f.PdrgPstat();
 
 		CExpression *pexprLgGet = CTestUtils::PexprLogicalGet(mp);
 		CLogicalGet *popGet = CLogicalGet::PopConvert(pexprLgGet->Pop());
-		ColRefArray *colref_array = popGet->PdrgpcrOutput();
+		CColRefArray *colref_array = popGet->PdrgpcrOutput();
 
 		// use the colid available in the input xml file
 		CColRef *pcrLeft = (*colref_array)[2];
@@ -168,11 +168,11 @@ namespace gpnaucrates
 
 		Fixture f(file_name);
 		IMemoryPool *mp = f.Pmp();
-		StatsArray *statistics_array = f.PdrgPstat();
+		IStatsArray *statistics_array = f.PdrgPstat();
 
 		CExpression *pexprLgGet = CTestUtils::PexprLogicalGet(mp);
 		CLogicalGet *popGet = CLogicalGet::PopConvert(pexprLgGet->Pop());
-		ColRefArray *colref_array = popGet->PdrgpcrOutput();
+		CColRefArray *colref_array = popGet->PdrgpcrOutput();
 
 		// use the colid available in the input xml file
 		CColRef *pcrLeft1 = (*colref_array)[2];
@@ -230,11 +230,11 @@ namespace gpnaucrates
 
 		Fixture f(file_name);
 		IMemoryPool *mp = f.Pmp();
-		StatsArray *statistics_array = f.PdrgPstat();
+		IStatsArray *statistics_array = f.PdrgPstat();
 
 		CExpression *pexprLgGet = CTestUtils::PexprLogicalGet(mp);
 		CLogicalGet *popGet = CLogicalGet::PopConvert(pexprLgGet->Pop());
-		ColRefArray *colref_array = popGet->PdrgpcrOutput();
+		CColRefArray *colref_array = popGet->PdrgpcrOutput();
 
 		// use the colid available in the input xml file
 		CColRef *pcrLeft = (*colref_array)[2];

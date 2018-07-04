@@ -36,7 +36,7 @@ namespace gpopt
 			IMDId *m_mdid;
 
 			// filter expressions corresponding to various levels
-			ExpressionArray *m_pdrgpexprFilters;
+			CExpressionArray *m_pdrgpexprFilters;
 
 			// oid column - holds the OIDs for leaf parts
 			CColRef *m_pcrOid;
@@ -54,7 +54,7 @@ namespace gpopt
 				(
 				IMemoryPool *mp,
 				IMDId *mdid,
-				ExpressionArray *pdrgpexprFilters,
+				CExpressionArray *pdrgpexprFilters,
 				CColRef *pcrOid
 				);
 
@@ -197,7 +197,7 @@ namespace gpopt
 				(
 				IMemoryPool *, //mp,
 				CExpressionHandle &exprhdl,
-				StatsArray * //stats_ctxt
+				IStatsArray * //stats_ctxt
 				)
 				const
 			{

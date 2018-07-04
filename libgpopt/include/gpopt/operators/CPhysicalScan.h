@@ -44,7 +44,7 @@ namespace gpopt
 			CTableDescriptor *m_ptabdesc;
 			
 			// output columns
-			ColRefArray *m_pdrgpcrOutput;
+			CColRefArray *m_pdrgpcrOutput;
 			
 			// distribution
 			CDistributionSpec *m_pds;
@@ -85,7 +85,7 @@ namespace gpopt
 			CExpression *PexprMatchEqualitySide
 				(
 				CExpression *pexprToMatch,
-				ExpressionArray *pdrgpexpr // array of predicates to inspect
+				CExpressionArray *pdrgpexpr // array of predicates to inspect
 				);
 
 			// private copy ctor
@@ -94,7 +94,7 @@ namespace gpopt
 		public:
 		
 			// ctors
-			CPhysicalScan(IMemoryPool *mp, const CName *pname, CTableDescriptor *, ColRefArray *colref_array);
+			CPhysicalScan(IMemoryPool *mp, const CName *pname, CTableDescriptor *, CColRefArray *colref_array);
 
 			// dtor
 			virtual 
@@ -109,7 +109,7 @@ namespace gpopt
 		
 			// output columns
 			virtual
-			ColRefArray *PdrgpcrOutput() const
+			CColRefArray *PdrgpcrOutput() const
 			{
 				return m_pdrgpcrOutput;
 			}
@@ -130,7 +130,7 @@ namespace gpopt
 				CExpressionHandle &, // exprhdl
 				CColRefSet *, // pcrsRequired
 				ULONG, // child_index
-				DrgPdp *, // pdrgpdpCtxt
+				CDrvdPropArrays *, // pdrgpdpCtxt
 				ULONG // ulOptReq
 				)
 			{
@@ -146,7 +146,7 @@ namespace gpopt
 				CExpressionHandle &, //exprhdl,
 				CCTEReq *, //pcter,
 				ULONG , //child_index,
-				DrgPdp *, //pdrgpdpCtxt,
+				CDrvdPropArrays *, //pdrgpdpCtxt,
 				ULONG //ulOptReq
 				)
 				const
@@ -163,7 +163,7 @@ namespace gpopt
 				CExpressionHandle &, // exprhdl
 				COrderSpec *, // posRequired
 				ULONG, // child_index
-				DrgPdp *, // pdrgpdpCtxt
+				CDrvdPropArrays *, // pdrgpdpCtxt
 				ULONG // ulOptReq
 				)
 				const
@@ -180,7 +180,7 @@ namespace gpopt
 				CExpressionHandle &, // exprhdl
 				CDistributionSpec *, // pdsRequired
 				ULONG, // child_index
-				DrgPdp *, // pdrgpdpCtxt
+				CDrvdPropArrays *, // pdrgpdpCtxt
 				ULONG // ulOptReq
 				)
 				const
@@ -197,7 +197,7 @@ namespace gpopt
 				CExpressionHandle &, //exprhdl
 				CRewindabilitySpec *, //prsRequired
 				ULONG, // child_index
-				DrgPdp *, // pdrgpdpCtxt
+				CDrvdPropArrays *, // pdrgpdpCtxt
 				ULONG // ulOptReq
 				)
 				const
@@ -215,7 +215,7 @@ namespace gpopt
 				CExpressionHandle &, //exprhdl,
 				CPartitionPropagationSpec *, //pppsRequired,
 				ULONG , //child_index,
-				DrgPdp *, //pdrgpdpCtxt,
+				CDrvdPropArrays *, //pdrgpdpCtxt,
 				ULONG // ulOptReq
 				)
 			{
@@ -361,7 +361,7 @@ namespace gpopt
 
 			// statistics derivation during costing
 			virtual
-			IStatistics *PstatsDerive(IMemoryPool *mp, CExpressionHandle &exprhdl, CReqdPropPlan *prpplan, StatsArray *stats_ctxt) const = 0;
+			IStatistics *PstatsDerive(IMemoryPool *mp, CExpressionHandle &exprhdl, CReqdPropPlan *prpplan, IStatsArray *stats_ctxt) const = 0;
 			
 			// conversion function
 			static

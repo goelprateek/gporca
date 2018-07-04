@@ -246,7 +246,7 @@ namespace gpdxl
 		// create a subplan operator
 		static CDXLScalar *MakeDXLSubPlan(CDXLMemoryManager *dxl_memory_manager,
 										  IMDId *mdid,
-										  DXLColRefArray *dxl_colref_array,
+										  CDXLColRefArray *dxl_colref_array,
 										  EdxlSubPlanType dxl_subplan_type,
 										  CDXLNode *dxlnode_test_expr);
 
@@ -555,7 +555,7 @@ namespace gpdxl
 
 		// parse a comma-separated list of MDids into a dynamic array
 		// will raise an exception if list is not well-formed
-		static MdidPtrArray *ExtractConvertMdIdsToArray(CDXLMemoryManager *dxl_memory_manager,
+		static IMdIdArray *ExtractConvertMdIdsToArray(CDXLMemoryManager *dxl_memory_manager,
 														const XMLCh *mdid_list_xml,
 														Edxltoken target_attr,
 														Edxltoken target_elem);

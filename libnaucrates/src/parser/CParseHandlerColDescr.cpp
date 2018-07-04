@@ -36,7 +36,7 @@ CParseHandlerColDescr::CParseHandlerColDescr(IMemoryPool *mp,
 	: CParseHandlerBase(mp, parse_handler_mgr, parse_handler_base),
 	  m_current_column_descr(NULL)
 {
-	m_dxl_column_descr_array = GPOS_NEW(mp) DXLColumnDescrArray(mp);
+	m_dxl_column_descr_array = GPOS_NEW(mp) CDXLColDescrArray(mp);
 }
 
 //---------------------------------------------------------------------------
@@ -61,7 +61,7 @@ CParseHandlerColDescr::~CParseHandlerColDescr()
 //		Returns the array of column descriptors.
 //
 //---------------------------------------------------------------------------
-DXLColumnDescrArray *
+CDXLColDescrArray *
 CParseHandlerColDescr::GetDXLColumnDescrArray()
 {
 	return m_dxl_column_descr_array;

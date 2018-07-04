@@ -136,7 +136,7 @@ COrderSpec::COrderSpec
 	m_mp(mp),
 	m_pdrgpoe(NULL)
 {
-	m_pdrgpoe = GPOS_NEW(mp) OrderExpressionArray(mp);
+	m_pdrgpoe = GPOS_NEW(mp) COrderExpressionArray(mp);
 }
 
 
@@ -245,7 +245,7 @@ COrderSpec::AppendEnforcers
 	prpp
 #endif // GPOS_DEBUG
 	,
-	ExpressionArray *pdrgpexpr,
+	CExpressionArray *pdrgpexpr,
 	CExpression *pexpr
 	)
 {
@@ -445,7 +445,7 @@ CColRefSet *
 COrderSpec::GetColRefSet
 	(
 	IMemoryPool *mp,
-	OrderSpecArray *pdrgpos
+	COrderSpecArray *pdrgpos
 	)
 {
 	GPOS_ASSERT(NULL != pdrgpos);
@@ -470,11 +470,11 @@ COrderSpec::GetColRefSet
 //		passed columns
 //
 //---------------------------------------------------------------------------
-OrderSpecArray *
+COrderSpecArray *
 COrderSpec::PdrgposExclude
 	(
 	IMemoryPool *mp,
-	OrderSpecArray *pdrgpos,
+	COrderSpecArray *pdrgpos,
 	CColRefSet *pcrsToExclude
 	)
 {
@@ -488,7 +488,7 @@ COrderSpec::PdrgposExclude
 		return pdrgpos;
 	}
 
-	OrderSpecArray *pdrgposNew = GPOS_NEW(mp) OrderSpecArray(mp);
+	COrderSpecArray *pdrgposNew = GPOS_NEW(mp) COrderSpecArray(mp);
 	const ULONG ulOrderSpecs = pdrgpos->Size();
 	for (ULONG ulSpec = 0; ulSpec < ulOrderSpecs; ulSpec++)
 	{
@@ -543,8 +543,8 @@ COrderSpec::OsPrint
 BOOL
 COrderSpec::Equals
 	(
-	const OrderSpecArray *pdrgposFirst,
-	const OrderSpecArray *pdrgposSecond
+	const COrderSpecArray *pdrgposFirst,
+	const COrderSpecArray *pdrgposSecond
 	)
 {
 	if (NULL == pdrgposFirst || NULL == pdrgposSecond)
@@ -579,7 +579,7 @@ COrderSpec::Equals
 ULONG
 COrderSpec::HashValue
 	(
-	const OrderSpecArray *pdrgpos,
+	const COrderSpecArray *pdrgpos,
 	ULONG ulMaxSize
 	)
 {
@@ -608,7 +608,7 @@ IOstream &
 COrderSpec::OsPrint
 	(
 	IOstream &os,
-	const OrderSpecArray *pdrgpos
+	const COrderSpecArray *pdrgpos
 	)
 {
 	const ULONG size = pdrgpos->Size();

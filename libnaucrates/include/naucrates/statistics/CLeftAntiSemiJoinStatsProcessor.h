@@ -39,7 +39,7 @@ namespace gpnaucrates
 			IMemoryPool *mp,
 			const IStatistics *outer_stats_input,
 			const IStatistics *inner_stats_input,
-			StatsPredJoinArray *join_preds_stats,
+			CStatsPredJoinArray *join_preds_stats,
 			BOOL
 				DoIgnoreLASJHistComputation  // except for the case of LOJ cardinality estimation this flag is always
 			// "true" since LASJ stats computation is very aggressive

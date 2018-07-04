@@ -32,7 +32,7 @@ namespace gpopt
 		protected:
 
 			// output column array
-			ColRefArray *m_pdrgpcrOutput;
+			CColRefArray *m_pdrgpcrOutput;
 			
 			// input column array
 			ColRefArrays *m_pdrgpdrgpcrInput;
@@ -41,7 +41,7 @@ namespace gpopt
 			CColRefSet *m_pcrsOutput;
 
 			// set representation of input columns
-			ColRefSetArray *m_pdrgpcrsInput;
+			CColRefSetArray *m_pdrgpcrsInput;
 
 			// private copy ctor
 			CLogicalSetOp(const CLogicalSetOp &);
@@ -50,13 +50,13 @@ namespace gpopt
 			void BuildColumnSets(IMemoryPool *mp);
 
 			// output equivalence classes
-			ColRefSetArray *PdrgpcrsOutputEquivClasses(IMemoryPool *mp, CExpressionHandle &exprhdl, BOOL fIntersect) const;
+			CColRefSetArray *PdrgpcrsOutputEquivClasses(IMemoryPool *mp, CExpressionHandle &exprhdl, BOOL fIntersect) const;
 
 			// equivalence classes from one input child, mapped to output columns
-			ColRefSetArray *PdrgpcrsInputMapped(IMemoryPool *mp, CExpressionHandle &exprhdl, ULONG ulChild) const;
+			CColRefSetArray *PdrgpcrsInputMapped(IMemoryPool *mp, CExpressionHandle &exprhdl, ULONG ulChild) const;
 
 			// constraints for a given output column from all children
-			ConstraintArray *PdrgpcnstrColumn
+			CConstraintArray *PdrgpcnstrColumn
 						(
 						IMemoryPool *mp,
 						CExpressionHandle &exprhdl,
@@ -93,15 +93,15 @@ namespace gpopt
 			CLogicalSetOp
 				(
 				IMemoryPool *mp,
-				ColRefArray *pdrgOutput,
-				ColRefArray *pdrgpcrLeft,
-				ColRefArray *pdrgpcrRight
+				CColRefArray *pdrgOutput,
+				CColRefArray *pdrgpcrLeft,
+				CColRefArray *pdrgpcrRight
 				);
 
 			CLogicalSetOp
 				(
 				IMemoryPool *mp,
-				ColRefArray *pdrgpcrOutput,
+				CColRefArray *pdrgpcrOutput,
 				ColRefArrays *pdrgpdrgpcrInput
 				);
 
@@ -117,7 +117,7 @@ namespace gpopt
 			const CHAR *SzId() const = 0;
 
 			// accessor of output column array
-			ColRefArray *PdrgpcrOutput() const
+			CColRefArray *PdrgpcrOutput() const
 			{
 				GPOS_ASSERT(NULL != m_pdrgpcrOutput);
 				return m_pdrgpcrOutput;

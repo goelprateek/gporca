@@ -53,7 +53,7 @@ namespace gpopt
 				CTableDescriptor *ptabdesc,
 				ULONG ulOriginOpId,
 				const CName *pnameTableAlias,
-				ColRefArray *pdrgpcrOutput
+				CColRefArray *pdrgpcrOutput
 				);
 
 			// dtor
@@ -116,7 +116,7 @@ namespace gpopt
 				IMemoryPool *, // mp
 				CExpressionHandle &, // exprhdl
 				CReqdPropPlan *, // prpplan
-				StatsArray * //stats_ctxt
+				IStatsArray * //stats_ctxt
 				)
 				const
 			{

@@ -28,8 +28,8 @@ using namespace gpopt;
 CPhysicalLeftAntiSemiHashJoinNotIn::CPhysicalLeftAntiSemiHashJoinNotIn
 	(
 	IMemoryPool *mp,
-	ExpressionArray *pdrgpexprOuterKeys,
-	ExpressionArray *pdrgpexprInnerKeys
+	CExpressionArray *pdrgpexprOuterKeys,
+	CExpressionArray *pdrgpexprInnerKeys
 	)
 	:
 	CPhysicalLeftAntiSemiHashJoin(mp, pdrgpexprOuterKeys, pdrgpexprInnerKeys)
@@ -51,7 +51,7 @@ CPhysicalLeftAntiSemiHashJoinNotIn::PdsRequired
 	CExpressionHandle &exprhdl,
 	CDistributionSpec *pdsInput,
 	ULONG child_index,
-	DrgPdp *pdrgpdpCtxt,
+	CDrvdPropArrays *pdrgpdpCtxt,
 	ULONG ulOptReq // identifies which optimization request should be created
 	)
 	const

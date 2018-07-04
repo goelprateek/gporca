@@ -123,7 +123,7 @@ CXformInnerApplyWithOuterKey2InnerJoin::Transform
 	// decorrelate Gb's relational child
 	(*pexprGb)[0]->ResetDerivedProperties();
 	CExpression *pexprInner = NULL;
-	ExpressionArray *pdrgpexpr = GPOS_NEW(mp) ExpressionArray(mp);
+	CExpressionArray *pdrgpexpr = GPOS_NEW(mp) CExpressionArray(mp);
 	if (!CDecorrelator::FProcess(mp, (*pexprGb)[0], false /*fEqualityOnly*/, &pexprInner, pdrgpexpr))
 	{
 		pdrgpexpr->Release();
@@ -146,8 +146,8 @@ CXformInnerApplyWithOuterKey2InnerJoin::Transform
 			);
 
 	// create grouping columns from the output of outer child
-	ColRefArray *pdrgpcrKey = NULL;
-	ColRefArray *colref_array = CUtils::PdrgpcrGroupingKey(mp, pexprOuter, &pdrgpcrKey);
+	CColRefArray *pdrgpcrKey = NULL;
+	CColRefArray *colref_array = CUtils::PdrgpcrGroupingKey(mp, pexprOuter, &pdrgpcrKey);
 	pdrgpcrKey->Release();  // key is not used here
 
 	CLogicalGbAgg *popGbAgg = GPOS_NEW(mp) CLogicalGbAgg(mp, colref_array, COperator::EgbaggtypeGlobal /*egbaggtype*/);

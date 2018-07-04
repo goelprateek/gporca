@@ -85,7 +85,7 @@ CStatistics *
 CLeftAntiSemiJoinStatsProcessor::CalcLASJoinStatsStatic(IMemoryPool *mp,
 														const IStatistics *outer_stats_input,
 														const IStatistics *inner_stats_input,
-														StatsPredJoinArray *join_preds_stats,
+														CStatsPredJoinArray *join_preds_stats,
 														BOOL DoIgnoreLASJHistComputation)
 {
 	GPOS_ASSERT(NULL != inner_stats_input);

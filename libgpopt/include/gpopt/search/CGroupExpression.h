@@ -181,7 +181,7 @@ namespace gpopt
 			void SetOptimizationLevel();
 
 			// check validity of group expression
-			BOOL FValidContext(IMemoryPool *mp, COptimizationContext *poc, OptimizationContextArray *pdrgpocChild);
+			BOOL FValidContext(IMemoryPool *mp, COptimizationContext *poc, COptimizationContextArray *pdrgpocChild);
 			
 			// remove cost context in hash table
 			CCostContext *PccRemove(COptimizationContext *poc, ULONG ulOptReq);
@@ -250,10 +250,10 @@ namespace gpopt
 			void CleanupContexts();
 
 			// check if cost context already exists in group expression hash table
-			BOOL FCostContextExists(COptimizationContext *poc, OptimizationContextArray *pdrgpoc);
+			BOOL FCostContextExists(COptimizationContext *poc, COptimizationContextArray *pdrgpoc);
 
 			// compute and store expression's cost under a given context
-			CCostContext *PccComputeCost(IMemoryPool *mp, COptimizationContext *poc, ULONG ulOptReq, OptimizationContextArray *pdrgpoc, BOOL fPruned, CCost costLowerBound);
+			CCostContext *PccComputeCost(IMemoryPool *mp, COptimizationContext *poc, ULONG ulOptReq, COptimizationContextArray *pdrgpoc, BOOL fPruned, CCost costLowerBound);
 
 			// compute a cost lower bound for plans, rooted by current group expression, and satisfying the given required properties
 			CCost CostLowerBound(IMemoryPool *mp, CReqdPropPlan *prppInput, CCostContext *pccChild, ULONG child_index);
@@ -423,7 +423,7 @@ namespace gpopt
 			CCostContext *PccLookup(COptimizationContext *poc, ULONG ulOptReq);
 
 			// lookup all cost contexts matching given optimization context
-			CostContextArray *PdrgpccLookupAll(IMemoryPool *mp, COptimizationContext *poc);
+			CCostContextArray *PdrgpccLookupAll(IMemoryPool *mp, COptimizationContext *poc);
 
 			// insert a cost context in hash table
 			CCostContext *PccInsert(CCostContext *pcc);
@@ -434,7 +434,7 @@ namespace gpopt
 				IMemoryPool *pmpLocal,
 				IMemoryPool *pmpGlobal,
 				CReqdPropRelational *prprel,
-				StatsArray *stats_ctxt,
+				IStatsArray *stats_ctxt,
 				BOOL fComputeRootStats = true
 				);
 

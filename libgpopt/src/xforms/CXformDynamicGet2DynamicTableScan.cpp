@@ -73,7 +73,7 @@ CXformDynamicGet2DynamicTableScan::Transform
 	CTableDescriptor *ptabdesc = popGet->Ptabdesc();
 	ptabdesc->AddRef();
 	
-	ColRefArray *pdrgpcrOutput = popGet->PdrgpcrOutput();
+	CColRefArray *pdrgpcrOutput = popGet->PdrgpcrOutput();
 	GPOS_ASSERT(NULL != pdrgpcrOutput);
 
 	pdrgpcrOutput->AddRef();

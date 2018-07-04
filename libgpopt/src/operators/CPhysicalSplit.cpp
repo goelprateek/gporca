@@ -33,8 +33,8 @@ using namespace gpopt;
 CPhysicalSplit::CPhysicalSplit
 	(
 	IMemoryPool *mp,
-	ColRefArray *pdrgpcrDelete,
-	ColRefArray *pdrgpcrInsert,
+	CColRefArray *pdrgpcrDelete,
+	CColRefArray *pdrgpcrInsert,
 	CColRef *pcrCtid,
 	CColRef *pcrSegmentId,
 	CColRef *pcrAction,
@@ -100,7 +100,7 @@ CPhysicalSplit::PosRequired
 	child_index
 #endif // GPOS_DEBUG
 	,
-	DrgPdp *, // pdrgpdpCtxt
+	CDrvdPropArrays *, // pdrgpdpCtxt
 	ULONG // ulOptReq
 	)
 	const
@@ -176,7 +176,7 @@ CPhysicalSplit::PcrsRequired
 	child_index
 #endif // GPOS_DEBUG
 	,
-	DrgPdp *, // pdrgpdpCtxt
+	CDrvdPropArrays *, // pdrgpdpCtxt
 	ULONG // ulOptReq
 	)
 {
@@ -208,7 +208,7 @@ CPhysicalSplit::PdsRequired
 	child_index
 #endif // GPOS_DEBUG
 	,
-	DrgPdp *, // pdrgpdpCtxt
+	CDrvdPropArrays *, // pdrgpdpCtxt
 	ULONG // ulOptReq
 	)
 	const
@@ -233,7 +233,7 @@ CPhysicalSplit::PrsRequired
 	CExpressionHandle &exprhdl,
 	CRewindabilitySpec *prsRequired,
 	ULONG child_index,
-	DrgPdp *, // pdrgpdpCtxt
+	CDrvdPropArrays *, // pdrgpdpCtxt
 	ULONG // ulOptReq
 	)
 	const
@@ -258,7 +258,7 @@ CPhysicalSplit::PppsRequired
 	CExpressionHandle &exprhdl,
 	CPartitionPropagationSpec *pppsRequired,
 	ULONG child_index,
-	DrgPdp *, //pdrgpdpCtxt,
+	CDrvdPropArrays *, //pdrgpdpCtxt,
 	ULONG //ulOptReq
 	)
 {
@@ -287,7 +287,7 @@ CPhysicalSplit::PcteRequired
 	child_index
 #endif
 	,
-	DrgPdp *, //pdrgpdpCtxt,
+	CDrvdPropArrays *, //pdrgpdpCtxt,
 	ULONG //ulOptReq
 	)
 	const

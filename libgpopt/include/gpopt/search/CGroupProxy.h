@@ -70,8 +70,8 @@ namespace gpopt
 			// set hash join keys
 			void SetHashJoinKeys
 				(
-				ExpressionArray *pdrgpexprOuter,
-				ExpressionArray *pdrgpexprInner
+				CExpressionArray *pdrgpexprOuter,
+				CExpressionArray *pdrgpexprInner
 				)
 			{
 				m_pgroup->SetHashJoinKeys(pdrgpexprOuter, pdrgpexprInner);

@@ -59,7 +59,7 @@ CParseHandlerQueryOutput::~CParseHandlerQueryOutput()
 //		Return the list of query output columns
 //
 //---------------------------------------------------------------------------
-DXLNodeArray *
+CDXLNodeArray *
 CParseHandlerQueryOutput::GetOutputColumnsDXLArray()
 {
 	GPOS_ASSERT(NULL != m_dxl_array);
@@ -87,7 +87,7 @@ CParseHandlerQueryOutput::StartElement(const XMLCh *const element_uri,
 		// start the query output section in the DXL document
 		GPOS_ASSERT(NULL == m_dxl_array);
 
-		m_dxl_array = GPOS_NEW(m_mp) DXLNodeArray(m_mp);
+		m_dxl_array = GPOS_NEW(m_mp) CDXLNodeArray(m_mp);
 	}
 	else if (0 == XMLString::compareString(CDXLTokens::XmlstrToken(EdxltokenScalarIdent),
 										   element_local_name))

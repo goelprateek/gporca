@@ -102,7 +102,7 @@ CLogicalGet::CLogicalGet
 	IMemoryPool *mp,
 	const CName *pnameAlias,
 	CTableDescriptor *ptabdesc,
-	ColRefArray *pdrgpcrOutput
+	CColRefArray *pdrgpcrOutput
 	)
 	:
 	CLogical(mp),
@@ -200,7 +200,7 @@ CLogicalGet::PopCopyWithRemappedColumns
 	BOOL must_exist
 	)
 {
-	ColRefArray *pdrgpcrOutput = NULL;
+	CColRefArray *pdrgpcrOutput = NULL;
 	if (must_exist)
 	{
 		pdrgpcrOutput = CUtils::PdrgpcrRemapAndCreate(mp, m_pdrgpcrOutput, colref_mapping);
@@ -304,7 +304,7 @@ CLogicalGet::PkcDeriveKeys
 	)
 	const
 {
-	const BitSetArray *pdrgpbs = m_ptabdesc->PdrgpbsKeys();
+	const CBitSetArray *pdrgpbs = m_ptabdesc->PdrgpbsKeys();
 
 	return CLogical::PkcKeysBaseTable(mp, pdrgpbs, m_pdrgpcrOutput);
 }
@@ -345,7 +345,7 @@ CLogicalGet::PstatsDerive
 	(
 	IMemoryPool *mp,
 	CExpressionHandle &exprhdl,
-	StatsArray * // not used
+	IStatsArray * // not used
 	)
 	const
 {
@@ -393,7 +393,7 @@ CLogicalGet::OsPrint
 		os << "] Key sets: {";
 		
 		const ULONG ulColumns = m_pdrgpcrOutput->Size();
-		const BitSetArray *pdrgpbsKeys = m_ptabdesc->PdrgpbsKeys();
+		const CBitSetArray *pdrgpbsKeys = m_ptabdesc->PdrgpbsKeys();
 		for (ULONG ul = 0; ul < pdrgpbsKeys->Size(); ul++)
 		{
 			CBitSet *pbs = (*pdrgpbsKeys)[ul];

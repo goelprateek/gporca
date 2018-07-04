@@ -46,9 +46,9 @@ namespace gpopt
 				IMemoryPool *mp,
 				CExpression *pexprOuter,
 				CExpression *pexprInner,
-				ExpressionArray *pdrgpexprAllCorr,
-				ExpressionArray **ppdrgpexprExternal,
-				ExpressionArray **ppdrgpexprResidual,
+				CExpressionArray *pdrgpexprAllCorr,
+				CExpressionArray **ppdrgpexprExternal,
+				CExpressionArray **ppdrgpexprResidual,
 				CColRefSet **ppcrsInnerUsed
 				);
 
@@ -59,7 +59,7 @@ namespace gpopt
 				IMemoryPool *mp,
 				CExpression *pexpr,
 				CExpression **ppexprInnerNew,
-				ExpressionArray **ppdrgpexprCorr
+				CExpressionArray **ppdrgpexprCorr
 				);
 
 			// decorrelate semi apply with external correlations

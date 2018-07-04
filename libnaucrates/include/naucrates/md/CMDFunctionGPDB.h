@@ -49,7 +49,7 @@ namespace gpmd
 		IMDId *m_mdid_type_result;
 
 		// output argument types
-		MdidPtrArray *m_mdid_types_array;
+		IMdIdArray *m_mdid_types_array;
 
 		// whether function returns a set of values
 		BOOL m_returns_set;
@@ -90,7 +90,7 @@ namespace gpmd
 						IMDId *mdid,
 						CMDName *mdname,
 						IMDId *result_type_mdid,
-						MdidPtrArray *mdid_array,
+						IMdIdArray *mdid_array,
 						BOOL ReturnsSet,
 						EFuncStbl func_stability,
 						EFuncDataAcc func_data_access,
@@ -115,7 +115,7 @@ namespace gpmd
 		virtual IMDId *GetResultTypeMdid() const;
 
 		// output argument types
-		virtual MdidPtrArray *OutputArgTypesMdidArray() const;
+		virtual IMdIdArray *OutputArgTypesMdidArray() const;
 
 		// does function return NULL on NULL input
 		virtual BOOL

@@ -48,7 +48,7 @@ CLogicalApply::CLogicalApply
 CLogicalApply::CLogicalApply
 	(
 	IMemoryPool *mp,
-	ColRefArray *pdrgpcrInner,
+	CColRefArray *pdrgpcrInner,
 	EOperatorId eopidOriginSubq
 	)
 	:
@@ -126,7 +126,7 @@ CLogicalApply::Matches
 {
 	if (pop->Eopid() == Eopid())
 	{
-		ColRefArray *pdrgpcrInner = CLogicalApply::PopConvert(pop)->PdrgPcrInner();
+		CColRefArray *pdrgpcrInner = CLogicalApply::PopConvert(pop)->PdrgPcrInner();
 		if (NULL == m_pdrgpcrInner || NULL == pdrgpcrInner)
 		{
 			return 	 (NULL == m_pdrgpcrInner && NULL == pdrgpcrInner);

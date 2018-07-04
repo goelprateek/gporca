@@ -37,10 +37,10 @@ namespace gpdxl
 	{
 	private:
 		// array of metadata ids
-		MdidPtrArray *m_mdid_array;
+		IMdIdArray *m_mdid_array;
 
 		// array of type requests
-		CMDRequest::MDTypeRequestPtrArray *m_mdtype_request_array;
+		CMDRequest::SMDTypeRequestArray *m_mdtype_request_array;
 
 		// private copy ctor
 		CParseHandlerMDRequest(const CParseHandlerMDRequest &);
@@ -71,10 +71,10 @@ namespace gpdxl
 		virtual EDxlParseHandlerType GetParseHandlerType() const;
 
 		// parsed mdids
-		MdidPtrArray *GetMdIdArray() const;
+		IMdIdArray *GetMdIdArray() const;
 
 		// parsed type requests
-		CMDRequest::MDTypeRequestPtrArray *GetMDTypeRequestArray() const;
+		CMDRequest::SMDTypeRequestArray *GetMDTypeRequestArray() const;
 	};
 }  // namespace gpdxl
 
