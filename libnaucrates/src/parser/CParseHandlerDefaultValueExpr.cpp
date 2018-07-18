@@ -6,7 +6,7 @@
 //		CParseHandlerDefaultValueExpr.cpp
 //
 //	@doc:
-//		Implementation of the SAX parse handler class for parsing default m_bytearray_value expression
+//		Implementation of the SAX parse handler class for parsing default value expression
 //---------------------------------------------------------------------------
 
 
@@ -106,7 +106,7 @@ CParseHandlerDefaultValueExpr::EndElement(const XMLCh *const,  // element_uri,
 	{
 		GPOS_ASSERT(1 == this->Length());
 
-		// get node for default m_bytearray_value expression from child parse handler
+		// get node for default value expression from child parse handler
 		CParseHandlerScalarOp *child_parse_handler =
 			dynamic_cast<CParseHandlerScalarOp *>((*this)[0]);
 		m_dxlnode = child_parse_handler->CreateDXLNode();

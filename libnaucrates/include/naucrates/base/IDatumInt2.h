@@ -44,7 +44,7 @@ namespace gpnaucrates
 			return IMDType::EtiInt2;
 		}
 
-		// accessor of integer m_bytearray_value
+		// accessor of integer value
 		virtual SINT Value() const = 0;
 
 		// can datum be mapped to a double

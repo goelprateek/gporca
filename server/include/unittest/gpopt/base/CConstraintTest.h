@@ -37,9 +37,9 @@ namespace gpopt
 		struct SRangeInfo
 		{
 			CRange::ERangeInclusion eriLeft;	// inclusion for left end
-			INT iLeft;							// left end m_bytearray_value
+			INT iLeft;							// left end value
 			CRange::ERangeInclusion eriRight;	// inclusion for right end
-			INT iRight;							// right end m_bytearray_value
+			INT iRight;							// right end value
 		};
 
 		private:

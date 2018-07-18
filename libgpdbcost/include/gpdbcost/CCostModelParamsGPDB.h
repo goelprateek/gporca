@@ -114,179 +114,179 @@ namespace gpopt
 			// cost param enum is used as index in this array
 			SCostParam* m_rgpcp[EcpSentinel];
 
-			// default m_bytearray_value of sequential i/o bandwidth
+			// default value of sequential i/o bandwidth
 			static
 			const CDouble DSeqIOBandwidthVal;
 
-			// default m_bytearray_value of random i/o bandwidth
+			// default value of random i/o bandwidth
 			static
 			const CDouble DRandomIOBandwidthVal;
 
-			// default m_bytearray_value of tuple processing bandwidth
+			// default value of tuple processing bandwidth
 			static
 			const CDouble DTupProcBandwidthVal;
 
-			// default m_bytearray_value of output bandwidth
+			// default value of output bandwidth
 			static
 			const CDouble DOutputBandwidthVal;
 
-			// default m_bytearray_value of scan initialization cost
+			// default value of scan initialization cost
 			static
 			const CDouble DInitScanFacorVal;
 
-			// default m_bytearray_value of table scan cost unit
+			// default value of table scan cost unit
 			static
 			const CDouble DTableScanCostUnitVal;
 
-			// default m_bytearray_value of index scan initialization cost
+			// default value of index scan initialization cost
 			static
 			const CDouble DInitIndexScanFactorVal;
 
-			// default m_bytearray_value of index block cost unit
+			// default value of index block cost unit
 			static
 			const CDouble DIndexBlockCostUnitVal;
 
-			// default m_bytearray_value of index filtering cost unit
+			// default value of index filtering cost unit
 			static
 			const CDouble DIndexFilterCostUnitVal;
 
-			// default m_bytearray_value of index scan cost unit per tuple per unit width
+			// default value of index scan cost unit per tuple per unit width
 			static
 			const CDouble DIndexScanTupCostUnitVal;
 
-			// default m_bytearray_value of index scan random IO cost unit per tuple
+			// default value of index scan random IO cost unit per tuple
 			static
 			const CDouble DIndexScanTupRandomFactorVal;
 
-			// default m_bytearray_value of filter column cost unit
+			// default value of filter column cost unit
 			static
 			const CDouble DFilterColCostUnitVal;
 
-			// default m_bytearray_value of output tuple cost unit
+			// default value of output tuple cost unit
 			static
 			const CDouble DOutputTupCostUnitVal;
 
-			// default m_bytearray_value of sending tuple cost unit for gather motion
+			// default value of sending tuple cost unit for gather motion
 			static
 			const CDouble DGatherSendCostUnitVal;
 
-			// default m_bytearray_value of receiving tuple cost unit for gather motion
+			// default value of receiving tuple cost unit for gather motion
 			static
 			const CDouble DGatherRecvCostUnitVal;
 
-			// default m_bytearray_value of sending tuple cost unit for redistribute motion
+			// default value of sending tuple cost unit for redistribute motion
 			static
 			const CDouble DRedistributeSendCostUnitVal;
 
-			// default m_bytearray_value of receiving tuple cost unit for redistribute motion
+			// default value of receiving tuple cost unit for redistribute motion
 			static
 			const CDouble DRedistributeRecvCostUnitVal;
 
-			// default m_bytearray_value of sending tuple cost unit for broadcast motion
+			// default value of sending tuple cost unit for broadcast motion
 			static
 			const CDouble DBroadcastSendCostUnitVal;
 
-			// default m_bytearray_value of receiving tuple cost unit for broadcast motion
+			// default value of receiving tuple cost unit for broadcast motion
 			static
 			const CDouble DBroadcastRecvCostUnitVal;
 
-			// default m_bytearray_value of tuple cost unit for No-Op motion
+			// default value of tuple cost unit for No-Op motion
 			static
 			const CDouble DNoOpCostUnitVal;
 
-			// default m_bytearray_value of feeding cost per tuple per column in join operator
+			// default value of feeding cost per tuple per column in join operator
 			static
 			const CDouble DJoinFeedingTupColumnCostUnitVal;
 
-			// default m_bytearray_value of feeding cost per tuple per width in join operator
+			// default value of feeding cost per tuple per width in join operator
 			static
 			const CDouble DJoinFeedingTupWidthCostUnitVal;
 
-			// default m_bytearray_value of output cost per tuple in join operator
+			// default value of output cost per tuple in join operator
 			static
 			const CDouble DJoinOutputTupCostUnitVal;
 
-			// default m_bytearray_value of memory threshold for hash join spilling
+			// default value of memory threshold for hash join spilling
 			static
 			const CDouble DHJSpillingMemThresholdVal;
 
-			// default m_bytearray_value of initial cost for building hash table for hash join
+			// default value of initial cost for building hash table for hash join
 			static
 			const CDouble DHJHashTableInitCostFactorVal;
 
-			// default m_bytearray_value of building hash table cost for per tuple per column
+			// default value of building hash table cost for per tuple per column
 			static
 			const CDouble DHJHashTableColumnCostUnitVal;
 
-			// default m_bytearray_value of building hash table cost for per tuple with unit width
+			// default value of building hash table cost for per tuple with unit width
 			static
 			const CDouble DHJHashTableWidthCostUnitVal;
 
-			// default m_bytearray_value of hashing cost per tuple with unit width in hash join
+			// default value of hashing cost per tuple with unit width in hash join
 			static
 			const CDouble DHJHashingTupWidthCostUnitVal;
 
-			// default m_bytearray_value of feeding cost per tuple per column in hash join if spilling
+			// default value of feeding cost per tuple per column in hash join if spilling
 			static
 			const CDouble DHJFeedingTupColumnSpillingCostUnitVal;
 
-			// default m_bytearray_value of feeding cost per tuple with unit width in hash join if spilling
+			// default value of feeding cost per tuple with unit width in hash join if spilling
 			static
 			const CDouble DHJFeedingTupWidthSpillingCostUnitVal;
 
-			// default m_bytearray_value of hashing cost per tuple with unit width in hash join if spilling
+			// default value of hashing cost per tuple with unit width in hash join if spilling
 			static
 			const CDouble DHJHashingTupWidthSpillingCostUnitVal;
 
-			// default m_bytearray_value of cost for building hash table for per tuple per grouping column in hash aggregate
+			// default value of cost for building hash table for per tuple per grouping column in hash aggregate
 			static
 			const CDouble DHashAggInputTupColumnCostUnitVal;
 
-			// default m_bytearray_value of cost for building hash table for per tuple with unit width in hash aggregate
+			// default value of cost for building hash table for per tuple with unit width in hash aggregate
 			static
 			const CDouble DHashAggInputTupWidthCostUnitVal;
 
-			// default m_bytearray_value of cost for outputting for per tuple with unit width in hash aggregate
+			// default value of cost for outputting for per tuple with unit width in hash aggregate
 			static
 			const CDouble DHashAggOutputTupWidthCostUnitVal;
 
-			// default m_bytearray_value of sorting cost per tuple with unit width
+			// default value of sorting cost per tuple with unit width
 			static
 			const CDouble DSortTupWidthCostUnitVal;
 
-			// default m_bytearray_value of cost for processing per tuple with unit width
+			// default value of cost for processing per tuple with unit width
 			static
 			const CDouble DTupDefaultProcCostUnitVal;
 
-			// default m_bytearray_value of cost for materializing per tuple with unit width
+			// default value of cost for materializing per tuple with unit width
 			static
 			const CDouble DMaterializeCostUnitVal;
 
-			// default m_bytearray_value of tuple update bandwidth
+			// default value of tuple update bandwidth
 			static
 			const CDouble DTupUpdateBandwidthVal;
 
-			// default m_bytearray_value of network bandwidth
+			// default value of network bandwidth
 			static
 			const CDouble DNetBandwidthVal;
 
-			// default m_bytearray_value of number of segments
+			// default value of number of segments
 			static
 			const CDouble DSegmentsVal;
 
-			// default m_bytearray_value of nested loop factor
+			// default value of nested loop factor
 			static
 			const CDouble DNLJFactorVal;
 
-			// default m_bytearray_value of hash join factor
+			// default value of hash join factor
 			static
 			const CDouble DHJFactorVal;
 
-			// default m_bytearray_value of hash building factor
+			// default value of hash building factor
 			static
 			const CDouble DHashFactorVal;
 
-			// default cost m_bytearray_value when one is not computed
+			// default cost value when one is not computed
 			static
 			const CDouble DDefaultCostVal;
 

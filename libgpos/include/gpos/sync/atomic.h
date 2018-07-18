@@ -26,10 +26,10 @@
 
 namespace gpos
 {
-	// inter-locked add function; returns original m_bytearray_value;
+	// inter-locked add function; returns original value;
 	ULONG_PTR ExchangeAddUlongPtrWithInt(volatile ULONG_PTR *ul, INT i);
 
-	// inter-locked add function; returns original m_bytearray_value;
+	// inter-locked add function; returns original value;
 	ULLONG ExchangeAddUllongWithUllong(volatile ULLONG *value, ULLONG inc);
 
 	// compare-and-swap function for integers

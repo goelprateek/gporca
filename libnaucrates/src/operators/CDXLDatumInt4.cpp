@@ -39,7 +39,7 @@ CDXLDatumInt4::CDXLDatumInt4(IMemoryPool *mp, IMDId *mdid_type, BOOL is_null, IN
 //		CDXLDatumInt4::Value
 //
 //	@doc:
-//		Return the integer m_bytearray_value
+//		Return the integer value
 //
 //---------------------------------------------------------------------------
 INT

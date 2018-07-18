@@ -163,7 +163,7 @@ CXMLSerializer::CloseElement(const CWStringBase *pstrNamespace, const CWStringBa
 //		CXMLSerializer::AddAttribute
 //
 //	@doc:
-//		Adds an attribute-m_bytearray_value pair to the currently open XML tag
+//		Adds an attribute-value pair to the currently open XML tag
 //
 //---------------------------------------------------------------------------
 void
@@ -185,7 +185,7 @@ CXMLSerializer::AddAttribute(const CWStringBase *pstrAttr, const CWStringBase *s
 //		CXMLSerializer::AddAttribute
 //
 //	@doc:
-//		Adds an attribute-m_bytearray_value pair to the currently open XML tag
+//		Adds an attribute-value pair to the currently open XML tag
 //
 //---------------------------------------------------------------------------
 void
@@ -206,8 +206,8 @@ CXMLSerializer::AddAttribute(const CWStringBase *pstrAttr, const CHAR *szValue)
 //		CXMLSerializer::AddAttribute
 //
 //	@doc:
-//		Adds an attribute-m_bytearray_value pair to the currently open XML tag.
-//		Same as above but with a ULONG m_bytearray_value
+//		Adds an attribute-value pair to the currently open XML tag.
+//		Same as above but with a ULONG value
 //
 //---------------------------------------------------------------------------
 void
@@ -227,8 +227,8 @@ CXMLSerializer::AddAttribute(const CWStringBase *pstrAttr, ULONG ulValue)
 //		CXMLSerializer::AddAttribute
 //
 //	@doc:
-//		Adds an attribute-m_bytearray_value pair to the currently open XML tag.
-//		Same as above but with a ULLONG m_bytearray_value
+//		Adds an attribute-value pair to the currently open XML tag.
+//		Same as above but with a ULLONG value
 //
 //---------------------------------------------------------------------------
 void
@@ -248,8 +248,8 @@ CXMLSerializer::AddAttribute(const CWStringBase *pstrAttr, ULLONG ullValue)
 //		CXMLSerializer::AddAttribute
 //
 //	@doc:
-//		Adds an attribute-m_bytearray_value pair to the currently open XML tag.
-//		Same as above but with an INT m_bytearray_value
+//		Adds an attribute-value pair to the currently open XML tag.
+//		Same as above but with an INT value
 //
 //---------------------------------------------------------------------------
 void
@@ -269,8 +269,8 @@ CXMLSerializer::AddAttribute(const CWStringBase *pstrAttr, INT iValue)
 //		CXMLSerializer::AddAttribute
 //
 //	@doc:
-//		Adds an attribute-m_bytearray_value pair to the currently open XML tag.
-//		Same as above but with an LINT m_bytearray_value
+//		Adds an attribute-value pair to the currently open XML tag.
+//		Same as above but with an LINT value
 //
 //---------------------------------------------------------------------------
 void
@@ -290,8 +290,8 @@ CXMLSerializer::AddAttribute(const CWStringBase *pstrAttr, LINT value)
 //		CXMLSerializer::AddAttribute
 //
 //	@doc:
-//		Adds an attribute-m_bytearray_value pair to the currently open XML tag.
-//		Same as above but with a CDouble m_bytearray_value
+//		Adds an attribute-value pair to the currently open XML tag.
+//		Same as above but with a CDouble value
 //
 //---------------------------------------------------------------------------
 void
@@ -311,8 +311,8 @@ CXMLSerializer::AddAttribute(const CWStringBase *pstrAttr, CDouble value)
 //		CXMLSerializer::AddAttribute
 //
 //	@doc:
-//		Adds an attribute-m_bytearray_value pair to the currently open XML tag.
-//		Same as above but with a BOOL m_bytearray_value
+//		Adds an attribute-value pair to the currently open XML tag.
+//		Same as above but with a BOOL value
 //
 //---------------------------------------------------------------------------
 void
@@ -412,8 +412,8 @@ CXMLSerializer::WriteEscaped(IOstream &os, const CWStringBase *str)
 //		CXMLSerializer::AddAttribute
 //
 //	@doc:
-//		Adds an attribute-m_bytearray_value pair to the currently open XML tag.
-//		Same as above but with an LINT m_bytearray_value
+//		Adds an attribute-value pair to the currently open XML tag.
+//		Same as above but with an LINT value
 //
 //---------------------------------------------------------------------------
 void

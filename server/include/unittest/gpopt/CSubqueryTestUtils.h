@@ -232,7 +232,7 @@ namespace gpopt
 			static
 			CExpression *PexprSubqueriesInNullTestContext(IMemoryPool *mp, BOOL fCorrelated);
 
-			// generate an expression with subqueries in both m_bytearray_value and filter contexts
+			// generate an expression with subqueries in both value and filter contexts
 			static
 			CExpression *PexprSubqueriesInDifferentContexts(IMemoryPool *mp, BOOL fCorrelated);
 

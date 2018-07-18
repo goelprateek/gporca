@@ -39,7 +39,7 @@ CheckChildDistributions
 
 #endif // GPOS_DEBUG
 
-// helper to do m_bytearray_value equality check of arrays of ULONG pointers
+// helper to do value equality check of arrays of ULONG pointers
 BOOL
 Equals
 	(

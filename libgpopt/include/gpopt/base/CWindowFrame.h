@@ -87,10 +87,10 @@ namespace gpopt
 			// type of trailing edge
 			const EFrameBoundary m_efbTrailing;
 
-			// scalar m_bytearray_value of leading edge, memory owned by this class
+			// scalar value of leading edge, memory owned by this class
 			CExpression *m_pexprLeading;
 
-			// scalar m_bytearray_value of trailing edge, memory owned by this class
+			// scalar value of trailing edge, memory owned by this class
 			CExpression *m_pexprTrailing;
 
 			// exclusion strategy
@@ -145,13 +145,13 @@ namespace gpopt
 				return m_efbTrailing;
 			}
 
-			// scalar m_bytearray_value of leading edge
+			// scalar value of leading edge
 			CExpression *PexprLeading() const
 			{
 				return m_pexprLeading;
 			}
 
-			// scalar m_bytearray_value of trailing edge
+			// scalar value of trailing edge
 			CExpression *PexprTrailing() const
 			{
 				return m_pexprTrailing;

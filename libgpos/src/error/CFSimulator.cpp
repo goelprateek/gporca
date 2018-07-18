@@ -7,7 +7,7 @@
 //
 //	@doc:
 //		Failpoint simulator; maintains a hashtable of bitvectors which encode
-//		stacks. Stack walker determines computes a hash m_bytearray_value for call stack
+//		stacks. Stack walker determines computes a hash value for call stack
 //		when checking for a failpoint: if stack has been seen before, skip,
 //		otherwise raise exception.
 //---------------------------------------------------------------------------

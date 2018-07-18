@@ -44,7 +44,7 @@ namespace gpnaucrates
 			return IMDType::EtiBool;
 		}
 
-		// accessor of boolean m_bytearray_value
+		// accessor of boolean value
 		virtual BOOL GetValue() const = 0;
 
 		// can datum be mapped to a double

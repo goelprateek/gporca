@@ -951,7 +951,7 @@ CUtils::PexprIsNotFalse
 {
 	GPOS_ASSERT(NULL != pexpr);
 
-	return PexprIDF(mp, pexpr, PexprScalarConstBool(mp, false /*m_bytearray_value*/));
+	return PexprIDF(mp, pexpr, PexprScalarConstBool(mp, false /*value*/));
 }
 
 // Find if a scalar expression uses a nullable column from the
@@ -2631,7 +2631,7 @@ CUtils::FScalarConstTrue
 	CExpression *pexpr
 	)
 {
-	return FScalarConstBool(pexpr, true /*m_bytearray_value*/);
+	return FScalarConstBool(pexpr, true /*value*/);
 }
 
 // checks to see if the expression is a scalar const FALSE
@@ -2641,7 +2641,7 @@ CUtils::FScalarConstFalse
 	CExpression *pexpr
 	)
 {
-	return FScalarConstBool(pexpr, false /*m_bytearray_value*/);
+	return FScalarConstBool(pexpr, false /*value*/);
 }
 
 // return an array of non-system columns in the given set
@@ -3995,7 +3995,7 @@ CUtils::Equals
 	return pdrgpcrFst->Equals(pdrgpcrSnd);
 }
 
-// compute hash m_bytearray_value for an array of column references
+// compute hash value for an array of column references
 ULONG
 CUtils::UlHashColArray
 	(
@@ -4378,12 +4378,12 @@ CUtils::PpartcnstrFromMDPartCnstr
 	UlongToConstraintMap *phmulcnstr = NULL;
 	if (CUtils::FScalarConstTrue(pexprPartCnstr))
 	{
-		phmulcnstr = PhmulcnstrBoolConstOnPartKeys(mp, pdrgpdrgpcrPartKey, true /*m_bytearray_value*/);
+		phmulcnstr = PhmulcnstrBoolConstOnPartKeys(mp, pdrgpdrgpcrPartKey, true /*value*/);
 	}
 	else if (CUtils::FScalarConstFalse(pexprPartCnstr))
 	{
 		// contradiction
-		phmulcnstr = PhmulcnstrBoolConstOnPartKeys(mp, pdrgpdrgpcrPartKey, false /*m_bytearray_value*/);
+		phmulcnstr = PhmulcnstrBoolConstOnPartKeys(mp, pdrgpdrgpcrPartKey, false /*value*/);
 	}
 	else
 	{
@@ -4422,7 +4422,7 @@ CUtils::PpartcnstrFromMDPartCnstr
 }
 
 // Helper to create a dummy constant table expression;
-// the table has one boolean column with m_bytearray_value True and one row
+// the table has one boolean column with value True and one row
 CExpression *
 CUtils::PexprLogicalCTGDummy
 	(
@@ -4440,7 +4440,7 @@ CUtils::PexprLogicalCTGDummy
 
 	// generate a bool datum
 	IDatumArray *pdrgpdatum = GPOS_NEW(mp) IDatumArray(mp);
-	IDatumBool *datum =  pmdtypebool->CreateBoolDatum(mp, false /*m_bytearray_value*/, false /*is_null*/);
+	IDatumBool *datum =  pmdtypebool->CreateBoolDatum(mp, false /*value*/, false /*is_null*/);
 	pdrgpdatum->Append(datum);
 	IDatumArrays *pdrgpdrgpdatum = GPOS_NEW(mp) IDatumArrays(mp);
 	pdrgpdrgpdatum->Append(pdrgpdatum);
@@ -4846,7 +4846,7 @@ CUtils::FEquivalanceClassesEqual
 // inconsistency employs a HashMap while preorder traversing the tree.
 // Preorder traversal will guarantee that we visit the producer before
 // we visit the consumer. In this regard, when we see a CTE producer,
-// we add its CTE id as a key and its execution locality as a m_bytearray_value to
+// we add its CTE id as a key and its execution locality as a value to
 // the HashMap.
 // And when we encounter the matching CTE consumer while we traverse the
 // tree, we check if the locality matches by looking up the CTE id from
@@ -4855,7 +4855,7 @@ CUtils::FEquivalanceClassesEqual
 //
 // We change the locality and push it down the tree whenever we detect
 // a motion and the motion type enforces a locality change. We pass the
-// locality type by m_bytearray_value instead of referance to avoid locality changes
+// locality type by value instead of referance to avoid locality changes
 // affect parent and sibling localities.
 void
 CUtils::ValidateCTEProducerConsumerLocality

@@ -47,7 +47,7 @@ namespace gpnaucrates
 	class CStatisticsUtils
 	{
 	private:
-		// MCV m_bytearray_value and its corresponding frequency, used for sorting MCVs
+		// MCV value and its corresponding frequency, used for sorting MCVs
 		struct SMcvPair
 		{
 			// MCV datum

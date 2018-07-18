@@ -45,7 +45,7 @@ using namespace gpnaucrates;
 //		CTranslatorExprToDXLUtils::PdxlnInt4Const
 //
 //	@doc:
-// 		Construct a scalar const m_bytearray_value expression for the given INT m_bytearray_value
+// 		Construct a scalar const value expression for the given INT value
 //
 //---------------------------------------------------------------------------
 CDXLNode *
@@ -72,7 +72,7 @@ CTranslatorExprToDXLUtils::PdxlnInt4Const
 //		CTranslatorExprToDXLUtils::PdxlnBoolConst
 //
 //	@doc:
-// 		Construct a scalar const m_bytearray_value expression for the given BOOL m_bytearray_value
+// 		Construct a scalar const value expression for the given BOOL value
 //
 //---------------------------------------------------------------------------
 CDXLNode *
@@ -226,7 +226,7 @@ CTranslatorExprToDXLUtils::PdxlnPartialScanTest
 	
 	if (pcnstr->FContradiction())
 	{
-		return PdxlnBoolConst(mp, md_accessor, false /*m_bytearray_value*/);
+		return PdxlnBoolConst(mp, md_accessor, false /*value*/);
 	}
 	
 	switch (pcnstr->Ect())
@@ -382,7 +382,7 @@ CTranslatorExprToDXLUtils::PdxlnPropagationExpressionForPartConstraints
 	
 	GPOS_ASSERT(2 == pdxlnScalarLeafIfStmt->Arity());
 	
-	// add a dummy m_bytearray_value for the top and bottom level else cases
+	// add a dummy value for the top and bottom level else cases
 	const IMDType *pmdtypeVoid = md_accessor->RetrieveType(mdid_return_type);
 	CDXLDatum *dxl_datum = pmdtypeVoid->GetDXLDatumNull(mp);
 	CDXLNode *pdxlnNullConst = GPOS_NEW(mp) CDXLNode(mp, GPOS_NEW(mp) CDXLScalarConstValue(mp, dxl_datum));
@@ -609,7 +609,7 @@ CTranslatorExprToDXLUtils::PdxlnPartialScanTestRange
 
 		CDXLDatum *dxl_datum = GetDatumVal(mp, md_accessor, datum);
 		CDXLNode *pdxlnScalar = GPOS_NEW(mp) CDXLNode(mp, GPOS_NEW(mp) CDXLScalarConstValue(mp, dxl_datum));
-		// TODO: what if part key type is varchar, the m_bytearray_value type is text?
+		// TODO: what if part key type is varchar, the value type is text?
 		const IMDType *pmdtype = md_accessor->RetrieveType(pmdidPartKeyType);
 		IMDId *result_type_mdid = pmdtype->GetArrayTypeMdid();
 		result_type_mdid->AddRef();
@@ -1938,7 +1938,7 @@ CTranslatorExprToDXLUtils::PdxlnCombineBoolean
 //
 //	@doc:
 //		Build a hashmap based on a column array, where the key is the column
-//		and the m_bytearray_value is the index of that column in the array
+//		and the value is the index of that column in the array
 //
 //---------------------------------------------------------------------------
 ColRefToUlongMap *
@@ -2200,7 +2200,7 @@ CTranslatorExprToDXLUtils::PdxlddinfoSingleDistrKey
 //		CTranslatorExprToDXLUtils::FDirectDispatchable
 //
 //	@doc:
-//		Check if the given constant m_bytearray_value for a particular distribution column
+//		Check if the given constant value for a particular distribution column
 // 		can be used to identify which segment to direct dispatch to.
 //
 //---------------------------------------------------------------------------
@@ -2217,10 +2217,10 @@ CTranslatorExprToDXLUtils::FDirectDispatchable
 	IMDId *pmdidDatum = dxl_datum->MDId();
 	IMDId *pmdidDistrCol = pcrDistrCol->RetrieveType()->MDId();
 
-	// since all integer values are up-casted to int64, the hash m_bytearray_value will be
+	// since all integer values are up-casted to int64, the hash value will be
 	// consistent. If either the constant or the distribution column are
 	// not integers, then their datatypes must be identical to ensure that
-	// the hash m_bytearray_value of the constant will point to the right segment.
+	// the hash value of the constant will point to the right segment.
 	BOOL fBothInt = CUtils::FIntType(pmdidDistrCol) && CUtils::FIntType(pmdidDatum);
 
 	return fBothInt || (pmdidDatum->Equals(pmdidDistrCol));

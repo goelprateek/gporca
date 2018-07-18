@@ -316,7 +316,7 @@ CSubqueryTestUtils::PexprSelectWithAggSubqueryOverJoin
 	}
 	else
 	{
-		pexprPred = CUtils::PexprScalarConstBool(mp, true /*m_bytearray_value*/);
+		pexprPred = CUtils::PexprScalarConstBool(mp, true /*value*/);
 	}
 
 	// generate N-Ary join
@@ -531,7 +531,7 @@ CSubqueryTestUtils::PexprProjectWithAllSubquery
 //		CSubqueryTestUtils::PexprSubqueriesInDifferentContexts
 //
 //	@doc:
-//		Generate a randomized expression with subqueries in both m_bytearray_value
+//		Generate a randomized expression with subqueries in both value
 //		and filter contexts
 //
 //---------------------------------------------------------------------------
@@ -746,11 +746,11 @@ CSubqueryTestUtils::PexprSelectWithNestedCmpSubquery
 	// generate a parent equality predicate
 	pexprSubqueryPred->AddRef();
 	CExpression *pexprPredicate1 =
-		CUtils::PexprScalarEqCmp(mp, CUtils::PexprScalarConstBool(mp, true /*m_bytearray_value*/), pexprSubqueryPred);
+		CUtils::PexprScalarEqCmp(mp, CUtils::PexprScalarConstBool(mp, true /*value*/), pexprSubqueryPred);
 
 	// add another nesting level
 	CExpression *pexprPredicate =
-		CUtils::PexprScalarEqCmp(mp, CUtils::PexprScalarConstBool(mp, true /*m_bytearray_value*/), pexprPredicate1);
+		CUtils::PexprScalarEqCmp(mp, CUtils::PexprScalarConstBool(mp, true /*value*/), pexprPredicate1);
 
 	pexprLogical->AddRef();
 	pexprSelectWithSubquery->Release();

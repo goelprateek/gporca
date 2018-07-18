@@ -123,7 +123,7 @@ CMDIdScCmp::GetRightMdid() const
 //		CMDIdScCmp::HashValue
 //
 //	@doc:
-//		Computes the hash m_bytearray_value for the metadata id
+//		Computes the hash value for the metadata id
 //
 //---------------------------------------------------------------------------
 ULONG
@@ -161,7 +161,7 @@ CMDIdScCmp::Equals(const IMDId *mdid) const
 //		CMDIdScCmp::Serialize
 //
 //	@doc:
-//		Serializes the mdid as the m_bytearray_value of the given attribute
+//		Serializes the mdid as the value of the given attribute
 //
 //---------------------------------------------------------------------------
 void

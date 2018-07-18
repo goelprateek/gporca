@@ -102,7 +102,7 @@ namespace gpos
 			return NULL;
 		}
 
-		// current m_bytearray_value
+		// current value
 		const T *
 		Value() const
 		{

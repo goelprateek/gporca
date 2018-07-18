@@ -87,7 +87,7 @@ namespace gpopt
 			// whether or not we are optimizing a DML query
 			BOOL m_fDMLQuery;
 
-			// m_bytearray_value for the first valid part id
+			// value for the first valid part id
 			static
 			ULONG m_ulFirstValidPartId;
 

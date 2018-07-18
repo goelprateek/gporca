@@ -51,7 +51,7 @@ namespace gpmd
 
 		INT m_type_modifier;
 
-		// is NULL an allowed m_bytearray_value for the attribute
+		// is NULL an allowed value for the attribute
 		BOOL m_is_nullable;
 
 		// is column dropped
@@ -60,7 +60,7 @@ namespace gpmd
 		// length of the column
 		ULONG m_length;
 
-		// default m_bytearray_value expression
+		// default value expression
 		gpdxl::CDXLNode *m_dxl_default_val;
 
 		// private copy ctor

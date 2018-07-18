@@ -7,7 +7,7 @@
 //
 //	@doc:
 //		Class for representing DXL CoerceViaIO operation,
-//		the operator captures coercing a m_bytearray_value from one type to another, by
+//		the operator captures coercing a value from one type to another, by
 //		calling the output function of the argument type, and passing the
 //		result to the input function of the result type.
 //

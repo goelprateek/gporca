@@ -131,7 +131,7 @@ CStatisticsUtils::TransformMCVToHist(IMemoryPool *mp,
 		mcv_pairs->Append(mcv_pair);
 	}
 
-	// sort the MCV m_bytearray_value-frequency pairs according to m_bytearray_value
+	// sort the MCV value-frequency pairs according to value
 	if (1 < num_mcv_values)
 	{
 		mcv_pairs->Sort(CStatisticsUtils::GetMcvPairCmpFunc);

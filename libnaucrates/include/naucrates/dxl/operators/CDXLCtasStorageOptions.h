@@ -45,10 +45,10 @@ namespace gpdxl
 			// option name
 			CWStringBase *m_str_name;
 
-			// option m_bytearray_value
+			// option value
 			CWStringBase *m_str_value;
 
-			// does this represent a NULL m_bytearray_value
+			// does this represent a NULL value
 			BOOL m_is_null;
 
 			// ctor
@@ -97,7 +97,7 @@ namespace gpdxl
 		// on commit action spec
 		ECtasOnCommitAction m_ctas_on_commit_action;
 
-		// array of name-m_bytearray_value pairs of storage options
+		// array of name-value pairs of storage options
 		CDXLCtasOptionArray *m_ctas_storage_option_array;
 
 		// private copy ctor

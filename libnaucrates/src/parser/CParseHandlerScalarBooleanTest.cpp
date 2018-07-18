@@ -134,7 +134,7 @@ CParseHandlerScalarBooleanTest::EndElement(const XMLCh *const,  // element_uri,
 //		CParseHandlerScalarBooleanTest::GetDxlBooleanTestType
 //
 //	@doc:
-//		Parse the boolean test type from the attribute m_bytearray_value
+//		Parse the boolean test type from the attribute value
 //
 //---------------------------------------------------------------------------
 EdxlBooleanTestType

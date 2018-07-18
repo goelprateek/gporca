@@ -480,7 +480,7 @@ namespace gpopt
                 m_plinkmap = GPOS_NEW(mp) LinkMap(mp);
 
                 // insert dummy node as global root -- the only node with NULL payload
-                m_ptnRoot = GPOS_NEW(mp) CTreeNode(mp, 0 /* ulCounter */, NULL /* m_bytearray_value */);
+                m_ptnRoot = GPOS_NEW(mp) CTreeNode(mp, 0 /* ulCounter */, NULL /* value */);
             }
 			
 			// dtor

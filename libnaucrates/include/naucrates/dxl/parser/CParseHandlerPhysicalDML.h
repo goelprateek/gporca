@@ -76,7 +76,7 @@ namespace gpdxl
 						const XMLCh *const element_qname		// element's qname
 		);
 
-		// parse the dml type from the attribute m_bytearray_value
+		// parse the dml type from the attribute value
 		static EdxlDmlType GetDmlOpType(const XMLCh *xmlszDmlType);
 
 	public:

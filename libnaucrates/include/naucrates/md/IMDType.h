@@ -132,7 +132,7 @@ namespace gpmd
 		// type length
 		virtual ULONG Length() const = 0;
 
-		// is type passed by m_bytearray_value
+		// is type passed by value
 		virtual BOOL IsPassedByValue() const = 0;
 
 		// return the null constant for this type
@@ -145,7 +145,7 @@ namespace gpmd
 		// generate the DXL datum from IDatum
 		virtual CDXLDatum *GetDatumVal(IMemoryPool *mp, IDatum *datum) const = 0;
 
-		// generate the DXL datum representing null m_bytearray_value
+		// generate the DXL datum representing null value
 		virtual CDXLDatum *GetDXLDatumNull(IMemoryPool *mp) const = 0;
 
 		// is type an ambiguous one? e.g., AnyElement in GPDB

@@ -81,7 +81,7 @@ namespace gpos
 		}
 
 		// the following functions are hidden since they involve
-		// (void *) key/m_bytearray_value data types; the actual types are defined
+		// (void *) key/value data types; the actual types are defined
 		// as template parameters in the child class CCacheAccessor
 
 		// inserts a new object into the cache

@@ -64,7 +64,7 @@ CMDTypeBoolGPDB::CMDTypeBoolGPDB(IMemoryPool *mp) : m_mp(mp)
 
 	GPOS_ASSERT(GPDB_BOOL_OID == CMDIdGPDB::CastMdid(m_mdid)->Oid());
 	m_datum_null = GPOS_NEW(mp)
-		CDatumBoolGPDB(m_mdid, false /* m_bytearray_value */, true /* is_null */);
+		CDatumBoolGPDB(m_mdid, false /* value */, true /* is_null */);
 }
 
 //---------------------------------------------------------------------------
@@ -293,7 +293,7 @@ CMDTypeBoolGPDB::GetDXLOpScConst(IMemoryPool *mp, IDatum *datum) const
 //		CMDTypeBoolGPDB::GetDXLDatumNull
 //
 //	@doc:
-// 		Generate dxl datum representing a null m_bytearray_value
+// 		Generate dxl datum representing a null value
 //
 //---------------------------------------------------------------------------
 CDXLDatum *

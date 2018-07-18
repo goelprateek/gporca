@@ -398,7 +398,7 @@ CExpressionPreprocessor::PexprRemoveSuperfluousLimit
 //		should be equivalent to:
 //			select * from t where a < all (select i from s order by j limit 1);
 //		after removing the outer reference (b) from the order by clause of the
-//		subquery (all tuples in the subquery have the same m_bytearray_value for the outer ref)
+//		subquery (all tuples in the subquery have the same value for the outer ref)
 //
 //		Similarly,
 //			select * from t where a in (select count(i) from s group by j, b);
@@ -1649,7 +1649,7 @@ CExpressionPreprocessor::AddPredsToCTEProducers
 		ULONG ulConsumers = pcteinfo->UlConsumers(ulCTEId);
 		CExpressionArray *pdrgpexpr = const_cast<CExpressionArray *>(mi.Value());
 
-		// skip the propagation of predicate contains volatile function e.g. random() (m_bytearray_value change within a scan)
+		// skip the propagation of predicate contains volatile function e.g. random() (value change within a scan)
 		if (CPredicateUtils::FContainsVolatileFunction(pdrgpexpr))
 		{
 			continue;

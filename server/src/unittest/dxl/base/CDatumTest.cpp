@@ -129,12 +129,12 @@ CDatumTest::EresUnittest_Basics()
 				
 				if (mappable_datum->IsDatumMappableToLINT())
 				{
-					os << "LINT stats m_bytearray_value: " << mappable_datum->GetLINTMapping() << std::endl;
+					os << "LINT stats value: " << mappable_datum->GetLINTMapping() << std::endl;
 				}
 	
 				if (mappable_datum->IsDatumMappableToDouble())
 				{
-					os << "Double stats m_bytearray_value: " << mappable_datum->GetDoubleMapping() << std::endl;
+					os << "Double stats value: " << mappable_datum->GetDoubleMapping() << std::endl;
 				}
 			}
 			
@@ -236,7 +236,7 @@ CDatumTest::CreateBoolDatum
 	BOOL is_null
 	)
 {
-	return GPOS_NEW(mp) CDatumBoolGPDB(CTestUtils::m_sysidDefault, false /*m_bytearray_value*/, is_null);
+	return GPOS_NEW(mp) CDatumBoolGPDB(CTestUtils::m_sysidDefault, false /*value*/, is_null);
 }
 
 //---------------------------------------------------------------------------
@@ -265,8 +265,8 @@ CDatumTest::CreateGenericDatum
 							val,
 							5 /*length*/,
 							is_null,
-							0 /*m_bytearray_value*/,
-							0/*m_bytearray_value*/
+							0 /*value*/,
+							0/*value*/
 							);
 }
 

@@ -208,7 +208,7 @@ namespace gpmd
 		// generate the DXL datum from IDatum
 		virtual CDXLDatum *GetDatumVal(IMemoryPool *mp, IDatum *datum) const;
 
-		// generate the DXL datum representing null m_bytearray_value
+		// generate the DXL datum representing null value
 		virtual CDXLDatum *GetDXLDatumNull(IMemoryPool *mp) const;
 
 		// generate the DXL scalar constant from IDatum

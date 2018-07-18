@@ -48,10 +48,10 @@ namespace gpnaucrates
 		// upper bound of bucket
 		CPoint *m_bucket_upper_bound;
 
-		// is lower bound closed (does bucket include boundary m_bytearray_value)
+		// is lower bound closed (does bucket include boundary value)
 		BOOL m_is_lower_closed;
 
-		// is upper bound closed (does bucket includes boundary m_bytearray_value)
+		// is upper bound closed (does bucket includes boundary value)
 		BOOL m_is_upper_closed;
 
 		// frequency corresponding to bucket
@@ -138,14 +138,14 @@ namespace gpnaucrates
 			return m_bucket_upper_bound;
 		}
 
-		// is lower bound closed (does bucket includes boundary m_bytearray_value)
+		// is lower bound closed (does bucket includes boundary value)
 		BOOL
 		IsLowerClosed() const
 		{
 			return m_is_lower_closed;
 		}
 
-		// is upper bound closed (does bucket includes boundary m_bytearray_value)
+		// is upper bound closed (does bucket includes boundary value)
 		BOOL
 		IsUpperClosed() const
 		{

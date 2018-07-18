@@ -57,10 +57,10 @@ namespace gpopt
 			// determine if bit is set
 			BOOL Get(ULONG ulBit) const;
 			
-			// set given bit; return previous m_bytearray_value
+			// set given bit; return previous value
 			BOOL ExchangeSet(ULONG ulBit);
 						
-			// clear given bit; return previous m_bytearray_value
+			// clear given bit; return previous value
 			BOOL ExchangeClear(ULONG ulBit);
 
 		public:

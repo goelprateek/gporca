@@ -54,7 +54,7 @@ namespace gpopt
 					// param identifier
 					ULONG m_id;
 
-					// param m_bytearray_value
+					// param value
 					CDouble m_value;
 
 					// param lower bound
@@ -94,19 +94,19 @@ namespace gpopt
 						return m_id;
 					}
 
-					// return m_bytearray_value
+					// return value
 					CDouble Get() const
 					{
 						return m_value;
 					}
 
-					// return lower bound m_bytearray_value
+					// return lower bound value
 					CDouble GetLowerBoundVal() const
 					{
 						return m_lower_bound_val;
 					}
 
-					// return upper bound m_bytearray_value
+					// return upper bound value
 					CDouble GetUpperBoundVal() const
 					{
 						return m_upper_bound_val;

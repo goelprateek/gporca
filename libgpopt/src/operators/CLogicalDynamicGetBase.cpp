@@ -142,7 +142,7 @@ CLogicalDynamicGetBase::CLogicalDynamicGetBase
 	m_pdrgpdrgpcrPart = PdrgpdrgpcrCreatePartCols(mp, m_pdrgpcrOutput, m_ptabdesc->PdrgpulPart());
 	
 	// generate a constraint "true"
-	UlongToConstraintMap *phmulcnstr = CUtils::PhmulcnstrBoolConstOnPartKeys(mp, m_pdrgpdrgpcrPart, true /*m_bytearray_value*/);
+	UlongToConstraintMap *phmulcnstr = CUtils::PhmulcnstrBoolConstOnPartKeys(mp, m_pdrgpdrgpcrPart, true /*value*/);
 	CBitSet *pbsDefaultParts = CUtils::PbsAllSet(mp, m_pdrgpdrgpcrPart->Size());
 	m_pdrgpdrgpcrPart->AddRef();
 	m_part_constraint = GPOS_NEW(mp) CPartConstraint(mp, phmulcnstr, pbsDefaultParts, true /*is_unbounded*/, m_pdrgpdrgpcrPart);

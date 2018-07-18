@@ -62,9 +62,9 @@ namespace gpos
 	//	@doc:
 	//		Definition of cache;
 	//
-	//		Cache stores key-m_bytearray_value pairs of cached objects. Keys are hashed
+	//		Cache stores key-value pairs of cached objects. Keys are hashed
 	//		using a hashing function pointer pfuncHash. Key equality is determined
-	//		using a function pfuncEqual. The m_bytearray_value of a cached object contains
+	//		using a function pfuncEqual. The value of a cached object contains
 	//		object's key as member.
 	//
 	//		Cache API allows client to store, lookup, delete, and iterate over cached
@@ -107,7 +107,7 @@ namespace gpos
 		// quota of the cache in bytes; 0 means unlimited quota
 		ULLONG m_cache_quota;
 
-		// initial m_bytearray_value of gclock counter for new entries
+		// initial value of gclock counter for new entries
 		ULONG m_gclock_init_counter;
 
 		// what percent of the cache size to evict

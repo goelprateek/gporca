@@ -34,7 +34,7 @@ GPOS_CPL_ASSERT(sizeof(ULONG_PTR) == sizeof(void *));
 //		ExchangeAddUlongPtrWithInt
 //
 //	@doc:
-//		Atomic add function; returns original m_bytearray_value;
+//		Atomic add function; returns original value;
 //
 //		Note: it is the caller's responsibility to handle overflows;
 //
@@ -61,7 +61,7 @@ gpos::ExchangeAddUlongPtrWithInt(volatile ULONG_PTR *ul, INT i)
 //		ExchangeAddUllongWithUllong
 //
 //	@doc:
-//		Atomic add function; returns original m_bytearray_value;
+//		Atomic add function; returns original value;
 //
 //		Note: it is the caller's responsibility to handle overflows;
 //
@@ -82,8 +82,8 @@ gpos::ExchangeAddUllongWithUllong(volatile ULLONG *value, ULLONG inc)
 	static CSpinlockOS sLock;
 
 	sLock.Lock();
-	ULLONG original = *m_bytearray_value;
-	*m_bytearray_value += inc;
+	ULLONG original = *value;
+	*value += inc;
 	sLock.Unlock();
 	return original;
 #endif
@@ -97,7 +97,7 @@ gpos::ExchangeAddUllongWithUllong(volatile ULLONG *value, ULLONG inc)
 //
 //	@doc:
 //		Atomic exchange function for integers;
-//		if the stored m_bytearray_value is the same as the expected old m_bytearray_value, it is
+//		if the stored value is the same as the expected old value, it is
 //		replaced with the new one and the function returns true;
 //		else, it returns false;
 //
@@ -129,7 +129,7 @@ gpos::CompareSwap(volatile ULONG *dest_val, ULONG old_val, ULONG new_val)
 //
 //	@doc:
 //		Atomic exchange function for long integers;
-//		if the stored m_bytearray_value is the same as the expected old m_bytearray_value, it is
+//		if the stored value is the same as the expected old value, it is
 //		replaced with the new one and the function returns true;
 //		else, it returns false;
 //

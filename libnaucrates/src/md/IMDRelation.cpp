@@ -22,7 +22,7 @@ using namespace gpmd;
 //		IMDRelation::GetDistrPolicyStr
 //
 //	@doc:
-//		Return relation distribution policy as a string m_bytearray_value
+//		Return relation distribution policy as a string value
 //
 //---------------------------------------------------------------------------
 const CWStringConst *

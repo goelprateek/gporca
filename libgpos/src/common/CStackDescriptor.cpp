@@ -271,7 +271,7 @@ CStackDescriptor::AppendTrace(IOstream &os, ULONG depth) const
 //		CStackDescriptor::HashValue
 //
 //	@doc:
-//		Get hash m_bytearray_value for stored stack
+//		Get hash value for stored stack
 //
 //---------------------------------------------------------------------------
 ULONG

@@ -61,10 +61,10 @@ namespace gpdxl
 		// private copy ctor
 		CDXLWindowFrame(const CDXLWindowFrame &);
 
-		// scalar m_bytearray_value representing the boundary leading
+		// scalar value representing the boundary leading
 		CDXLNode *m_dxlnode_leading;
 
-		// scalar m_bytearray_value representing the boundary trailing
+		// scalar value representing the boundary trailing
 		CDXLNode *m_dxlnode_trailing;
 
 	public:

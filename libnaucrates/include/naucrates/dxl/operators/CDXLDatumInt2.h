@@ -39,7 +39,7 @@ namespace gpdxl
 	class CDXLDatumInt2 : public CDXLDatum
 	{
 	private:
-		// int2 m_bytearray_value
+		// int2 value
 		SINT m_val;
 
 		// private copy ctor
@@ -52,7 +52,7 @@ namespace gpdxl
 		// dtor
 		virtual ~CDXLDatumInt2(){};
 
-		// accessor of int m_bytearray_value
+		// accessor of int value
 		SINT Value() const;
 
 		// serialize the datum as the given element
@@ -65,7 +65,7 @@ namespace gpdxl
 			return CDXLDatum::EdxldatumInt2;
 		}
 
-		// is type passed by m_bytearray_value
+		// is type passed by value
 		virtual BOOL
 		IsPassedByValue() const
 		{

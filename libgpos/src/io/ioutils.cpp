@@ -536,7 +536,7 @@ FSimulateIOErrorInternal(INT error_no, const CHAR *file, ULONG line_num)
 //
 //	@doc:
 //		Inject I/O exception for functions
-//		whose returned m_bytearray_value type is INT
+//		whose returned value type is INT
 //
 //---------------------------------------------------------------------------
 BOOL
@@ -556,7 +556,7 @@ gpos::ioutils::SimulateIOError(INT *return_value, INT error_no, const CHAR *file
 //
 //	@doc:
 //		Inject I/O exception for functions
-//		whose returned m_bytearray_value type is CHAR*
+//		whose returned value type is CHAR*
 //
 //---------------------------------------------------------------------------
 BOOL

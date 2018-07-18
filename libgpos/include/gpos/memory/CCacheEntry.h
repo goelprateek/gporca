@@ -82,7 +82,7 @@ namespace gpos
 		// allocated memory pool to the cached object
 		IMemoryPool *m_mp;
 
-		// m_bytearray_value that needs to be cached
+		// value that needs to be cached
 		T m_val;
 
 		// true if this entry is marked for deletion
@@ -120,7 +120,7 @@ namespace gpos
 			return m_key;
 		}
 
-		// gets the m_bytearray_value of cached object
+		// gets the value of cached object
 		T
 		Val() const
 		{
@@ -148,21 +148,21 @@ namespace gpos
 			return m_deleted;
 		}
 
-		// get m_bytearray_value's ref-count
+		// get value's ref-count
 		ULONG
 		RefCount() const
 		{
 			return (ULONG) ptr<T>()(m_val)->RefCount();
 		}
 
-		// increments m_bytearray_value's ref-count
+		// increments value's ref-count
 		void
 		IncRefCount()
 		{
 			ptr<T>()(m_val)->AddRef();
 		}
 
-		//decrements m_bytearray_value's ref-count
+		//decrements value's ref-count
 		void
 		DecRefCount()
 		{
@@ -183,7 +183,7 @@ namespace gpos
 			m_g_clock_counter--;
 		}
 
-		// returns the current m_bytearray_value of the gclock counter
+		// returns the current value of the gclock counter
 		ULONG
 		GetGClockCounter()
 		{

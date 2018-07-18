@@ -87,7 +87,7 @@ CParseHandlerScalarWindowFrameEdge::StartElement(const XMLCh *const element_uri,
 			GPOS_RAISE(gpdxl::ExmaDXL, gpdxl::ExmiDXLUnexpectedTag, str->GetBuffer());
 		}
 
-		// install a scalar element parser for parsing the frame edge m_bytearray_value
+		// install a scalar element parser for parsing the frame edge value
 		CParseHandlerBase *child_parse_handler = CParseHandlerFactory::GetParseHandler(
 			m_mp, CDXLTokens::XmlstrToken(EdxltokenScalar), m_parse_handler_mgr, this);
 		m_parse_handler_mgr->ActivateParseHandler(child_parse_handler);

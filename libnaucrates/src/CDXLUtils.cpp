@@ -891,7 +891,7 @@ CDXLUtils::SerializeQuery(IMemoryPool *mp,
 //		CDXLUtils::SerializeULLONG
 //
 //	@doc:
-//		Serialize a ULLONG m_bytearray_value
+//		Serialize a ULLONG value
 //
 //---------------------------------------------------------------------------
 CWStringDynamic *

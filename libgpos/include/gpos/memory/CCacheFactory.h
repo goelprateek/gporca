@@ -22,7 +22,7 @@
 #include "gpos/memory/CAutoMemoryPool.h"
 #include "gpos/memory/CCache.h"
 
-// default initial m_bytearray_value of the gclock counter during insertion of an entry
+// default initial value of the gclock counter during insertion of an entry
 #define CCACHE_GCLOCK_INIT_COUNTER 3
 
 using namespace gpos;

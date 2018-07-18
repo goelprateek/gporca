@@ -81,7 +81,7 @@ CParseHandlerCtasStorageOptions::StartElement(const XMLCh *const,  // element_ur
 	else if (0 == XMLString::compareString(CDXLTokens::XmlstrToken(EdxltokenCTASOption),
 										   element_local_name))
 	{
-		// parse option name and m_bytearray_value
+		// parse option name and value
 		ULONG ctas_option_type = CDXLOperatorFactory::ExtractConvertAttrValueToUlong(
 			m_parse_handler_mgr->GetDXLMemoryManager(),
 			attrs,

@@ -354,7 +354,7 @@ CParseHandlerMDRelation::ParseRelationAttributes(const Attributes &attrs,
 		EdxltokenNumLeafPartitions,
 		dxl_token_element,
 		true /* optional */,
-		0 /* default m_bytearray_value */);
+		0 /* default value */);
 }
 
 //---------------------------------------------------------------------------

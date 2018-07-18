@@ -609,7 +609,7 @@ CParseHandlerFactory::CreateMDColParseHandler(IMemoryPool *mp,
 		CParseHandlerMetadataColumn(mp, parse_handler_mgr, parse_handler_root);
 }
 
-// creates a parse handler for parsing a a default m_bytearray_value for a column
+// creates a parse handler for parsing a a default value for a column
 CParseHandlerBase *
 CParseHandlerFactory::CreateColDefaultValExprParseHandler(IMemoryPool *mp,
 														  CParseHandlerManager *parse_handler_mgr,

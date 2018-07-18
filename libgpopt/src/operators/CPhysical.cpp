@@ -87,7 +87,7 @@ CPhysical::UpdateOptRequests
 	// update property requests
 	m_rgulOptReqs[ulPropIndex] = ulRequests;
 
-	// compute new m_bytearray_value of total requests
+	// compute new value of total requests
 	ULONG ulOptReqs = 1;
 	for (ULONG ul = 0; ul < GPOPT_PLAN_PROPS; ul++)
 	{

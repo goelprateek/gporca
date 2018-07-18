@@ -33,16 +33,16 @@ namespace gpos
 	class CAutoExceptionStack : public CStackObject
 	{
 	private:
-		// address of the global exception stack m_bytearray_value
+		// address of the global exception stack value
 		void **m_global_exception_stack;
 
-		// m_bytearray_value of exception stack when object is created
+		// value of exception stack when object is created
 		void *m_exception_stack;
 
-		// address of the global error context stack m_bytearray_value
+		// address of the global error context stack value
 		void **m_global_error_context_stack;
 
-		// m_bytearray_value of error context stack when object is created
+		// value of error context stack when object is created
 		void *m_error_context_stack;
 
 		// private copy ctor

@@ -99,7 +99,7 @@ CEvent::Signal()
 	// check if anyone is waiting
 	if (0 < m_num_waiters)
 	{
-		// the condition variable is initialized - ignore returned m_bytearray_value
+		// the condition variable is initialized - ignore returned value
 		(void) pthread::CondSignal(&m_cond);
 
 		m_num_signals++;
@@ -125,7 +125,7 @@ CEvent::Broadcast()
 	// check if anyone is waiting
 	if (0 < m_num_waiters)
 	{
-		// the condition variable is initialized - ignore returned m_bytearray_value
+		// the condition variable is initialized - ignore returned value
 		(void) pthread::CondBroadcast(&m_cond);
 
 		m_num_total_broadcasts++;

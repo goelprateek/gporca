@@ -8,7 +8,7 @@
 //	@doc:
 //		Scalar MinMax operator
 //
-//		This returns the minimum (or maximum) m_bytearray_value from a list of any number of
+//		This returns the minimum (or maximum) value from a list of any number of
 //		scalar expressions. NULL values in the list are ignored. The result will
 //		be NULL only if all the expressions evaluate to NULL.
 //---------------------------------------------------------------------------

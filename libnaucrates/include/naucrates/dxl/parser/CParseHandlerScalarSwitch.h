@@ -40,7 +40,7 @@ namespace gpdxl
 		// was the arg child seen
 		BOOL m_arg_processed;
 
-		// was the default m_bytearray_value seen
+		// was the default value seen
 		BOOL m_default_val_processed;
 
 		// private copy ctor

@@ -401,7 +401,7 @@ CSubqueryHandler::FRemoveScalarSubquery
 		// all other agg functions produce 'NULL' if their input is empty
 
 		// for subqueries of the form (SELECT 'abc' || count(*) from X where x.i=outer.i),
-		// we first create a LeftOuterApply expression to compute 'count' m_bytearray_value and replace NULL
+		// we first create a LeftOuterApply expression to compute 'count' value and replace NULL
 		// count values with '0' in the output of LOA expression,
 		// we then pull the Project node below subquery to be above the LOA expression
 
@@ -697,7 +697,7 @@ CSubqueryHandler::FCreateOuterApplyForScalarSubquery
 
 		if (fGeneratedByQuantified)
 		{
-			// we produce Null if count(*) m_bytearray_value is -1,
+			// we produce Null if count(*) value is -1,
 			// this case can only occur when transforming quantified subquery to
 			// count(*) subquery using CXformSimplifySubquery
 			pmdidInt8->AddRef();
@@ -706,14 +706,14 @@ CSubqueryHandler::FCreateOuterApplyForScalarSubquery
 					(
 					mp,
 					GPOS_NEW(mp) CScalarIf(mp, pmdidInt8),
-					CUtils::PexprScalarEqCmp(mp, pcrComputed, CUtils::PexprScalarConstInt8(mp, -1 /*m_bytearray_value*/)),
-					CUtils::PexprScalarConstInt8(mp, 0 /*m_bytearray_value*/, true /*is_null*/),
+					CUtils::PexprScalarEqCmp(mp, pcrComputed, CUtils::PexprScalarConstInt8(mp, -1 /*value*/)),
+					CUtils::PexprScalarConstInt8(mp, 0 /*value*/, true /*is_null*/),
 					pexprCoalesce
 					);
 		}
 		else
 		{
-			// count(*) m_bytearray_value can either be NULL (if produced by a lower outer join), or some m_bytearray_value >= 0,
+			// count(*) value can either be NULL (if produced by a lower outer join), or some value >= 0,
 			// we return coalesce(count(*), 0) in this case
 
 			*ppexprResidualScalar = pexprCoalesce;
@@ -859,7 +859,7 @@ CSubqueryHandler::FCreateGrpCols
 //			of NULL values in R.i
 //
 //		- After the Gb, the optimizer generates an If operator that checks the values
-//		of the two computed aggregates (c1 and c2) and determines what m_bytearray_value
+//		of the two computed aggregates (c1 and c2) and determines what value
 //		(TRUE/FALSE/NULL) should be generated for each T tuple based on the IN subquery
 //		semantics described above.
 //
@@ -1040,15 +1040,15 @@ CSubqueryHandler::FCreateCorrelatedApplyForQuantifiedSubquery
 		{
 			*ppexprNewOuter = CUtils::PexprLogicalApply<CLogicalLeftAntiSemiCorrelatedApplyNotIn>(mp, pexprOuter, pexprResult, colref, eopidSubq, pexprPredicate);
 		}
-		*ppexprResidualScalar = CUtils::PexprScalarConstBool(mp, true /*m_bytearray_value*/);
+		*ppexprResidualScalar = CUtils::PexprScalarConstBool(mp, true /*value*/);
 
 		return true;
 	}
 
-	// subquery occurs in a m_bytearray_value context or disjunction, we need to create an outer apply expression
+	// subquery occurs in a value context or disjunction, we need to create an outer apply expression
 	// add a project node with constant true to be used as subplan place holder
 	CExpression *pexprProjectConstTrue =
-		CUtils::PexprAddProjection(mp, pexprResult, CUtils::PexprScalarConstBool(mp, true /*m_bytearray_value*/));
+		CUtils::PexprAddProjection(mp, pexprResult, CUtils::PexprScalarConstBool(mp, true /*value*/));
 	CColRef *pcrBool = CScalarProjectElement::PopConvert((*(*pexprProjectConstTrue)[1])[0]->Pop())->Pcr();
 
 	// add the created column and subquery column to required inner columns
@@ -1109,15 +1109,15 @@ CSubqueryHandler::FCreateCorrelatedApplyForExistentialSubquery
 		{
 			*ppexprNewOuter = CUtils::PexprLogicalApply<CLogicalLeftAntiSemiCorrelatedApply>(mp, pexprOuter, pexprInner, colref, eopidSubq);
 		}
-		*ppexprResidualScalar = CUtils::PexprScalarConstBool(mp, true /*m_bytearray_value*/);
+		*ppexprResidualScalar = CUtils::PexprScalarConstBool(mp, true /*value*/);
 
 		return true;
 	}
 
-	// subquery occurs in a m_bytearray_value context or disjunction, we need to create an outer apply expression
+	// subquery occurs in a value context or disjunction, we need to create an outer apply expression
 	// add a project node with constant true to be used as subplan place holder
 	CExpression *pexprProjectConstTrue =
-		CUtils::PexprAddProjection(mp, pexprInner, CUtils::PexprScalarConstBool(mp, true /*m_bytearray_value*/));
+		CUtils::PexprAddProjection(mp, pexprInner, CUtils::PexprScalarConstBool(mp, true /*value*/));
 	CColRef *pcrBool = CScalarProjectElement::PopConvert((*(*pexprProjectConstTrue)[1])[0]->Pop())->Pcr();
 
 	// add the created column and subquery column to required inner columns
@@ -1268,7 +1268,7 @@ CSubqueryHandler::FRemoveAnySubquery
 		GPOS_ASSERT(EsqctxtFilter == esqctxt);
 
 		*ppexprNewOuter = CUtils::PexprLogicalApply<CLogicalLeftSemiApplyIn>(mp, pexprOuter, pexprSelect, colref, eopidSubq);
-		*ppexprResidualScalar = CUtils::PexprScalarConstBool(mp, true /*m_bytearray_value*/);
+		*ppexprResidualScalar = CUtils::PexprScalarConstBool(mp, true /*value*/);
 	}
 
 	return fSuccess;
@@ -1381,7 +1381,7 @@ CSubqueryHandler::FRemoveAllSubquery
 		CExpression *pexprResult = NULL;
 		CExpression *pexprPredicate = PexprSubqueryPred(pexprInner, pexprSubquery, &pexprResult);
 
-		*ppexprResidualScalar = CUtils::PexprScalarConstBool(mp, true /*m_bytearray_value*/);
+		*ppexprResidualScalar = CUtils::PexprScalarConstBool(mp, true /*value*/);
 		*ppexprNewOuter = CUtils::PexprLogicalApply<CLogicalLeftAntiSemiCorrelatedApplyNotIn>(mp, pexprOuter, pexprResult, colref, eopidSubq, pexprPredicate);
 
 		return fSuccess;
@@ -1451,7 +1451,7 @@ CSubqueryHandler::AddProjectNode
 	CExpression *pexprProjected = NULL;
 	if (CUtils::FExistentialSubquery(pexprSubquery->Pop()))
 	{
-		pexprProjected = CUtils::PexprScalarConstBool(mp, true /*m_bytearray_value*/);
+		pexprProjected = CUtils::PexprScalarConstBool(mp, true /*value*/);
 	}
 	else
 	{
@@ -1525,7 +1525,7 @@ CSubqueryHandler::PexprScalarIf
 	mdid->AddRef();
 
 	// if sum(null indicators) = count(*), all joins involved null values from inner side,
-	// in this case, we need to produce a null m_bytearray_value in the join result,
+	// in this case, we need to produce a null value in the join result,
 	// otherwise we examine nullness of sum to see if a full join result was produced by outer join
 
 	CExpression *pexprScalarIf =
@@ -1534,7 +1534,7 @@ CSubqueryHandler::PexprScalarIf
 			mp,
 			GPOS_NEW(mp) CScalarIf(mp, mdid),
 			pexprEquality,
-			CUtils::PexprScalarConstBool(mp, false /*m_bytearray_value*/, true /*is_null*/),
+			CUtils::PexprScalarConstBool(mp, false /*value*/, true /*is_null*/),
 			GPOS_NEW(mp) CExpression
 				(
 				mp,
@@ -1545,7 +1545,7 @@ CSubqueryHandler::PexprScalarIf
 				)
 			);
 
-	// add an outer ScalarIf to check nullness of outer m_bytearray_value
+	// add an outer ScalarIf to check nullness of outer value
 	CExpression *pexprScalar = (*pexprSubquery)[1];
 	pexprScalar->AddRef();
 	mdid->AddRef();
@@ -1555,7 +1555,7 @@ CSubqueryHandler::PexprScalarIf
 					GPOS_NEW(mp) CScalarIf(mp, mdid),
 					CUtils::PexprIsNotNull(mp, pexprScalar),
 					pexprScalarIf,
-					CUtils::PexprScalarConstBool(mp, false /*m_bytearray_value*/, true /*is_null*/)
+					CUtils::PexprScalarConstBool(mp, false /*value*/, true /*is_null*/)
 					);
 
 }
@@ -1650,7 +1650,7 @@ CSubqueryHandler::FRemoveExistentialSubquery
 		{
 			*ppexprNewOuter = CUtils::PexprLogicalApply<CLogicalLeftAntiSemiApply>(mp, pexprOuter, pexprInner, colref, op_id);
 		}
-		*ppexprResidualScalar = CUtils::PexprScalarConstBool(mp, true /*m_bytearray_value*/);
+		*ppexprResidualScalar = CUtils::PexprScalarConstBool(mp, true /*value*/);
 	}
 
 	return fSuccess;

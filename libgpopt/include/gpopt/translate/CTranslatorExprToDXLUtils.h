@@ -267,7 +267,7 @@ namespace gpopt
 				CConstraint *pcnstr
 				);
 			
-			// check if the given constant m_bytearray_value for a particular distribution column can be used
+			// check if the given constant value for a particular distribution column can be used
 			// to identify which segment to direct dispatch to.
 			static
 			BOOL FDirectDispatchable(const CColRef *pcrDistrCol, const CDXLDatum *dxl_datum);
@@ -278,11 +278,11 @@ namespace gpopt
 			static
 			CDXLPhysicalProperties *GetProperties(IMemoryPool *mp);
 
-			// create a scalar const m_bytearray_value expression for the given bool m_bytearray_value
+			// create a scalar const value expression for the given bool value
 			static
 			CDXLNode *PdxlnBoolConst(IMemoryPool *mp, CMDAccessor *md_accessor, BOOL value);
 
-			// create a scalar const m_bytearray_value expression for the given int4 m_bytearray_value
+			// create a scalar const value expression for the given int4 value
 			static
 			CDXLNode *PdxlnInt4Const(IMemoryPool *mp, CMDAccessor *md_accessor, INT val);
 
@@ -518,7 +518,7 @@ namespace gpopt
 				);
 
 			// build hashmap based on a column array, where the key is the column
-			// and the m_bytearray_value is the index of that column in the array
+			// and the value is the index of that column in the array
 			static
 			ColRefToUlongMap *PhmcrulColIndex(IMemoryPool *mp, CColRefArray *colref_array);
 			

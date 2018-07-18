@@ -55,7 +55,7 @@ namespace gpopt
 					// metadata accessor
 					CMDAccessor *m_pmda;
 
-					// dummy m_bytearray_value to return
+					// dummy value to return
 					INT m_val;
 
 					// private copy ctor
@@ -80,7 +80,7 @@ namespace gpopt
 					~CDummyConstDXLNodeEvaluator()
 					{}
 
-					// evaluate the given DXL node representing an expression and returns a dummy m_bytearray_value as DXL
+					// evaluate the given DXL node representing an expression and returns a dummy value as DXL
 					virtual
 					gpdxl::CDXLNode *PdxlnEvaluateExpr(const gpdxl::CDXLNode *pdxlnExpr);
 
@@ -92,7 +92,7 @@ namespace gpopt
 					}
 			};
 
-			// m_bytearray_value  which the dummy constant evaluator should produce
+			// value  which the dummy constant evaluator should produce
 			static
 			const INT m_iDefaultEvalValue;
 

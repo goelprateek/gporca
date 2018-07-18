@@ -91,7 +91,7 @@ CDatumBoolGPDB::~CDatumBoolGPDB()
 //		CDatumBoolGPDB::MakeCopyOfValue
 //
 //	@doc:
-//		Accessor of boolean m_bytearray_value
+//		Accessor of boolean value
 //
 //---------------------------------------------------------------------------
 BOOL

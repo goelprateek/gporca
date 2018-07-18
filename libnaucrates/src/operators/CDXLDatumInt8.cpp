@@ -45,7 +45,7 @@ CDXLDatumInt8::CDXLDatumInt8(IMemoryPool *mp, IMDId *mdid_type, BOOL is_null, LI
 //		CDXLDatumInt8::Value
 //
 //	@doc:
-//		Return the long int m_bytearray_value
+//		Return the long int value
 //
 //---------------------------------------------------------------------------
 LINT

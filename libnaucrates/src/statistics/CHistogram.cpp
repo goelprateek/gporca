@@ -1094,7 +1094,7 @@ CHistogram::MakeNDVBasedJoinHistogramEqualityFilter(IMemoryPool *mp,
 		freq_remain2 = freq_remain2 - null_freq2;
 	}
 
-	// the estimated number of distinct m_bytearray_value is the minimum of the non-null
+	// the estimated number of distinct value is the minimum of the non-null
 	// distinct values of the two inputs.
 	distinct_remaining = std::min(NDVs1, NDVs2);
 
@@ -1212,7 +1212,7 @@ CHistogram::ComputeJoinNDVRemainInfo(const CHistogram *histogram1,
 		num_distinct_non_null2 = num_distinct_non_null2 - 1.0;
 	}
 
-	// the estimated final number of distinct m_bytearray_value for the join is the minimum of the non-null
+	// the estimated final number of distinct value for the join is the minimum of the non-null
 	// distinct values of the two inputs. This follows the principle of used to estimate join
 	// scaling factor -- defined as the maximum NDV of the two inputs
 	CDouble final_join_NDVs = std::min(num_distinct_non_null1, num_distinct_non_null2);
@@ -1797,12 +1797,12 @@ CHistogram::GetRandomBucketIndex(ULONG *seed) const
 		CBucket *bucket = (*m_histogram_buckets)[ul];
 		accumulated_freq = accumulated_freq + bucket->GetFrequency();
 
-		// we compare generated random m_bytearray_value with accumulated frequency,
+		// we compare generated random value with accumulated frequency,
 		// this will result in picking a bucket based on its frequency,
 		// example: bucket freq {0.1, 0.3, 0.6}
-		//			random m_bytearray_value in [0,0.1] --> pick bucket 1
-		//			random m_bytearray_value in [0.1,0.4] --> pick bucket 2
-		//			random m_bytearray_value in [0.4,1.0] --> pick bucket 3
+		//			random value in [0,0.1] --> pick bucket 1
+		//			random value in [0.1,0.4] --> pick bucket 2
+		//			random value in [0.4,1.0] --> pick bucket 3
 
 		if (rand_val <= accumulated_freq)
 		{
@@ -1814,7 +1814,7 @@ CHistogram::GetRandomBucketIndex(ULONG *seed) const
 }
 
 // estimate data skew by sampling histogram buckets,
-// the estimate m_bytearray_value is >= 1.0, where 1.0 indicates no skew
+// the estimate value is >= 1.0, where 1.0 indicates no skew
 //
 // skew is estimated by computing the second and third moments of
 // sample distribution: for a sample of size n, where x_bar is sample mean,

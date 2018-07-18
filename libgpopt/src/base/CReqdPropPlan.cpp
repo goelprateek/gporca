@@ -344,7 +344,7 @@ CReqdPropPlan::PpfmCombineDerived
 //		CReqdPropPlan::InitReqdPartitionPropagation
 //
 //	@doc:
-//		Compute hash m_bytearray_value using required columns and required sort order
+//		Compute hash value using required columns and required sort order
 //
 //---------------------------------------------------------------------------
 void
@@ -531,7 +531,7 @@ CReqdPropPlan::Equals
 //		CReqdPropPlan::HashValue
 //
 //	@doc:
-//		Compute hash m_bytearray_value using required columns and required sort order
+//		Compute hash value using required columns and required sort order
 //
 //---------------------------------------------------------------------------
 ULONG

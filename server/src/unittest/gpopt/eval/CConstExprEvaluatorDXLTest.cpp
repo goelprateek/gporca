@@ -43,7 +43,7 @@ const INT CConstExprEvaluatorDXLTest::m_iDefaultEvalValue = 300;
 //
 //	@doc:
 //		Evaluate the given DXL node representing an expression and returns a dummy
-//		m_bytearray_value as DXL. Caller must release it.
+//		value as DXL. Caller must release it.
 //
 //---------------------------------------------------------------------------
 gpdxl::CDXLNode *

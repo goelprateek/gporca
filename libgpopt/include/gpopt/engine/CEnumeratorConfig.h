@@ -126,7 +126,7 @@ namespace gpopt
 			// sampled plans
 			SSamplePlanArray *m_pdrgpsp;
 
-			// step m_bytearray_value used in fitting cost distribution
+			// step value used in fitting cost distribution
 			CDouble m_dStep;
 
 			// x-values of fitted cost distribution
@@ -150,7 +150,7 @@ namespace gpopt
 			// inaccessible copy ctor
 			CEnumeratorConfig(const CEnumeratorConfig &);
 
-			// compute Gaussian probability m_bytearray_value
+			// compute Gaussian probability value
 			static
 			DOUBLE DGaussian(DOUBLE d, DOUBLE dMean, DOUBLE dStd);
 
@@ -258,10 +258,10 @@ namespace gpopt
 			// clear samples
 			void ClearSamples();
 
-			// return x-m_bytearray_value of cost distribution
+			// return x-value of cost distribution
 			CDouble DCostDistrX(ULONG ulPos) const;
 
-			// return y-m_bytearray_value of cost distribution
+			// return y-value of cost distribution
 			CDouble DCostDistrY(ULONG ulPos) const;
 
 			// fit cost distribution on generated samples

@@ -31,7 +31,7 @@ namespace gpos
 	class CDouble
 	{
 	private:
-		// double-precision m_bytearray_value
+		// double-precision value
 		DOUBLE m_d;
 
 		// check validity in ctor
@@ -54,7 +54,7 @@ namespace gpos
 			}
 		}
 
-		// assign m_bytearray_value while maintaining current sign
+		// assign value while maintaining current sign
 		inline void
 		SetSignedVal(DOUBLE val)
 		{
@@ -96,7 +96,7 @@ namespace gpos
 			CheckValidity();
 		}
 
-		// m_bytearray_value accessor
+		// value accessor
 		inline DOUBLE
 		Get() const
 		{

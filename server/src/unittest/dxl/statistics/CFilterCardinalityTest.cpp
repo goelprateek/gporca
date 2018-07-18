@@ -840,7 +840,7 @@ CFilterCardinalityTest::PdrgpstatspredInteger
 	return pdrgpstatspred;
 }
 
-// generate a numeric filter on the column specified and the literal m_bytearray_value
+// generate a numeric filter on the column specified and the literal value
 CStatsPredPtrArry *
 CFilterCardinalityTest::PdrgppredfilterNumeric
 	(

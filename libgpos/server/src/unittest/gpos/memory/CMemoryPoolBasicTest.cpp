@@ -65,7 +65,7 @@ CMemoryPoolBasicTest::EresUnittest()
 		GPOS_UNITTEST_FUNC(CMemoryPoolBasicTest::EresUnittest_TestStack),
 	};
 
-	CAutoTraceFlag atf(EtraceTestMemoryPools, true /*m_bytearray_value*/);
+	CAutoTraceFlag atf(EtraceTestMemoryPools, true /*value*/);
 
 	return CUnittest::EresExecute(rgut, GPOS_ARRAY_SIZE(rgut));
 }

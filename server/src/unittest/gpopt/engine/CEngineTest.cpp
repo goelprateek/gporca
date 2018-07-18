@@ -416,7 +416,7 @@ CEngineTest::BuildMemoRecursive
 	(void) pqc->OsPrint(os);
 
 	// enable space pruning
-	CAutoTraceFlag atf(EopttraceEnableSpacePruning, true /*m_bytearray_value*/);
+	CAutoTraceFlag atf(EopttraceEnableSpacePruning, true /*value*/);
 
 	CEngine eng(mp);
 	eng.Init(pqc, search_stage_array);

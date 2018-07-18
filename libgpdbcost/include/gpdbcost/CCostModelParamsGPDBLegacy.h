@@ -65,47 +65,47 @@ namespace gpopt
 			// cost param enum is used as index in this array
 			SCostParam* m_rgpcp[EcpSentinel];
 
-			// default m_bytearray_value of sequential i/o bandwidth
+			// default value of sequential i/o bandwidth
 			static
 			const CDouble DSeqIOBandwidthVal;
 
-			// default m_bytearray_value of random i/o bandwidth
+			// default value of random i/o bandwidth
 			static
 			const CDouble DRandomIOBandwidthVal;
 
-			// default m_bytearray_value of tuple processing bandwidth
+			// default value of tuple processing bandwidth
 			static
 			const CDouble DTupProcBandwidthVal;
 
-			// default m_bytearray_value of tuple update bandwidth
+			// default value of tuple update bandwidth
 			static
 			const CDouble DTupUpdateBandwidthVal;
 
-			// default m_bytearray_value of network bandwidth
+			// default value of network bandwidth
 			static
 			const CDouble DNetBandwidthVal;
 
-			// default m_bytearray_value of number of segments
+			// default value of number of segments
 			static
 			const CDouble DSegmentsVal;
 
-			// default m_bytearray_value of nested loop outer child factor
+			// default value of nested loop outer child factor
 			static
 			const CDouble DNLJOuterFactorVal;
 
-			// default m_bytearray_value of nested loop factor
+			// default value of nested loop factor
 			static
 			const CDouble DNLJFactorVal;
 
-			// default m_bytearray_value of hash join factor
+			// default value of hash join factor
 			static
 			const CDouble DHJFactorVal;
 
-			// default m_bytearray_value of hash building factor
+			// default value of hash building factor
 			static
 			const CDouble DHashFactorVal;
 
-			// default cost m_bytearray_value when one is not computed
+			// default cost value when one is not computed
 			static
 			const CDouble DDefaultCostVal;
 

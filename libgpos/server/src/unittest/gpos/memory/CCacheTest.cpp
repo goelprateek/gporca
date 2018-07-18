@@ -363,7 +363,7 @@ CCacheTest::EresUnittest_Refcount()
 //		CCacheTest::InsertOneElement
 //
 //	@doc:
-//		Inserts one SSimpleObject with both key and m_bytearray_value set to ulKey.
+//		Inserts one SSimpleObject with both key and value set to ulKey.
 //		Returns the size of a single instance of SSimpleObject
 //
 //---------------------------------------------------------------------------
@@ -953,7 +953,7 @@ CCacheTest::EresUnittest_IterativeDeletion()
 			GPOS_CHECK_ABORT;
 
 			GPOS_ASSERT(pso->m_ulValue >= ulDuplicatesToDelete &&
-						"Incorrect entry m_bytearray_value was found");
+						"Incorrect entry value was found");
 			count++;
 			pso = ca.Next();
 		}

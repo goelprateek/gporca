@@ -22,7 +22,7 @@ using namespace gpopt;
 //		CScalarProjectElement::HashValue
 //
 //	@doc:
-//		Hash m_bytearray_value built from colref and Eop
+//		Hash value built from colref and Eop
 //
 //---------------------------------------------------------------------------
 ULONG

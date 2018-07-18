@@ -54,7 +54,7 @@ const CDouble CStatistics::DefaultColumnWidth(8.0);
 // default number of distinct values
 const CDouble CStatistics::DefaultDistinctValues(1000.0);
 
-// the default m_bytearray_value for operators that have no cardinality estimation risk
+// the default value for operators that have no cardinality estimation risk
 const ULONG CStatistics::no_card_est_risk_default_val = 1;
 
 // ctor

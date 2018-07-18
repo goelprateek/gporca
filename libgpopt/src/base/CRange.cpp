@@ -244,8 +244,8 @@ CRange::FOverlapsRight
 //		CRange::FUpperBoundEqualsLowerBound
 //
 //	@doc:
-//		Checks if this range's upper bound m_bytearray_value is equal to the given range's
-//		lower bound m_bytearray_value. Ignores inclusivity/exclusivity Examples:
+//		Checks if this range's upper bound value is equal to the given range's
+//		lower bound value. Ignores inclusivity/exclusivity Examples:
 //			(-inf, 8)(8, inf)	true
 //			(-inf, 8](8, inf)	true
 //			(-inf, inf)(8, inf)	false

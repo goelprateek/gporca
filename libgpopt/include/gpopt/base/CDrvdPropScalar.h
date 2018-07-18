@@ -64,7 +64,7 @@ namespace gpopt
 			// scalar expression contains non-scalar function?
 			BOOL m_fHasNonScalarFunction;
 
-			// total number of Distinct Aggs (e.g., {count(distinct a), sum(distinct a), count(distinct b)}, the m_bytearray_value is 3),
+			// total number of Distinct Aggs (e.g., {count(distinct a), sum(distinct a), count(distinct b)}, the value is 3),
 			// only applicable to project lists
 			ULONG m_ulDistinctAggs;
 

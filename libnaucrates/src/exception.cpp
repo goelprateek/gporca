@@ -43,15 +43,15 @@ gpdxl::EresExceptionInit(IMemoryPool *mp)
 		CMessage(
 			CException(gpdxl::ExmaDXL, gpdxl::ExmiDXLMissingAttribute),
 			CException::ExsevError,
-			GPOS_WSZ_WSZLEN("Missing attribute m_bytearray_value for attribute %ls in element %ls"),
+			GPOS_WSZ_WSZLEN("Missing attribute value for attribute %ls in element %ls"),
 			2,  // # params: attrname, elemname
-			GPOS_WSZ_WSZLEN("Missing attribute m_bytearray_value")),
+			GPOS_WSZ_WSZLEN("Missing attribute value")),
 
 		CMessage(CException(gpdxl::ExmaDXL, gpdxl::ExmiDXLInvalidAttributeValue),
 				 CException::ExsevError,
-				 GPOS_WSZ_WSZLEN("Invalid m_bytearray_value for attribute %ls in element %ls"),
+				 GPOS_WSZ_WSZLEN("Invalid value for attribute %ls in element %ls"),
 				 2,  // # params: attrname, elemname
-				 GPOS_WSZ_WSZLEN("Invalid attribute m_bytearray_value")),
+				 GPOS_WSZ_WSZLEN("Invalid attribute value")),
 
 		CMessage(CException(gpdxl::ExmaDXL, gpdxl::ExmiDXLUnrecognizedOperator),
 				 CException::ExsevError,
@@ -130,9 +130,9 @@ gpdxl::EresExceptionInit(IMemoryPool *mp)
 
 		CMessage(CException(gpdxl::ExmaDXL, gpdxl::ExmiQuery2DXLMissingValue),
 				 CException::ExsevError,
-				 GPOS_WSZ_WSZLEN("Query-to-DXL Translation: Missing %ls m_bytearray_value"),
+				 GPOS_WSZ_WSZLEN("Query-to-DXL Translation: Missing %ls value"),
 				 1,  //
-				 GPOS_WSZ_WSZLEN("Query-to-DXL Translation: Missing m_bytearray_value")),
+				 GPOS_WSZ_WSZLEN("Query-to-DXL Translation: Missing value")),
 
 		CMessage(CException(gpdxl::ExmaDXL, gpdxl::ExmiQuery2DXLNotNullViolation),
 				 CException::ExsevError,

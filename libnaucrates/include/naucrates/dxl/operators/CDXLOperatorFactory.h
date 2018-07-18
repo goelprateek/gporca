@@ -69,7 +69,7 @@ namespace gpdxl
 	class CDXLOperatorFactory
 	{
 	private:
-		// return the LINT m_bytearray_value of byte array
+		// return the LINT value of byte array
 		static LINT Value(CDXLMemoryManager *dxl_memory_manager,
 						  const Attributes &attrs,
 						  Edxltoken target_elem,
@@ -342,7 +342,7 @@ namespace gpdxl
 		static ULONG ParseGroupingColId(CDXLMemoryManager *dxl_memory_manager,
 										const Attributes &attrs);
 
-		// extracts the m_bytearray_value for the given attribute.
+		// extracts the value for the given attribute.
 		// if there is no such attribute defined, and the given optional
 		// flag is set to false then it will raise an exception
 		static const XMLCh *ExtractAttrValue(const Attributes &,
@@ -350,8 +350,8 @@ namespace gpdxl
 											 Edxltoken target_elem,
 											 BOOL is_optional = false);
 
-		// extracts the boolean m_bytearray_value for the given attribute
-		// will raise an exception if m_bytearray_value cannot be converted to a boolean
+		// extracts the boolean value for the given attribute
+		// will raise an exception if value cannot be converted to a boolean
 		static BOOL ConvertAttrValueToBool(CDXLMemoryManager *dxl_memory_manager,
 										   const XMLCh *xml_val,
 										   Edxltoken target_attr,
@@ -363,7 +363,7 @@ namespace gpdxl
 										   Edxltoken target_attr,
 										   Edxltoken target_elem);
 
-		// extracts the LINT m_bytearray_value for the given attribute
+		// extracts the LINT value for the given attribute
 		static LINT ExtractConvertAttrValueToLint(CDXLMemoryManager *dxl_memory_manager,
 												  const Attributes &attr,
 												  Edxltoken target_attr,
@@ -377,7 +377,7 @@ namespace gpdxl
 												Edxltoken target_attr,
 												Edxltoken target_elem);
 
-		// cxtracts the double m_bytearray_value for the given attribute
+		// cxtracts the double value for the given attribute
 		static CDouble ExtractConvertAttrValueToDouble(CDXLMemoryManager *dxl_memory_manager,
 													   const Attributes &attr,
 													   Edxltoken target_attr,
@@ -404,7 +404,7 @@ namespace gpdxl
 										 Edxltoken target_attr,
 										 Edxltoken target_elem);
 
-		// parse a INT m_bytearray_value from the m_bytearray_value for a given attribute
+		// parse a INT value from the value for a given attribute
 		// will raise an exception if the argument cannot be converted to INT
 		static INT ExtractConvertAttrValueToInt(CDXLMemoryManager *dxl_memory_manager,
 												const Attributes &attr,
@@ -420,7 +420,7 @@ namespace gpdxl
 											   Edxltoken target_attr,
 											   Edxltoken target_elem);
 
-		// parse a short int m_bytearray_value from the m_bytearray_value for a given attribute
+		// parse a short int value from the value for a given attribute
 		// will raise an exception if the argument cannot be converted to short int
 		static SINT ExtractConvertAttrValueToShortInt(CDXLMemoryManager *dxl_memory_manager,
 													  const Attributes &attr,
@@ -443,7 +443,7 @@ namespace gpdxl
 										 Edxltoken target_attr,
 										 Edxltoken target_elem);
 
-		// parse an oid m_bytearray_value from the m_bytearray_value for a given attribute
+		// parse an oid value from the value for a given attribute
 		// will raise an exception if the argument cannot be converted to OID
 		static OID ExtractConvertAttrValueToOid(CDXLMemoryManager *dxl_memory_manager,
 												const Attributes &attr,
@@ -452,7 +452,7 @@ namespace gpdxl
 												BOOL is_optional = false,
 												OID OidDefaultValue = 0);
 
-		// parse a bool m_bytearray_value from the m_bytearray_value for a given attribute
+		// parse a bool value from the value for a given attribute
 		static BOOL ExtractConvertAttrValueToBool(CDXLMemoryManager *dxl_memory_manager,
 												  const Attributes &attr,
 												  Edxltoken target_attr,
@@ -460,7 +460,7 @@ namespace gpdxl
 												  BOOL is_optional = false,
 												  BOOL default_value = false);
 
-		// parse a string m_bytearray_value from the m_bytearray_value for a given attribute
+		// parse a string value from the value for a given attribute
 		static CHAR *ExtractConvertAttrValueToSz(CDXLMemoryManager *dxl_memory_manager,
 												 const Attributes &attr,
 												 Edxltoken target_attr,
@@ -468,19 +468,19 @@ namespace gpdxl
 												 BOOL is_optional = false,
 												 CHAR *default_value = NULL);
 
-		// parse a string m_bytearray_value from the m_bytearray_value for a given attribute
+		// parse a string value from the value for a given attribute
 		static CHAR *ConvertAttrValueToSz(CDXLMemoryManager *dxl_memory_manager,
 										  const XMLCh *xml_val,
 										  Edxltoken target_attr,
 										  Edxltoken target_elem);
 
-		// parse a string m_bytearray_value from the m_bytearray_value for a given attribute
+		// parse a string value from the value for a given attribute
 		static CWStringDynamic *ExtractConvertAttrValueToStr(CDXLMemoryManager *dxl_memory_manager,
 															 const Attributes &attr,
 															 Edxltoken target_attr,
 															 Edxltoken target_elem);
 
-		// parse a ULONG m_bytearray_value from the m_bytearray_value for a given attribute
+		// parse a ULONG value from the value for a given attribute
 		// will raise an exception if the argument cannot be converted to ULONG
 		static ULONG ExtractConvertAttrValueToUlong(CDXLMemoryManager *dxl_memory_manager,
 													const Attributes &attr,
@@ -489,7 +489,7 @@ namespace gpdxl
 													BOOL is_optional = false,
 													ULONG default_value = 0);
 
-		// parse a ULLONG m_bytearray_value from the m_bytearray_value for a given attribute
+		// parse a ULLONG value from the value for a given attribute
 		// will raise an exception if the argument cannot be converted to ULLONG
 		static ULLONG ExtractConvertAttrValueToUllong(CDXLMemoryManager *dxl_memory_manager,
 													  const Attributes &attr,

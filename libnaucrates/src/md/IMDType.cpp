@@ -24,7 +24,7 @@ using namespace gpmd;
 //		IMDType::GetCmpTypeStr
 //
 //	@doc:
-//		Return the comparison type as a string m_bytearray_value
+//		Return the comparison type as a string value
 //
 //---------------------------------------------------------------------------
 const CWStringConst *

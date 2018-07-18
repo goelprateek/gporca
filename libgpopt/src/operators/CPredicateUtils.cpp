@@ -943,7 +943,7 @@ CPredicateUtils::PexprEliminateSelfComparison
 			case IMDType::EcmptLEq:
 			case IMDType::EcmptGEq:
 				pexprNew->Release();
-				pexprNew = CUtils::PexprScalarConstBool(mp, true /*m_bytearray_value*/);
+				pexprNew = CUtils::PexprScalarConstBool(mp, true /*value*/);
 				break;
 
 			case IMDType::EcmptNEq:
@@ -951,7 +951,7 @@ CPredicateUtils::PexprEliminateSelfComparison
 			case IMDType::EcmptG:
 			case IMDType::EcmptIDF:
 				pexprNew->Release();
-				pexprNew = CUtils::PexprScalarConstBool(mp, false /*m_bytearray_value*/);
+				pexprNew = CUtils::PexprScalarConstBool(mp, false /*value*/);
 				break;
 
 			default:
@@ -1990,7 +1990,7 @@ CPredicateUtils::ExtractIndexPredicates
 		if (CUtils::FScalarIdentBoolType(pexprCond))
 		{
 			// expression is a column identifier of boolean type: convert to "col = true"
-			pexprCond = CUtils::PexprScalarEqCmp(mp, pexprCond, CUtils::PexprScalarConstBool(mp, true /*m_bytearray_value*/, false /*is_null*/));
+			pexprCond = CUtils::PexprScalarEqCmp(mp, pexprCond, CUtils::PexprScalarConstBool(mp, true /*value*/, false /*is_null*/));
 		}
 		else if (FNot(pexprCond) && CUtils::FScalarIdentBoolType((*pexprCond)[0]))
 		{
@@ -1998,7 +1998,7 @@ CPredicateUtils::ExtractIndexPredicates
 			CExpression *pexprScId = (*pexprCond)[0];
 			pexprCond->Release();
 			pexprScId->AddRef();
-			pexprCond = CUtils::PexprScalarEqCmp(mp, pexprScId, CUtils::PexprScalarConstBool(mp, false /*m_bytearray_value*/, false /*is_null*/));
+			pexprCond = CUtils::PexprScalarEqCmp(mp, pexprScId, CUtils::PexprScalarConstBool(mp, false /*value*/, false /*is_null*/));
 		}
 		else
 		{
@@ -2368,7 +2368,7 @@ CPredicateUtils::PexprReplaceColsWithNulls
 		pcrs->FMember(CScalarIdent::PopConvert(pop)->Pcr()))
 	{
 		// replace column with NULL constant
-		return CUtils::PexprScalarConstBool(mp, false /*m_bytearray_value*/, true /*is_null*/);
+		return CUtils::PexprScalarConstBool(mp, false /*value*/, true /*is_null*/);
 	}
 
 	// process children recursively

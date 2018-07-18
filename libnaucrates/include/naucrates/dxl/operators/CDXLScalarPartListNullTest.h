@@ -4,7 +4,7 @@
 //
 //	Class for representing DXL Part list null test expressions
 //	These expressions indicate whether the list values of a part
-//	contain NULL m_bytearray_value or not
+//	contain NULL value or not
 //---------------------------------------------------------------------------
 
 #ifndef GPDXL_CDXLScalarPartListNullTest_H

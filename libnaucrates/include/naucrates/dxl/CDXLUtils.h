@@ -170,7 +170,7 @@ namespace gpdxl
 								   BOOL serialize_document_header_footer,
 								   BOOL indentation);
 
-		// serialize a ULLONG m_bytearray_value
+		// serialize a ULLONG value
 		static CWStringDynamic *SerializeULLONG(IMemoryPool *mp, ULLONG value);
 
 		// serialize a plan into DXL
@@ -299,7 +299,7 @@ namespace gpdxl
 		static CHAR *CreateMultiByteCharStringFromWCString(IMemoryPool *mp,
 														   const WCHAR *wc_string);
 
-		// serialize a double m_bytearray_value in a string
+		// serialize a double value in a string
 		static CWStringDynamic *SerializeDouble(CDXLMemoryManager *memory_manager, CDouble value);
 
 		// translate the optimizer datum from dxl datum object

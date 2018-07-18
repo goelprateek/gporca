@@ -44,7 +44,7 @@
 
 using namespace gpopt;
 
-// if ratio of the cardinalities outer/inner is below this m_bytearray_value, we apply the xform
+// if ratio of the cardinalities outer/inner is below this value, we apply the xform
 const DOUBLE
 CXformLeftOuter2InnerUnionAllLeftAntiSemiJoin::m_dOuterInnerRatioThreshold = 0.001;
 

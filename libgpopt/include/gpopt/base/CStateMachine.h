@@ -349,7 +349,7 @@ namespace gpopt
                 return fSucceeded;
             }
 			
-			// shorthand if current state and return m_bytearray_value are not needed
+			// shorthand if current state and return value are not needed
 			void Transition(TEnumEvent tenumevent)
             {
                 TEnumState tenumstateDummy;

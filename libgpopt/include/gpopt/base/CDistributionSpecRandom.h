@@ -36,7 +36,7 @@ namespace gpopt
 			BOOL m_is_duplicate_sensitive;
 			
 			// does Singleton spec satisfy current distribution?
-			// by default, Singleton satisfies hashed/random since all tuples with the same hash m_bytearray_value
+			// by default, Singleton satisfies hashed/random since all tuples with the same hash value
 			// are moved to the same host/segment,
 			// this flag adds the ability to mark a distribution request as non-satisfiable by Singleton
 			// in case we need to enforce across segments distribution

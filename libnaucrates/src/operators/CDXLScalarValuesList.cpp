@@ -6,7 +6,7 @@
 //		CDXLScalarValuesList.cpp
 //
 //	@doc:
-//		Implementation of DXL m_bytearray_value list operator
+//		Implementation of DXL value list operator
 //---------------------------------------------------------------------------
 
 
@@ -19,7 +19,7 @@ using namespace gpos;
 using namespace gpdxl;
 
 
-// constructs a m_bytearray_value list node
+// constructs a value list node
 CDXLScalarValuesList::CDXLScalarValuesList(IMemoryPool *mp) : CDXLScalar(mp)
 {
 }

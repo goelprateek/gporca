@@ -125,7 +125,7 @@ CParseHandlerMDGPDBCheckConstraint::EndElement(const XMLCh *const,  // element_u
 		GPOS_RAISE(gpdxl::ExmaDXL, gpdxl::ExmiDXLUnexpectedTag, str->GetBuffer());
 	}
 
-	// get node for default m_bytearray_value expression from child parse handler
+	// get node for default value expression from child parse handler
 	CParseHandlerScalarOp *op_parse_handler = dynamic_cast<CParseHandlerScalarOp *>((*this)[0]);
 
 	CDXLNode *dxlnode_scalar_expr = op_parse_handler->CreateDXLNode();

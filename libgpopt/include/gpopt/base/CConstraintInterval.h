@@ -53,7 +53,7 @@ namespace gpopt
 			// array of ranges
 			CRangeArray *m_pdrgprng;
 
-			// does the interval include the null m_bytearray_value
+			// does the interval include the null value
 			BOOL m_fIncludesNull;
 
 			// hidden copy ctor
@@ -188,7 +188,7 @@ namespace gpopt
 				return m_pdrgprng;
 			}
 
-			// does the interval include the null m_bytearray_value
+			// does the interval include the null value
 			BOOL FIncludesNull() const
 			{
 				return m_fIncludesNull;

@@ -125,7 +125,7 @@ namespace gpnaucrates
 		// mutex for locking entry when accessing hashmap from source id -> upper bound of source cardinality
 		CMutex m_src_upper_bound_mapping_mutex;
 
-		// the default m_bytearray_value for operators that have no cardinality estimation risk
+		// the default value for operators that have no cardinality estimation risk
 		static const ULONG no_card_est_risk_default_val;
 
 		// helper method to add histograms where the column ids have been remapped

@@ -28,8 +28,8 @@ namespace gpopt
 	//		Scalar if operator. A case statement in SQL is represented as as
 	//		cascaded if statements. The format of if statement is:
 	//				if ------ condition
-	//				|-------- true m_bytearray_value
-	//				|-------- false m_bytearray_value
+	//				|-------- true value
+	//				|-------- false value
 	//		For example: (case when r.a < r.b then 10 when r.a > r.b then 20 else 15 end)
 	//		Is represented as if ---- r.a < r.b
 	//						   |----- 10

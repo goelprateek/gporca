@@ -50,10 +50,10 @@ namespace gpdxl
 		// distinct values
 		CDouble m_distinct;
 
-		// lower bound m_bytearray_value for the bucket
+		// lower bound value for the bucket
 		CDXLDatum *m_lower_bound_dxl_datum;
 
-		// upper bound m_bytearray_value for the bucket
+		// upper bound value for the bucket
 		CDXLDatum *m_upper_bound_dxl_datum;
 
 		// is lower bound closed

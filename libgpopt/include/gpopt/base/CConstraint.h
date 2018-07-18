@@ -79,7 +79,7 @@ namespace gpopt
 			// hidden copy ctor
 			CConstraint(const CConstraint&);
 
-			// return address of static BOOL constant based on passed BOOL m_bytearray_value
+			// return address of static BOOL constant based on passed BOOL value
 			static
 			BOOL *PfVal
 				(

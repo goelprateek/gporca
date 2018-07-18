@@ -98,7 +98,7 @@ CScalarSubqueryQuantified::MdIdOp() const
 //		CScalarSubqueryQuantified::MDIdType
 //
 //	@doc:
-//		Type of scalar's m_bytearray_value
+//		Type of scalar's value
 //
 //---------------------------------------------------------------------------
 IMDId *

@@ -6,7 +6,7 @@
 //		CParseHandlerScalarValuesList.h
 //
 //	@doc:
-//		SAX parse handler class for parsing scalar m_bytearray_value list.
+//		SAX parse handler class for parsing scalar value list.
 //---------------------------------------------------------------------------
 
 #ifndef GPDXL_CParseHandlerScalarValuesList_H
@@ -22,7 +22,7 @@ namespace gpdxl
 
 	XERCES_CPP_NAMESPACE_USE
 
-	// Parse handler for parsing a m_bytearray_value list operator
+	// Parse handler for parsing a value list operator
 	class CParseHandlerScalarValuesList : public CParseHandlerOp
 	{
 	private:

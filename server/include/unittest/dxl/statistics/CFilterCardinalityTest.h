@@ -40,12 +40,12 @@ namespace gpnaucrates
 
 		private:
 
-			// triplet consisting of comparison type, double m_bytearray_value and its byte array representation
+			// triplet consisting of comparison type, double value and its byte array representation
 			struct SStatsCmpValElem
 			{
 				CStatsPred::EStatsCmpType m_stats_cmp_type; // comparison operator
 				const WCHAR *m_wsz; // byte array representation
-				CDouble m_value; // double m_bytearray_value
+				CDouble m_value; // double value
 			}; // SStatsCmpValElem
 
 			// test case for disjunctive filter evaluation

@@ -555,7 +555,7 @@ namespace gpopt
 			static
 			CPoint *PpointInt4(IMemoryPool *mp, INT i);
 
-			// create an INT4 point with null m_bytearray_value
+			// create an INT4 point with null value
 			static
 			CPoint *PpointInt4NullVal(IMemoryPool *mp);
 
@@ -720,7 +720,7 @@ namespace gpopt
 				return GPOS_NEW(mp) CCostModelGPDBLegacy(mp, GPOPT_TEST_SEGMENTS);
 			}
 
-			// create a datum with a given type, encoded m_bytearray_value and int m_bytearray_value
+			// create a datum with a given type, encoded value and int value
 			static
 			IDatum *CreateGenericDatum(IMemoryPool *mp, CMDAccessor *md_accessor, IMDId *mdid_type, CWStringDynamic *pstrEncodedValue, LINT value);
 
@@ -977,7 +977,7 @@ namespace gpopt
 		CColRefSet *outer_refs = CDrvdPropRelational::GetRelationalProperties(pexprOuter->PdpDerive())->PcrsOutput();
 
 		CExpression *pexprInner = PexprLogicalSelectCorrelated(mp, outer_refs, 3);
-		CExpression *pexprPredicate = CUtils::PexprScalarConstBool(mp, true /*m_bytearray_value*/);
+		CExpression *pexprPredicate = CUtils::PexprScalarConstBool(mp, true /*value*/);
 
 		COperator *pop = GPOS_NEW(mp) T(mp);
 		return GPOS_NEW(mp) CExpression(mp, pop, pexprOuter, pexprInner, pexprPredicate);
@@ -1002,7 +1002,7 @@ namespace gpopt
 		CColRefSet *outer_refs = CDrvdPropRelational::GetRelationalProperties(pexprOuter->PdpDerive())->PcrsOutput();
 
 		CExpression *pexprInner = PexprLogicalSelectCorrelated(mp, outer_refs, 3);
-		CExpression *pexprPredicate = CUtils::PexprScalarConstBool(mp, true /*m_bytearray_value*/);
+		CExpression *pexprPredicate = CUtils::PexprScalarConstBool(mp, true /*value*/);
 
 		CColRefSet *pcrsOuterRef = CDrvdPropRelational::GetRelationalProperties(pexprInner->PdpDerive())->PcrsOuter();
 		GPOS_ASSERT(1 == pcrsOuterRef->Size());

@@ -59,7 +59,7 @@ namespace gpdxl
 		// is type redistributable
 		BOOL m_is_redistributable;
 
-		// is type passed by m_bytearray_value or by reference
+		// is type passed by value or by reference
 		BOOL m_type_passed_by_value;
 
 		// id of equality operator for type
@@ -129,7 +129,7 @@ namespace gpdxl
 						const XMLCh *const element_qname		// element's qname
 		);
 
-		// parse the m_bytearray_value for the given mdid variable name from the attributes
+		// parse the value for the given mdid variable name from the attributes
 		void ParseMdid(const XMLCh *element_local_name, const Attributes &attrs);
 
 		BOOL IsBuiltInType(const IMDId *mdid) const;

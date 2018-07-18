@@ -23,7 +23,7 @@
 
 using namespace gpopt;
 
-// m_bytearray_value of the first m_bytearray_value part id
+// value of the first value part id
 ULONG COptCtxt::m_ulFirstValidPartId = 1;
 
 //---------------------------------------------------------------------------

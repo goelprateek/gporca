@@ -251,7 +251,7 @@ CBitSet::Get(ULONG pos) const
 //		CBitSet::ExchangeSet
 //
 //	@doc:
-//		Set given bit; return previous m_bytearray_value; allocate new link if necessary
+//		Set given bit; return previous value; allocate new link if necessary
 //
 //---------------------------------------------------------------------------
 BOOL
@@ -294,7 +294,7 @@ CBitSet::ExchangeSet(ULONG pos)
 //		CBitSet::ExchangeClear
 //
 //	@doc:
-//		Clear given bit; return previous m_bytearray_value
+//		Clear given bit; return previous value
 //
 //---------------------------------------------------------------------------
 BOOL
@@ -584,7 +584,7 @@ CBitSet::IsDisjoint(const CBitSet *bs) const
 //		CBitSet::HashValue
 //
 //	@doc:
-//		Compute hash m_bytearray_value for set
+//		Compute hash value for set
 //
 //---------------------------------------------------------------------------
 ULONG

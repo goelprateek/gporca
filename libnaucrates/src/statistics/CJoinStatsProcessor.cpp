@@ -451,7 +451,7 @@ CJoinStatsProcessor::DeriveJoinStats(IMemoryPool *mp,
 	if (exprhdl.GetDrvdScalarProps(arity - 1)->FHasSubquery())
 	{
 		// in case of subquery in join predicate, assume join condition is True
-		join_pred_expr = CUtils::PexprScalarConstBool(mp, true /*m_bytearray_value*/);
+		join_pred_expr = CUtils::PexprScalarConstBool(mp, true /*value*/);
 	}
 	else
 	{
@@ -539,7 +539,7 @@ CJoinStatsProcessor::DeriveJoinStats(IMemoryPool *mp,
 // The next step is to combine the statistics objects of the outer references
 // with those of the local columns. You can think of this as a correlated
 // expression, where for each outer tuple, we need to extract the outer ref
-// m_bytearray_value and re-execute the inner expression using the current outer ref m_bytearray_value.
+// value and re-execute the inner expression using the current outer ref value.
 // This has the same semantics as a Join from a statistics perspective.
 //
 // We pull statistics for outer references from the passed statistics context,

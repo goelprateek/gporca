@@ -96,7 +96,7 @@ namespace gpmd
 		// equality check
 		virtual BOOL Equals(const IMDId *mdid) const = 0;
 
-		// computes the hash m_bytearray_value for the metadata id
+		// computes the hash value for the metadata id
 		virtual ULONG HashValue() const = 0;
 
 		// return true if calling object's destructor is allowed
@@ -179,7 +179,7 @@ namespace gpmd
 		// is the mdid valid
 		virtual BOOL IsValid() const = 0;
 
-		// serialize mdid in DXL as the m_bytearray_value for the specified attribute
+		// serialize mdid in DXL as the value for the specified attribute
 		virtual void Serialize(CXMLSerializer *xml_serializer,
 							   const CWStringConst *pstrAttribute) const = 0;
 

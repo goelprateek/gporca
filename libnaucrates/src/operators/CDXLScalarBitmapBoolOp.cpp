@@ -99,7 +99,7 @@ CDXLScalarBitmapBoolOp::GetDXLBitmapOpType() const
 //		CDXLScalarBitmapBoolOp::HasBoolResult
 //
 //	@doc:
-//		Is operator returning a boolean m_bytearray_value
+//		Is operator returning a boolean value
 //
 //---------------------------------------------------------------------------
 BOOL

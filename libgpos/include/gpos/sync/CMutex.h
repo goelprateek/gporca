@@ -290,7 +290,7 @@ namespace gpos
 				GPOS_OOM_CHECK(NULL);
 			}
 
-			// ignore return m_bytearray_value -- all parameters have been checked already
+			// ignore return value -- all parameters have been checked already
 			pthread::MutexAttrSettype(&mutex_attr, mutex_type);
 
 			if (0 != pthread::MutexInit(&m_mutex, &mutex_attr))
@@ -302,7 +302,7 @@ namespace gpos
 				GPOS_OOM_CHECK(NULL);
 			}
 
-			// ignore return m_bytearray_value -- parameter already checked
+			// ignore return value -- parameter already checked
 			pthread::MutexAttrDestroy(&mutex_attr);
 		}
 
@@ -331,7 +331,7 @@ namespace gpos
 
 			INT ret =
 #else
-			// ignore return m_bytearray_value in optimized builds
+			// ignore return value in optimized builds
 			(void)
 #endif  // GPOS_DEBUG
 				AttemptLock(true /*fBlocking*/);

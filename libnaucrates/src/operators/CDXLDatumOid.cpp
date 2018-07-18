@@ -40,7 +40,7 @@ CDXLDatumOid::CDXLDatumOid(IMemoryPool *mp, IMDId *mdid_type, BOOL is_null, OID 
 //		CDXLDatumOid::OidValue
 //
 //	@doc:
-//		Return the oid m_bytearray_value
+//		Return the oid value
 //
 //---------------------------------------------------------------------------
 OID

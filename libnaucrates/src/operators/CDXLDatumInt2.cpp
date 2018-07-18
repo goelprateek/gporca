@@ -39,7 +39,7 @@ CDXLDatumInt2::CDXLDatumInt2(IMemoryPool *mp, IMDId *mdid_type, BOOL is_null, SI
 //		CDXLDatumInt2::Value
 //
 //	@doc:
-//		Return the short integer m_bytearray_value
+//		Return the short integer value
 //
 //---------------------------------------------------------------------------
 SINT

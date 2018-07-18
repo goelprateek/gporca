@@ -34,7 +34,7 @@ using namespace gpopt;
 //		CTranslatorDXLToExprUtils::PopConst
 //
 //	@doc:
-// 		Construct const operator from a DXL const m_bytearray_value operator
+// 		Construct const operator from a DXL const value operator
 //
 //---------------------------------------------------------------------------
 CScalarConst *
@@ -54,7 +54,7 @@ CTranslatorDXLToExprUtils::PopConst
 //		CTranslatorDXLToExprUtils::GetDatum
 //
 //	@doc:
-// 		Construct a datum from a DXL const m_bytearray_value operator
+// 		Construct a datum from a DXL const value operator
 //
 //---------------------------------------------------------------------------
 IDatum *
@@ -106,7 +106,7 @@ CTranslatorDXLToExprUtils::Pdrgpdatum
 //		CTranslatorDXLToExprUtils::PexprConstInt8
 //
 //	@doc:
-// 		Construct an expression representing the given m_bytearray_value in INT8 format
+// 		Construct an expression representing the given value in INT8 format
 //
 //---------------------------------------------------------------------------
 CExpression *

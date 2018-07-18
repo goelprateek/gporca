@@ -929,7 +929,7 @@ namespace gpopt
 			static
 			BOOL Equals(CColRefArray *pdrgpcrFst, CColRefArray *pdrgpcrSnd);
 
-			// compute hash m_bytearray_value for an array of column references
+			// compute hash value for an array of column references
 			static
 			ULONG UlHashColArray(const CColRefArray *colref_array, const ULONG ulMaxCols = 5);
 
@@ -1143,7 +1143,7 @@ namespace gpopt
 		CExpression *pexprScalar = pexprPred;
 		if (NULL == pexprPred)
 		{
-			pexprScalar = PexprScalarConstBool(mp, true /*m_bytearray_value*/);
+			pexprScalar = PexprScalarConstBool(mp, true /*value*/);
 		}
 
 		return GPOS_NEW(mp) CExpression
@@ -1184,7 +1184,7 @@ namespace gpopt
 		CExpression *pexprScalar = pexprPred;
 		if (NULL == pexprPred)
 		{
-			pexprScalar = PexprScalarConstBool(mp, true /*m_bytearray_value*/);
+			pexprScalar = PexprScalarConstBool(mp, true /*value*/);
 		}
 
 		CColRefArray *colref_array = GPOS_NEW(mp) CColRefArray(mp);
@@ -1227,7 +1227,7 @@ namespace gpopt
 		CExpression *pexprScalar = pexprPred;
 		if (NULL == pexprPred)
 		{
-			pexprScalar = PexprScalarConstBool(mp, true /*m_bytearray_value*/);
+			pexprScalar = PexprScalarConstBool(mp, true /*value*/);
 		}
 
 		return GPOS_NEW(mp) CExpression
@@ -1268,7 +1268,7 @@ namespace gpopt
 		CExpression *pexprScalar = pexprPred;
 		if (NULL == pexprPred)
 		{
-			pexprScalar = PexprScalarConstBool(mp, true /*m_bytearray_value*/);
+			pexprScalar = PexprScalarConstBool(mp, true /*value*/);
 		}
 
 		if (COperator::EopLogicalSelect != pexprRight->Pop()->Eopid())
@@ -1277,7 +1277,7 @@ namespace gpopt
 			GPOS_ASSERT(!CUtils::HasOuterRefs(pexprRight) &&
 				"unexpected outer references in inner child of Semi Apply expression ");
 			pexprScalar->Release();
-			pexprScalar = PexprScalarConstBool(mp, true /*m_bytearray_value*/);
+			pexprScalar = PexprScalarConstBool(mp, true /*value*/);
 		}
 		else
 		{

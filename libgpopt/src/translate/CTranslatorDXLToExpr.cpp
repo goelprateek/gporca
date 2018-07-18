@@ -3780,7 +3780,7 @@ CTranslatorDXLToExpr::PexprScalarArrayCoerceExpr
 //		CTranslatorDXLToExpr::PexprScalarConst
 //
 //	@doc:
-// 		Create a scalar const expr from a DXL scalar constant m_bytearray_value
+// 		Create a scalar const expr from a DXL scalar constant value
 //
 //---------------------------------------------------------------------------
 CExpression *
@@ -3791,7 +3791,7 @@ CTranslatorDXLToExpr::PexprScalarConst
 {
 	GPOS_ASSERT(NULL != pdxlnConstVal);
 
-	// translate the dxl scalar const m_bytearray_value
+	// translate the dxl scalar const value
 	CDXLScalarConstValue *dxl_op =
 			CDXLScalarConstValue::Cast(pdxlnConstVal->GetOperator());
 	CScalarConst *popConst = CTranslatorDXLToExprUtils::PopConst(m_mp, m_pmda, dxl_op);

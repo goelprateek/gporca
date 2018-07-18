@@ -22,7 +22,7 @@
 // infinite plan cost
 #define GPOPT_INFINITE_COST CCost(1e+100)
 
-// invalid cost m_bytearray_value
+// invalid cost value
 #define GPOPT_INVALID_COST	CCost(-0.5)
 
 
@@ -204,7 +204,7 @@ namespace gpopt
 				return m_pdpplan;
 			}
 
-			// set cost m_bytearray_value
+			// set cost value
 			void SetCost
 				(
 				CCost cost

@@ -27,7 +27,7 @@ namespace gpdxl
 	//		CDXLScalarConstValue
 	//
 	//	@doc:
-	//		Class for representing DXL scalar Const m_bytearray_value
+	//		Class for representing DXL scalar Const value
 	//
 	//---------------------------------------------------------------------------
 	class CDXLScalarConstValue : public CDXLScalar
@@ -47,7 +47,7 @@ namespace gpdxl
 		// name of the operator
 		const CWStringConst *GetOpNameStr() const;
 
-		// return the datum m_bytearray_value
+		// return the datum value
 		const CDXLDatum *
 		GetDatumVal() const
 		{

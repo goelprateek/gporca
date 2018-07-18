@@ -408,7 +408,7 @@ CExpression::Pdp
 //		CExpression::SetPdp
 //
 //	@doc:
-//		Set property m_bytearray_value based on operator type;
+//		Set property value based on operator type;
 //		only used internally during property derivation
 //
 //---------------------------------------------------------------------------

@@ -339,7 +339,7 @@ namespace gpopt
 			// translate a DXL scalar subquery operator into a scalar subquery expression
 			CExpression *PexprScalarSubquery(const CDXLNode *pdxlnSubquery);
 			
-			// translate a DXL scalar const m_bytearray_value into a
+			// translate a DXL scalar const value into a
 			// scalar constant representation in optimizer
 			CExpression *PexprScalarConst(const CDXLNode *pdxlnConst);
 			

@@ -682,7 +682,7 @@ namespace gpopt
 			CDXLNode *PdxlnProjElem(const CExpression *pexprProjElem);
 								
 			// create a project element for a computed column from a column reference
-			// and m_bytearray_value expresison
+			// and value expresison
 			CDXLNode *PdxlnProjElem(const CColRef *colref,CDXLNode *pdxlnValue);
 			
 			// create a DXL sort col list node from an order spec

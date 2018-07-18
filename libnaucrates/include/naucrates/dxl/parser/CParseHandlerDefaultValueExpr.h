@@ -6,7 +6,7 @@
 //		CParseHandlerDefaultValueExpr.h
 //
 //	@doc:
-//		SAX parse handler class for parsing the default column m_bytearray_value expression in
+//		SAX parse handler class for parsing the default column value expression in
 //		a column's metadata info.
 //---------------------------------------------------------------------------
 
@@ -27,13 +27,13 @@ namespace gpdxl
 	//		CParseHandlerDefaultValueExpr
 	//
 	//	@doc:
-	//		Parse handler for parsing a default m_bytearray_value expression in column metadata info
+	//		Parse handler for parsing a default value expression in column metadata info
 	//
 	//---------------------------------------------------------------------------
 	class CParseHandlerDefaultValueExpr : public CParseHandlerScalarOp
 	{
 	private:
-		// has an opening tag for a default m_bytearray_value been seen already
+		// has an opening tag for a default value been seen already
 		BOOL is_default_val_started;
 
 		// private copy ctor

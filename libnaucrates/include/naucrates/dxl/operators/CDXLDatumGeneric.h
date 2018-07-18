@@ -44,7 +44,7 @@ namespace gpdxl
 		CDXLDatumGeneric(const CDXLDatumGeneric &);
 
 	protected:
-		// is datum passed by m_bytearray_value or by reference
+		// is datum passed by value or by reference
 		BOOL m_is_passed_by_value;
 
 		// datum byte array
@@ -69,7 +69,7 @@ namespace gpdxl
 		// serialize the datum as the given element
 		virtual void Serialize(CXMLSerializer *xml_serializer);
 
-		// is type passed by m_bytearray_value
+		// is type passed by value
 		virtual BOOL
 		IsPassedByValue() const
 		{

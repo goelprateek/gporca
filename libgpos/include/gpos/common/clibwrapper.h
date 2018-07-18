@@ -75,7 +75,7 @@ namespace gpos
 		// find the first occurrence of the character c in src
 		CHAR *Strchr(const CHAR *src, INT c);
 
-		// set a specified number of bytes to a specified m_bytearray_value
+		// set a specified number of bytes to a specified value
 		void *Memset(void *dest, INT value, SIZE_T num_bytes);
 
 		// calculate the length of a wide-character string

@@ -74,7 +74,7 @@ CStackTest::EresUnittest_Basic()
 	{
 		GPOS_ASSERT(idx <= 8 && "Index out of range. Problem with IsEmpty.");
 #ifdef GPOS_DEBUG
-		GPOS_ASSERT(pstk->Pop() == rgsz[8 - idx] && "Incorrect pop m_bytearray_value");
+		GPOS_ASSERT(pstk->Pop() == rgsz[8 - idx] && "Incorrect pop value");
 #else
 		pstk->Pop();
 #endif

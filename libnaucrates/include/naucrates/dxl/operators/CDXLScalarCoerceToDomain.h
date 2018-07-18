@@ -7,11 +7,11 @@
 //
 //	@doc:
 //		Class for representing DXL CoerceToDomain operation,
-//		the operator captures coercing a m_bytearray_value to a domain type,
+//		the operator captures coercing a value to a domain type,
 //
 //		at runtime, the precise set of constraints to be checked against
-//		m_bytearray_value are determined,
-//		if the m_bytearray_value passes, it is returned as the result, otherwise an error
+//		value are determined,
+//		if the value passes, it is returned as the result, otherwise an error
 //		is raised.
 //
 //	@owner:

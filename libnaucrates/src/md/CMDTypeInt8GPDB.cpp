@@ -68,7 +68,7 @@ CMDTypeInt8GPDB::CMDTypeInt8GPDB(IMemoryPool *mp) : m_mp(mp)
 	GPOS_ASSERT(GPDB_INT8_OID == CMDIdGPDB::CastMdid(m_mdid)->Oid());
 	m_mdid->AddRef();
 	m_datum_null =
-		GPOS_NEW(mp) CDatumInt8GPDB(m_mdid, 1 /* m_bytearray_value */, true /* is_null */);
+		GPOS_NEW(mp) CDatumInt8GPDB(m_mdid, 1 /* value */, true /* is_null */);
 }
 
 //---------------------------------------------------------------------------

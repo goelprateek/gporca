@@ -82,7 +82,7 @@ CEnumeratorConfig::~CEnumeratorConfig()
 //		CEnumeratorConfig::DCostDistrX
 //
 //	@doc:
-//		Return x-m_bytearray_value of a fitted cost distribution
+//		Return x-value of a fitted cost distribution
 //
 //---------------------------------------------------------------------------
 CDouble
@@ -103,7 +103,7 @@ CEnumeratorConfig::DCostDistrX
 //		CEnumeratorConfig::DCostDistrY
 //
 //	@doc:
-//		Return y-m_bytearray_value of a fitted cost distribution
+//		Return y-value of a fitted cost distribution
 //
 //---------------------------------------------------------------------------
 CDouble
@@ -176,7 +176,7 @@ CEnumeratorConfig::FAddSample
 //		CEnumeratorConfig::DGaussian
 //
 //	@doc:
-//		Compute Gaussian probability m_bytearray_value
+//		Compute Gaussian probability value
 //
 //---------------------------------------------------------------------------
 DOUBLE

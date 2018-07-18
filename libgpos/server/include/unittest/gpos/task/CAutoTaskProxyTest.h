@@ -47,7 +47,7 @@ namespace gpos
 			// thread id
 			ULONG id;
 
-			// return m_bytearray_value
+			// return value
 			BOOL fException;
 
 			// Propagate Exception
@@ -69,7 +69,7 @@ namespace gpos
 		static GPOS_RESULT EresUnittest_ExecuteError();
 		static GPOS_RESULT EresUnittest_CheckErrorPropagation();
 
-		// propagate error with/without cancel by specific m_bytearray_value
+		// propagate error with/without cancel by specific value
 		// need to access the private method of CTask
 		static void Unittest_PropagateErrorInternal(void *(*) (void *), BOOL);
 		static void *Unittest_CheckExecuteErrorInternal(void *);

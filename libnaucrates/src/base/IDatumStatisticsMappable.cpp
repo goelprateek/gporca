@@ -195,7 +195,7 @@ IDatumStatisticsMappable::GetStatsDistanceFrom(const IDatum *datum) const
 //		IDatumStatisticsMappable::GetValAsDouble
 //
 //	@doc:
-//		 Return double representation of mapping m_bytearray_value
+//		 Return double representation of mapping value
 //
 //---------------------------------------------------------------------------
 CDouble

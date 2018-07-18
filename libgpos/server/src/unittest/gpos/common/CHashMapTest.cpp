@@ -102,7 +102,7 @@ CHashMapTest::EresUnittest_Basic()
 	}
 	GPOS_ASSERT(ulCnt == phm->Size());
 
-	// test replacing entry m_bytearray_value of a non-existing key
+	// test replacing entry value of a non-existing key
 	ULONG_PTR ulp = 0;
 #ifdef GPOS_DEBUG
 	BOOL fSuccess =

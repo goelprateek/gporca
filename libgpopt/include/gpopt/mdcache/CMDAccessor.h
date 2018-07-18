@@ -174,7 +174,7 @@ namespace gpopt
 				// source system id
 				CSystemId m_sysid;
 
-				// m_bytearray_value of the hashed element
+				// value of the hashed element
 				IMDProvider *m_pmdp;
 
 			public:

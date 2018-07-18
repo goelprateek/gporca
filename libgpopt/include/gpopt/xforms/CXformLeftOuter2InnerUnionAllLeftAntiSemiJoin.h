@@ -47,7 +47,7 @@ namespace gpopt
 	class CXformLeftOuter2InnerUnionAllLeftAntiSemiJoin : public CXformExploration
 	{
 		private:
-			// if ratio of the cardinalities outer/inner is below this m_bytearray_value, we apply the xform
+			// if ratio of the cardinalities outer/inner is below this value, we apply the xform
 			static const DOUBLE m_dOuterInnerRatioThreshold;
 
 			// disable copy ctor

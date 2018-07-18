@@ -33,7 +33,7 @@ namespace gpos
 		// traceflag id
 		ULONG m_trace;
 
-		// original m_bytearray_value
+		// original value
 		BOOL m_orig;
 
 		// no copy ctor

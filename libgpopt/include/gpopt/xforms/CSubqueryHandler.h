@@ -73,7 +73,7 @@ namespace gpopt
 				//  does subquery project a count expression
 				BOOL m_fProjectCount;
 
-				// subquery is used in a m_bytearray_value context
+				// subquery is used in a value context
 				BOOL m_fValueSubquery;
 
 				// subquery requires correlated execution

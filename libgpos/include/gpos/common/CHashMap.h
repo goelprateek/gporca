@@ -9,7 +9,7 @@
 //		Hash map
 //		* stores deep objects, i.e., pointers
 //		* equality == on key uses template function argument
-//		* does not allow insertion of duplicates (no equality on m_bytearray_value class req'd)
+//		* does not allow insertion of duplicates (no equality on value class req'd)
 //		* destroys objects based on client-side provided destroy functions
 //---------------------------------------------------------------------------
 #ifndef GPOS_CHashMap_H
@@ -55,13 +55,13 @@ namespace gpos
 		//		CHashMapElem
 		//
 		//	@doc:
-		//		Anchor for key/m_bytearray_value pair
+		//		Anchor for key/value pair
 		//
 		//---------------------------------------------------------------------------
 		class CHashMapElem
 		{
 		private:
-			// key/m_bytearray_value pair
+			// key/value pair
 			K *m_key;
 			T *m_value;
 
@@ -98,14 +98,14 @@ namespace gpos
 				return m_key;
 			}
 
-			// m_bytearray_value accessor
+			// value accessor
 			T *
 			Value() const
 			{
 				return m_value;
 			}
 
-			// replace m_bytearray_value
+			// replace value
 			void
 			ReplaceValue(T *new_value)
 			{
@@ -237,7 +237,7 @@ namespace gpos
 			return true;
 		}
 
-		// lookup a m_bytearray_value by its key
+		// lookup a value by its key
 		T *
 		Find(const K *key) const
 		{
@@ -250,7 +250,7 @@ namespace gpos
 			return NULL;
 		}
 
-		// replace the m_bytearray_value in a map entry with a new given m_bytearray_value
+		// replace the value in a map entry with a new given value
 		BOOL
 		Replace(const K *key, T *ptNew)
 		{

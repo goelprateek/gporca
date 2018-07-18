@@ -70,7 +70,7 @@ CCardinalityTestUtils::PbucketInteger
 	return GPOS_NEW(mp) CBucket(ppLower, ppUpper, is_lower_closed, is_upper_closed, frequency, distinct);
 }
 
-// create a singleton bucket containing a boolean m_bytearray_value
+// create a singleton bucket containing a boolean value
 CBucket *
 CCardinalityTestUtils::PbucketSingletonBoolVal
 	(
@@ -166,7 +166,7 @@ CCardinalityTestUtils::PhistExampleBool
 	return  GPOS_NEW(mp) CHistogram(histogram_buckets);
 }
 
-// helper function to generate a point from an encoded m_bytearray_value of specific datatype
+// helper function to generate a point from an encoded value of specific datatype
 CPoint *
 CCardinalityTestUtils::PpointGeneric
 	(

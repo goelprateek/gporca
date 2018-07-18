@@ -37,7 +37,7 @@ namespace gpnaucrates
 			static
 			CBucket *PbucketIntegerClosedLowerBound(IMemoryPool *mp, INT iLower, INT iUpper, CDouble, CDouble);
 
-			// create a singleton bucket containing a boolean m_bytearray_value
+			// create a singleton bucket containing a boolean value
 			static
 			CBucket *PbucketSingletonBoolVal(IMemoryPool *mp, BOOL fValue, CDouble frequency);
 
@@ -73,7 +73,7 @@ namespace gpnaucrates
 			static
 			CHistogram* PhistExampleBool(IMemoryPool *mp);
 
-			// helper function to generate a point from an encoded m_bytearray_value of specific datatype
+			// helper function to generate a point from an encoded value of specific datatype
 			static
 			CPoint *PpointGeneric(IMemoryPool *mp, OID oid, CWStringDynamic *pstrValueEncoded, LINT value);
 

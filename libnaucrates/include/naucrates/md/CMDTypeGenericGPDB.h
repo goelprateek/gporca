@@ -61,7 +61,7 @@ namespace gpmd
 		// type length in number of bytes for fixed-length types, 0 otherwise
 		ULONG m_length;
 
-		// is type passed by m_bytearray_value or by reference
+		// is type passed by value or by reference
 		BOOL m_is_passed_by_value;
 
 		// id of equality operator for type
@@ -252,7 +252,7 @@ namespace gpmd
 		// generate the DXL datum from IDatum
 		virtual CDXLDatum *GetDatumVal(IMemoryPool *mp, IDatum *datum) const;
 
-		// generate the DXL datum representing null m_bytearray_value
+		// generate the DXL datum representing null value
 		virtual CDXLDatum *GetDXLDatumNull(IMemoryPool *mp) const;
 
 		// generate the DXL scalar constant from IDatum

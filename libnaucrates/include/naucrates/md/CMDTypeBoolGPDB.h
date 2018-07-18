@@ -150,7 +150,7 @@ namespace gpmd
 			return GPDB_BOOL_LENGTH;
 		}
 
-		// is type passed by m_bytearray_value
+		// is type passed by value
 		virtual BOOL
 		IsPassedByValue() const
 		{
@@ -219,7 +219,7 @@ namespace gpmd
 		virtual CDXLScalarConstValue *GetDXLOpScConst(IMemoryPool *mp,
 													  IDatum *datum) const;
 
-		// generate the DXL datum representing null m_bytearray_value
+		// generate the DXL datum representing null value
 		virtual CDXLDatum *GetDXLDatumNull(IMemoryPool *mp) const;
 
 #ifdef GPOS_DEBUG

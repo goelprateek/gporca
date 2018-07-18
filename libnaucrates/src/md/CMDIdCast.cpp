@@ -141,7 +141,7 @@ CMDIdCast::Equals(const IMDId *mdid) const
 //		CMDIdCast::Serialize
 //
 //	@doc:
-//		Serializes the mdid as the m_bytearray_value of the given attribute
+//		Serializes the mdid as the value of the given attribute
 //
 //---------------------------------------------------------------------------
 void

@@ -294,7 +294,7 @@ CPredicateUtilsTest::EresUnittest_PlainEqualities()
 	pexprScIdentInequality->AddRef();
 	pdrgpexprOriginal->Append(pexprScIdentInequality);
 
-	// generate an equality predicate between a column reference and a constant m_bytearray_value
+	// generate an equality predicate between a column reference and a constant value
 	CExpression *pexprScalarConstInt4 = CUtils::PexprScalarConstInt4(mp, 10 /*fValue*/);
 	CExpression *pexprScIdentConstEquality = CUtils::PexprScalarEqCmp(mp, pexprScalarConstInt4, pcrRight);
 

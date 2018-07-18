@@ -458,7 +458,7 @@ CAutoTaskProxyTest::Unittest_ExecuteWaitFunc(CAutoTaskProxy &atp,
 //		CAutoTaskProxyTest::Unittest_PropagateErrorInternal
 //
 //	@doc:
-//		Propagate error with/without invoking cancel by specific m_bytearray_value
+//		Propagate error with/without invoking cancel by specific value
 //
 //---------------------------------------------------------------------------
 void

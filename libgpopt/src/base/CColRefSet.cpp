@@ -347,7 +347,7 @@ CColRefSet::Pdrgpcr
 //		CColRefSet::HashValue
 //
 //	@doc:
-//		Compute hash m_bytearray_value by combining hashes of components
+//		Compute hash value by combining hashes of components
 //
 //---------------------------------------------------------------------------
 ULONG

@@ -142,7 +142,7 @@ namespace gpmd
 				mdtype->IsPassedByValue() ? CDXLTokens::GetDXLTokenStr(EdxltokenTrue)
 										  : CDXLTokens::GetDXLTokenStr(EdxltokenFalse);
 
-			os << "Pass by m_bytearray_value: " << passed_by_val_str->GetBuffer() << std::endl;
+			os << "Pass by value: " << passed_by_val_str->GetBuffer() << std::endl;
 
 			os << "Equality operator id: ";
 			mdtype->GetMdidForCmpType(IMDType::EcmptEq)->OsPrint(os);

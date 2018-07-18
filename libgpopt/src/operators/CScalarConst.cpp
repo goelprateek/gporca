@@ -62,7 +62,7 @@ CScalarConst::~CScalarConst()
 //
 //	@doc:
 //		Operator specific hash function; combined hash of operator id and
-//		hash of constant m_bytearray_value
+//		hash of constant value
 //
 //---------------------------------------------------------------------------
 ULONG

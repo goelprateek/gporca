@@ -91,7 +91,7 @@ CDatumOidGPDB::~CDatumOidGPDB()
 //		CDatumOidGPDB::OidValue
 //
 //	@doc:
-//		Accessor of oid m_bytearray_value
+//		Accessor of oid value
 //
 //---------------------------------------------------------------------------
 OID

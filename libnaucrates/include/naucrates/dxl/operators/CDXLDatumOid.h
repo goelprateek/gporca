@@ -39,7 +39,7 @@ namespace gpdxl
 	class CDXLDatumOid : public CDXLDatum
 	{
 	private:
-		// oid m_bytearray_value
+		// oid value
 		OID m_oid_val;
 
 		// private copy ctor
@@ -52,7 +52,7 @@ namespace gpdxl
 		// dtor
 		virtual ~CDXLDatumOid(){};
 
-		// accessor of oid m_bytearray_value
+		// accessor of oid value
 		OID OidValue() const;
 
 		// serialize the datum as the given element
@@ -65,7 +65,7 @@ namespace gpdxl
 			return CDXLDatum::EdxldatumOid;
 		}
 
-		// is type passed by m_bytearray_value
+		// is type passed by value
 		virtual BOOL
 		IsPassedByValue() const
 		{

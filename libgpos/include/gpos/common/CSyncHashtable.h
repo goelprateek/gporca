@@ -50,7 +50,7 @@ namespace gpos
 	//		Allocation-less static hash table;
 	//
 	//		Ideally the offset of the key would be a template parameter too in order
-	//		to avoid accidental tampering with this m_bytearray_value -- not all compiler allow
+	//		to avoid accidental tampering with this value -- not all compiler allow
 	//		the use of the offset macro in the template definition, however.
 	//
 	//---------------------------------------------------------------------------

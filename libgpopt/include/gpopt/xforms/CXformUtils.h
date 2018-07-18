@@ -415,7 +415,7 @@ namespace gpopt
 			static
 			BOOL FNotIdent(CExpression *pexpr);
 
-			// creates a condition of the form col = m_bytearray_value, where col is the given column
+			// creates a condition of the form col = value, where col is the given column
 			static
 			CExpression *PexprEqualityOnBoolColumn
 				(

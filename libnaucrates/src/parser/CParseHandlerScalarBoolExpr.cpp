@@ -176,7 +176,7 @@ CParseHandlerScalarBoolExpr::EndElement(const XMLCh *const,  // element_uri,
 //		CParseHandlerScalarBoolExpr::GetDxlBoolTypeStr
 //
 //	@doc:
-//		Parse the bool type from the attribute m_bytearray_value. Raise exception if it is invalid
+//		Parse the bool type from the attribute value. Raise exception if it is invalid
 //
 //---------------------------------------------------------------------------
 EdxlBoolExprType

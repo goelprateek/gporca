@@ -47,7 +47,7 @@ namespace gpopt
 			static
 			const WCHAR m_rgwszBoolTest[EbtSentinel][30];
 
-			// mapping operator type and child m_bytearray_value into the corresponding result m_bytearray_value
+			// mapping operator type and child value into the corresponding result value
 			static
 			const BYTE m_rgBoolEvalMap[][3];
 

@@ -96,7 +96,7 @@ namespace gpos
 		// private copy ctor
 		CBitSet(const CBitSet &);
 
-		// find link with offset less or equal to given m_bytearray_value
+		// find link with offset less or equal to given value
 		CBitSetLink *FindLinkByOffset(ULONG, CBitSetLink * = NULL) const;
 
 		// reset set
@@ -119,10 +119,10 @@ namespace gpos
 		// determine if bit is set
 		BOOL Get(ULONG pos) const;
 
-		// set given bit; return previous m_bytearray_value
+		// set given bit; return previous value
 		BOOL ExchangeSet(ULONG pos);
 
-		// clear given bit; return previous m_bytearray_value
+		// clear given bit; return previous value
 		BOOL ExchangeClear(ULONG pos);
 
 		// union sets
@@ -143,7 +143,7 @@ namespace gpos
 		// disjoint
 		BOOL IsDisjoint(const CBitSet *) const;
 
-		// hash m_bytearray_value for set
+		// hash value for set
 		ULONG HashValue() const;
 
 		// number of elements

@@ -3004,7 +3004,7 @@ CTestUtils::PpointInt4
 //		CTestUtils::PpointInt4NullVal
 //
 //	@doc:
-//		Create an INT4 point with null m_bytearray_value
+//		Create an INT4 point with null value
 //
 //---------------------------------------------------------------------------
 CPoint *
@@ -3676,7 +3676,7 @@ CTestUtils::EresRunMinidumps
 			}
 
 			// enable space pruning
-			CAutoTraceFlag atf(EopttraceEnableSpacePruning, true /*m_bytearray_value*/);
+			CAutoTraceFlag atf(EopttraceEnableSpacePruning, true /*value*/);
 
 			eres = EresRunMinidumpsUsingOneMDFile
 				(
@@ -3779,7 +3779,7 @@ CTestUtils::EresRunMinidumpsUsingOneMDFile
 //
 //	@doc:
 //		Test plan sampling
-//		to extract attribute 'X' m_bytearray_value from xml file:
+//		to extract attribute 'X' value from xml file:
 //		xpath distr.xml //dxl:Value/@X | grep 'X=' | sed 's/\"//g' | sed 's/X=//g' | tr ' ' '\n'
 //
 //
@@ -4095,7 +4095,7 @@ CTestUtils::EresCheckOptimizedPlan
 		// reset metadata cache
 		CMDCache::Reset();
 
-		CAutoTraceFlag atf1(EopttraceEnableSpacePruning, true /*m_bytearray_value*/);
+		CAutoTraceFlag atf1(EopttraceEnableSpacePruning, true /*value*/);
 
 		// load dump file
 		CDXLMinidump *pdxlmd = CMinidumperUtils::PdxlmdLoad(mp, rgszFileNames[ul]);
@@ -4188,7 +4188,7 @@ CTestUtils::EresCheckOptimizedPlan
 //		CTestUtils::CreateGenericDatum
 //
 //	@doc:
-//		Create a datum with a given type, encoded m_bytearray_value and int m_bytearray_value.
+//		Create a datum with a given type, encoded value and int value.
 //
 //---------------------------------------------------------------------------
 IDatum *
@@ -4567,13 +4567,13 @@ CTestUtils::EresUnittest_RunTests
 	fTestSpacePruning = true;
 #endif // GPOS_Darwin || GPOS_Linux
 	// enable (Redistribute, Broadcast) hash join plans
-	CAutoTraceFlag atf1(EopttraceEnableRedistributeBroadcastHashJoin, true /*m_bytearray_value*/);
+	CAutoTraceFlag atf1(EopttraceEnableRedistributeBroadcastHashJoin, true /*value*/);
 
 	// enable plan enumeration only if we match plans
 	CAutoTraceFlag atf2(EopttraceEnumeratePlans, fMatchPlans);
 
 	// enable stats derivation for DPE
-	CAutoTraceFlag atf3(EopttraceDeriveStatsForDPE, true /*m_bytearray_value*/);
+	CAutoTraceFlag atf3(EopttraceDeriveStatsForDPE, true /*value*/);
 
 	// prefer MDQA
 	CAutoTraceFlag atf5(EopttraceForceExpandedMDQAs, true);

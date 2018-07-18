@@ -6,7 +6,7 @@
 //		CParseHandlerScalarValuesList.cpp
 //
 //	@doc:
-//		Implementation of the SAX parse handler class for parsing m_bytearray_value list.
+//		Implementation of the SAX parse handler class for parsing value list.
 //---------------------------------------------------------------------------
 
 #include "naucrates/dxl/parser/CParseHandlerScalarValuesList.h"

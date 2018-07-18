@@ -40,10 +40,10 @@ namespace gpmd
 	class CDXLBucket : public CRefCount
 	{
 	private:
-		// lower bound m_bytearray_value for the bucket
+		// lower bound value for the bucket
 		CDXLDatum *m_lower_bound_dxl_datum;
 
-		// max m_bytearray_value for the bucket
+		// max value for the bucket
 		CDXLDatum *m_upper_bound_dxl_datum;
 
 		// is lower bound closed (i.e., the boundary point is included in the bucket)
@@ -93,10 +93,10 @@ namespace gpmd
 			return m_is_upper_closed;
 		}
 
-		// min m_bytearray_value for the bucket
+		// min value for the bucket
 		const CDXLDatum *GetDXLDatumLower() const;
 
-		// max m_bytearray_value for the bucket
+		// max value for the bucket
 		const CDXLDatum *GetDXLDatumUpper() const;
 
 		// frequency

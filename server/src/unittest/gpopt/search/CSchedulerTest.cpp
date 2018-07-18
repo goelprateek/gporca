@@ -481,7 +481,7 @@ CSchedulerTest::BuildMemoMultiThreaded
 	GPOS_CHECK_ABORT;
 
 	// enable space pruning
-	CAutoTraceFlag atf(EopttraceEnableSpacePruning, true /*m_bytearray_value*/);
+	CAutoTraceFlag atf(EopttraceEnableSpacePruning, true /*value*/);
 
 	CWStringDynamic str(mp);
 	COstreamString oss(&str);

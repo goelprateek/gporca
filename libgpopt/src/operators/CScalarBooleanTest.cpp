@@ -34,10 +34,10 @@ const WCHAR CScalarBooleanTest::m_rgwszBoolTest[EbtSentinel][30] =
 };
 
 
-// mapping operator type and child m_bytearray_value to the corresponding result m_bytearray_value for Boolean expression evaluation,
+// mapping operator type and child value to the corresponding result value for Boolean expression evaluation,
 // in each entry, we have three values:
 // (1) operator type: IS_TRUE / IS_NOT_TRUE / IS_FALSE / IS_NOT_FALSE / IS_UNKNOWN / IS_NOT_UNKNOWN
-// (2) child m_bytearray_value: EberTrue / EberFalse / EberNull / EberUnknown
+// (2) child value: EberTrue / EberFalse / EberNull / EberUnknown
 // (3) expected result:  EberTrue / EberFalse / EberNull / EberUnknown
 
 const BYTE CScalarBooleanTest::m_rgBoolEvalMap [][3] =

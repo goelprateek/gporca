@@ -33,13 +33,13 @@ namespace gpdxl
 		// param name
 		CHAR *m_param_name;
 
-		// param m_bytearray_value
+		// param value
 		CDouble m_value;
 
-		// lower bound m_bytearray_value
+		// lower bound value
 		CDouble m_lower_bound_val;
 
-		// upper bound m_bytearray_value
+		// upper bound value
 		CDouble m_upper_bound_val;
 
 		// private copy ctor
@@ -74,21 +74,21 @@ namespace gpdxl
 			return m_param_name;
 		}
 
-		// return parsed param m_bytearray_value
+		// return parsed param value
 		CDouble
 		Get() const
 		{
 			return m_value;
 		}
 
-		// return parsed param lower bound m_bytearray_value
+		// return parsed param lower bound value
 		CDouble
 		GetLowerBoundVal() const
 		{
 			return m_lower_bound_val;
 		}
 
-		// return parsed param upper bound m_bytearray_value
+		// return parsed param upper bound value
 		CDouble
 		GetUpperBoundVal() const
 		{

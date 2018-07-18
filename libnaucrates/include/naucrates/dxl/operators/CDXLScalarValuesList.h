@@ -6,7 +6,7 @@
 //		CDXLScalarValuesList.h
 //
 //	@doc:
-//		Class for representing DXL m_bytearray_value list operator.
+//		Class for representing DXL value list operator.
 //---------------------------------------------------------------------------
 
 #ifndef GPDXL_CDXLScalarValuesList_H
@@ -22,7 +22,7 @@ namespace gpdxl
 	using namespace gpmd;
 
 
-	// class for representing DXL m_bytearray_value list operator
+	// class for representing DXL value list operator
 	class CDXLScalarValuesList : public CDXLScalar
 	{
 	private:

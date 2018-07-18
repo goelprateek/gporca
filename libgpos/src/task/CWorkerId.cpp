@@ -102,7 +102,7 @@ CWorkerId::SetThreadToInvalid()
 ULONG
 CWorkerId::HashValue(const CWorkerId &wid)
 {
-	// don't compute hash m_bytearray_value for invalid id
+	// don't compute hash value for invalid id
 	GPOS_ASSERT(wid.IsValid() && "Invalid worker id.");
 
 	return gpos::HashValue<PTHREAD_T>(&wid.m_pthread);

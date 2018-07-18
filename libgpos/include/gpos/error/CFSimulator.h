@@ -6,7 +6,7 @@
 //		CFSimulator.h
 //
 //	@doc:
-//		Failpoint simulator framework; computes a hash m_bytearray_value for current
+//		Failpoint simulator framework; computes a hash value for current
 //		call stack; if stack has not been seen before, stack repository
 //		returns true which makes the call macro simulate a failure, i.e.
 //		throw an exception.

@@ -237,7 +237,7 @@ CMemoryPoolTracker::Free(void *ptr)
 	// pass request to underlying memory pool;
 	GetUnderlyingMemoryPool()->Free(header);
 
-	// update committed memory m_bytearray_value
+	// update committed memory value
 	if (m_capacity != gpos::ullong_max)
 	{
 		SLock(as);
